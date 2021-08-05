@@ -1,0 +1,122 @@
+.user-info{
+  display: grid;
+  grid-template-columns: minmax(33.3rem, 1fr) minmax(33.3rem, 1fr);
+  grid-gap: .2rem;
+  overflow-x: auto;
+
+  @include media(">=lg"){
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1.6rem;
+  }
+
+  &__block{
+    padding: 2.4rem 1.6rem;
+    border-radius: .4rem;
+    flex: 1 0 33.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 27.2rem;
+
+    @include media(">=lg"){
+      grid-gap: 1.6rem;
+      padding: 3.2rem;
+
+      &:first-child,
+      &:last-child{
+        border-radius: 2.4rem;
+      }
+    }
+
+    &:first-child{
+      border-radius: 2.4rem .4rem .4rem 2.4rem;
+    }
+
+    &:last-child{
+      border-radius: .4rem 2.4rem 2.4rem .4rem;
+    }
+
+    &--primary{
+      background-color: $primary;
+      color: $white;
+
+      @include media(">=lg"){
+        order: 1;
+      }
+    }
+
+    &--accent{
+      background-color: $accent;
+      color: $white;
+
+      @include media(">=lg"){
+        color: $accent;
+        background-color: $accentLighter2;
+      }
+    }
+  }
+
+  &__icon{
+    display: block;
+    margin: 0 0 auto;
+    color: $primaryLighter;
+  }
+
+  &__name{
+    font-weight: 700;
+    font-size: $fontSize22;
+    @include calcLineHeight($fontSize22);
+    margin-bottom: 2.4rem;
+  }
+
+  &__link{
+    position: relative;
+  }
+
+  &__link-holder{
+    position: absolute;
+    right: 2.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    z-index: 5;
+  }
+
+  &__link-anchor{
+    color: $primaryLighter;
+    margin: 0 .8rem 0 0;
+    @include animate(color);
+
+    &:hover{
+      color: $white;
+    }
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  &__link-input{
+    display: block;
+    width: 100%;
+    padding-right: 8.2rem;
+  }
+
+  &__views{
+    border-collapse: collapse;
+    max-width: 100%;
+  }
+
+  &__views-cell{
+    padding: .8rem 0;
+
+    &--value{
+      font-weight: 700;
+      font-size: $fontSize28;
+      @include calcLineHeight($fontSize28);
+      padding-right: 2.4rem;
+    }
+  }
+
+}

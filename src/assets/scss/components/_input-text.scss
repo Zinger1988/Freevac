@@ -1,0 +1,86 @@
+.input-text{
+  @extend %nowrap;
+  display: block;
+  -moz-appearance: textfield;
+  font-family: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  background-color: $secondary;
+  border-radius: 8px;
+  outline: none;
+  padding: 1.7rem 1.1rem;
+  border: 1px solid transparent;
+  @include animate(background-color border);
+
+  @include placeholder {
+    color: $secondaryDarker2;
+    opacity: 1;
+    @include animate(opacity);
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:hover {
+    border-color: $secondaryDarker;
+    background-color: transparent;
+    outline: none;
+  }
+
+  &:focus:not(:read-only) {
+    @include placeholder {
+      opacity: 0;
+    }
+  }
+
+  &--textarea{
+    min-height: 15.5rem;
+    white-space: pre-wrap;
+    overflow: auto;
+  }
+
+  &--style{
+
+    &--primary{
+      border: 2px solid $primaryLighter;
+      background-color: transparent;
+      color: $white;
+
+      @include placeholder {
+        color: $primaryLighter2;
+      }
+
+      &:hover{
+        border-color: $primaryLighter2;
+      }
+    }
+  }
+
+  &--iconic{
+    padding-right: 4rem;
+    background-position: 120% 50%;
+    background-repeat: no-repeat;
+    background-size: 1.6rem auto;
+    @include animate(background-position);
+
+    &:hover{
+      background-position: calc(100% - 1.2rem) 50%;
+    }
+
+    &--angle-right{
+      background-image: url("data:image/svg+xml;base64,\
+      PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSLQodC70L7QuV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5v\
+      cmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4\
+      PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMTYgMTYiIHN0eWxlPSJlbmFibGUtYmFja2dy\
+      b3VuZDpuZXcgMCAwIDE2IDE2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxzdHlsZSB0eXBlPSJ0\
+      ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO2ZpbGw6\
+      IzEzMTIxNTt9Cjwvc3R5bGU+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik01LjMsMi43Yy0wLjQtMC40\
+      LTAuNC0xLDAtMS40czEtMC40LDEuNCwwbDYsNmwwLDBjMCwwLDAuMSwwLjEsMC4xLDAuMmMwLjMs\
+      MC40LDAuMiwwLjktMC4xLDEuM2wtNiw2CgljLTAuNCwwLjQtMSwwLjQtMS40LDBzLTAuNC0xLDAt\
+      MS40TDEwLjYsOEw1LjMsMi43eiIvPgo8L3N2Zz4=");
+    }
+  }
+}

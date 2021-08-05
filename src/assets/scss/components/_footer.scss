@@ -1,0 +1,32 @@
+.footer{
+
+  $this: &;
+
+  &__tagline{
+    text-align: center;
+    color: $secondaryDarker2;
+    margin: 0 0 10rem;
+
+    @include media(">=lg"){
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 3.7rem;
+
+      #{$this}__tagline-pre{
+        margin: 0 2.4rem 0 0;
+      }
+    }
+  }
+
+  &__tagline-pre{
+    font-weight: 700;
+    font-size: $fontSize28;
+    @include calcLineHeight($fontSize28);
+    margin: 0 auto 2.4rem;
+  }
+
+  &__tagline-logo{
+    width: 16.2rem;
+  }
+}

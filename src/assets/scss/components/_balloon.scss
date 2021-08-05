@@ -1,0 +1,58 @@
+.balloon{
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  font-weight: 500;
+  font-size: $fontSize18;
+  @include calcLineHeight($fontSize18);
+  padding: .555em .722em;
+  border-radius: 2.7rem;
+  background-color: $secondaryDarker;
+  color: $secondaryDarker4;
+
+  &::after{
+    content: "";
+    position: absolute;
+    left: -.35em;
+    bottom: -.055em;
+    width: 1.222em;
+    height: .833em;
+    background-size: contain;
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml;base64,\
+      PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSLQodC70L7QuV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5v\
+      cmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4\
+      PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjIgMTUuMiIgc3R5bGU9ImVuYWJsZS1iYWNr\
+      Z3JvdW5kOm5ldyAwIDAgMjIgMTUuMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlw\
+      ZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNFOEU2RUM7fQo8L3N0eWxlPgo8cGF0aCBjbGFzcz0i\
+      c3QwIiBkPSJNOS41LDB2Mi4zaDBjMCwwLjMsMCwwLjYsMCwwLjhDOS41LDcsNCwxMi4xLDAsMTUu\
+      MkM5LjEsMTUsMTQuNCwxMy41LDIyLDlWMEg5LjV6Ii8+Cjwvc3ZnPg==");
+  }
+
+  &--right{
+    &::after{
+      transform: scaleX(-1);
+      left: calc(100% - .9em);
+    }
+  }
+
+  &--style{
+
+    &--accent{
+      background-color: $accent;
+      color: $white;
+
+      &::after{
+        background-image: url("data:image/svg+xml;base64,\
+        PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSLQodC70L7QuV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5v\
+        cmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4\
+        PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjIgMTUuMiIgc3R5bGU9ImVuYWJsZS1iYWNr\
+        Z3JvdW5kOm5ldyAwIDAgMjIgMTUuMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlw\
+        ZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiM1QkQ2NEQ7fQo8L3N0eWxlPgo8cGF0aCBjbGFzcz0i\
+        c3QwIiBkPSJNOS41LDB2Mi4zaDBjMCwwLjMsMCwwLjYsMCwwLjhDOS41LDcsNCwxMi4xLDAsMTUu\
+        MkM5LjEsMTUsMTQuNCwxMy41LDIyLDlWMEg5LjV6Ii8+Cjwvc3ZnPg==");
+      }
+    }
+  }
+}

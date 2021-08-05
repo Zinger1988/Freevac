@@ -1,0 +1,156 @@
+// Typography
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6{
+  font-weight: bold;
+  margin: 0;
+}
+
+h1, .h1{
+  font-size: $fontSize28;
+  @include calcLineHeight($fontSize28);
+}
+
+h2, .h2 {
+  font-size: $fontSize24;
+  @include calcLineHeight($fontSize24);
+}
+
+h3, .h3 {
+  font-size: $fontSize22;
+  @include calcLineHeight($fontSize22);
+}
+h4, .h4,
+h5, .h5,
+h6, .h6{
+  font-size: 2rem;
+  @include calcLineHeight(2rem);
+}
+
+p, .p{
+  margin: 0;
+}
+
+.user-input{
+
+  h1, .h1,
+  h2, .h2,
+  h3, .h3,
+  h4, .h4,
+  h5, .h5,
+  h6, .h6{
+    margin: 0 0 .5em;
+  }
+
+  p, .p{
+    margin: 0 0 1em;
+  }
+
+}
+
+//@mixin list-default{
+//  margin: 1.25em 0 1.25em 1.25em;
+//  padding: 0;
+//  list-style: none;
+//
+//  li{
+//    margin: 0 0 .35em 0;
+//    padding: 0 0 0 1.5em;
+//
+//    &::before{
+//      display: inline-block;
+//      vertical-align: middle;
+//      @content;
+//    }
+//  }
+//}
+//
+//ul:not([class]):not([id]){
+//  @include list-default(){
+//    content: "";
+//    width: .4em;
+//    height: .4em;
+//    border-radius: 50%;
+//    background-color: $mySin;
+//    margin: 0 1.1em 0 -1.5em;
+//    position: relative;
+//    top: -.1em;
+//  }
+//}
+//
+//ol:not([class]):not([id]){
+//  counter-reset: numeric-list;
+//
+//  @include list-default(){
+//    counter-increment: numeric-list;
+//    content: counter(numeric-list)".";
+//    font-weight: 700;
+//    color: $mySin;
+//    width: 1.5em;
+//    margin: 0 0 0 -1.5em;
+//    position: relative;
+//    top: -.1em;
+//  }
+//}
+//
+//p {
+//  margin: 0 0 1em;
+//}
+//
+//a {
+//  color: $base-link-color;
+//  text-decoration-color: transparent;
+//  @include animate('text-decoration-color');
+//
+//  &:hover,
+//  &:focus {
+//    text-decoration-color: $base-link-color;
+//  }
+//}
+//
+//.text{
+//  &--marker{
+//    &--primary{
+//      color: $mySin;
+//    }
+//    &--danger{
+//      color: $mandy;
+//    }
+//    &--warning{
+//      color: $pumpkin;
+//    }
+//    &--ok{
+//      color: $limeade;
+//    }
+//    &--darkgrey{
+//      color: $nevada;
+//    }
+//  }
+//
+//  &--bigger{
+//
+//    &--115{
+//      font-size: 115%;
+//    }
+//  }
+//
+//  &--smaller{
+//
+//    &--075{
+//      font-size: 75%;
+//    }
+//
+//    &--085{
+//      font-size: 85%;
+//    }
+//  }
+//
+//  &--nowrap{
+//    white-space: nowrap;
+//  }
+//
+//}

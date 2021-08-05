@@ -1,0 +1,104 @@
+.steps{
+
+  $this: &;
+
+  &__text{
+    font-size: $fontSize18;
+    margin: 0 0 2.4rem;
+    @include calcLineHeight($fontSize18);
+
+    @include media(">=lg"){
+      margin: 0 0 5.5rem;
+    }
+  }
+
+  &__body{
+    counter-reset: steps;
+
+    @include media(">=lg"){
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1.6rem;
+    }
+  }
+
+  &__checkpoint{
+    display: block;
+    padding: 1.6rem;
+    border-radius: 1.6rem;
+    margin: 0 0 1.6rem;
+    border: 1px solid $primaryLighter;
+    text-align: left;
+    color: $primaryLighter2;
+    cursor: pointer;
+    @include animate(color background-color);
+
+    @include media(">=lg"){
+      padding: 2.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      margin: 0;
+    }
+
+    &:hover{
+      background-color: $primaryLighter;
+      color: $primary;
+    }
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+
+  &__checkpoint-status{
+    font-size: $fontSize22;
+    font-weight: 700;
+    @include calcLineHeight($fontSize22);
+    margin-bottom: .8rem;
+    position: relative;
+
+    @include media(">=lg"){
+      font-size: $fontSize28;
+      @include calcLineHeight($fontSize28);
+    }
+
+    &::before{
+      counter-increment: steps;
+      content: "0" counter(steps)
+    }
+
+    &--done{
+      &::before{
+        font-size: 0;
+        position: absolute;
+      }
+
+      #{$this}__checkpoint-icon{
+        display: block;
+      }
+    }
+  }
+
+  &__checkpoint-icon{
+    display: none;
+    font-size: 3.2rem;
+
+    @include media(">=lg"){
+      font-size: 4.8rem;
+    }
+  }
+
+  &__checkpoint-title{
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+    font-weight: 500;
+
+    @include media(">=lg"){
+      font-size: $fontSize22;
+      @include calcLineHeight($fontSize22);
+      font-weight: 700;
+    }
+  }
+}

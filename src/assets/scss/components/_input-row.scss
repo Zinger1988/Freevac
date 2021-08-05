@@ -1,0 +1,44 @@
+.input-row{
+  position: relative;
+
+  $this: &;
+
+  &__title{
+    color: $secondaryDarker3;
+    position: absolute;
+    left: 1.2rem;
+    top: 1.7rem;
+    width: calc(100% - 5.2rem);
+    @include animate(top font-size line-height);
+    @extend %nowrap;
+    cursor: text;
+
+    &--focus{
+      top: 1rem;
+      font-size: $fontSize12;
+      @include calcLineHeight($fontSize12);
+    }
+
+    &:hover{
+      ~ #{$this}__input-text{
+        border-color: $secondaryDarker;
+        background-color: transparent;
+        outline: none;
+        background-position: calc(100% - 1.2rem) 50%;
+      }
+    }
+  }
+
+  &__input-text{
+    width: 100%;
+    padding-top: 2.4rem;
+    padding-bottom: 1rem;
+  }
+
+  &--pointer{
+    #{$this}__title,
+    #{$this}__input-text{
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.container{
+  padding: 0 .8rem;
+  max-width: 121.4rem;
+  min-width: 36rem;
+  margin: 0 auto;
+
+  @include media(">=sm"){
+    padding: 0 1.6rem;
+  }
+
+  @include media(">=md"){
+    padding: 0 3rem;
+  }
+
+  @include media(">=lg"){
+    padding: 0 4rem;
+  }
+}

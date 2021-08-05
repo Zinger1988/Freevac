@@ -1,0 +1,101 @@
+.icon{
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  //margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  //margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+
+  &--size{
+    &--sm{
+      font-size: 1.6rem;
+    }
+    &--md{
+      font-size: 2.4rem;
+    }
+    &--lg{
+      font-size: 4.8rem;
+    }
+  }
+}
+
+.icon--arrowleft-48:before { content: '\e800'; } /* '' */
+.icon--arrowup-48:before { content: '\e801'; } /* '' */
+.icon--camera-48:before { content: '\e802'; } /* '' */
+.icon--arrowright-48:before { content: '\e803'; } /* '' */
+.icon--check-48:before { content: '\e804'; } /* '' */
+.icon--close-48:before { content: '\e805'; } /* '' */
+.icon--copy-48:before { content: '\e806'; } /* '' */
+.icon--link-48:before { content: '\e807'; } /* '' */
+.icon--download-48:before { content: '\e808'; } /* '' */
+.icon--mail-48:before { content: '\e809'; } /* '' */
+.icon--phone-48:before { content: '\e80a'; } /* '' */
+.icon--replace--48:before { content: '\e80b'; } /* '' */
+.icon--telegram-48:before { content: '\e80c'; } /* '' */
+.icon--trash-48:before { content: '\e80d'; } /* '' */
+.icon--user-48:before { content: '\e80e'; } /* '' */
+.icon--arrowdown-48:before { content: '\e80f'; } /* '' */
+.icon--close-24:before { content: '\e810'; } /* '' */
+.icon--copy-24:before { content: '\e811'; } /* '' */
+.icon--document-24:before { content: '\e812'; } /* '' */
+.icon--download-24:before { content: '\e813'; } /* '' */
+.icon--edit-24:before { content: '\e814'; } /* '' */
+.icon--facebook-24:before { content: '\e815'; } /* '' */
+.icon--instagram-24:before { content: '\e816'; } /* '' */
+.icon--link-24:before { content: '\e817'; } /* '' */
+.icon--mail-24:before { content: '\e818'; } /* '' */
+.icon--phone-24:before { content: '\e819'; } /* '' */
+.icon--plus-24:before { content: '\e81a'; } /* '' */
+.icon--soundoff-24:before { content: '\e81b'; } /* '' */
+.icon--soundon-24:before { content: '\e81c'; } /* '' */
+.icon--telegram-24:before { content: '\e81d'; } /* '' */
+.icon--check-24:before { content: '\e81e'; } /* '' */
+.icon--arrowangledown-16:before { content: '\e81f'; } /* '' */
+.icon--arrowangleleft-16:before { content: '\e820'; } /* '' */
+.icon--arrowangleright-16:before { content: '\e821'; } /* '' */
+.icon--arrowangletop-16:before { content: '\e822'; } /* '' */
+.icon--camera-16:before { content: '\e823'; } /* '' */
+.icon--check-16:before { content: '\e824'; } /* '' */
+.icon--close-16:before { content: '\e825'; } /* '' */
+.icon--closealt-16:before { content: '\e826'; } /* '' */
+.icon--delete-16:before { content: '\e827'; } /* '' */
+.icon--edit-16:before { content: '\e828'; } /* '' */
+.icon--exit-16:before { content: '\e829'; } /* '' */
+.icon--facebook-16:before { content: '\e82a'; } /* '' */
+.icon--instagram-16:before { content: '\e82c'; } /* '' */
+.icon--linkedin-16:before { content: '\e82d'; } /* '' */
+.icon--mail-16:before { content: '\e82e'; } /* '' */
+.icon--phone-16:before { content: '\e82f'; } /* '' */
+.icon--plus-16:before { content: '\e830'; } /* '' */
+.icon--publish-16:before { content: '\e831'; } /* '' */
+.icon--sound-16:before { content: '\e832'; } /* '' */
+.icon--telegram-16:before { content: '\e833'; } /* '' */
+.icon--viber-16:before { content: '\e834'; } /* '' */
+.icon--apple-16:before { content: '\e835'; } /* '' */

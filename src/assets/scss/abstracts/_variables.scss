@@ -1,0 +1,52 @@
+// Colors
+// Name that color https://chir.ag/projects/name-that-color/
+
+$primary: #7B41E7;
+$primaryLighter: #B593F3;
+$primaryLighter2: #DED1F5;
+
+$accent: #5BD64D;
+$accentLighter: #A0EB98;
+$accentLighter2: #D8F4D5;
+
+$secondary: #F1F0F3;
+$secondaryDarker: #E8E6EC;
+$secondaryDarker2: #B5B1BC;
+$secondaryDarker3: #7E7987;
+$secondaryDarker4: #45414B;
+
+$blue: #3475E3;
+$blueLighter: #D3DFF2;
+
+$lightBlue: #4B9AD8;
+$lightBlueLighter: #C8DFF1;
+
+$mutedRed: #C85272;
+$mutedRedLighter: #F4DBE2;
+
+$white: #ffffff;
+$black: #131215;
+
+// Layers
+
+//$header-z-index: 110;
+
+// Default html and body font-size for the base rem value.
+$rem-base: 62.5%; // 16px * .625 ~= 10px
+
+// Body
+$base-text-color: $black;
+$base-background-color: $secondaryDarker;
+$base-font-size: 1.6rem;
+$base-line-height: 1.5;
+$base-font-family: 'Closer', 'Helvetica Neue', 'Helvetica', sans-serif;
+
+// Liks
+$base-link-color: $primary;
+
+// Default font sizes
+$fontSize28: 2.8rem;
+$fontSize24: 2.4rem;
+$fontSize22: 2.2rem;
+$fontSize18: 1.8rem;
+$fontSize12: 1.2rem;

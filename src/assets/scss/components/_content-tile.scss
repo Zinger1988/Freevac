@@ -1,0 +1,61 @@
+.content-tile{
+  border-radius: 24px;
+  background-color: $white;
+  padding: 2.4rem;
+
+  &__section{
+    margin: 0 0 2.4rem;
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+
+    @include media(">=lg"){
+      margin: 0 0 4rem;
+    }
+  }
+
+  &__title{
+    font-size: $fontSize22;
+    @include calcLineHeight($fontSize22);
+    margin: 0 0 2.4rem;
+
+    @include media(">=lg"){
+      font-size: $fontSize28;
+      @include calcLineHeight($fontSize28);
+    }
+  }
+
+  &--alt{
+    padding: 3.2rem 2.4rem;
+  }
+
+  &--alt2 {
+    padding: 2.4rem 1.6rem;
+
+    @include media(">=lg"){
+      padding: 3.2rem;
+    }
+  }
+
+  &--style {
+
+    &--primary {
+      background-color: $primary;
+      color: $white;
+    }
+
+    &--primary-lighter {
+      background-color: $primaryLighter2;
+      color: $primary;
+    }
+  }
+
+  &--overflow-x{
+    padding-right: 0;
+
+    @include media(">=lg"){
+      padding-right: 3.2rem;
+    }
+  }
+}
