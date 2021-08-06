@@ -9,16 +9,16 @@ html {
   line-height: $base-line-height;
   color: $base-text-color;
   background-color: $base-background-color;
+  height: 100%;
 }
 
 body {
   font-size: $base-font-size;
   overflow-x: hidden;
-}
-
-html,
-body{
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 *,

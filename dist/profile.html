@@ -18,18 +18,55 @@
 
 <body>
 
-<div class="page">
+<header class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
 
-    <main class="page__content content content--col-2">
-        <div class="container content__container content__container--col-2">
+            <a href="#" class="logo page-header__logo">
+                <img src="assets/img/logo.svg" alt="Freevac">
+            </a>
 
-            <aside class="content__aside">
-                1
-            </aside>
+            <div class="page-header__controls">
+                <button class="btn btn--size--regular btn--style--primary page-header__controls-btn page-header__controls-btn--logout-mob">
+                    <i class="icon icon--size--sm icon--exit-16 btn__icon"></i>
+                </button>
+                <button class="btn btn--size--regular btn--style--secondary page-header__controls-btn page-header__controls-btn--logout-desk">
+                    <span class="btn__text">Выйти</span>
+                </button>
+            </div>
 
-            <div class="content__main">
+        </div>
+    </div>
+</header><!--header-->
+<main class="page-content">
+    <div class="container">
+
+        <div class="profile page-content__profile">
+
+            <div class="profile__video">
+
+                <div class="video-slider">
+                    <div class="video-slider__slide">
+                        <div class="video-slider__holder">
+                            <div class="balloon balloon--style--accent video-slider__balloon">Расскажу немного о себе</div>
+                            <video class="video-slider__item" autoplay="true" loop>
+                                <source src="assets/video/02.mp4" type="video/mp4" /></source>
+                                <source src="assets/video/02.ogv" type="video/ogg"/></source>
+                                You need an HTML 5-capable browser.
+                            </video>
+                        </div>
+                    </div><!--video slide-->
+                </div><!--video slider-->
+
+                <div class="reactions">
+                    reactions
+                </div>
+
+            </div><!--video-->
+
+            <div class="profile__info">
                 
-                    <section class="user-info content__user-info">
+                    <section class="user-info profile__user-info">
                 
                         <div class="user-info__block user-info__block--primary">
                             <i class="icon icon--size--lg icon--user-48 user-info__icon"></i>
@@ -69,7 +106,7 @@
                 
                     </section>
                 
-                    <article class="content-tile content-tile--style--primary content__content-tile">
+                    <article class="content-tile content-tile--style--primary profile__content-tile">
                         <section class="content-tile__section">
                 
                             <h2 class="content-tile__title">Привет &#128075;</h2>
@@ -99,7 +136,7 @@
                         </section>
                     </article><!-- content tile -->
                 
-                    <article class="content-tile content__content-tile">
+                    <article class="content-tile profile__content-tile">
                         <section class="content-tile__section">
                 
                             <p>
@@ -110,7 +147,7 @@
                         </section>
                     </article><!-- content tile -->
                 
-                    <article class="content-tile content-tile--alt2 content-tile--style--primary-lighter content-tile--overflow-x content__content-tile">
+                    <article class="content-tile content-tile--alt2 content-tile--style--primary-lighter content-tile--overflow-x profile__content-tile">
                         <section class="content-tile__section">
                 
                             <h2 class="content-tile__title">Видео</h2>
@@ -227,7 +264,7 @@
                         </section>
                     </article><!-- content tile -->
                 
-                    <article class="content-tile content-tile--alt2 content__content-tile">
+                    <article class="content-tile content-tile--alt2 profile__content-tile">
                         <section class="content-tile__section">
                 
                             <h2 class="content-tile__title">Информация</h2>
@@ -428,23 +465,25 @@
                 
             </div>
 
-        </div>
-    </main><!-- content -->
+        </div><!--profile layout-->
 
-    <footer class="footer page__footer">
-        <div class="container footer__container">
-    
-            <div class="footer__tagline">
-                <div class="footer__tagline-pre">создано при помощи</div>
-                <a class="logo footer__tagline-logo" href="#">
+    </div>
+</main><!--page content-->
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="page-footer__inner">
+
+            <div class="page-footer__tagline">
+                <div class="page-footer__tagline-pre">создано при помощи</div>
+                <a class="logo page-footer__tagline-logo" href="#">
                     <img class="logo__img" src="assets/img/logo-grey.svg" alt="Freevac">
                 </a>
             </div>
-    
-        </div>
-    </footer>
-</div><!-- page -->
 
+        </div>
+    </div>
+</footer>
 <script src="assets/js/app.js"></script>
 </body>
 </html>

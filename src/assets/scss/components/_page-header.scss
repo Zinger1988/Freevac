@@ -1,0 +1,50 @@
+.page-header{
+  margin: 2.4rem 0;
+
+  &__inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__logo{
+    width: 18.2rem;
+
+    @include media(">=md"){
+      position: fixed;
+      left: 3rem;
+      top: 2.4rem;
+      z-index: $logo-z-index;
+    }
+
+    @include media(">=xl"){
+      // calculating fixed logo LEFT coordinate: (100% - (containerMaxWidth - containerPaddingX * 2)) / 2
+      left: calc((100% - (119.4rem - 3rem * 2))/ 2);
+    }
+  }
+
+  &__controls{
+    margin: 0 0 0 auto;
+  }
+
+  &__controls-btn{
+
+    &.btn--style--secondary:hover{
+      background-color: $secondary;
+    }
+
+    &--logout-desk{
+      display: none;
+    }
+
+    @include media(">=lg"){
+      &--logout-mob{
+        display: none;
+      }
+
+      &--logout-desk{
+        display: inline-flex;
+      }
+    }
+  }
+}

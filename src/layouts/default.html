@@ -8,25 +8,44 @@
 
 <body>
 
-<div class="page">
+{{> header }}
 
-    <main class="page__content content content--col-2">
-        <div class="container content__container content__container--col-2">
+<main class="page-content">
+    <div class="container">
 
-            <aside class="content__aside">
-                1
-            </aside>
+        <div class="profile page-content__profile">
 
-            <div class="content__main">
+            <div class="profile__video">
+
+                <div class="video-slider">
+                    <div class="video-slider__slide">
+                        <div class="video-slider__holder">
+                            <div class="balloon balloon--style--accent video-slider__balloon">Расскажу немного о себе</div>
+                            <video class="video-slider__item" autoplay="true" loop>
+                                <source src="assets/video/02.mp4" type="video/mp4" /></source>
+                                <source src="assets/video/02.ogv" type="video/ogg"/></source>
+                                You need an HTML 5-capable browser.
+                            </video>
+                        </div>
+                    </div><!--video slide-->
+                </div><!--video slider-->
+
+                <div class="reactions">
+                    reactions
+                </div>
+
+            </div><!--video-->
+
+            <div class="profile__info">
                 {{> body }}
             </div>
 
-        </div>
-    </main><!-- content -->
+        </div><!--profile layout-->
 
-    {{> footer }}
+    </div>
+</main><!--page content-->
 
-</div><!-- page -->
+{{> footer }}
 
 <script src="assets/js/app.js"></script>
 </body>
