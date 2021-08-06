@@ -1,4 +1,13 @@
 .page-content{
+
+  &__navbar{
+    margin-bottom: 2.4rem;
+
+    @include media(">=lg"){
+      margin-bottom: 3.2rem;
+    }
+  }
+
   &__profile{
     margin-bottom: 7.2rem;
   }

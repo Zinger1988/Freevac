@@ -1,0 +1,30 @@
+.emoji-bar{
+  display: flex;
+  background-color: $white;
+  border-radius: 2.4rem;
+
+  &__item{
+    @extend %buttonreset;
+    font-size: 2.8rem;
+    line-height: 1;
+    flex: 1 0 auto;
+    min-height: 7.2rem;
+    @include animate(background-color);
+
+    &:hover{
+      background-color: $primaryLighter2;
+    }
+
+    &:active{
+      background-color: $primaryLighter;
+    }
+
+    &:first-child{
+      border-radius: 2.4rem 0 0 2.4rem;
+    }
+
+    &:last-child{
+      border-radius: 0 2.4rem 2.4rem 0;
+    }
+  }
+}

@@ -12,6 +12,11 @@
 
   $this: &;
 
+  &--fluid{
+    display: flex;
+    width: 100%;
+  }
+
   &--size{
 
     &--regular,
