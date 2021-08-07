@@ -22,19 +22,24 @@
 
         <div class="profile page-content__profile">
 
-            <div class="profile__video">
+            <div class="grid grid--on-lg">
 
-                {{> video-slider2 }}
+                <div class="grid__col--4">
+                    <div class="profile__video">
+                        {{> video-slider2 }}
+                    </div>
+                </div><!--video-->
 
-            </div><!--video-->
+                <div class="grid__col--8">
+                    <div class="profile__content">
+                        {{> body }}
+                    </div>
+                </div><!--profile content-->
 
-            <div class="profile__content">
-                {{> body }}
-            </div>
+            </div><!--grid-->
 
         </div><!--profile layout-->
-
-    </div>
+    </div><!--container-->
 </main><!--page content-->
 
 {{> footer }}

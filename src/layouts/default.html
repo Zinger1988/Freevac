@@ -14,27 +14,34 @@
     <div class="container">
 
         <div class="profile page-content__profile">
+            <div class="grid grid--on-lg">
 
-            <div class="profile__video">
+                <div class="grid__col--4">
+                    <div class="profile__video">
 
-                {{> video-slider }}
+                        {{> video-slider }}
+                        <div class="emoji-bar">
+                            <button class="emoji-bar__item">&#128525;</button>
+                            <button class="emoji-bar__item">&#129303;</button>
+                            <button class="emoji-bar__item">&#128512;</button>
+                            <button class="emoji-bar__item">&#129312;</button>
+                        </div>
 
-                <div class="emoji-bar">
-                    <button class="emoji-bar__item">&#128525;</button>
-                    <button class="emoji-bar__item">&#129303;</button>
-                    <button class="emoji-bar__item">&#128512;</button>
-                    <button class="emoji-bar__item">&#129312;</button>
-                </div>
+                    </div>
+                </div><!--video-->
 
-            </div><!--video-->
+                <div class="grid__col--8">
 
-            <div class="profile__content">
-                {{> body }}
-            </div>
+                    <div class="profile__content">
+                        {{> body }}
+                    </div>
+
+                </div><!--profile content-->
+
+            </div><!--grid-->
 
         </div><!--profile layout-->
-
-    </div>
+    </div><!--container-->
 </main><!--page content-->
 
 {{> footer }}

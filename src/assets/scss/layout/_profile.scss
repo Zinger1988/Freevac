@@ -1,15 +1,15 @@
 .profile{
-  @include media(">=lg"){
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-gap: 1.6rem;
-  }
 
-  &__video{
-    margin-bottom: .8rem;
-    position: relative;
+  &__video-slider{
+    margin: 0 0 .8rem;
 
     @include media(">=lg"){
+      margin:  0 0 1.6rem;
+
+      &:last-child{
+        margin: 0;
+      }
+
       .video-slider__holder{
         max-width: none;
         height: 58.62vw;
@@ -18,15 +18,24 @@
     }
   }
 
-  &__video-slider{
-    margin-bottom: .8rem;
+  &__content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__controls-bar{
+    order: -1;
+    margin: 0 0 .8rem;
 
     @include media(">=lg"){
-      margin-bottom: 1.6rem;
+      order: unset;
+      margin: 0;
     }
   }
 
   &__content-tile{
+    flex: 1 0 auto;
     margin-bottom: .8rem;
 
     @include media(">=lg"){
