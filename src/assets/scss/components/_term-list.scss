@@ -1,0 +1,28 @@
+.term-list{
+  @extend %listreset;
+
+  &__item{
+    padding-bottom: 2.3rem;
+    margin-bottom: 2.4rem;
+    border-bottom: 1px solid $secondary;
+
+    &:last-child{
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+  }
+
+  &__title{
+    font-weight: bold;
+    font-size: $fontSize22;
+    @include calcLineHeight($fontSize22);
+    margin: 0 0 .4rem;
+  }
+
+  &__description{
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+    color: $secondaryDarker2;
+  }
+}

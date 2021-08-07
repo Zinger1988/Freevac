@@ -10,8 +10,25 @@
     padding: 1rem 0;
     border-bottom: 1px solid $secondary;
     margin: 0 0 .2rem;
+    padding-right: 4rem;
+    background-position: 120% 50%;
+    background-repeat: no-repeat;
+    background-size: 1.6rem auto;
+    background-image: url("data:image/svg+xml;base64,\
+      PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSLQodC70L7QuV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5v\
+      cmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4\
+      PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMTYgMTYiIHN0eWxlPSJlbmFibGUtYmFja2dy\
+      b3VuZDpuZXcgMCAwIDE2IDE2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxzdHlsZSB0eXBlPSJ0\
+      ZXh0L2NzcyI+Cgkuc3Qwe2ZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO2ZpbGw6\
+      IzEzMTIxNTt9Cjwvc3R5bGU+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik01LjMsMi43Yy0wLjQtMC40\
+      LTAuNC0xLDAtMS40czEtMC40LDEuNCwwbDYsNmwwLDBjMCwwLDAuMSwwLjEsMC4xLDAuMmMwLjMs\
+      MC40LDAuMiwwLjktMC4xLDEuM2wtNiw2CgljLTAuNCwwLjQtMSwwLjQtMS40LDBzLTAuNC0xLDAt\
+      MS40TDEwLjYsOEw1LjMsMi43eiIvPgo8L3N2Zz4=");
+    @include animate(background-position);
 
     &:hover{
+      background-position: calc(100% - 1.2rem) 50%;
+
       #{$this}__icon{
         color: $primaryLighter2;
         background-color: $primary;

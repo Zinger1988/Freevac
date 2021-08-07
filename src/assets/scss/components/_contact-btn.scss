@@ -1,5 +1,6 @@
 .contact-btn{
   @extend %buttonreset;
+  @extend %linkreset;
   border-radius: 24px;
   font-size: 1.8rem;
   padding: .888em;
@@ -8,6 +9,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  text-align: left;
   min-height: 9.5rem;
 
   &__icon{
@@ -33,6 +35,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  &--fluid{
+    display: flex;
+    width: 100%;
   }
 
   &--style{

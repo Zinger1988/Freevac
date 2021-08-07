@@ -48,3 +48,48 @@
 .clearfix {
   @extend %clearfix;
 }
+
+.text{
+
+  &--right{
+    text-align: right;
+  }
+
+  &--left{
+    text-align: left;
+  }
+
+  &--center{
+    text-align: center;
+  }
+
+  &--weight{
+
+    &--400{
+      font-weight: 400;
+    }
+
+    &--500{
+      font-weight: 500;
+    }
+
+    &--700{
+      font-weight: 700;
+    }
+  }
+
+  &--style{
+
+    &--primary{
+      color: $primary;
+    }
+
+    &--secondary{
+      color: $secondaryDarker2;
+    }
+
+    &--accent{
+      color: $accent;
+    }
+  }
+}

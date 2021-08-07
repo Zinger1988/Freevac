@@ -1,5 +1,12 @@
 .profile{
 
+  &__video{
+    margin: 0 0 .8rem;
+    @include media(">=lg"){
+      margin: 0;
+    }
+  }
+
   &__video-slider{
     margin: 0 0 .8rem;
 

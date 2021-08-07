@@ -20,6 +20,10 @@
     @include calcLineHeight($fontSize22);
     margin: 0 0 2.4rem;
 
+    &--center{
+      text-align: center;
+    }
+
     @include media(">=lg"){
       font-size: $fontSize28;
       @include calcLineHeight($fontSize28);
@@ -40,6 +44,12 @@
     @include media(">=lg"){
       padding: 3.2rem;
     }
+  }
+
+  &--alt3 {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
   }
 
   &--style {
