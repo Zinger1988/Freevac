@@ -168,9 +168,9 @@ const SiteJS = {
         modals.forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if(e.target === e.currentTarget){
-                    modalAnimationOut(e.target);
+                    hideModal(e.target);
                 }
-            })
+            });
         });
 
         function showModal(modalElement) {
@@ -193,27 +193,25 @@ const SiteJS = {
                     clearInterval(timer);
                     modalHolder.classList.add('visible');
                 } else {
-                    alpha += alpha * 0.1;
-                    modalElement.style.backgroundColor = `rgba(0,0,0, ${alpha})`;
+                    modalElement.style.backgroundColor = `rgba(0,0,0, ${alpha += 0.1})`;
                 }
-            }, 5);
+            }, 20);
         }
 
         function modalAnimationOut(modalElement) {
             const modalHolder = modalElement.querySelector('.modal__holder');
             modalHolder.classList.remove('visible');
 
-            let alpha = 1;
+            let alpha = 0.56;
 
             const timer = setInterval(() => {
                 if (alpha <= 0.1){
                     clearInterval(timer);
                     modalElement.classList.remove('visible');
                 } else {
-                    alpha -= alpha * 0.1;
-                    modalElement.style.backgroundColor = `rgba(0,0,0, ${alpha})`;
+                    modalElement.style.backgroundColor = `rgba(0,0,0, ${alpha -= 0.1})`;
                 }
-            }, 5);
+            }, 20);
         }
     }
 };

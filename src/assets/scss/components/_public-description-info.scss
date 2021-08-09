@@ -1,0 +1,7 @@
+.public-description-info{
+  @include media(">=lg"){
+    min-height: 47.2rem;
+    font-size: $fontSize22;
+    @include calcLineHeight($fontSize22);
+  }
+}

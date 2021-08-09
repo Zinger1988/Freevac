@@ -6,12 +6,12 @@
   &__section{
     margin: 0 0 2.4rem;
 
-    &:last-child{
-      margin-bottom: 0;
-    }
-
     @include media(">=lg"){
       margin: 0 0 4rem;
+    }
+
+    &:last-child{
+      margin-bottom: 0;
     }
   }
 

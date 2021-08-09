@@ -1,0 +1,14 @@
+.public-position-info{
+
+  @include media(">=lg"){
+    min-height: 47.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__body{
+    @include media(">=lg"){
+      margin: auto 0;
+    }
+  }
+}

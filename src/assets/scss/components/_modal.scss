@@ -3,8 +3,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
+  width: 100vw;
   background-color: rgba($black, .56);
   z-index: 1000;
 
@@ -23,11 +23,26 @@
     background-color: $white;
     display: flex;
     flex-direction: column;
-    transform: translateY(110%);
+    transform: translate(0, 110%);
     @include animate(transform);
 
     &.visible{
-      transform: translateY(0);
+      transform: translate(0, 0);
+    }
+
+    @include media(">=sm"){
+      left: auto;
+      bottom: auto;
+      top: 4rem;
+      right: 1.6rem;
+      width: 42rem;
+      height: 76.6rem;
+      transform: translate(110%, 0);
+      border-radius: 2.4rem;
+    }
+
+    @include media(">=md"){
+      right: 3rem;
     }
   }
 

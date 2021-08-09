@@ -8,25 +8,6 @@
     &:last-child{
       margin: 0;
     }
-
-    @include media(">=lg"){
-      display: grid;
-      grid-gap: 1.6rem;
-    }
-
-    &--grid-2{
-      @include media(">=lg"){
-        grid-template-columns: 1fr 1fr;
-      }
-
-      #{$this}__input-row{
-        grid-column: 1 / -1;
-
-        &--grid-cell{
-          grid-column: auto / span 1;
-        }
-      }
-    }
   }
 
   &__input-row{
