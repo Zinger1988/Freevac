@@ -1,12 +1,12 @@
 ---
-layout: default
+layout: profile
 title: Profile
 ---
 
-<div class="grid grid--on-md">
+<div class="grid grid--on-md" id="profile-view-grid">
 
     <div class="grid__col--6">
-        <article class="content-tile content-tile--alt content-tile--style--primary profile__content-tile">
+        <article class="content-tile content-tile--alt content-tile--style--primary profile__content-tile" id="user-title">
             <section class="content-tile__section">
 
                 <h2 class="content-tile__title">
@@ -17,7 +17,7 @@ title: Profile
             </section>
         </article><!-- content tile -->
 
-        <article class="content-tile profile__content-tile">
+        <article class="content-tile profile__content-tile" id="user-description">
             <section class="content-tile__section">
 
                 <p>
@@ -70,8 +70,8 @@ title: Profile
         </article><!-- content tile -->
     </div>
 
-    <div class="grid__col--6">
-        <article class="content-tile profile__content-tile">
+    <div class="grid__col--6" id="profile-view-primary">
+        <article class="content-tile profile__content-tile" id="user-position">
             <section class="content-tile__section">
 
                 <div class="balloon balloon--right content-tile__balloon">&#128071; В какой сфере ищу работу</div>
