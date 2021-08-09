@@ -49,6 +49,10 @@
   @extend %clearfix;
 }
 
+.no-overflow{
+  overflow: hidden;
+}
+
 .text{
 
   &--right{

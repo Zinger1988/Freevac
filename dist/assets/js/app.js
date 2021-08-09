@@ -66,7 +66,7 @@ const SiteJS = {
         SiteJS.init();
     }),
     init: function () {
-        // this.inputFocus();
+        this.modal();
         new InputFocus('.input-row');
         this.moveElement({
             elementId: 'user-title',
@@ -142,6 +142,78 @@ const SiteJS = {
             } else {
                 elementMockup.before(element);
             }
+        }
+    },
+    modal: function () {
+        const modalShowBtn = document.querySelectorAll('[data-modal-id]');
+        const modalHideBtn = document.querySelectorAll('.modal-close');
+        const modals = document.querySelectorAll('.modal');
+
+        modalShowBtn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modalID = btn.getAttribute('data-modal-id');
+                const modal = document.getElementById(modalID);
+
+                showModal(modal);
+            })
+        });
+
+        modalHideBtn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modal = btn.closest('.modal');
+                hideModal(modal);
+            })
+        });
+
+        modals.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if(e.target === e.currentTarget){
+                    modalAnimationOut(e.target);
+                }
+            })
+        });
+
+        function showModal(modalElement) {
+            requestAnimationFrame(() => modalAnimationIn(modalElement));
+            document.body.classList.add('no-overflow');
+        }
+
+        function hideModal(modalElement) {
+            requestAnimationFrame(() => modalAnimationOut(modalElement));
+            document.body.classList.remove('no-overflow');
+        }
+
+        function modalAnimationIn(modalElement) {
+            const modalHolder = modalElement.querySelector('.modal__holder');
+            let alpha = .01;
+            modalElement.classList.add('visible');
+
+            const timer = setInterval(() => {
+                if (alpha >= 0.56){
+                    clearInterval(timer);
+                    modalHolder.classList.add('visible');
+                } else {
+                    alpha += alpha * 0.1;
+                    modalElement.style.backgroundColor = `rgba(0,0,0, ${alpha})`;
+                }
+            }, 5);
+        }
+
+        function modalAnimationOut(modalElement) {
+            const modalHolder = modalElement.querySelector('.modal__holder');
+            modalHolder.classList.remove('visible');
+
+            let alpha = 1;
+
+            const timer = setInterval(() => {
+                if (alpha <= 0.1){
+                    clearInterval(timer);
+                    modalElement.classList.remove('visible');
+                } else {
+                    alpha -= alpha * 0.1;
+                    modalElement.style.backgroundColor = `rgba(0,0,0, ${alpha})`;
+                }
+            }, 5);
         }
     }
 };
