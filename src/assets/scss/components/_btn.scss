@@ -6,10 +6,6 @@
   vertical-align: middle;
   @include animate(background-color color);
 
-  &:disabled{
-    cursor: default;
-  }
-
   $this: &;
 
   &--fluid{
@@ -149,9 +145,12 @@
         color: $accent;
       }
     }
-    
-    &--disabled{
-      cursor: default;
-    }
+  }
+
+  &:disabled,
+  &--style--disabled{
+    cursor: default;
+    background-color: $secondary;
+    color: $secondaryDarker2;
   }
 }
