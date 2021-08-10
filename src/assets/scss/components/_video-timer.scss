@@ -1,0 +1,15 @@
+.video-counter{
+  font-size: 10rem;
+  font-weight: 700;
+  line-height: 1.44;
+  text-align: center;
+  color: $secondaryDarker;
+
+  @include media(">=lg"){
+    font-size: 17rem;
+  }
+
+  @include media(">=xl"){
+    font-size: 22rem;
+  }
+}

@@ -2,8 +2,19 @@
 
   &__video{
     margin: 0 0 .8rem;
+    position: relative;
+
     @include media(">=lg"){
       margin: 0;
+    }
+
+    .video-counter{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      color: rgba($white, .48);
     }
   }
 
@@ -47,6 +58,16 @@
 
     @include media(">=lg"){
       margin-bottom: 1.6rem;
+    }
+
+    .content-tile__section{
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .video-counter{
+        margin: auto 0;
+      }
     }
   }
 

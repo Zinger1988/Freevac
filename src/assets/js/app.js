@@ -61,9 +61,112 @@ class InputFocus{
     }
 }
 
+class Counter{
+    constructor(element) {
+        this.element = element;
+        this.counterValue = parseInt(element.getAttribute('data-counter'));
+        this.timer = null;
+        this.timeLeft = this.counterValue;
+        this.isCountdown = false;
+        this.eventsCb = {
+            onStart: [],
+            onReset: [],
+            onStop: []
+        }
+
+        Counter.init.call(this);
+    }
+
+    set onStart(cb) {
+        if(typeof cb !== 'function'){
+            console.error('Callback should be a function')
+        } else {
+            this.eventsCb.onStart.push(cb);
+        }
+    }
+
+    set onReset(cb) {
+        if(typeof cb !== 'function'){
+            console.error('Callback should be a function')
+        } else {
+            this.eventsCb.onReset.push(cb);
+        }
+    }
+
+    set onStop(cb) {
+        if(typeof cb !== 'function'){
+            console.error('Callback should be a function')
+        } else {
+            this.eventsCb.onStop.push(cb);
+        }
+    }
+
+    static init(){
+        this.element.Counter = this;
+        this.element.textContent = `${Counter.getZero(Math.floor(this.counterValue / 60))}:${Counter.getZero(this.counterValue % 60)}`;
+    }
+
+    static getZero(value) {
+        return value >= 10 ? value: '0' + value;
+    }
+
+    start() {
+        if(this.isCountdown) return;
+
+        this.reset();
+        this.isCountdown = true;
+        this.timer = setInterval(() => {
+            if(this.timeLeft > 0){
+                this.timeLeft -= 1;
+                this.element.textContent = `${Counter.getZero(Math.floor(this.timeLeft / 60))}:${Counter.getZero(this.timeLeft % 60)}`;
+            } else {
+                this.stop()
+            }
+        },1000);
+
+        this.eventsCb.onStart.forEach(cb => cb())
+    }
+
+    stop() {
+        if (!this.isCountdown) return;
+        clearInterval(this.timer);
+
+        this.eventsCb.onStop.forEach(cb => cb())
+    }
+
+    reset() {
+        this.timeLeft = this.counterValue;
+        this.element.textContent = `${Counter.getZero(Math.floor(this.counterValue / 60))}:${Counter.getZero(this.counterValue % 60)}`;
+        this.isCountdown = false;
+        clearInterval(this.timer);
+
+        this.eventsCb.onReset.forEach(cb => cb())
+    }
+}
+
 const SiteJS = {
     onload: document.addEventListener('DOMContentLoaded', function () {
         SiteJS.init();
+
+        async function getMedia(constraints) {
+            let stream = null;
+
+
+
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+                /* используем поток */
+                const video = document.createElement('video');
+                document.body.prepend(video);
+                video.src = window.URL.createObjectURL(stream);
+                video.play()
+            } catch(err) {
+                /* обработка ошибки */
+            }
+        }
+
+        getMedia();
+
     }),
     init: function () {
         this.modal();
@@ -82,6 +185,14 @@ const SiteJS = {
             mediaQuery: 'max-width: 767px',
             insertionMethod: function (element, target) {
                 target.after(element);
+            }
+        });
+        this.moveElement({
+            elementId: 'timer',
+            targetId: 'profile-video',
+            mediaQuery: 'max-width: 991px',
+            insertionMethod: function (element, target) {
+                target.prepend(element);
             }
         });
         this.moveElement({
@@ -108,6 +219,7 @@ const SiteJS = {
                 target.prepend(element);
             }
         });
+        this.counter('.video-counter');
     },
     resizeThrottler: function(cb){
         let throttle = false;
@@ -213,5 +325,12 @@ const SiteJS = {
                 }
             }, 20);
         }
+    },
+    counter: function (selector) {
+        const counters = document.querySelectorAll(selector);
+
+        counters.forEach(counter => {
+            new Counter(counter);
+        })
     }
 };
