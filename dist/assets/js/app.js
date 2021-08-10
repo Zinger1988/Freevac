@@ -157,14 +157,14 @@ const SiteJS = {
             let constraints = {
                 video: {
                     width: {
-                        min: 400,
-                        ideal: 720,
-                        max: 1920,
+                        min: 480,
+                        ideal: 780,
+                        max: 1080,
                     },
                     height: {
-                        min: 700,
-                        ideal: 1280,
-                        max: 1080,
+                        min: 640,
+                        ideal: 1360,
+                        max: 1920,
                     },
                 }
             }
