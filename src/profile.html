@@ -7,9 +7,9 @@ title: Profile
 
     <div class="grid__col--4">
         <div class="profile__video" id="profile-video">
-
-            {{> video-slider-blank }}
-
+            <div class="profile__video-holder video-holder">
+                {{> video-slider-blank }}
+            </div>
         </div><!-- video -->
     </div><!-- grid col -->
 
@@ -114,14 +114,14 @@ title: Profile
                                     </div><!-- input row -->
                                 </div>
 
-                                <div class="grid__col--12 grid__col--lg--6 grid__col--xl--6">
+                                <div class="grid__col--12 grid__col--md--6">
                                     <div class="input-row input-row--pointer form__input-row input-row">
                                         <div class="input-row__title">где живешь? (необязательно)</div>
                                         <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text">
                                     </div><!-- input row -->
                                 </div>
 
-                                <div class="grid__col--12 grid__col--lg--6 grid__col--xl--6">
+                                <div class="grid__col--12 grid__col--md--6">
                                     <div class="input-row input-row--pointer form__input-row" data-modal-id="user-age">
                                         <div class="input-row__title">сколько тебе лет? (необязательно)</div>
                                         <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text">
@@ -151,14 +151,14 @@ title: Profile
 
                             <div class="grid grid--on-xs">
 
-                                <div class="grid__col--12 grid__col--lg--6 grid__col--xl--6">
+                                <div class="grid__col--12 grid__col--md--6">
                                     <div class="input-row input-row--pointer form__input-row">
                                         <div class="input-row__title">должность</div>
                                         <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Продуктовый дизайнер">
                                     </div><!-- input row -->
                                 </div>
 
-                                <div class="grid__col--12 grid__col--lg--6 grid__col--xl--6">
+                                <div class="grid__col--12 grid__col--md--6">
                                     <div class="input-row input-row--pointer form__input-row">
                                         <div class="input-row__title">сфера (необязательно)</div>
                                         <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly>

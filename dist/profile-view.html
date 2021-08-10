@@ -49,18 +49,20 @@
                 <div class="grid__col--4">
                     <div class="profile__video" id="profile-video">
             
-                        <div class="video-slider profile__video-slider">
-                            <div class="video-slider__slide">
-                                <div class="video-slider__holder">
-                                    <div class="balloon balloon--style--accent video-slider__balloon">Расскажу немного о себе</div>
-                                    <video class="video-slider__item" controls autoplay="true" loop>
-                                        <source src="assets/video/02.mp4" type="video/mp4" /></source>
-                                        <source src="assets/video/02.ogv" type="video/ogg"/></source>
-                                        You need an HTML 5-capable browser.
-                                    </video>
-                                </div>
-                            </div><!--video slide-->
-                        </div><!--video slider-->
+                        <div class="profile__video-holder video-holder">
+                            <div class="video-slider video-holder__content">
+                                <div class="video-slider__slide">
+                                    <div class="video-slider__video-canvas video-canvas">
+                                        <div class="balloon balloon--style--accent video-canvas__balloon">Расскажу немного о себе</div>
+                                        <video class="video-canvas__item" controls autoplay="true" loop>
+                                            <source src="assets/video/02.mp4" type="video/mp4" /></source>
+                                            <source src="assets/video/02.ogv" type="video/ogg"/></source>
+                                            You need an HTML 5-capable browser.
+                                        </video>
+                                    </div>
+                                </div><!--video slide-->
+                            </div><!--video slider-->            </div>
+            
                         <div class="emoji-bar">
                             <button class="emoji-bar__item">&#128525;</button>
                             <button class="emoji-bar__item">&#129303;</button>

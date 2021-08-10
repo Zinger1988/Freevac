@@ -265,7 +265,7 @@
     }
   }
 
-  @include media(">=sm", "<md"){
+  @include media(">=sm"){
     &__col--sm {
       grid-column: auto / span 1;
 
@@ -370,7 +370,7 @@
     }
   }
 
-  @include media(">=md", "<lg"){
+  @include media(">=md"){
     &__col--md {
       grid-column: auto / span 1;
 
@@ -475,7 +475,7 @@
     }
   }
 
-  @include media(">=lg", "<xl"){
+  @include media(">=lg"){
     &__col--lg {
       grid-column: auto / span 1;
 

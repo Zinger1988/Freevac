@@ -3,13 +3,9 @@
   $this: &;
 
   &__inner{
-    @include media(">=md"){
+    @include media(">=lg"){
       display: grid;
       grid-template-columns: 1fr 2fr;
-      grid-gap: .8rem;
-    }
-
-    @include media(">=lg"){
       grid-gap: 1.6rem;
     }
   }
@@ -19,11 +15,8 @@
     color: $secondaryDarker2;
     margin: 0 0 10rem;
 
-    @include media(">=md"){
-      grid-column: 2 / -1;
-    }
-
     @include media(">=lg"){
+      grid-column: 2 / -1;
       display: flex;
       align-items: center;
       justify-content: center;

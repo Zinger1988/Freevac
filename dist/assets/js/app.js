@@ -148,21 +148,53 @@ const SiteJS = {
     onload: document.addEventListener('DOMContentLoaded', function () {
         SiteJS.init();
 
-        async function getMedia(constraints) {
+        async function getMedia() {
             let stream = null;
+            let devices = null;
 
+            const video = document.getElementById('live-stream');
 
+            let constraints = {
+                video: {
+                    width: {
+                        min: 390,
+                        ideal: 400,
+                        max: 720,
+                    },
+                    height: {
+                        min: 680,
+                        ideal: 800,
+                        max: 1280,
+                    },
+                }
+            }
 
             try {
-                stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
-                /* используем поток */
-                const video = document.createElement('video');
-                document.body.prepend(video);
-                video.src = window.URL.createObjectURL(stream);
-                video.play()
+                devices = await navigator.mediaDevices.enumerateDevices();
+                devices = devices.filter(device => device.kind === 'videoinput');
+
+                console.log( devices[0].label)
+
+                constraints = {
+                    ...constraints,
+                    deviceId: {
+                        exact: devices[0].deviceId
+                    }
+                }
+
+                console.log(constraints);
+
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = stream;
+                video.play();
+
+                
+
             } catch(err) {
-                /* обработка ошибки */
+                console.log('The following getUserMedia error occured: ' + err);
             }
+
+            console.log(stream);
         }
 
         getMedia();

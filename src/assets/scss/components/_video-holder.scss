@@ -1,0 +1,9 @@
+.video-holder{
+  background: $primary url("../img/logo-primary.svg") center / 18.2rem auto  no-repeat;
+  border-radius: 2.4rem;
+  overflow: hidden;
+
+  &__content{
+    margin: 0 auto;
+  }
+}
