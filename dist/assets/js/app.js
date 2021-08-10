@@ -157,14 +157,14 @@ const SiteJS = {
             let constraints = {
                 video: {
                     width: {
-                        min: 390,
-                        ideal: 400,
-                        max: 720,
+                        min: 400,
+                        ideal: 720,
+                        max: 1920,
                     },
                     height: {
-                        min: 680,
-                        ideal: 800,
-                        max: 1280,
+                        min: 700,
+                        ideal: 1280,
+                        max: 1080,
                     },
                 }
             }
@@ -188,7 +188,7 @@ const SiteJS = {
                 video.srcObject = stream;
                 video.play();
 
-                
+
 
             } catch(err) {
                 console.log('The following getUserMedia error occured: ' + err);
