@@ -62,9 +62,9 @@ class InputFocus{
 }
 
 class Counter{
-    constructor(element) {
-        this.element = element;
-        this.counterValue = parseInt(element.getAttribute('data-counter'));
+    constructor(elementID) {
+        this.element = document.querySelector(elementID);
+        this.counterValue = parseInt(this.element.getAttribute('data-counter'));
         this.timer = null;
         this.timeLeft = this.counterValue;
         this.isCountdown = false;
@@ -144,17 +144,101 @@ class Counter{
     }
 }
 
+class RecordStream{
+    constructor({videoElementID, constraints}) {
+        this.element = document.querySelector(videoElementID);
+        this.constraints = constraints;
+        this.stream = null;
+        this.mediaRecorder = null;
+        this.isRecording = false;
+        this.#init();
+    }
+
+    static async startRecording(instance){
+
+        instance.isRecording = true;
+
+        console.log('record started');
+        let stream = null;
+
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({...instance.constraints, audio: true});
+        } catch(err) {
+            console.log('The following getUserMedia error occured: ' + err);
+        }
+
+        instance.mediaRecorder = new MediaRecorder(stream);
+
+        instance.chunks = [];
+
+        instance.mediaRecorder.ondataavailable = function(e) {
+            console.log('data available')
+            instance.chunks.push(e.data);
+        }
+
+        instance.mediaRecorder.onstop = function (e) {
+
+            console.log('mediaRecorder stopped');
+
+            const blob = new Blob(instance.chunks, { 'type' : 'video/webm; codecs=vp9' });
+            instance.chunks = [];
+
+            instance.stream.getTracks().forEach(function(track) {
+                track.stop();
+            });
+
+            instance.element.srcObject = null;
+
+            instance.element.removeAttribute('autoplay');
+            instance.element.setAttribute('controls','');
+            instance.element.src = window.URL.createObjectURL(blob);
+        }
+
+        instance.mediaRecorder.start();
+    }
+
+    static stopRecording(instance){
+        console.log('record stopped');
+
+        instance.isRecording = false;
+        instance.mediaRecorder.stop();
+    }
+
+    async #init() {
+        this.element.RecordStream = this;
+        await RecordStream.getStream(this)
+        await RecordStream.bindStream(this);
+    }
+
+    static async getStream(instance){
+        const {constraints} = instance;
+
+        try {
+            instance.stream = await navigator.mediaDevices.getUserMedia(constraints);
+        } catch(err) {
+            console.log('The following getUserMedia error occured: ' + err);
+        }
+    }
+
+    static async bindStream(instance){
+        const {stream, element} = instance;
+        element.srcObject = await stream;
+        element.play();
+    }
+}
+
 const SiteJS = {
     onload: document.addEventListener('DOMContentLoaded', function () {
         SiteJS.init();
+    }),
+    init: function () {
+        new InputFocus('.input-row');
 
-        async function getMedia() {
-            let stream = null;
-            let devices = null;
+        /* record stream */
 
-            const video = document.getElementById('live-stream');
-
-            let constraints = {
+        new RecordStream({
+            videoElementID: '#live-stream',
+            constraints: {
                 video: {
                     width: {
                         min: 480,
@@ -166,43 +250,25 @@ const SiteJS = {
                         ideal: 1360,
                         max: 1920,
                     },
+                    facingMode: 'user'
                 }
             }
+        });
+        const videoElem = document.querySelector('#live-stream').RecordStream;
 
-            try {
-                devices = await navigator.mediaDevices.enumerateDevices();
-                devices = devices.filter(device => device.kind === 'videoinput');
+        /* counter */
 
-                console.log( devices[0].label)
+        new Counter('#video-counter');
+        const counter = document.querySelector('#video-counter').Counter;
 
-                constraints = {
-                    ...constraints,
-                    deviceId: {
-                        exact: devices[0].deviceId
-                    }
-                }
-
-                console.log(constraints);
-
-                stream = await navigator.mediaDevices.getUserMedia(constraints);
-                video.srcObject = stream;
-                video.play();
-
-
-
-            } catch(err) {
-                console.log('The following getUserMedia error occured: ' + err);
-            }
-
-            console.log(stream);
+        counter.onStart = function () {
+            RecordStream.startRecording(videoElem)
         }
 
-        getMedia();
+        counter.onStop = function () {
+            RecordStream.stopRecording(videoElem)
+        }
 
-    }),
-    init: function () {
-        this.modal();
-        new InputFocus('.input-row');
         this.moveElement({
             elementId: 'user-title',
             targetId: 'profile-video',
@@ -220,7 +286,7 @@ const SiteJS = {
             }
         });
         this.moveElement({
-            elementId: 'timer',
+            elementId: 'video-counter',
             targetId: 'profile-video',
             mediaQuery: 'max-width: 991px',
             insertionMethod: function (element, target) {
@@ -251,7 +317,8 @@ const SiteJS = {
                 target.prepend(element);
             }
         });
-        this.counter('.video-counter');
+        this.modal();
+        this.recordVideo();
     },
     resizeThrottler: function(cb){
         let throttle = false;
@@ -358,11 +425,26 @@ const SiteJS = {
             }, 20);
         }
     },
-    counter: function (selector) {
-        const counters = document.querySelectorAll(selector);
+    recordVideo(){
+        const videoElem = document.querySelector('#live-stream').RecordStream;
+        const counter = document.querySelector('#video-counter').Counter;
+        const recordBtn = document.querySelector('#record-btn');
+        const recordBtnIcon = recordBtn.querySelector('.btn__icon');
+        const recordBtnText = recordBtn.querySelector('.btn__text');
 
-        counters.forEach(counter => {
-            new Counter(counter);
+        recordBtn.addEventListener('click', function () {
+            if(videoElem.isRecording){
+                recordBtnIcon.classList.remove('icon--check-48');
+                recordBtnIcon.classList.add('icon--camera-48');
+                recordBtnText.textContent = 'Снять';
+                counter.stop();
+            } else {
+                recordBtnIcon.classList.remove('icon--camera-48');
+                recordBtnIcon.classList.add('icon--check-48');
+                recordBtnText.textContent = 'Снято';
+                counter.start();
+            }
         })
+
     }
 };
