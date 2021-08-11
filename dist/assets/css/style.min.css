@@ -2025,6 +2025,18 @@ body {
   color: #E8E6EC;
 }
 
+.video-counter--countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #7B41E7;
+  font-weight: 700;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  font-size: 20rem;
+  display: none;
+}
+
 .video-canvas {
   display: block;
   width: 100%;

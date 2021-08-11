@@ -71,7 +71,9 @@ class Counter{
         this.eventsCb = {
             onStart: [],
             onReset: [],
-            onStop: []
+            onStop: [],
+            beforeChange: [],
+            afterChange: []
         }
 
         Counter.init.call(this);
@@ -101,9 +103,29 @@ class Counter{
         }
     }
 
+    set beforeChange(cb) {
+        if(typeof cb !== 'function'){
+            console.error('Callback should be a function')
+        } else {
+            this.eventsCb.beforeChange.push(cb);
+        }
+    }
+
+    set afterChange(cb) {
+        if(typeof cb !== 'function'){
+            console.error('Callback should be a function')
+        } else {
+            this.eventsCb.afterChange.push(cb);
+        }
+    }
+
     static init(){
         this.element.Counter = this;
-        this.element.textContent = `${Counter.getZero(Math.floor(this.counterValue / 60))}:${Counter.getZero(this.counterValue % 60)}`;
+        if((this.counterValue / 60) >= 1){
+            this.element.textContent = `${Counter.getZero(Math.floor(this.counterValue / 60))}:${Counter.getZero(this.counterValue % 60)}`;
+        } else {
+            this.element.textContent = `${this.counterValue % 60}`;
+        }
     }
 
     static getZero(value) {
@@ -116,9 +138,15 @@ class Counter{
         this.reset();
         this.isCountdown = true;
         this.timer = setInterval(() => {
+            this.eventsCb.beforeChange.forEach(cb => cb())
             if(this.timeLeft > 0){
                 this.timeLeft -= 1;
-                this.element.textContent = `${Counter.getZero(Math.floor(this.timeLeft / 60))}:${Counter.getZero(this.timeLeft % 60)}`;
+                this.eventsCb.afterChange.forEach(cb => cb())
+                if((this.counterValue / 60) >= 1){
+                    this.element.textContent = `${Counter.getZero(Math.floor(this.timeLeft / 60))}:${Counter.getZero(this.timeLeft % 60)}`;
+                } else {
+                    this.element.textContent = `${this.timeLeft % 60}`;
+                }
             } else {
                 this.stop()
             }
@@ -136,7 +164,13 @@ class Counter{
 
     reset() {
         this.timeLeft = this.counterValue;
-        this.element.textContent = `${Counter.getZero(Math.floor(this.counterValue / 60))}:${Counter.getZero(this.counterValue % 60)}`;
+
+        if((this.counterValue / 60) >= 1){
+            this.element.textContent = `${Counter.getZero(Math.floor(this.counterValue / 60))}:${Counter.getZero(this.counterValue % 60)}`;
+        } else {
+            this.element.textContent = `${this.counterValue % 60}`;
+        }
+
         this.isCountdown = false;
         clearInterval(this.timer);
 
@@ -421,6 +455,18 @@ const SiteJS = {
     },
     recordVideo(){
 
+        function createButton({tag, classes, html}) {
+            const btn = document.createElement(tag);
+            btn.classList.add(...classes);
+            btn.innerHTML = html;
+            return btn;
+        }
+
+        const controlBar = document.querySelector('#record-control-bar');
+        const recordBtn = controlBar.querySelector('#record-btn');
+        const recordBtnIcon = recordBtn.querySelector('.btn__icon');
+        const recordBtnText = recordBtn.querySelector('.btn__text');
+
         /* record stream init */
         new RecordStream({
             videoElementID: '#live-stream',
@@ -442,38 +488,72 @@ const SiteJS = {
         });
         const recordStream = document.querySelector('#live-stream').RecordStream;
 
+
+
+
         /* counter init */
         new Counter('#video-counter');
         const counter = document.querySelector('#video-counter').Counter;
 
-        counter.onStart = () => RecordStream.startRecording(recordStream);
-        counter.onStop = () => RecordStream.stopRecording(recordStream);
+        counter.onStart = () => {
+            RecordStream.startRecording(recordStream);
+            controlBar.prepend(doneBtn);
+        };
+        counter.onStop = () => {
+            RecordStream.stopRecording(recordStream);
+            doneBtn.remove();
+            controlBar.prepend(controlBarMarkup);
+            counter.element.style.display = 'none';
+        };
 
         if(!recordStream || !counter)console.error(`Can't initialize instance`);
 
-        const controlBar = document.querySelector('#record-control-bar');
+        const doneBtn = createButton({
+            tag: 'button',
+            classes: ['btn', 'btn--style--accent', 'btn--size--lg', 'btn--fluid'],
+            html: `<i class="icon icon--size--lg icon--check-48 btn__icon"></i>
+                   <span class="btn__text">Снято</span>`
+        });
 
-        /* Record btn */
-        const recordBtn = controlBar.querySelector('#record-btn');
-        const recordBtnIcon = recordBtn.querySelector('.btn__icon');
-        const recordBtnText = recordBtn.querySelector('.btn__text');
+        doneBtn.addEventListener('click', (e) => {
+            counter.stop();
+        })
 
-        recordBtn.addEventListener('click',  (e) => {
-            if(recordStream.mediaRecorder && recordStream.mediaRecorder.state === "recording"){
-                recordBtnIcon.classList.remove('icon--check-48');
-                recordBtnIcon.classList.add('icon--camera-48');
-                recordBtnText.textContent = 'Снять';
-                counter.stop();
-                e.currentTarget.remove();
-                controlBar.prepend(controlBarMarkup);
-                counter.element.style.display = 'none';
-            } else {
-                recordBtnIcon.classList.remove('icon--camera-48');
-                recordBtnIcon.classList.add('icon--check-48');
-                recordBtnText.textContent = 'Снято';
+        /* counter before recording init */
+        new Counter('#video-countdown');
+        const counterCountdown = document.querySelector('#video-countdown').Counter;
+
+        const cancelBtn = createButton({
+            tag: 'button',
+            classes: ['btn', 'btn--style--primary-lighter', 'btn--size--lg', 'btn--fluid'],
+            html: `<i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                   <span class="btn__text">Отмена</span>`
+        });
+
+        cancelBtn.addEventListener('click', (e) => {
+            e.currentTarget.remove();
+            controlBar.prepend(recordBtn);
+            counterCountdown.reset();
+        })
+
+        counterCountdown.onStart = () => {
+            counterCountdown.element.setAttribute('style','');
+            recordBtn.remove();
+            controlBar.prepend(cancelBtn);
+            counterCountdown.element.style.display = 'block';
+        };
+
+        counterCountdown.beforeChange = () => {
+            if(counterCountdown.timeLeft <= 1){
+                counterCountdown.element.style.display = 'none';
+                cancelBtn.remove();
                 counter.start();
             }
-        });
+        };
+
+        counterCountdown.onReset = () => {
+            counterCountdown.element.setAttribute('style','');
+        };
 
         /* Control bar after stopping recording */
 
@@ -500,12 +580,17 @@ const SiteJS = {
             </div>
         `;
 
+        recordBtn.addEventListener('click',  (e) => {
+            counterCountdown.start();
+        });
+
         const recordOverwriteBtn = controlBarMarkup.querySelector('#record-overwrite-btn');
 
         recordOverwriteBtn.addEventListener('click', () => {
             controlBarMarkup.remove();
-            controlBar.prepend(recordBtn);
+            counterCountdown.reset();
             counter.reset();
+            counterCountdown.start();
             RecordStream.reset(recordStream);
             counter.element.style.display = '';
         })
