@@ -460,7 +460,6 @@ const SiteJS = {
         }
     },
     recordVideo(){
-
         new RecordStream({
             videoElementID: '#live-stream',
             constraints: {
@@ -573,10 +572,10 @@ const SiteJS = {
                 </button>
             </div>
             <div class="grid__col--12 grid__col--md--6">
-                <a href="#" class="btn btn--style--primary-lighter btn--size--lg btn--fluid" id="record-cancel">
+                <button class="btn btn--style--primary-lighter btn--size--lg btn--fluid" id="record-cancel">
                     <i class="icon icon--size--lg icon--close-48 btn__icon"></i>
                     <span class="btn__text">Отменить</span>
-                </a>
+                </button>
             </div>
         `;
 
