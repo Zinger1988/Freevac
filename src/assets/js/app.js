@@ -348,6 +348,12 @@ const SiteJS = {
         this.modal();
         this.recordVideo();
     },
+    createButton: function({tag, classes, html}) {
+        const btn = document.createElement(tag);
+        btn.classList.add(...classes);
+        btn.innerHTML = html;
+        return btn;
+    },
     resizeThrottler: function(cb){
         let throttle = false;
 
@@ -455,19 +461,6 @@ const SiteJS = {
     },
     recordVideo(){
 
-        function createButton({tag, classes, html}) {
-            const btn = document.createElement(tag);
-            btn.classList.add(...classes);
-            btn.innerHTML = html;
-            return btn;
-        }
-
-        const controlBar = document.querySelector('#record-control-bar');
-        const recordBtn = controlBar.querySelector('#record-btn');
-        const recordBtnIcon = recordBtn.querySelector('.btn__icon');
-        const recordBtnText = recordBtn.querySelector('.btn__text');
-
-        /* record stream init */
         new RecordStream({
             videoElementID: '#live-stream',
             constraints: {
@@ -486,76 +479,83 @@ const SiteJS = {
                 }
             }
         });
-        const recordStream = document.querySelector('#live-stream').RecordStream;
-
-
-
-
-        /* counter init */
         new Counter('#video-counter');
-        const counter = document.querySelector('#video-counter').Counter;
+        new Counter('#video-countdown');
 
-        counter.onStart = () => {
-            RecordStream.startRecording(recordStream);
-            controlBar.prepend(doneBtn);
-        };
-        counter.onStop = () => {
-            RecordStream.stopRecording(recordStream);
-            doneBtn.remove();
-            controlBar.prepend(controlBarMarkup);
-            counter.element.style.display = 'none';
-        };
+        const actionList = document.querySelector('#action-list');
+        const controlBar = document.querySelector('#record-control-bar');
+        const recordBtn = controlBar.querySelector('#record-btn');
+        const recordStream = document.querySelector('#live-stream').RecordStream;
+        const videoCounter = document.querySelector('#video-counter').Counter;
+        const countdownCounter = document.querySelector('#video-countdown').Counter;
 
-        if(!recordStream || !counter)console.error(`Can't initialize instance`);
-
-        const doneBtn = createButton({
+        const doneBtn = this.createButton({
             tag: 'button',
             classes: ['btn', 'btn--style--accent', 'btn--size--lg', 'btn--fluid'],
             html: `<i class="icon icon--size--lg icon--check-48 btn__icon"></i>
                    <span class="btn__text">Снято</span>`
         });
 
-        doneBtn.addEventListener('click', (e) => {
-            counter.stop();
-        })
-
-        /* counter before recording init */
-        new Counter('#video-countdown');
-        const counterCountdown = document.querySelector('#video-countdown').Counter;
-
-        const cancelBtn = createButton({
+        const cancelBtn = this.createButton({
             tag: 'button',
             classes: ['btn', 'btn--style--primary-lighter', 'btn--size--lg', 'btn--fluid'],
             html: `<i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
                    <span class="btn__text">Отмена</span>`
         });
 
+        doneBtn.addEventListener('click', (e) => videoCounter.stop());
+
         cancelBtn.addEventListener('click', (e) => {
             e.currentTarget.remove();
             controlBar.prepend(recordBtn);
-            counterCountdown.reset();
-        })
+            countdownCounter.reset();
+        });
 
-        counterCountdown.onStart = () => {
-            counterCountdown.element.setAttribute('style','');
-            recordBtn.remove();
-            controlBar.prepend(cancelBtn);
-            counterCountdown.element.style.display = 'block';
+        recordBtn.addEventListener('click',  (e) => {
+            countdownCounter.start();
+        });
+
+
+        /* videoCounter callbacks ----------------------------- */
+
+        videoCounter.onStart = () => {
+            RecordStream.startRecording(recordStream);
+            controlBar.prepend(doneBtn);
         };
 
-        counterCountdown.beforeChange = () => {
-            if(counterCountdown.timeLeft <= 1){
-                counterCountdown.element.style.display = 'none';
+        videoCounter.onStop = () => {
+            RecordStream.stopRecording(recordStream);
+            doneBtn.remove();
+            controlBar.prepend(controlBarMarkup);
+            videoCounter.element.style.display = 'none';
+        };
+
+
+        /* Countdown callbacks ----------------------------- */
+
+        countdownCounter.onStart = () => {
+            countdownCounter.element.setAttribute('style','');
+            recordBtn.remove();
+            controlBar.prepend(cancelBtn);
+            countdownCounter.element.style.display = 'block';
+            actionList.style.display = 'none';
+        };
+
+        countdownCounter.beforeChange = () => {
+            if(countdownCounter.timeLeft <= 1){
+                countdownCounter.element.style.display = 'none';
                 cancelBtn.remove();
-                counter.start();
+                videoCounter.start();
             }
         };
 
-        counterCountdown.onReset = () => {
-            counterCountdown.element.setAttribute('style','');
+        countdownCounter.onReset = () => {
+            countdownCounter.element.setAttribute('style','');
+            actionList.style.display = '';
         };
 
-        /* Control bar after stopping recording */
+
+        /* Control bar ----------------------------- */
 
         const controlBarMarkup = document.createElement('div');
         controlBarMarkup.classList.add('grid','grid--on-xs');
@@ -567,32 +567,39 @@ const SiteJS = {
                 </button>
             </div>
             <div class="grid__col--12 grid__col--md--6">
-                <button class="btn btn--style--primary-lighter btn--size--lg btn--fluid" id="record-overwrite-btn">
+                <button class="btn btn--style--primary-lighter btn--size--lg btn--fluid" id="record-overwrite">
                     <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
                     <span class="btn__text">Переснять</span>
                 </button>
             </div>
             <div class="grid__col--12 grid__col--md--6">
-                <a href="#" class="btn btn--style--primary-lighter btn--size--lg btn--fluid">
+                <a href="#" class="btn btn--style--primary-lighter btn--size--lg btn--fluid" id="record-cancel">
                     <i class="icon icon--size--lg icon--close-48 btn__icon"></i>
                     <span class="btn__text">Отменить</span>
                 </a>
             </div>
         `;
 
-        recordBtn.addEventListener('click',  (e) => {
-            counterCountdown.start();
+        const overwriteBtn = controlBarMarkup.querySelector('#record-overwrite');
+        const cancelRecord = controlBarMarkup.querySelector('#record-cancel');
+
+        overwriteBtn.addEventListener('click', () => {
+            controlBarMarkup.remove();
+            countdownCounter.reset();
+            videoCounter.reset();
+            countdownCounter.start();
+            RecordStream.reset(recordStream);
+            videoCounter.element.style.display = '';
         });
 
-        const recordOverwriteBtn = controlBarMarkup.querySelector('#record-overwrite-btn');
-
-        recordOverwriteBtn.addEventListener('click', () => {
+        cancelRecord.addEventListener('click', () => {
             controlBarMarkup.remove();
-            counterCountdown.reset();
-            counter.reset();
-            counterCountdown.start();
+            countdownCounter.reset();
+            videoCounter.reset();
             RecordStream.reset(recordStream);
-            counter.element.style.display = '';
+            videoCounter.element.style.display = '';
+            actionList.style.display = '';
+            controlBar.prepend(recordBtn);
         })
     }
 };
