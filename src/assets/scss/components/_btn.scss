@@ -1,5 +1,6 @@
 .btn{
   @extend %buttonreset;
+  @extend %linkreset;
   display: inline-flex;
   background-color: $secondary;
   color: $secondaryDarker2;

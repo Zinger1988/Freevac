@@ -148,59 +148,73 @@ class RecordStream{
     constructor({videoElementID, constraints}) {
         this.element = document.querySelector(videoElementID);
         this.constraints = constraints;
-        this.stream = null;
         this.mediaRecorder = null;
-        this.isRecording = false;
         this.#init();
     }
 
+    static #createPlayBtn(instance){
+        instance.playBtn = document.createElement('div');
+        const {element, playBtn} = instance;
+
+        playBtn.classList.add('video-canvas__btn');
+        this.#setPlayBtnState(playBtn);
+
+        playBtn.addEventListener('click', (e) => {
+            element.paused
+                ? element.play()
+                : element.pause();
+
+            this.#setPlayBtnState(e.currentTarget, element.paused);
+        })
+
+        element.before(playBtn);
+    }
+
+    static #setPlayBtnState(playBtn, isPaused = true){
+        if(isPaused){
+            playBtn.classList.remove('video-canvas__btn--active');
+            playBtn.classList.add('video-canvas__btn--paused');
+        } else {
+            playBtn.classList.add('video-canvas__btn--active');
+            playBtn.classList.remove('video-canvas__btn--paused');
+        }
+    }
+
     static async startRecording(instance){
-
-        instance.isRecording = true;
-
-        console.log('record started');
-        let stream = null;
+        let recordStream = null;
+        let chunks = [];
 
         try {
-            stream = await navigator.mediaDevices.getUserMedia({...instance.constraints, audio: true});
+            recordStream = await navigator.mediaDevices.getUserMedia({...instance.constraints, audio: true});
         } catch(err) {
             console.log('The following getUserMedia error occured: ' + err);
         }
 
-        instance.mediaRecorder = new MediaRecorder(stream);
+        instance.mediaRecorder = new MediaRecorder(recordStream);
+        instance.mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
 
-        instance.chunks = [];
+        const {stream, element, mediaRecorder} = instance;
 
-        instance.mediaRecorder.ondataavailable = function(e) {
-            console.log('data available')
-            instance.chunks.push(e.data);
-        }
+        mediaRecorder.onstop = () => {
+            const blob = new Blob(chunks, { 'type' : 'video/webm; codecs=vp9' });
+            chunks = [];
 
-        instance.mediaRecorder.onstop = function (e) {
+            stream.getTracks().forEach( (track) => track.stop());
+            element.srcObject = null;
+            element.removeAttribute('autoplay');
+            element.src = window.URL.createObjectURL(blob);
 
-            console.log('mediaRecorder stopped');
+            this.#createPlayBtn(instance);
 
-            const blob = new Blob(instance.chunks, { 'type' : 'video/webm; codecs=vp9' });
-            instance.chunks = [];
-
-            instance.stream.getTracks().forEach(function(track) {
-                track.stop();
+            element.addEventListener('ended', () => {
+                this.#setPlayBtnState(instance.playBtn);
             });
-
-            instance.element.srcObject = null;
-
-            instance.element.removeAttribute('autoplay');
-            instance.element.setAttribute('controls','');
-            instance.element.src = window.URL.createObjectURL(blob);
         }
 
-        instance.mediaRecorder.start();
+        mediaRecorder.start();
     }
 
     static stopRecording(instance){
-        console.log('record stopped');
-
-        instance.isRecording = false;
         instance.mediaRecorder.stop();
     }
 
@@ -208,6 +222,22 @@ class RecordStream{
         this.element.RecordStream = this;
         await RecordStream.getStream(this)
         await RecordStream.bindStream(this);
+    }
+
+    static async reset(instance){
+        const {element} = instance;
+        let {playBtn} = instance;
+
+        element.srcObject = null;
+        element.setAttribute('autoplay', '');
+        element.removeAttribute('controls');
+        element.src = '';
+
+        playBtn.remove();
+        playBtn = null;
+
+        await RecordStream.getStream(instance)
+        await RecordStream.bindStream(instance);
     }
 
     static async getStream(instance){
@@ -233,42 +263,6 @@ const SiteJS = {
     }),
     init: function () {
         new InputFocus('.input-row');
-
-        /* record stream */
-
-        new RecordStream({
-            videoElementID: '#live-stream',
-            constraints: {
-                video: {
-                    width: {
-                        min: 480,
-                        ideal: 780,
-                        max: 1080,
-                    },
-                    height: {
-                        min: 640,
-                        ideal: 1360,
-                        max: 1920,
-                    },
-                    facingMode: 'user'
-                }
-            }
-        });
-        const videoElem = document.querySelector('#live-stream').RecordStream;
-
-        /* counter */
-
-        new Counter('#video-counter');
-        const counter = document.querySelector('#video-counter').Counter;
-
-        counter.onStart = function () {
-            RecordStream.startRecording(videoElem)
-        }
-
-        counter.onStop = function () {
-            RecordStream.stopRecording(videoElem)
-        }
-
         this.moveElement({
             elementId: 'user-title',
             targetId: 'profile-video',
@@ -426,25 +420,94 @@ const SiteJS = {
         }
     },
     recordVideo(){
-        const videoElem = document.querySelector('#live-stream').RecordStream;
+
+        /* record stream init */
+        new RecordStream({
+            videoElementID: '#live-stream',
+            constraints: {
+                video: {
+                    width: {
+                        min: 480,
+                        ideal: 780,
+                        max: 1080,
+                    },
+                    height: {
+                        min: 640,
+                        ideal: 1360,
+                        max: 1920,
+                    },
+                    facingMode: 'user'
+                }
+            }
+        });
+        const recordStream = document.querySelector('#live-stream').RecordStream;
+
+        /* counter init */
+        new Counter('#video-counter');
         const counter = document.querySelector('#video-counter').Counter;
-        const recordBtn = document.querySelector('#record-btn');
+
+        counter.onStart = () => RecordStream.startRecording(recordStream);
+        counter.onStop = () => RecordStream.stopRecording(recordStream);
+
+        if(!recordStream || !counter)console.error(`Can't initialize instance`);
+
+        const controlBar = document.querySelector('#record-control-bar');
+
+        /* Record btn */
+        const recordBtn = controlBar.querySelector('#record-btn');
         const recordBtnIcon = recordBtn.querySelector('.btn__icon');
         const recordBtnText = recordBtn.querySelector('.btn__text');
 
-        recordBtn.addEventListener('click', function () {
-            if(videoElem.isRecording){
+        recordBtn.addEventListener('click',  (e) => {
+            if(recordStream.mediaRecorder && recordStream.mediaRecorder.state === "recording"){
                 recordBtnIcon.classList.remove('icon--check-48');
                 recordBtnIcon.classList.add('icon--camera-48');
                 recordBtnText.textContent = 'Снять';
                 counter.stop();
+                e.currentTarget.remove();
+                controlBar.prepend(controlBarMarkup);
+                counter.element.style.display = 'none';
             } else {
                 recordBtnIcon.classList.remove('icon--camera-48');
                 recordBtnIcon.classList.add('icon--check-48');
                 recordBtnText.textContent = 'Снято';
                 counter.start();
             }
-        })
+        });
 
+        /* Control bar after stopping recording */
+
+        const controlBarMarkup = document.createElement('div');
+        controlBarMarkup.classList.add('grid','grid--on-xs');
+        controlBarMarkup.innerHTML = `
+            <div class="grid__col--12">
+                <button class="btn btn--style--accent btn--size--lg btn--fluid">
+                    <i class="icon icon--size--lg icon--check-48 btn__icon"></i>
+                    <span class="btn__text">Сохранить видео</span>
+                </button>
+            </div>
+            <div class="grid__col--12 grid__col--md--6">
+                <button class="btn btn--style--primary-lighter btn--size--lg btn--fluid" id="record-overwrite-btn">
+                    <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
+                    <span class="btn__text">Переснять</span>
+                </button>
+            </div>
+            <div class="grid__col--12 grid__col--md--6">
+                <a href="#" class="btn btn--style--primary-lighter btn--size--lg btn--fluid">
+                    <i class="icon icon--size--lg icon--close-48 btn__icon"></i>
+                    <span class="btn__text">Отменить</span>
+                </a>
+            </div>
+        `;
+
+        const recordOverwriteBtn = controlBarMarkup.querySelector('#record-overwrite-btn');
+
+        recordOverwriteBtn.addEventListener('click', () => {
+            controlBarMarkup.remove();
+            controlBar.prepend(recordBtn);
+            counter.reset();
+            RecordStream.reset(recordStream);
+            counter.element.style.display = '';
+        })
     }
 };
