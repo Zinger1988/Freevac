@@ -330,11 +330,11 @@ const SiteJS = {
             }
         });
         this.moveElement({
-            elementId: 'take-video-balloon',
+            elementId: 'take-video-tile',
             targetId: 'profile-video',
             mediaQuery: 'max-width: 991px',
             insertionMethod: function (element, target) {
-                target.prepend(element);
+                target.before(element);
             }
         });
         this.moveElement({
