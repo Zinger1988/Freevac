@@ -72,10 +72,10 @@
                                 </div>
                                 <div class="user-info__link">
                                     <div class="user-info__link-holder">
-                                        <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24"></a>
-                                        <a href="#" class="user-info__link-anchor icon icon--size--md icon--link-24"></a>
+                                        <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24" id="freevak-link-copy"></a>
+                                        <a href="#" target="_blank" class="user-info__link-anchor icon icon--size--md icon--link-24"></a>
                                     </div>
-                                    <input class="input-text input-text--style--primary user-info__link-input" readonly value="freevac.ua/po-f56" type="text">
+                                    <input class="input-text input-text--style--primary user-info__link-input" id="freevak-link" readonly value="freevac.ua/po-f56" type="text">
                                 </div>
                             </div><!--user info block-->
             
@@ -114,13 +114,13 @@
                                     </div>
             
                                     <div class="steps__body" role="button">
-                                        <div class="steps__checkpoint">
+                                        <div class="steps__checkpoint" data-scroll-to="create-video">
                                             <div class="steps__checkpoint-status steps__checkpoint-status--done">
                                                 <i class="icon icon--check-48 steps__checkpoint-icon"></i>
                                             </div>
                                             <div class="steps__checkpoint-title">Запиши видеорезюме</div>
                                         </div>
-                                        <div class="steps__checkpoint" role="button">
+                                        <div class="steps__checkpoint" role="button" data-scroll-to="update-info">
                                             <div class="steps__checkpoint-status">
                                                 <i class="icon icon--check-48 steps__checkpoint-icon"></i>
                                             </div>
@@ -132,7 +132,7 @@
                             </section>
                         </article><!-- content tile -->
             
-                        <article class="content-tile content-tile--alt2 content-tile--style--primary-lighter content-tile--overflow-x profile__content-tile">
+                        <article class="content-tile content-tile--alt2 content-tile--style--primary-lighter content-tile--overflow-x profile__content-tile" id="create-video">
                             <section class="content-tile__section">
             
                                 <h2 class="content-tile__title">Видео</h2>
@@ -249,7 +249,7 @@
                             </section>
                         </article><!-- content tile -->
             
-                        <article class="content-tile content-tile--alt2 profile__content-tile">
+                        <article class="content-tile content-tile--alt2 profile__content-tile" id="update-info">
                             <section class="content-tile__section">
             
                                 <h2 class="content-tile__title">Информация</h2>
@@ -267,7 +267,7 @@
                                             </div>
             
                                             <div class="grid__col--12 grid__col--md--6">
-                                                <div class="input-row input-row--pointer form__input-row input-row">
+                                                <div class="input-row input-row--pointer form__input-row input-row" data-modal-id="user-location">
                                                     <div class="input-row__title">где живешь? (необязательно)</div>
                                                     <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text">
                                                 </div><!-- input row -->
@@ -318,9 +318,9 @@
                                             </div>
             
                                             <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row">
+                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-about">
                                                     <div class="input-row__title">коротко о себе</div>
-                                                    <textarea class="input-text input-text--textarea input-row__input-text" value="Lorem ipsum" readonly></textarea>
+                                                    <textarea class="input-text input-text--textarea input-row__input-text" readonly>Lorem ipsum</textarea>
                                                 </div><!-- input row -->
                                             </div>
             
@@ -367,7 +367,7 @@
                                 <div class="form content-tile__form">
             
                                     <div class="form__group">
-                                        <div class="input-row input-row--pointer form__input-row">
+                                        <div class="input-row input-row--pointer form__input-row" data-modal-id="user-email-edit">
                                             <div class="input-row__title">e-mail</div>
                                             <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="email" readonly value="link.lazarenko@gmail.com">
                                         </div><!-- input row -->
@@ -561,6 +561,110 @@
                     <div class="form__footer">
                         <button class="btn btn--style--primary btn--size--regular" disabled>
                             <span class="btn__text">Сохранить</span>
+                        </button>
+                    </div><!-- form footer-->
+                </form><!-- form -->
+
+            </div><!-- body -->
+        </div><!-- main -->
+    </div>
+
+</div><!-- user-name modal --><div class="modal" id="user-about">
+
+    <div class="modal__holder">
+
+        <div class="modal__title-controls">
+            <button class="btn btn--size--regular btn--style--secondary modal-close">
+                <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+            </button>
+        </div><!-- title -->
+
+        <div class="modal__main">
+
+            <div class="modal__heading h2">Коротко о себе</div>
+
+            <div class="modal__body">
+
+                <form class="form" method="post">
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">коротко о себе</div>
+                        <textarea class="input-text input-text--textarea input-row__input-text">Lorem Ipsum</textarea>
+                    </div><!-- input row -->
+
+                    <div class="form__footer">
+                        <button class="btn btn--style--primary btn--size--regular">
+                            <span class="btn__text">Сохранить</span>
+                        </button>
+                    </div><!-- form footer-->
+                </form><!-- form -->
+
+            </div><!-- body -->
+        </div><!-- main -->
+    </div>
+
+</div><!-- user-name modal --><div class="modal" id="user-location">
+
+    <div class="modal__holder">
+
+        <div class="modal__title-controls">
+            <button class="btn btn--size--regular btn--style--secondary modal-close">
+                <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+            </button>
+        </div><!-- title -->
+
+        <div class="modal__main">
+
+            <div class="modal__heading h2">Где ты живешь</div>
+
+            <div class="modal__body">
+
+                <form class="form" method="post">
+                    <div class="form__group">
+                        <div class="input-row input-row--pointer form__input-row">
+                            <div class="input-row__title">Навзание населённого пункта</div>
+                            <input class="input-text input-row__input-text" type="text">
+                        </div><!-- input row -->
+                    </div><!-- form group-->
+
+                    <div class="form__footer">
+                        <button class="btn btn--style--primary btn--size--regular" disabled>
+                            <span class="btn__text">Сохранить</span>
+                        </button>
+                    </div><!-- form footer-->
+                </form><!-- form -->
+
+            </div><!-- body -->
+        </div><!-- main -->
+    </div>
+
+</div><!-- user-name modal --><div class="modal" id="user-email-edit">
+
+    <div class="modal__holder">
+
+        <div class="modal__title-controls">
+            <button class="btn btn--size--regular btn--style--secondary modal-close">
+                <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+            </button>
+        </div><!-- title -->
+
+        <div class="modal__main">
+
+            <div class="modal__heading h2">Редактирование email</div>
+
+            <div class="modal__body">
+
+                <form class="form" method="post">
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">E-mail</div>
+                        <input class="input-text input-row__input-text" type="text" value="link.lazarenko@gmail.com">
+                    </div><!-- input row -->
+
+                    <div class="form__footer">
+                        <button class="btn btn--style--primary btn--size--regular">
+                            <span class="btn__text">Сохранить</span>
+                        </button>
+                        <button class="btn btn--style--secondary btn--size--regular">
+                            <i class="icon icon--size--sm icon--delete-16 btn__icon"></i>
                         </button>
                     </div><!-- form footer-->
                 </form><!-- form -->

@@ -21,4 +21,9 @@
       margin: 0 0 1.6rem;
     }
   }
+
+  &__footer{
+    display: flex;
+    justify-content: space-between;
+  }
 }

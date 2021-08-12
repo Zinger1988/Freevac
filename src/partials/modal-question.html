@@ -10,24 +10,61 @@
 
         <div class="modal__main">
 
-            <div class="modal__heading h2">Изменить заголовок видео</div>
+            <div class="modal__heading h2">Изменить заголовок</div>
 
             <div class="modal__body">
 
-                <form class="form" method="post">
+                <form class="form modal__form" method="post">
                     <div class="form__group">
                         <div class="input-row input-row--pointer form__input-row">
                             <div class="input-row__title">Заголовок</div>
-                            <input class="input-text input-row__input-text" type="text" value="Расскажу немного о себе">
+                            <input class="input-text input-row__input-text" type="text" value="Расскажу немного о себе" data-complete-label="idea">
                         </div><!-- input row -->
                     </div><!-- form group-->
 
                     <div class="form__footer">
-                        <button class="btn btn--style--primary btn--size--regular" disabled>
+                        <button class="btn btn--style--primary btn--size--regular">
                             <span class="btn__text">Сохранить</span>
                         </button>
                     </div><!-- form footer-->
                 </form><!-- form -->
+
+                <div class="h5 modal__sub-heading">Несколько идей</div>
+
+                <ul class="action-list profile__action-list">
+                    <li class="action-list__item" role="button" data-complete-for="idea">
+                        <span class="action-list__icon">
+                            <i class="icon icon--size--sm icon--plus-16"></i>
+                        </span>
+                        <span class="action-list__text" data-complete-text>
+                            Чем занимался на прошлой работе?
+                        </span>
+                    </li>
+                    <li class="action-list__item" role="button" data-complete-for="idea">
+                        <span class="action-list__icon">
+                            <i class="icon icon--size--sm icon--plus-16"></i>
+                        </span>
+                        <span class="action-list__text" data-complete-text>
+                            Самый незабываемый проект
+                        </span>
+                    </li>
+                    <li class="action-list__item" role="button" data-complete-for="idea">
+                        <span class="action-list__icon">
+                            <i class="icon icon--size--sm icon--plus-16"></i>
+                        </span>
+                        <span class="action-list__text" data-complete-text>
+                            Самая сложная задача
+                        </span>
+                    </li>
+                    <li class="action-list__item" role="button" data-complete-for="idea">
+                        <span class="action-list__icon">
+                            <i class="icon icon--size--sm icon--plus-16"></i>
+                        </span>
+                        <span class="action-list__text" data-complete-text>
+                            Моя гордость
+                        </span>
+                    </li>
+                </ul><!-- action-list -->
 
             </div><!-- body -->
         </div><!-- main -->

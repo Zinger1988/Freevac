@@ -70,11 +70,27 @@
     margin: 0 0 2.4rem;
   }
 
+  &__sub-heading{
+    color: $secondaryDarker2;
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+    font-weight: 400;
+    margin: 0 0 1.6rem;
+  }
+
   &__body{
     margin: 0 0 2.4rem;
   }
 
   &__controls{
     padding-bottom: 2.4rem;
+  }
+
+  &__form{
+    margin: 0 0 3.2rem;
+
+    &:last-child{
+      margin: 0;
+    }
   }
 }

@@ -24,11 +24,15 @@ h3, .h3 {
   font-size: $fontSize22;
   @include calcLineHeight($fontSize22);
 }
-h4, .h4,
-h5, .h5,
-h6, .h6{
+h4, .h4{
   font-size: 2rem;
   @include calcLineHeight(2rem);
+}
+
+h5, .h5,
+h6, .h6{
+  font-size: $fontSize18;
+  @include calcLineHeight($fontSize18);
 }
 
 p, .p{

@@ -346,9 +346,149 @@ const SiteJS = {
             }
         });
         this.modal();
+        this.expandTextarea('.input-text--textarea');
         this.recordVideo();
+        this.completeInput('[data-complete-label]','[data-complete-for]');
+        this.smoothScroll('[data-scroll-to]');
+        this.copyToClipboard('#freevak-link-copy', '#freevak-link');
     },
-    createButton: function({tag, classes, html}) {
+    copyToClipboard(triggerSelector, sourceInputID){
+        const triggers = document.querySelectorAll(triggerSelector);
+        const sourceInput = document.querySelector(sourceInputID);
+
+        if(!sourceInput) return;
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                sourceInput.select();
+                document.execCommand('copy');
+                this.alert('Ссылка скопирована', 'success').start
+            })
+        })
+    },
+    alert(text, style = 'info', timeout = 3000){
+
+        const events = {
+            beforeShow: [],
+            afterShow: [],
+            beforeHide: [],
+            afterHide: [],
+        }
+
+        const styles = {
+            info: {
+                className: 'alert--info',
+                icon: 'icon--check-24'
+            },
+            warning: {
+                className: 'alert--warning',
+                icon: 'icon--check-24'
+            },
+            success: {
+                className: 'alert--success',
+                icon: 'icon--check-24'
+            },
+            danger: {
+                className: 'alert--danger',
+                icon: 'icon--check-24'
+            },
+        }
+
+        function start(){
+            const element = document.createElement('div');
+            element.classList.add('alert', styles[style]['className']);
+            element.innerHTML = `
+                <i class="icon icon--size--md ${styles[style]['icon']} alert__icon"></i>
+                <span class="alert__text">${text}</span>
+            `;
+
+            events.beforeShow.forEach(cb => cb());
+            document.body.append(element);
+            events.afterShow.forEach(cb => cb());
+
+            setTimeout(() => {
+                events.beforeHide.forEach(cb => cb());
+                element.remove();
+                events.afterHide.forEach(cb => cb());
+            }, timeout);
+        }
+
+        return {
+            beforeShow(cb) {
+                if(typeof cb !== 'function'){
+                    console.error('Callback should be a function')
+                } else {
+                    events.beforeShow.push(cb);
+                }
+
+                return this
+            },
+            afterShow(cb) {
+                if(typeof cb !== 'function'){
+                    console.error('Callback should be a function')
+                } else {
+                    events.afterShow.push(cb);
+                }
+
+                return this
+            },
+            beforeHide(cb) {
+                if(typeof cb !== 'function'){
+                    console.error('Callback should be a function')
+                } else {
+                    events.beforeHide.push(cb);
+                }
+
+                return this
+            },
+            afterHide(cb) {
+                if(typeof cb !== 'function'){
+                    console.error('Callback should be a function')
+                } else {
+                    events.afterHide.push(cb);
+                }
+
+                return this
+            },
+            get start(){
+                return start()
+            }
+        }
+    },
+    smoothScroll: function(btnSelector){
+        const buttons = document.querySelectorAll(btnSelector);
+
+        buttons.forEach( btn => {
+            const targetId = btn.getAttribute('data-scroll-to');
+            const targetElement = document.querySelector('#' + targetId);
+
+            btn.addEventListener('click', () => {
+                const targetCoords = targetElement.getBoundingClientRect();
+
+                window.scrollTo({
+                    top: targetCoords.top + pageYOffset - 50,
+                    left: targetCoords.left + pageXOffset - 50,
+                    behavior: 'smooth'
+                });
+            })
+        })
+    },
+    expandTextarea: function(selector){
+        const elements = document.querySelectorAll(selector);
+
+        elements.forEach(el => {
+            if(el.tagName.toLowerCase() !== 'textarea') return;
+
+            calcHeight(el);
+            el.addEventListener('input', (e) => calcHeight(e.currentTarget));
+        })
+
+        function calcHeight(element) {
+            element.style.height = window.getComputedStyle(element).getPropertyValue("min-height");
+            element.style.height = element.scrollHeight + (element.offsetHeight - element.clientHeight) + 'px';
+        }
+    },
+    createElement: function({tag, classes, html}) {
         const btn = document.createElement(tag);
         btn.classList.add(...classes);
         btn.innerHTML = html;
@@ -459,7 +599,44 @@ const SiteJS = {
             }, 20);
         }
     },
+    completeInput: function(inputSelector, buttonSelector){
+
+        const inputs = document.querySelectorAll(inputSelector);
+        const buttons = document.querySelectorAll(buttonSelector);
+
+        if(!inputs.length || !buttons.length) return;
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+
+                if(e.currentTarget.hasAttribute('data-complete-text')){
+                    updateInputs(e.currentTarget.textContent);
+                    return;
+                }
+
+                const textContainer = e.currentTarget.querySelector('[data-complete-text]');
+
+                if(!textContainer){
+                    console.error('CompleteInput requests an element width "data-complete-text"-attribute');
+                } else {
+                    updateInputs(textContainer.textContent);
+                }
+            })
+        })
+
+        function updateInputs(value){
+            inputs.forEach(input => {
+                input.value = value.trim();
+                if(input.InputFocusUpdate) input.InputFocusUpdate();
+            })
+        }
+    },
     recordVideo(){
+
+        // TODO: remove this shit
+        const flag = document.querySelector('#take-video-here');
+        if(!flag) return;
+
         new RecordStream({
             videoElementID: '#live-stream',
             constraints: {
@@ -481,25 +658,30 @@ const SiteJS = {
         new Counter('#video-counter');
         new Counter('#video-countdown');
 
-        const actionList = document.querySelector('#action-list');
         const controlBar = document.querySelector('#record-control-bar');
         const recordBtn = controlBar.querySelector('#record-btn');
         const recordStream = document.querySelector('#live-stream').RecordStream;
         const videoCounter = document.querySelector('#video-counter').Counter;
         const countdownCounter = document.querySelector('#video-countdown').Counter;
 
-        const doneBtn = this.createButton({
+        const doneBtn = this.createElement({
             tag: 'button',
             classes: ['btn', 'btn--style--accent', 'btn--size--lg', 'btn--fluid'],
             html: `<i class="icon icon--size--lg icon--check-48 btn__icon"></i>
                    <span class="btn__text">Снято</span>`
         });
 
-        const cancelBtn = this.createButton({
+        const cancelBtn = this.createElement({
             tag: 'button',
             classes: ['btn', 'btn--style--primary-lighter', 'btn--size--lg', 'btn--fluid'],
             html: `<i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
                    <span class="btn__text">Отмена</span>`
+        });
+
+        const recordFlag = this.createElement({
+            tag: 'div',
+            classes: ['video-canvas__record-dot'],
+            html: ``
         });
 
         doneBtn.addEventListener('click', (e) => videoCounter.stop());
@@ -518,11 +700,13 @@ const SiteJS = {
         /* videoCounter callbacks ----------------------------- */
 
         videoCounter.onStart = () => {
+            recordStream.element.before(recordFlag);
             RecordStream.startRecording(recordStream);
             controlBar.prepend(doneBtn);
         };
 
         videoCounter.onStop = () => {
+            recordFlag.remove();
             RecordStream.stopRecording(recordStream);
             doneBtn.remove();
             controlBar.prepend(controlBarMarkup);
@@ -537,7 +721,6 @@ const SiteJS = {
             recordBtn.remove();
             controlBar.prepend(cancelBtn);
             countdownCounter.element.style.display = 'block';
-            actionList.style.display = 'none';
         };
 
         countdownCounter.beforeChange = () => {
@@ -550,7 +733,6 @@ const SiteJS = {
 
         countdownCounter.onReset = () => {
             countdownCounter.element.setAttribute('style','');
-            actionList.style.display = '';
         };
 
 
@@ -562,7 +744,7 @@ const SiteJS = {
             <div class="grid__col--12">
                 <button class="btn btn--style--accent btn--size--lg btn--fluid">
                     <i class="icon icon--size--lg icon--check-48 btn__icon"></i>
-                    <span class="btn__text">Сохранить видео</span>
+                    <span class="btn__text">Сохранить</span>
                 </button>
             </div>
             <div class="grid__col--12 grid__col--md--6">
@@ -597,7 +779,6 @@ const SiteJS = {
             videoCounter.reset();
             RecordStream.reset(recordStream);
             videoCounter.element.style.display = '';
-            actionList.style.display = '';
             controlBar.prepend(recordBtn);
         })
     }
