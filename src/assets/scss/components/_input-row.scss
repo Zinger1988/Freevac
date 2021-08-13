@@ -35,10 +35,22 @@
     padding-bottom: 1rem;
   }
 
+  &__input-file{
+    display: none;
+  }
+
   &--pointer{
     #{$this}__title,
     #{$this}__input-text{
       cursor: pointer;
+    }
+  }
+
+  &--checkbox-radio{
+    margin: 0 0 1.6rem;
+
+    &:last-child{
+      margin: 0;
     }
   }
 }

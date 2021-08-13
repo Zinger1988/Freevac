@@ -281,7 +281,7 @@
                                             </div>
             
                                             <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row">
+                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-cvv-portfolio">
                                                     <div class="input-row__title">резюме / портфолио</div>
                                                     <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" value="docs.google/sdfc43-3eret431-1.." readonly type="text">
                                                 </div><!-- input row -->
@@ -338,19 +338,19 @@
                                 <div class="form content-tile__form">
             
                                     <div class="form__group">
-                                        <div class="input-row input-row--pointer form__input-row">
+                                        <div class="input-row input-row--pointer form__input-row" data-modal-id="user-position-edit">
                                             <div class="input-row__title">должность</div>
                                             <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Monobank, UX дизайнер, несколько месяцев">
                                         </div><!-- input row -->
             
-                                        <div class="input-row input-row--pointer form__input-row">
+                                        <div class="input-row input-row--pointer form__input-row" data-modal-id="user-position-edit">
                                             <div class="input-row__title">должность</div>
                                             <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="General Motors llc, UX дизайнер, больше 3 лет">
                                         </div><!-- input row -->
                                     </div><!-- form group-->
             
                                     <div class="form__footer">
-                                        <button class="btn btn--style--primary btn--size--regular">
+                                        <button class="btn btn--style--primary btn--size--regular" data-modal-id="user-position-add">
                                             <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
                                             <span class="btn__text">Добавить</span>
                                         </button>
@@ -372,7 +372,7 @@
                                             <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="email" readonly value="link.lazarenko@gmail.com">
                                         </div><!-- input row -->
             
-                                        <div class="input-row input-row--pointer form__input-row">
+                                        <div class="input-row input-row--pointer form__input-row" data-modal-id="user-email-edit">
                                             <div class="input-row__title">телефон</div>
                                             <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="tel" readonly value="+38 063 609 07 53">
                                         </div><!-- input row -->
@@ -534,7 +534,7 @@
         </div><!-- main -->
     </div>
 
-</div><!-- user-name modal --><div class="modal" id="user-age">
+</div><!-- user name modal --><div class="modal" id="user-age">
 
     <div class="modal__holder">
 
@@ -569,7 +569,7 @@
         </div><!-- main -->
     </div>
 
-</div><!-- user-name modal --><div class="modal" id="user-about">
+</div><!-- user age modal --><div class="modal" id="user-about">
 
     <div class="modal__holder">
 
@@ -604,7 +604,7 @@
         </div><!-- main -->
     </div>
 
-</div><!-- user-name modal --><div class="modal" id="user-location">
+</div><!-- user about modal --><div class="modal" id="user-location">
 
     <div class="modal__holder">
 
@@ -639,7 +639,7 @@
         </div><!-- main -->
     </div>
 
-</div><!-- user-name modal --><div class="modal" id="user-email-edit">
+</div><!-- user location modal --><div class="modal" id="user-email-edit">
 
     <div class="modal__holder">
 
@@ -659,7 +659,7 @@
                     <div class="form__group">
                         <div class="input-row input-row--pointer form__input-row">
                             <div class="input-row__title">E-mail</div>
-                            <input class="input-text input-row__input-text" type="text" value="link.lazarenko@gmail.com">
+                            <input class="input-text input-row__input-text" type="email" value="link.lazarenko@gmail.com">
                         </div><!-- input row -->
                     </div><!-- form group -->
 
@@ -677,7 +677,280 @@
         </div><!-- main -->
     </div>
 
-</div><!-- user-name modal -->
+</div><!-- user email edit modal --><div class="modal" id="user-position-edit">
+
+    <div class="modal__holder">
+
+        <div class="modal__title-controls">
+            <button class="btn btn--size--regular btn--style--secondary modal-close">
+                <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+            </button>
+        </div><!-- title -->
+
+        <div class="modal__main">
+
+            <div class="modal__heading h2">Редактирование</div>
+
+            <div class="modal__body">
+
+                <form class="form" method="post">
+                    <div class="form__group">
+                        <div class="input-row input-row--pointer form__input-row">
+                            <div class="input-row__title">Должность</div>
+                            <input class="input-text input-row__input-text" type="text" value="UX дизайнер, несколько месяцев">
+                        </div><!-- input row -->
+                        <div class="input-row input-row--pointer form__input-row">
+                            <div class="input-row__title">Компания</div>
+                            <input class="input-text input-row__input-text" type="text" value="Monobank">
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <div class="form__group">
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">не скажу, секрет</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="" checked>
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">несколько месяцев</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">примерно год</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">полтора года</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">2 года</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">3 года</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">4+ года</span>
+                            </label>
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <div class="form__footer">
+                        <button class="btn btn--style--primary btn--size--regular">
+                            <span class="btn__text">Сохранить</span>
+                        </button>
+                        <button class="btn btn--style--secondary btn--size--regular">
+                            <i class="icon icon--size--sm icon--delete-16 btn__icon"></i>
+                        </button>
+                    </div><!-- form footer-->
+                </form><!-- form -->
+
+            </div><!-- body -->
+        </div><!-- main -->
+    </div>
+
+</div><!-- user position edit modal --><div class="modal" id="user-position-add">
+
+    <div class="modal__holder">
+
+        <div class="modal__title-controls">
+            <button class="btn btn--size--regular btn--style--secondary modal-close">
+                <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+            </button>
+        </div><!-- title -->
+
+        <div class="modal__main">
+
+            <div class="modal__heading h2">Место работы</div>
+
+            <div class="modal__body">
+
+                <form class="form" method="post">
+                    <div class="form__group">
+                        <div class="input-row input-row--pointer form__input-row">
+                            <div class="input-row__title">Должность</div>
+                            <input class="input-text input-row__input-text" type="text">
+                        </div><!-- input row -->
+                        <div class="input-row input-row--pointer form__input-row">
+                            <div class="input-row__title">Компания</div>
+                            <input class="input-text input-row__input-text" type="text">
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <div class="form__group">
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="" checked>
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">не скажу, секрет</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">несколько месяцев</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">примерно год</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">полтора года</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">2 года</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">3 года</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="experience" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">4+ года</span>
+                            </label>
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <div class="form__footer">
+                        <button class="btn btn--style--primary btn--size--regular">
+                            <span class="btn__text">Сохранить</span>
+                        </button>
+                    </div><!-- form footer-->
+                </form><!-- form -->
+
+            </div><!-- body -->
+        </div><!-- main -->
+    </div>
+
+</div><!-- user position add modal --><div class="modal" id="user-cvv-portfolio">
+
+    <div class="modal__holder">
+
+        <div class="modal__title-controls">
+            <button class="btn btn--size--regular btn--style--secondary modal-close">
+                <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+            </button>
+        </div><!-- title -->
+
+        <div class="modal__main">
+
+            <div class="modal__heading h2">Резюме / портфолио</div>
+
+            <div class="modal__body">
+
+                <form class="form" method="post">
+                    <div class="form__group">
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="cvv-type" value="" checked>
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">резюме</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio">
+                                <input class="checkbox-radio__input" type="radio" name="cvv-type" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">портфолио</span>
+                            </label>
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <hr class="form__separate-line">
+
+                    <div class="form__group">
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="link" data-tab-active>
+                                <input class="checkbox-radio__input" type="radio" name="link-type" value="" checked>
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">ссылка</span>
+                            </label>
+                        </div><!-- input row -->
+                        <div class="form__input-row form__input-row--checkbox-radio">
+                            <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="file">
+                                <input class="checkbox-radio__input" type="radio" name="link-type" value="">
+                                <span class="checkbox-radio__toggler"></span>
+                                <span class="checkbox-radio__label">файл</span>
+                            </label>
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <div class="form__group" data-tab-group="cvv" data-tab-content-id="link">
+                        <div class="input-row input-row--pointer form__input-row">
+                            <div class="input-row__title">Ссылка</div>
+                            <input class="input-text input-row__input-text" type="text" value="docs.google/sdfc43-3eret431-123/cr-er">
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <div class="form__group" data-tab-group="cvv" data-tab-content-id="file">
+                        <div class="input-row input-row--pointer input-row--file form__input-row">
+                            <div class="input-row__title">Файл</div>
+                            <input class="input-text input-row__input-text input-text--iconic input-text--iconic--angle-right"
+                                   type="text"
+                                   placeholder="загрузи файл word, power point или pdf"
+                                   readonly>
+                            <input class="input-row__input-file"
+                                   type="file"
+                                   name=""
+                                   accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/pdf">
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <div class="form__footer">
+                        <button class="btn btn--style--primary btn--size--regular">
+                            <span class="btn__text">Сохранить</span>
+                        </button>
+                        <button class="btn btn--style--secondary btn--size--regular">
+                            <i class="icon icon--size--sm icon--delete-16 btn__icon"></i>
+                        </button>
+                    </div><!-- form footer-->
+                </form><!-- form -->
+
+            </div><!-- body -->
+        </div><!-- main -->
+    </div>
+
+</div><!-- user cvv portfolio modal -->
 <script src="assets/js/app.js"></script>
 </body>
 </html>

@@ -22,8 +22,9 @@
     }
   }
 
-  &__footer{
-    display: flex;
-    justify-content: space-between;
+  &__separate-line{
+    border: none;
+    border-bottom: 1px solid $secondary;
+    margin: 0 0 2.4rem;
   }
 }

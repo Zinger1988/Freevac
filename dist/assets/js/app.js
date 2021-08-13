@@ -351,6 +351,88 @@ const SiteJS = {
         this.completeInput('[data-complete-label]','[data-complete-for]');
         this.smoothScroll('[data-scroll-to]');
         this.copyToClipboard('#freevak-link-copy', '#freevak-link');
+        this.inputFile('.input-row--file','.input-row__input-file','.input-row__input-text');
+        this.tabs();
+    },
+    tabs(){
+        const elements = document.querySelectorAll('[data-tab-group]');
+        if(!elements.length) return;
+
+        const groups = [];
+
+        elements.forEach(element => {
+            const groupName = element.getAttribute('data-tab-group');
+            let targetGroup = groups.find(group => groupName === group.name);
+
+            if(!targetGroup){
+                groups.push({
+                    name: groupName,
+                    anchors: [],
+                    contentElements: []
+                })
+                targetGroup = groups[groups.length - 1]
+            }
+
+            const isAnchor = element.hasAttribute('data-tab-anchor');
+            if(isAnchor){
+                targetGroup.anchors.push(element);
+            } else {
+                targetGroup.contentElements.push(element);
+            }
+        });
+
+        function showContent(activeAnchor, group){
+            const anchorTarget = activeAnchor.getAttribute('data-tab-anchor');
+
+            group.contentElements.forEach(element => {
+                const elementID = element.getAttribute('data-tab-content-id')
+                anchorTarget === elementID
+                    ? element.style = ''
+                    : element.style.display = 'none';
+            })
+
+            group.anchors.forEach(anchor => {
+                anchor.removeAttribute('data-tab-active','');
+
+                if(anchor === activeAnchor){
+                    anchor.setAttribute('data-tab-active','');
+                }
+            })
+        }
+
+        groups.forEach( group => {
+            group.anchors.forEach(anchor => {
+                if(anchor.hasAttribute('data-tab-active')){
+                    showContent(anchor, group);
+                }
+                anchor.addEventListener('click', () => {
+                    showContent(anchor, group);
+                })
+            })
+        })
+    },
+    inputFile(wrapperSelector, inputFileSelector, inputTextSelector){
+        const wrappers = document.querySelectorAll(wrapperSelector);
+
+        wrappers.forEach(item => {
+            const inputFile = item.querySelector(inputFileSelector);
+            const inputText = item.querySelector(inputTextSelector);
+
+            inputText.addEventListener('click', () => {
+                inputFile.click();
+            });
+
+            inputFile.addEventListener("change", () => {
+                let value = '';
+                if(inputFile.files.length) {
+                    for(let key of inputFile.files){
+                        value += key.name + " ";
+                    }
+                }
+                inputText.value = value
+                if(inputText.InputFocusUpdate) inputText.InputFocusUpdate();
+            })
+        });
     },
     copyToClipboard(triggerSelector, sourceInputID){
         const triggers = document.querySelectorAll(triggerSelector);
