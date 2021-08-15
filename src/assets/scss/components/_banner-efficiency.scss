@@ -1,0 +1,68 @@
+.banner-efficiency{
+  background-color: $accent;
+  color: $accentLighter2;
+  border-radius: 24px;
+  padding: 3.2rem 2.4rem;
+
+  $this: &;
+
+  &__inner{
+    display: block;
+    width: 100%;
+    max-width: 37rem;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  &__text{
+    margin: 0 0 5rem;
+
+    #{$this}__title{
+      font-size: 9.6rem;
+      font-weight: 700;
+
+      @include media(">=lg"){
+        font-size: 8.2rem;
+      }
+
+      @include media(">=xl"){
+        font-size: 9.6rem;
+      }
+    }
+
+    #{$this}__subtitle{
+      font-size: $fontSize28;
+      @include calcLineHeight($fontSize28);
+      font-weight: 700;
+    }
+  }
+  
+  &__img{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 1.5rem;
+    animation: infinite bannerImg 3.5s ease-in-out;
+  }
+
+  @keyframes bannerImg {
+    0% {
+      bottom: 1.5rem;
+    }
+
+    50% {
+      bottom: -1.5rem;
+    }
+
+    100% {
+      bottom: 1.5rem;
+    }
+  }
+
+  &__img-item{
+    display: block;
+    width: 100%;
+  }
+}
