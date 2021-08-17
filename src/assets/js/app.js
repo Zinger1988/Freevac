@@ -336,6 +336,7 @@ class Modal {
         if(overlay) return;
 
         document.body.append(Modal.modalOverlay);
+        document.body.classList.add('no-overflow');
 
         let alpha = .01;
         const timer = setInterval(() => {
@@ -350,6 +351,8 @@ class Modal {
     static hideOverlay(){
         const overlay = document.querySelector('#modal-overlay');
         if(!overlay) return;
+
+        document.body.classList.remove('no-overflow');
 
         let alpha = 0.56;
         const timer = setInterval(() => {
@@ -429,10 +432,9 @@ const SiteJS = {
                 target.prepend(element);
             }
         });
-        // this.modal();
         this.expandTextarea('.input-text--textarea');
         this.recordVideo();
-        this.completeInput('[data-complete-label]','[data-complete-for]');
+        this.completeInput('[data-complete-input]','[data-complete-group]');
         this.smoothScroll('[data-scroll-to]');
         this.copyToClipboard('#freevak-link-copy', '#freevak-link');
         this.inputFile('.input-row--file','.input-row__input-file','.input-row__input-text');
@@ -740,100 +742,84 @@ const SiteJS = {
             }
         }
     },
-    modal: function () {
-        const modalShowBtn = document.querySelectorAll('[data-modal-id]');
-        const modalHideBtn = document.querySelectorAll('.modal-close');
-        const modals = document.querySelectorAll('.modal');
-
-        modalShowBtn.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const modalID = btn.getAttribute('data-modal-id');
-                const modal = document.getElementById(modalID);
-
-                showModal(modal);
-            })
-        });
-
-        modalHideBtn.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const modal = btn.closest('.modal');
-                hideModal(modal);
-            })
-        });
-
-        modals.forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if(e.target === e.currentTarget){
-                    hideModal(e.target);
-                }
-            });
-        });
-
-        function showModal(modalElement) {
-            requestAnimationFrame(() => modalAnimationIn(modalElement));
-            document.body.classList.add('no-overflow');
-        }
-
-        function hideModal(modalElement) {
-            requestAnimationFrame(() => modalAnimationOut(modalElement));
-            document.body.classList.remove('no-overflow');
-        }
-
-        function modalAnimationIn(modalElement) {
-            const modalHolder = modalElement.querySelector('.modal__holder');
-            let alpha = .01;
-            modalElement.classList.add('visible');
-
-            const timer = setInterval(() => {
-                if (alpha >= 0.56){
-                    clearInterval(timer);
-                    modalHolder.classList.add('visible');
-                } else {
-                    modalElement.style.backgroundColor = `rgba(0,0,0, ${alpha += 0.1})`;
-                }
-            }, 20);
-        }
-
-        function modalAnimationOut(modalElement) {
-            const modalHolder = modalElement.querySelector('.modal__holder');
-            modalHolder.classList.remove('visible');
-
-            let alpha = 0.56;
-
-            const timer = setInterval(() => {
-                if (alpha <= 0.1){
-                    clearInterval(timer);
-                    modalElement.classList.remove('visible');
-                } else {
-                    modalElement.style.backgroundColor = `rgba(0,0,0, ${alpha -= 0.1})`;
-                }
-            }, 20);
-        }
-    },
-    completeInput: function(inputSelector, buttonSelector){
+    // completeInput: function(inputSelector, buttonSelector){
+    //
+    //     const inputs = document.querySelectorAll(inputSelector);
+    //     const buttons = document.querySelectorAll(buttonSelector);
+    //
+    //     if(!inputs.length || !buttons.length) return;
+    //
+    //     buttons.forEach(btn => {
+    //         btn.addEventListener('click', (e) => {
+    //
+    //             if(e.currentTarget.hasAttribute('data-complete-text')){
+    //                 updateInputs(e.currentTarget.textContent);
+    //                 return;
+    //             }
+    //
+    //             const textContainer = e.currentTarget.querySelector('[data-complete-text]');
+    //
+    //             if(!textContainer){
+    //                 console.error('CompleteInput requests an element width "data-complete-text"-attribute');
+    //             } else {
+    //                 updateInputs(textContainer.textContent);
+    //             }
+    //         })
+    //     })
+    //
+    //     function updateInputs(value){
+    //         inputs.forEach(input => {
+    //             input.value = value.trim();
+    //             if(input.InputFocusUpdate) input.InputFocusUpdate();
+    //         })
+    //     }
+    // },
+    completeInput: function(inputSelector, groupSelector){
 
         const inputs = document.querySelectorAll(inputSelector);
-        const buttons = document.querySelectorAll(buttonSelector);
+        const groups = document.querySelectorAll(groupSelector);
 
-        if(!inputs.length || !buttons.length) return;
+        if(!inputs.length || !groups.length) return;
 
-        buttons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
+        groups.forEach(group => {
+            group.addEventListener('click', (e) => {
 
-                if(e.currentTarget.hasAttribute('data-complete-text')){
-                    updateInputs(e.currentTarget.textContent);
-                    return;
-                }
+                if(e.target.hasAttribute('data-complete-btn') || e.target.closest('[data-complete-btn]')) {
 
-                const textContainer = e.currentTarget.querySelector('[data-complete-text]');
+                    if(e.target.hasAttribute('data-complete-text')){
+                        updateInputs(e.target.textContent);
+                        return;
+                    }
 
-                if(!textContainer){
-                    console.error('CompleteInput requests an element width "data-complete-text"-attribute');
-                } else {
-                    updateInputs(textContainer.textContent);
+                    const textContainer = e.target.querySelector('[data-complete-text]');
+
+                    if(!textContainer){
+                        console.error('CompleteInput requests an element width "data-complete-text"-attribute');
+                    } else {
+                        updateInputs(textContainer.textContent);
+                    }
                 }
             })
         })
+
+        // inputs.forEach(input => {
+        //     input.addEventListener('input', (e) => {
+        //         groups.forEach(group => {
+        //             const bindedEl = group.querySelector('[data-complete-bind-input]');
+        //
+        //             if(bindedEl){
+        //
+        //                 const completeText = bindedEl.querySelector('[data-complete-text]');
+        //
+        //                 if(!e.target.value.trim()){
+        //
+        //                 }
+        //
+        //                 completeText.textContent = e.target.value;
+        //             }
+        //         })
+        //     })
+        // })
 
         function updateInputs(value){
             inputs.forEach(input => {

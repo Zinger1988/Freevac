@@ -38,6 +38,19 @@
     &:last-child{
       margin: 0;
     }
+
+    &--secondary{
+
+      &:hover #{$this}__icon{
+        background-color: $secondaryDarker;
+        color: $secondaryDarker4;
+      }
+
+      #{$this}__icon{
+        background-color: $secondary;
+        color: $secondaryDarker4;
+      }
+    }
   }
 
   &__text{
@@ -57,18 +70,4 @@
     margin: 0 1.6rem 0 0;
     @include animate(color background-color);
   }
-
-  &--secondary{
-
-    #{$this}__item:hover #{$this}__icon{
-      background-color: $secondaryDarker;
-      color: $secondaryDarker4;
-    }
-
-    #{$this}__icon{
-      background-color: $secondary;
-      color: $secondaryDarker4;
-    }
-  }
-
 }
