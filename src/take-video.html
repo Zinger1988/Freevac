@@ -3,32 +3,54 @@ layout: profile-video-edit
 title: Profile
 ---
 
-<article class="content-tile profile__content-tile" id="take-video-tile">
+<div class="grid grid--on-lg">
 
-    <!-- TODO: remove this shit -->
-    <div id="take-video-here"></div>
+    <div class="grid__col--4">
+        <div class="profile__video" id="profile-video">
+            <div class="video-counter--countdown" data-counter="3" id="video-countdown">03</div>
 
-    <section class="content-tile__section">
+            <div class="profile__video-holder video-holder">
+                <div class="video-holder__content">
+                    <video class="video-holder__content-video" id="live-stream" autoplay></video>
+                </div>
+            </div><!--video holder-->
 
-        <div class="balloon balloon--style--accent content-tile__balloon">Расскажу немного о себе</div>
+        </div><!--profile video-->
+    </div><!-- grid col -->
 
-        <ul class="action-list profile__action-list" id="action-list">
-            <li class="action-list__item" role="button" data-modal-id="user-question">
+    <div class="grid__col--8">
+        <div class="profile__content">
+
+            <article class="content-tile profile__content-tile" id="take-video-tile">
+
+                <!-- TODO: remove this shit -->
+                <div id="take-video-here"></div>
+
+                <section class="content-tile__section">
+
+                    <div class="balloon balloon--style--accent content-tile__balloon">Расскажу немного о себе</div>
+
+                    <ul class="action-list profile__action-list" id="action-list">
+                        <li class="action-list__item" role="button" data-modal-id="user-question">
                 <span class="action-list__icon">
                     <i class="icon icon--size--sm icon--edit-16"></i>
                 </span>
-                <span class="action-list__text">Изменить заголовок</span>
-            </li>
-        </ul>
+                            <span class="action-list__text">Изменить заголовок</span>
+                        </li>
+                    </ul>
 
-        <div class="video-counter" data-counter="120" id="video-counter">02:00</div>
+                    <div class="video-counter" data-counter="120" id="video-counter">02:00</div>
 
-    </section>
-</article><!-- content tile -->
+                </section>
+            </article><!-- content tile -->
 
-<div class="profile__controls-bar" id="record-control-bar">
-    <button class="btn btn--style--accent btn--size--lg btn--fluid" id="record-btn">
-        <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
-        <span class="btn__text">Cнять</span>
-    </button>
-</div><!-- controls bar -->
+            <div class="profile__controls-bar" id="record-control-bar">
+                <button class="btn btn--style--accent btn--size--lg btn--fluid" id="record-btn">
+                    <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
+                    <span class="btn__text">Cнять</span>
+                </button>
+            </div><!-- controls bar -->
+
+        </div><!-- profile content -->
+    </div><!-- grid col -->
+</div><!--grid-->

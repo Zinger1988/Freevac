@@ -1,89 +1,86 @@
 <div class="modal" id="user-cvv-portfolio">
 
-    <div class="modal__holder">
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
 
-        <div class="modal__title-controls">
-            <button class="btn btn--size--regular btn--style--secondary modal-close">
-                <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
-            </button>
-        </div><!-- title -->
+    <div class="modal__main">
 
-        <div class="modal__main">
+        <div class="modal__heading h2">Резюме / портфолио</div>
 
-            <div class="modal__heading h2">Резюме / портфолио</div>
+        <div class="modal__body">
 
-            <div class="modal__body">
+            <form class="form" method="post">
+                <div class="form__group">
+                    <div class="form__input-row form__input-row--checkbox-radio">
+                        <label class="checkbox-radio">
+                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="" checked>
+                            <span class="checkbox-radio__toggler"></span>
+                            <span class="checkbox-radio__label">резюме</span>
+                        </label>
+                    </div><!-- input row -->
+                    <div class="form__input-row form__input-row--checkbox-radio">
+                        <label class="checkbox-radio">
+                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="">
+                            <span class="checkbox-radio__toggler"></span>
+                            <span class="checkbox-radio__label">портфолио</span>
+                        </label>
+                    </div><!-- input row -->
+                </div><!-- form group -->
 
-                <form class="form" method="post">
-                    <div class="form__group">
-                        <div class="form__input-row form__input-row--checkbox-radio">
-                            <label class="checkbox-radio">
-                                <input class="checkbox-radio__input" type="radio" name="cvv-type" value="" checked>
-                                <span class="checkbox-radio__toggler"></span>
-                                <span class="checkbox-radio__label">резюме</span>
-                            </label>
-                        </div><!-- input row -->
-                        <div class="form__input-row form__input-row--checkbox-radio">
-                            <label class="checkbox-radio">
-                                <input class="checkbox-radio__input" type="radio" name="cvv-type" value="">
-                                <span class="checkbox-radio__toggler"></span>
-                                <span class="checkbox-radio__label">портфолио</span>
-                            </label>
-                        </div><!-- input row -->
-                    </div><!-- form group -->
+                <hr class="form__separate-line">
 
-                    <hr class="form__separate-line">
+                <div class="form__group">
+                    <div class="form__input-row form__input-row--checkbox-radio">
+                        <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="link" data-tab-active>
+                            <input class="checkbox-radio__input" type="radio" name="link-type" value="" checked>
+                            <span class="checkbox-radio__toggler"></span>
+                            <span class="checkbox-radio__label">ссылка</span>
+                        </label>
+                    </div><!-- input row -->
+                    <div class="form__input-row form__input-row--checkbox-radio">
+                        <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="file">
+                            <input class="checkbox-radio__input" type="radio" name="link-type" value="">
+                            <span class="checkbox-radio__toggler"></span>
+                            <span class="checkbox-radio__label">файл</span>
+                        </label>
+                    </div><!-- input row -->
+                </div><!-- form group -->
 
-                    <div class="form__group">
-                        <div class="form__input-row form__input-row--checkbox-radio">
-                            <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="link" data-tab-active>
-                                <input class="checkbox-radio__input" type="radio" name="link-type" value="" checked>
-                                <span class="checkbox-radio__toggler"></span>
-                                <span class="checkbox-radio__label">ссылка</span>
-                            </label>
-                        </div><!-- input row -->
-                        <div class="form__input-row form__input-row--checkbox-radio">
-                            <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="file">
-                                <input class="checkbox-radio__input" type="radio" name="link-type" value="">
-                                <span class="checkbox-radio__toggler"></span>
-                                <span class="checkbox-radio__label">файл</span>
-                            </label>
-                        </div><!-- input row -->
-                    </div><!-- form group -->
+                <div class="form__group" data-tab-group="cvv" data-tab-content-id="link">
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">Ссылка</div>
+                        <input class="input-text input-row__input-text" type="text" value="docs.google/sdfc43-3eret431-123/cr-er">
+                    </div><!-- input row -->
+                </div><!-- form group -->
 
-                    <div class="form__group" data-tab-group="cvv" data-tab-content-id="link">
-                        <div class="input-row input-row--pointer form__input-row">
-                            <div class="input-row__title">Ссылка</div>
-                            <input class="input-text input-row__input-text" type="text" value="docs.google/sdfc43-3eret431-123/cr-er">
-                        </div><!-- input row -->
-                    </div><!-- form group -->
+                <div class="form__group" data-tab-group="cvv" data-tab-content-id="file">
+                    <div class="input-row input-row--pointer input-row--file form__input-row">
+                        <div class="input-row__title">Файл</div>
+                        <input class="input-text input-row__input-text input-text--iconic input-text--iconic--angle-right"
+                               type="text"
+                               placeholder="загрузи файл word, power point или pdf"
+                               readonly>
+                        <input class="input-row__input-file"
+                               type="file"
+                               name=""
+                               accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/pdf">
+                    </div><!-- input row -->
+                </div><!-- form group -->
 
-                    <div class="form__group" data-tab-group="cvv" data-tab-content-id="file">
-                        <div class="input-row input-row--pointer input-row--file form__input-row">
-                            <div class="input-row__title">Файл</div>
-                            <input class="input-text input-row__input-text input-text--iconic input-text--iconic--angle-right"
-                                   type="text"
-                                   placeholder="загрузи файл word, power point или pdf"
-                                   readonly>
-                            <input class="input-row__input-file"
-                                   type="file"
-                                   name=""
-                                   accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/pdf">
-                        </div><!-- input row -->
-                    </div><!-- form group -->
+                <div class="form__footer">
+                    <button class="btn btn--style--primary btn--size--regular">
+                        <span class="btn__text">Сохранить</span>
+                    </button>
+                    <button class="btn btn--style--secondary btn--size--regular">
+                        <i class="icon icon--size--sm icon--delete-16 btn__icon"></i>
+                    </button>
+                </div><!-- form footer-->
+            </form><!-- form -->
 
-                    <div class="form__footer">
-                        <button class="btn btn--style--primary btn--size--regular">
-                            <span class="btn__text">Сохранить</span>
-                        </button>
-                        <button class="btn btn--style--secondary btn--size--regular">
-                            <i class="icon icon--size--sm icon--delete-16 btn__icon"></i>
-                        </button>
-                    </div><!-- form footer-->
-                </form><!-- form -->
-
-            </div><!-- body -->
-        </div><!-- main -->
-    </div>
+        </div><!-- body -->
+    </div><!-- main -->
 
 </div><!-- user cvv portfolio modal -->

@@ -7,23 +7,10 @@ title: Profile
 
     <div class="grid__col--4">
         <div class="profile__video" id="profile-video">
-<!--            <div class="profile__video-holder video-holder">-->
-<!--                video-slider-blank partial-->
-<!--            </div>-->
 
-            <div class="profile__banner banner-efficiency">
-                <div class="banner-efficiency__inner">
-                    <div class="banner-efficiency__text">
-                        <div class="banner-efficiency__title">+30%</div>
-                        <div class="banner-efficiency__subtitle">эффективность видео резюме</div>
-                    </div>
-                    <div class="banner-efficiency__img">
-                        <img class="banner-efficiency__img-item" src="assets/img/efficiency/01.png" alt="эффективность видео резюме">
-                    </div>
-                </div>
-            </div><!-- banner -->
+            {{> banner-efficiency }}
 
-        </div><!-- video -->
+        </div><!--profile video-->
     </div><!-- grid col -->
 
     <div class="grid__col--8">
@@ -172,7 +159,7 @@ title: Profile
                                 </div>
 
                                 <div class="grid__col--12 grid__col--md--6">
-                                    <div class="input-row input-row--pointer form__input-row">
+                                    <div class="input-row input-row--pointer form__input-row" data-modal-id="user-activity-field">
                                         <div class="input-row__title">сфера (необязательно)</div>
                                         <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly>
                                     </div><!-- input row -->
@@ -199,19 +186,19 @@ title: Profile
                     <div class="form content-tile__form">
 
                         <div class="form__group">
-                            <div class="input-row input-row--pointer form__input-row" data-modal-id="user-position-edit">
+                            <div class="input-row input-row--pointer form__input-row" data-modal-id="user-experience-edit">
                                 <div class="input-row__title">должность</div>
                                 <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Monobank, UX дизайнер, несколько месяцев">
                             </div><!-- input row -->
 
-                            <div class="input-row input-row--pointer form__input-row" data-modal-id="user-position-edit">
+                            <div class="input-row input-row--pointer form__input-row" data-modal-id="user-experience-edit">
                                 <div class="input-row__title">должность</div>
                                 <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="General Motors llc, UX дизайнер, больше 3 лет">
                             </div><!-- input row -->
                         </div><!-- form group-->
 
                         <div class="form__footer">
-                            <button class="btn btn--style--primary btn--size--regular" data-modal-id="user-position-add">
+                            <button class="btn btn--style--primary btn--size--regular" data-modal-id="user-experience-add">
                                 <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
                                 <span class="btn__text">Добавить</span>
                             </button>
@@ -240,7 +227,7 @@ title: Profile
                         </div><!-- form group-->
 
                         <div class="form__footer">
-                            <button class="btn btn--style--primary btn--size--regular">
+                            <button class="btn btn--style--primary btn--size--regular" data-modal-id="user-contacts-add">
                                 <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
                                 <span class="btn__text">Добавить</span>
                             </button>

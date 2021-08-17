@@ -9,6 +9,9 @@
     line-height: 1;
     flex: 1 0 auto;
     min-height: 7.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     @include animate(background-color);
 
     &:hover{
@@ -26,5 +29,9 @@
     &:last-child{
       border-radius: 0 2.4rem 2.4rem 0;
     }
+  }
+
+  &__icon{
+    position: relative;
   }
 }

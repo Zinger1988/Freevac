@@ -58,4 +58,17 @@
     @include animate(color background-color);
   }
 
+  &--secondary{
+
+    #{$this}__item:hover #{$this}__icon{
+      background-color: $secondaryDarker;
+      color: $secondaryDarker4;
+    }
+
+    #{$this}__icon{
+      background-color: $secondary;
+      color: $secondaryDarker4;
+    }
+  }
+
 }

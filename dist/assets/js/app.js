@@ -291,11 +291,95 @@ class RecordStream{
     }
 }
 
+class Modal {
+    static modalElements = null;
+    static activeModal = null;
+    static modalOverlay = document.createElement('div');
+
+    constructor(modalSelector) {
+        Modal.modalElements = Array.from(document.querySelectorAll(modalSelector));
+        Modal.modalOverlay.id = 'modal-overlay';
+        Modal.setHandlers();
+    }
+
+    static setHandlers(){
+        const modalButtons = document.querySelectorAll('[data-modal-id]');
+
+        modalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if(Modal.activeModal){
+                    Modal.hide();
+                }
+                const modalId = button.getAttribute('data-modal-id');
+                Modal.show(modalId);
+                Modal.showOverlay();
+            })
+        });
+
+        Modal.modalOverlay.addEventListener('click', (e) => {
+            Modal.hide();
+            Modal.hideOverlay();
+        })
+
+        Modal.modalElements.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if(e.target.classList.contains('modal-close') || e.target.closest('.modal-close')){
+                    Modal.hide();
+                    Modal.hideOverlay();
+                }
+            })
+        });
+    }
+
+    static showOverlay(){
+        const overlay = document.querySelector('#modal-overlay');
+        if(overlay) return;
+
+        document.body.append(Modal.modalOverlay);
+
+        let alpha = .01;
+        const timer = setInterval(() => {
+            if (alpha >= 0.56){
+                clearInterval(timer);
+            } else {
+                Modal.modalOverlay.style.backgroundColor = `rgba(0,0,0, ${alpha += 0.1})`;
+            }
+        }, 20);
+    }
+
+    static hideOverlay(){
+        const overlay = document.querySelector('#modal-overlay');
+        if(!overlay) return;
+
+        let alpha = 0.56;
+        const timer = setInterval(() => {
+            if (alpha <= 0.1){
+                overlay.remove()
+                clearInterval(timer);
+            } else {
+                Modal.modalOverlay.style.backgroundColor = `rgba(0,0,0, ${alpha -= 0.1})`;
+            }
+        }, 20);
+    }
+
+    static show(modalId){
+        const targetModal = Modal.modalElements.find(element => element.id === modalId);
+        Modal.activeModal = targetModal;
+        targetModal.classList.add('visible');
+    }
+
+    static hide(){
+        Modal.activeModal.classList.remove('visible');
+        Modal.activeModal = null;
+    }
+}
+
 const SiteJS = {
     onload: document.addEventListener('DOMContentLoaded', function () {
         SiteJS.init();
     }),
     init: function () {
+        new Modal('.modal');
         new InputFocus('.input-row');
         this.moveElement({
             elementId: 'user-title',
@@ -345,7 +429,7 @@ const SiteJS = {
                 target.prepend(element);
             }
         });
-        this.modal();
+        // this.modal();
         this.expandTextarea('.input-text--textarea');
         this.recordVideo();
         this.completeInput('[data-complete-label]','[data-complete-for]');
@@ -353,6 +437,51 @@ const SiteJS = {
         this.copyToClipboard('#freevak-link-copy', '#freevak-link');
         this.inputFile('.input-row--file','.input-row__input-file','.input-row__input-text');
         this.tabs();
+        this.replaceElements();
+    },
+    replaceElements(){
+        const wrapperEl = document.querySelectorAll('.replace-elements');
+
+        wrapperEl.forEach(wrapper => {
+
+            const elements = wrapper.querySelectorAll('.replace-elements__item');
+            elements.forEach(elem => {
+
+                elem.addEventListener('click', (e) => {
+                    if(e.target.classList.contains('replace-elements__arr-left')
+                        || e.target.classList.contains('replace-elements__arr-right')
+                        || e.target.closest('.replace-elements__arr-left')
+                        || e.target.closest('.replace-elements__arr-right')){
+                        e.preventDefault();
+                    }
+                })
+
+                const arrowLeft = elem.querySelector('.replace-elements__arr-left');
+                const arrowRight = elem.querySelector('.replace-elements__arr-right');
+
+                arrowLeft.addEventListener('click', (e) => {
+
+                    const prevElement = elem.previousElementSibling;
+
+                    if(prevElement){
+                        prevElement.replaceWith(elem);
+                        elem.after(prevElement);
+                        this.alert('Порядок видео изменен','success').start
+                    }
+                })
+
+                arrowRight.addEventListener('click', (e) => {
+
+                    const nextElement = elem.nextElementSibling;
+
+                    if(nextElement){
+                        nextElement.replaceWith(elem);
+                        elem.before(nextElement);
+                        this.alert('Порядок видео изменен','success').start
+                    }
+                })
+            })
+        })
     },
     tabs(){
         const elements = document.querySelectorAll('[data-tab-group]');

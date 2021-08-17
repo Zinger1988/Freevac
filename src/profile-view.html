@@ -8,18 +8,39 @@ title: Profile
     <div class="grid__col--4">
         <div class="profile__video" id="profile-video">
 
-            <div class="profile__video-holder video-holder">
-                {{> video-slider }}
-            </div>
+            <div class="video-slider profile__video-slider">
+                <div class="video-slider__slide">
+
+                    <div class="video-slider__video-holder video-holder">
+                        <div class="video-holder__content">
+                            <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
+                            <video class="video-holder__content-video" controls autoplay="true" loop>
+                                <source src="assets/video/02.mp4" type="video/mp4" /></source>
+                                <source src="assets/video/02.ogv" type="video/ogg"/></source>
+                                You need an HTML 5-capable browser.
+                            </video>
+                        </div>
+                    </div><!--video holder-->
+
+                </div><!--video slide-->
+            </div><!--video slider-->
 
             <div class="emoji-bar">
-                <button class="emoji-bar__item">&#128525;</button>
-                <button class="emoji-bar__item">&#129303;</button>
-                <button class="emoji-bar__item">&#128512;</button>
-                <button class="emoji-bar__item">&#129312;</button>
+                <button class="emoji-bar__item">
+                    <span class="emoji-bar__icon reaction-icon">&#128525;</span>
+                </button>
+                <button class="emoji-bar__item">
+                    <span class="emoji-bar__icon reaction-icon">&#129303;</span>
+                </button>
+                <button class="emoji-bar__item">
+                    <span class="emoji-bar__icon reaction-icon">&#128512;</span>
+                </button>
+                <button class="emoji-bar__item">
+                    <span class="emoji-bar__icon reaction-icon">&#129312;</span>
+                </button>
             </div>
 
-        </div><!--video-->
+        </div><!--profile video-->
     </div><!-- grid col -->
 
     <div class="grid__col--8">

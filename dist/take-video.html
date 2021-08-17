@@ -49,58 +49,60 @@
         </div><!--navbar-->
 
         <div class="profile page-content__profile">
-            <div class="grid grid--on-lg">
 
+            
+            <div class="grid grid--on-lg">
+            
                 <div class="grid__col--4">
                     <div class="profile__video" id="profile-video">
                         <div class="video-counter--countdown" data-counter="3" id="video-countdown">03</div>
+            
                         <div class="profile__video-holder video-holder">
-                            <div class="video-canvas video-holder__content">
-                                <video class="video-canvas__item" id="live-stream" autoplay>
-                            <!--        <source src="assets/video/02.mp4" type="video/mp4">-->
-                            <!--        <source src="assets/video/02.ogv" type="video/ogg">-->
-                            <!--        You need an HTML 5-capable browser.-->
-                                </video>
-                            </div><!-- video holder -->                        </div>
-                    </div>
-                </div><!--video-->
-
+                            <div class="video-holder__content">
+                                <video class="video-holder__content-video" id="live-stream" autoplay></video>
+                            </div>
+                        </div><!--video holder-->
+            
+                    </div><!--profile video-->
+                </div><!-- grid col -->
+            
                 <div class="grid__col--8">
                     <div class="profile__content">
-                        
+            
                         <article class="content-tile profile__content-tile" id="take-video-tile">
-                        
+            
                             <!-- TODO: remove this shit -->
                             <div id="take-video-here"></div>
-                        
+            
                             <section class="content-tile__section">
-                        
+            
                                 <div class="balloon balloon--style--accent content-tile__balloon">Расскажу немного о себе</div>
-                        
+            
                                 <ul class="action-list profile__action-list" id="action-list">
                                     <li class="action-list__item" role="button" data-modal-id="user-question">
-                                        <span class="action-list__icon">
-                                            <i class="icon icon--size--sm icon--edit-16"></i>
-                                        </span>
+                            <span class="action-list__icon">
+                                <i class="icon icon--size--sm icon--edit-16"></i>
+                            </span>
                                         <span class="action-list__text">Изменить заголовок</span>
                                     </li>
                                 </ul>
-                        
+            
                                 <div class="video-counter" data-counter="120" id="video-counter">02:00</div>
-                        
+            
                             </section>
                         </article><!-- content tile -->
-                        
+            
                         <div class="profile__controls-bar" id="record-control-bar">
                             <button class="btn btn--style--accent btn--size--lg btn--fluid" id="record-btn">
                                 <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
                                 <span class="btn__text">Cнять</span>
                             </button>
                         </div><!-- controls bar -->
-                    </div>
-                </div><!--profile content-->
-
+            
+                    </div><!-- profile content -->
+                </div><!-- grid col -->
             </div><!--grid-->
+
         </div><!--profile layout-->
     </div><!--container-->
 </main><!--page content-->
@@ -121,75 +123,72 @@
 </footer>
 <div class="modal" id="user-question">
 
-    <div class="modal__holder">
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
 
-        <div class="modal__title-controls">
-            <button class="btn btn--size--regular btn--style--secondary modal-close">
-                <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
-            </button>
-        </div><!-- title -->
+    <div class="modal__main">
 
-        <div class="modal__main">
+        <div class="modal__heading h2">Изменить заголовок</div>
 
-            <div class="modal__heading h2">Изменить заголовок</div>
+        <div class="modal__body">
 
-            <div class="modal__body">
+            <form class="form modal__form" method="post">
+                <div class="form__group">
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">Заголовок</div>
+                        <input class="input-text input-row__input-text" type="text" value="Расскажу немного о себе" data-complete-label="idea">
+                    </div><!-- input row -->
+                </div><!-- form group-->
 
-                <form class="form modal__form" method="post">
-                    <div class="form__group">
-                        <div class="input-row input-row--pointer form__input-row">
-                            <div class="input-row__title">Заголовок</div>
-                            <input class="input-text input-row__input-text" type="text" value="Расскажу немного о себе" data-complete-label="idea">
-                        </div><!-- input row -->
-                    </div><!-- form group-->
+                <div class="form__footer">
+                    <button class="btn btn--style--primary btn--size--regular">
+                        <span class="btn__text">Сохранить</span>
+                    </button>
+                </div><!-- form footer-->
+            </form><!-- form -->
 
-                    <div class="form__footer">
-                        <button class="btn btn--style--primary btn--size--regular">
-                            <span class="btn__text">Сохранить</span>
-                        </button>
-                    </div><!-- form footer-->
-                </form><!-- form -->
+            <div class="h5 modal__sub-heading">Несколько идей</div>
 
-                <div class="h5 modal__sub-heading">Несколько идей</div>
-
-                <ul class="action-list profile__action-list">
-                    <li class="action-list__item" role="button" data-complete-for="idea">
+            <ul class="action-list profile__action-list">
+                <li class="action-list__item" role="button" data-complete-for="idea">
                         <span class="action-list__icon">
                             <i class="icon icon--size--sm icon--plus-16"></i>
                         </span>
-                        <span class="action-list__text" data-complete-text>
+                    <span class="action-list__text" data-complete-text>
                             Чем занимался на прошлой работе?
                         </span>
-                    </li>
-                    <li class="action-list__item" role="button" data-complete-for="idea">
+                </li>
+                <li class="action-list__item" role="button" data-complete-for="idea">
                         <span class="action-list__icon">
                             <i class="icon icon--size--sm icon--plus-16"></i>
                         </span>
-                        <span class="action-list__text" data-complete-text>
+                    <span class="action-list__text" data-complete-text>
                             Самый незабываемый проект
                         </span>
-                    </li>
-                    <li class="action-list__item" role="button" data-complete-for="idea">
+                </li>
+                <li class="action-list__item" role="button" data-complete-for="idea">
                         <span class="action-list__icon">
                             <i class="icon icon--size--sm icon--plus-16"></i>
                         </span>
-                        <span class="action-list__text" data-complete-text>
+                    <span class="action-list__text" data-complete-text>
                             Самая сложная задача
                         </span>
-                    </li>
-                    <li class="action-list__item" role="button" data-complete-for="idea">
+                </li>
+                <li class="action-list__item" role="button" data-complete-for="idea">
                         <span class="action-list__icon">
                             <i class="icon icon--size--sm icon--plus-16"></i>
                         </span>
-                        <span class="action-list__text" data-complete-text>
+                    <span class="action-list__text" data-complete-text>
                             Моя гордость
                         </span>
-                    </li>
-                </ul><!-- action-list -->
+                </li>
+            </ul><!-- action-list -->
 
-            </div><!-- body -->
-        </div><!-- main -->
-    </div>
+        </div><!-- body -->
+    </div><!-- main -->
 
 </div><!-- user-name modal -->
 <script src="assets/js/app.js"></script>

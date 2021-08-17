@@ -18,6 +18,14 @@
     }
   }
 
+  &__video-slider{
+    margin: 0 0 .8rem;
+
+    @include media(">=lg") {
+      margin: 0 0 1.6rem;
+    }
+  }
+
   &__video-holder{
     position: relative;
     margin: 0 0 .8rem;
@@ -27,12 +35,6 @@
 
       &:last-child{
         margin: 0;
-      }
-
-      .video-canvas{
-        max-width: none;
-        height: 58.62vw;
-        max-height: 71.2rem;
       }
     }
   }
