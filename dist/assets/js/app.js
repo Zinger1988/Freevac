@@ -440,7 +440,34 @@ const SiteJS = {
         this.inputFile('.input-row--file','.input-row__input-file','.input-row__input-text');
         this.tabs();
         this.replaceElements();
+        // this.stickyVideo();
     },
+    // stickyVideo(){
+    //     const relativeEl = document.querySelector('.profile');
+    //     const targetEl = document.querySelector('.profile__video--sticky');
+    //
+    //     if(!targetEl) return
+    //
+    //     const targetTop = targetEl.getBoundingClientRect().top;
+    //     const logo = document.querySelector('.page-header__logo');
+    //     logo.classList.add('page-header__logo--sticky');
+    //
+    //     checkPosition();
+    //
+    //     window.addEventListener('scroll', checkPosition);
+    //
+    //     function checkPosition() {
+    //         const relativeRect = relativeEl.getBoundingClientRect();
+    //
+    //         if(targetEl.offsetHeight + targetTop >= relativeRect.bottom){
+    //             targetEl.style.top = `${(targetEl.offsetHeight - relativeRect.bottom) * -1}px`;
+    //             logo.style.top = `${(targetEl.offsetHeight - relativeRect.bottom + targetTop) * -1}px`;
+    //         } else {
+    //             targetEl.style.top = '';
+    //             logo.style.top = '';
+    //         }
+    //     }
+    // },
     replaceElements(){
         const wrapperEl = document.querySelectorAll('.replace-elements');
 
@@ -801,25 +828,6 @@ const SiteJS = {
                 }
             })
         })
-
-        // inputs.forEach(input => {
-        //     input.addEventListener('input', (e) => {
-        //         groups.forEach(group => {
-        //             const bindedEl = group.querySelector('[data-complete-bind-input]');
-        //
-        //             if(bindedEl){
-        //
-        //                 const completeText = bindedEl.querySelector('[data-complete-text]');
-        //
-        //                 if(!e.target.value.trim()){
-        //
-        //                 }
-        //
-        //                 completeText.textContent = e.target.value;
-        //             }
-        //         })
-        //     })
-        // })
 
         function updateInputs(value){
             inputs.forEach(input => {

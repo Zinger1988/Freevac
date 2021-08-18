@@ -22,7 +22,7 @@
     <div class="container">
         <div class="page-header__inner">
 
-            <a href="#" class="logo page-header__logo">
+            <a href="#" class="logo page-header__logo page-header__logo--fixed">
                 <img src="assets/img/logo.svg" alt="Freevac">
             </a>
 
@@ -47,8 +47,7 @@
             <div class="grid grid--on-lg">
             
                 <div class="grid__col--4">
-                    <div class="profile__video" id="profile-video">
-            
+                    <div class="profile__video profile__video--fixed" id="profile-video">
                         <div class="profile__banner banner-efficiency">
                             <div class="banner-efficiency__inner">
                                 <div class="banner-efficiency__text">
@@ -59,8 +58,7 @@
                                     <img class="banner-efficiency__img-item" src="assets/img/efficiency/01.png" alt="эффективность видео резюме">
                                 </div>
                             </div>
-                        </div><!-- banner -->
-                    </div><!--profile video-->
+                        </div><!-- banner -->        </div><!--profile video-->
                 </div><!-- grid col -->
             
                 <div class="grid__col--8">
@@ -945,7 +943,7 @@
 
         <div class="modal__body">
 
-            <ul class="action-list profile__action-list">
+            <ul class="action-list">
                 <li class="action-list__item" role="button" data-modal-id="user-contacts-add-details">
                     <span class="action-list__icon">
                         <i class="icon icon--size--sm icon--phone-16"></i>
@@ -1056,7 +1054,7 @@
 
         <div class="modal__body">
 
-            <ul class="action-list profile__action-list">
+            <ul class="action-list">
                 <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
                     <span class="action-list__icon">
                         <i class="icon icon--size--sm icon--arrowangleright-16"></i>
@@ -1151,7 +1149,7 @@
 
         <div class="modal__body">
 
-            <ul class="action-list profile__action-list">
+            <ul class="action-list">
                 <li class="action-list__item" role="button">
                     <span class="action-list__icon">
                         <i class="icon icon--size--sm icon--arrowangleright-16"></i>
@@ -1250,17 +1248,16 @@
                         <input class="input-text input-row__input-text" type="text" value="Продуктовый дизайнер" data-complete-input>
                     </div><!-- input row -->
                 </div><!-- form group-->
+
+                <div class="form__footer">
+                    <button class="btn btn--style--primary btn--size--regular">
+                        <span class="btn__text">Сохранить</span>
+                    </button>
+                </div><!-- form footer-->
             </form><!-- form -->
 
-            <ul class="action-list profile__action-list" data-complete-group>
-                <li class="action-list__item modal-close" role="button" data-complete-bind-input>
-                    <span class="action-list__icon">
-                        <i class="icon icon--size--sm icon--plus-16"></i>
-                    </span>
-                    <span class="action-list__text" data-complete-text>
-                        Создать "Дизайнер интерьера"
-                    </span>
-                </li>
+            <!-- autocomplete -->
+            <ul class="action-list" data-complete-group>
                 <li class="action-list__item action-list__item--secondary" role="button" data-complete-btn>
                     <span class="action-list__icon">
                         <i class="icon icon--size--sm icon--arrowangleright-16"></i>
@@ -1283,6 +1280,14 @@
                     </span>
                     <span class="action-list__text" data-complete-text>
                         UX дизайнер
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-complete-btn>
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text" data-complete-text>
+                        UX/UI дизайнер
                     </span>
                 </li>
             </ul><!-- action-list -->

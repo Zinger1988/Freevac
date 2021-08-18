@@ -10,16 +10,19 @@
   &__logo{
     width: 18.2rem;
 
-    @include media(">=lg"){
-      position: fixed;
-      left: 3rem;
-      top: 2.4rem;
-      z-index: $logo-z-index;
-    }
+    &--fixed{
 
-    @include media(">=xl"){
-      // calculating fixed logo LEFT coordinate: (100% - (containerMaxWidth - containerPaddingX * 2)) / 2
-      left: calc((100% - (119.4rem - 3rem * 2))/ 2);
+      @include media(">=lg"){
+        position: fixed;
+        left: 3rem;
+        top: 2.4rem;
+        z-index: $logo-z-index;
+      }
+
+      @include media(">=xl"){
+        // calculating fixed logo LEFT coordinate: (100% - (containerMaxWidth - containerPaddingX * 2)) / 2
+        left: calc((100% - (119.4rem - 3rem * 2))/ 2);
+      }
     }
   }
 

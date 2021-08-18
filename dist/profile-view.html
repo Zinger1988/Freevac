@@ -22,7 +22,7 @@
     <div class="container">
         <div class="page-header__inner">
 
-            <a href="#" class="logo page-header__logo">
+            <a href="#" class="logo page-header__logo page-header__logo--fixed">
                 <img src="assets/img/logo.svg" alt="Freevac">
             </a>
 
@@ -47,39 +47,39 @@
             <div class="grid grid--on-lg">
             
                 <div class="grid__col--4">
-                    <div class="profile__video" id="profile-video">
+                    <div class="profile__video profile__video--fixed" id="profile-video">
             
-                        <div class="video-slider profile__video-slider">
-                            <div class="video-slider__slide">
+                            <div class="video-slider profile__video-slider">
+                                <div class="video-slider__slide">
             
-                                <div class="video-slider__video-holder video-holder">
-                                    <div class="video-holder__content">
-                                        <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
-                                        <video class="video-holder__content-video" controls autoplay="true" loop>
-                                            <source src="assets/video/02.mp4" type="video/mp4" /></source>
-                                            <source src="assets/video/02.ogv" type="video/ogg"/></source>
-                                            You need an HTML 5-capable browser.
-                                        </video>
-                                    </div>
-                                </div><!--video holder-->
+                                    <div class="video-slider__video-holder video-holder">
+                                        <div class="video-holder__content">
+                                            <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
+                                            <video class="video-holder__content-video" controls autoplay="true" loop>
+                                                <source src="assets/video/02.mp4" type="video/mp4" /></source>
+                                                <source src="assets/video/02.ogv" type="video/ogg"/></source>
+                                                You need an HTML 5-capable browser.
+                                            </video>
+                                        </div>
+                                    </div><!--video holder-->
             
-                            </div><!--video slide-->
-                        </div><!--video slider-->
+                                </div><!--video slide-->
+                            </div><!--video slider-->
             
-                        <div class="emoji-bar">
-                            <button class="emoji-bar__item">
-                                <span class="emoji-bar__icon reaction-icon">&#128525;</span>
-                            </button>
-                            <button class="emoji-bar__item">
-                                <span class="emoji-bar__icon reaction-icon">&#129303;</span>
-                            </button>
-                            <button class="emoji-bar__item">
-                                <span class="emoji-bar__icon reaction-icon">&#128512;</span>
-                            </button>
-                            <button class="emoji-bar__item">
-                                <span class="emoji-bar__icon reaction-icon">&#129312;</span>
-                            </button>
-                        </div>
+                            <div class="emoji-bar">
+                                <button class="emoji-bar__item">
+                                    <span class="emoji-bar__icon reaction-icon">&#128525;</span>
+                                </button>
+                                <button class="emoji-bar__item">
+                                    <span class="emoji-bar__icon reaction-icon">&#129303;</span>
+                                </button>
+                                <button class="emoji-bar__item">
+                                    <span class="emoji-bar__icon reaction-icon">&#128512;</span>
+                                </button>
+                                <button class="emoji-bar__item">
+                                    <span class="emoji-bar__icon reaction-icon">&#129312;</span>
+                                </button>
+                            </div>
             
                     </div><!--profile video-->
                 </div><!-- grid col -->
@@ -682,7 +682,7 @@
 
         <div class="modal__body">
 
-            <ul class="action-list profile__action-list">
+            <ul class="action-list">
                 <li class="action-list__item" role="button" data-modal-id="user-contacts-add-details">
                     <span class="action-list__icon">
                         <i class="icon icon--size--sm icon--phone-16"></i>
@@ -793,7 +793,7 @@
 
         <div class="modal__body">
 
-            <ul class="action-list profile__action-list">
+            <ul class="action-list">
                 <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
                     <span class="action-list__icon">
                         <i class="icon icon--size--sm icon--arrowangleright-16"></i>
@@ -888,7 +888,7 @@
 
         <div class="modal__body">
 
-            <ul class="action-list profile__action-list">
+            <ul class="action-list">
                 <li class="action-list__item" role="button">
                     <span class="action-list__icon">
                         <i class="icon icon--size--sm icon--arrowangleright-16"></i>
@@ -987,17 +987,16 @@
                         <input class="input-text input-row__input-text" type="text" value="Продуктовый дизайнер" data-complete-input>
                     </div><!-- input row -->
                 </div><!-- form group-->
+
+                <div class="form__footer">
+                    <button class="btn btn--style--primary btn--size--regular">
+                        <span class="btn__text">Сохранить</span>
+                    </button>
+                </div><!-- form footer-->
             </form><!-- form -->
 
-            <ul class="action-list profile__action-list" data-complete-group>
-                <li class="action-list__item modal-close" role="button" data-complete-bind-input>
-                    <span class="action-list__icon">
-                        <i class="icon icon--size--sm icon--plus-16"></i>
-                    </span>
-                    <span class="action-list__text" data-complete-text>
-                        Создать "Дизайнер интерьера"
-                    </span>
-                </li>
+            <!-- autocomplete -->
+            <ul class="action-list" data-complete-group>
                 <li class="action-list__item action-list__item--secondary" role="button" data-complete-btn>
                     <span class="action-list__icon">
                         <i class="icon icon--size--sm icon--arrowangleright-16"></i>
@@ -1020,6 +1019,14 @@
                     </span>
                     <span class="action-list__text" data-complete-text>
                         UX дизайнер
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-complete-btn>
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text" data-complete-text>
+                        UX/UI дизайнер
                     </span>
                 </li>
             </ul><!-- action-list -->

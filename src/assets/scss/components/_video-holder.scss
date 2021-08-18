@@ -17,7 +17,11 @@
     @include media(">=lg"){
       max-width: none;
       height: 58.62vw;
-      max-height: 71.2rem;
+      max-height: 58.6rem;
+    }
+
+    @include media(">=xxl"){
+      max-height: 68rem;
     }
   }
 
