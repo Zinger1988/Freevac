@@ -926,13 +926,13 @@ const SiteJS = {
                 video: {
                     width: {
                         min: 720,
-                        ideal: 1080,
-                        max: 3840,
+                        ideal: 2160,
+                        max: 4320,
                     },
                     height: {
                         min: 720,
-                        ideal: 1920,
-                        max: 2160,
+                        ideal: 3840,
+                        max: 7680,
                     },
                     facingMode: 'user'
                 },
