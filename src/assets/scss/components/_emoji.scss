@@ -1,0 +1,292 @@
+.emoji {
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 0 0 .8em $white;
+
+  $this: &;
+
+  &__face {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 25em;
+    height: 25em;
+    position: relative;
+
+    &--sad{
+      animation: sad-look 5s infinite;
+
+      #{$this}__eye{
+        top: 11em;
+        animation: blink 5s infinite;
+        animation-delay: 3.7s;
+      }
+
+      #{$this}__mouth{
+        width: 8em;
+        height: 5em;
+        border: .8em solid transparent;
+        border-radius: 50%;
+        border-top-color: $white;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 15.6em;
+        animation: sad-mouth 5s infinite;
+      }
+    }
+
+    &--happy{
+      animation: normal-look 5s infinite;
+
+      #{$this}__eye{
+        top: 7.5em;
+        animation: blink 5s infinite;
+      }
+
+      #{$this}__mouth{
+        width: 10em;
+        height: 5em;
+        border: .8em solid transparent;
+        border-radius: 50%;
+        border-bottom-color: $white;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 9.5em;
+        animation: happy-mouth 5s infinite;
+      }
+    }
+
+    &--normal{
+      animation: normal-look 5s infinite;
+
+      #{$this}__eye{
+        top: 10.5em;
+        animation: blink 5s infinite;
+        animation-delay: 1.3s;
+      }
+
+      #{$this}__mouth{
+        width: 7.5em;
+        height: .8em;
+        border-radius: .8em;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 15.5em;
+        background-color: $white;
+      }
+    }
+  }
+
+  &__mouth{
+    position: absolute;
+  }
+
+  &__eye{
+    width: 3em;
+    height: 3em;
+    background-color: $white;
+    border-radius: 50%;
+    position: absolute;
+
+    &--left{
+      left: 4.5em;
+    }
+
+    &--right{
+      right: 4.5em;
+    }
+  }
+}
+
+.face__happy {
+  animation: happy-look 5s infinite;
+}
+
+.face__standard {
+  animation: normal-look 5s infinite;
+}
+
+.face__sad {
+  animation: sad-look 5s infinite;
+}
+
+@keyframes blink {
+  0% {
+    transform: scale(1, 1);
+  }
+  10% {
+    transform: scale(1, 1);
+  }
+  12% {
+    transform: scale(1, .1);
+  }
+  14% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1, 1);
+  }
+  32% {
+    transform: scale(1, .1);
+  }
+  34% {
+    transform: scale(1, 1);
+  }
+  60% {
+    transform: scale(1, 1);
+  }
+  62% {
+    transform: scale(1, .1);
+  }
+  64% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes happy-look {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(1em, 0);
+  }
+  20% {
+    transform: translate(1em, 0);
+  }
+  30% {
+    transform: translate(0, 0);
+  }
+  60% {
+    transform: translate(0, 0);
+  }
+  70% {
+    transform: translate(-1em, -1.5em);
+  }
+  80% {
+    transform: translate(-1em, -1.5em);
+  }
+  90% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes happy-mouth {
+  0% {
+    height: 5em;
+  }
+  10% {
+    height: 5em;
+  }
+  20% {
+    height: 5em;
+  }
+  30% {
+    height: 5em;
+  }
+  60% {
+    height: 5em;
+  }
+  70% {
+    height: 4em;
+  }
+  80% {
+    height: 4em;
+  }
+  90% {
+    height: 5em;
+  }
+}
+
+@keyframes normal-look {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2.5em, 0);
+  }
+  20% {
+    transform: translate(-2.5em, 0);
+  }
+  30% {
+    transform: translate(0, 0);
+  }
+  60% {
+    transform: translate(0, 0);
+  }
+  70% {
+    transform: translate(1.5em, -1.5em);
+  }
+  80% {
+    transform: translate(1.5em, -1.5em);
+  }
+  90% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes sad-look {
+  0% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0, -2.5em);
+  }
+  35% {
+    transform: translate(0, -2.5em);
+  }
+  45% {
+    transform: translate(0, 0);
+  }
+  70% {
+    transform: translate(0, 0);
+  }
+  80% {
+    transform: translate(-1.5em, -2.5em);
+  }
+  90% {
+    transform: translate(-1.5em, -2.5em);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes sad-mouth {
+  0% {
+    height: 2.5em;
+  }
+  15% {
+    height: 2.5em;
+  }
+  25% {
+    height: 5em;
+  }
+  35% {
+    height: 5em;
+  }
+  45% {
+    height: 2.5em;
+  }
+  70% {
+    height: 2.5em;
+  }
+  80% {
+    height: 5em;
+  }
+  90% {
+    height: 5em;
+  }
+  100% {
+    height: 2.5em;
+  }
+}

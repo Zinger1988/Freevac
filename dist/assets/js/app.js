@@ -215,28 +215,36 @@ class RecordStream{
     }
 
     static async startRecording(instance){
-        let recordStream = null;
+        const {stream, element} = instance;
         let chunks = [];
+        let options = {};
+        let types = ["video/webm",
+            "audio/webm",
+            "video/webm\;codecs=vp8",
+            "video/webm\;codecs=daala",
+            "video/webm\;codecs=h264",
+            "audio/webm\;codecs=opus",
+            "video/mpeg"];
 
-        try {
-            recordStream = await navigator.mediaDevices.getUserMedia({...instance.constraints, audio: true});
-        } catch(err) {
-            console.log('The following getUserMedia error occured: ' + err);
-        }
+        types.find(type => {
+            if(MediaRecorder.isTypeSupported(type)){
+                options = {mimeType: type};
+            }
+        });
 
-        instance.mediaRecorder = new MediaRecorder(recordStream);
+        instance.mediaRecorder = new MediaRecorder(instance.stream, options);
         instance.mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+        instance.mediaRecorder.start();
 
-        const {stream, element, mediaRecorder} = instance;
-
-        mediaRecorder.onstop = () => {
-            const blob = new Blob(chunks, { 'type' : 'video/webm; codecs=vp9' });
+        instance.mediaRecorder.onstop = () => {
+            const blob = new Blob(chunks, options);
             chunks = [];
 
             stream.getTracks().forEach( (track) => track.stop());
             element.srcObject = null;
             element.removeAttribute('autoplay');
             element.src = window.URL.createObjectURL(blob);
+            element.muted = false;
 
             this.#createPlayBtn(instance);
 
@@ -244,8 +252,6 @@ class RecordStream{
                 this.#setPlayBtnState(instance.playBtn);
             });
         }
-
-        mediaRecorder.start();
     }
 
     static stopRecording(instance){
@@ -275,12 +281,44 @@ class RecordStream{
     }
 
     static async getStream(instance){
-        const {constraints} = instance;
+        try{
+            if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) throw Error;
 
-        try {
-            instance.stream = await navigator.mediaDevices.getUserMedia(constraints);
-        } catch(err) {
-            console.log('The following getUserMedia error occured: ' + err);
+            if(localStorage.getItem('fatalError') === 'noMediaDevices'){
+                localStorage.removeItem('fatalError');
+            }
+
+            const {constraints} = instance;
+
+            try {
+                instance.stream = await navigator.mediaDevices.getUserMedia(constraints);
+                localStorage.removeItem('fatalError');
+            } catch(err) {
+                const fatalErrorOptions = {
+                    title: 'Ой...',
+                    text: `Чтобы создать видеорезюме необходимо предоставить доступ к камере и микрофону
+                           твоего устройства. Проверь настройки браузера и обнови страницу.`,
+                }
+
+                if(localStorage.getItem('fatalError') === 'noAccessToCamera') {
+                    new FatalError({...fatalErrorOptions, isFullScreen: false})
+                } else {
+                    new FatalError(fatalErrorOptions);
+                    localStorage.setItem('fatalError','noAccessToCamera');
+                }
+            }
+        } catch (e) {
+            const fatalErrorOptions = {
+                title: 'Ой...',
+                text: `Похоже твой браузер не поддерживает технологию записи, используемую нами. Не пора ли обновиться?`,
+            }
+
+            if(localStorage.getItem('fatalError') === 'noMediaDevices'){
+                new FatalError({...fatalErrorOptions, isFullScreen: false})
+            } else {
+                new FatalError(fatalErrorOptions)
+                localStorage.setItem('fatalError','noMediaDevices');
+            }
         }
     }
 
@@ -288,6 +326,7 @@ class RecordStream{
         const {stream, element} = instance;
         element.srcObject = await stream;
         element.play();
+        element.muted = true;
     }
 }
 
@@ -377,6 +416,67 @@ class Modal {
     }
 }
 
+class FatalError {
+    constructor({title, text, isFullScreen = true}) {
+        this.title = title;
+        this.text = text;
+        this.isFullScreen = isFullScreen;
+        this.element = FatalError.render(this);
+    }
+
+    static minify(element){
+        element.classList.add('fatal-error--minified');
+    }
+
+    static render({title, text, isFullScreen}){
+        const element = document.createElement('div');
+        element.classList.add('fatal-error');
+        element.innerHTML = `
+            <div class="fatal-error__inner">
+                <div class="fatal-error__body">
+                    <div class="emoji fatal-error__emoji">
+                        <div class="emoji__face emoji__face--sad">
+                            <div class="emoji__eye emoji__eye--left"></div>
+                            <div class="emoji__eye emoji__eye--right"></div>
+                            <div class="emoji__mouth"></div>
+                        </div>
+                    </div>
+                    <div class="fatal-error__info">
+                        <div class="fatal-error__title">${title}</div>
+                        <div class="fatal-error__text">${text}</div>
+                    </div>
+                </div>
+                <div class="fatal-error__footer">
+                    <button class="btn btn--size--regular btn--style--outline-white fatal-error__close-btn">
+                        <i class="btn__icon icon icon--size--sm icon--close-16"></i>
+                        <span class="btn__text">Закрыть</span>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        const closeBtn = element.querySelector('.fatal-error__close-btn');
+
+        closeBtn.addEventListener('click', () => {
+            if(isFullScreen){
+                isFullScreen = false;
+                FatalError.minify(element);
+                document.body.classList.remove('no-overflow');
+                closeBtn.remove();
+            }
+        })
+
+        if(!isFullScreen){
+            FatalError.minify(element);
+            document.body.classList.remove('no-overflow');
+            closeBtn.remove();
+        }
+
+        document.body.append(element);
+        return element;
+    }
+}
+
 const SiteJS = {
     onload: document.addEventListener('DOMContentLoaded', function () {
         SiteJS.init();
@@ -440,7 +540,6 @@ const SiteJS = {
         this.inputFile('.input-row--file','.input-row__input-file','.input-row__input-text');
         this.tabs();
         this.replaceElements();
-        // this.stickyVideo();
     },
     // stickyVideo(){
     //     const relativeEl = document.querySelector('.profile');
@@ -769,38 +868,6 @@ const SiteJS = {
             }
         }
     },
-    // completeInput: function(inputSelector, buttonSelector){
-    //
-    //     const inputs = document.querySelectorAll(inputSelector);
-    //     const buttons = document.querySelectorAll(buttonSelector);
-    //
-    //     if(!inputs.length || !buttons.length) return;
-    //
-    //     buttons.forEach(btn => {
-    //         btn.addEventListener('click', (e) => {
-    //
-    //             if(e.currentTarget.hasAttribute('data-complete-text')){
-    //                 updateInputs(e.currentTarget.textContent);
-    //                 return;
-    //             }
-    //
-    //             const textContainer = e.currentTarget.querySelector('[data-complete-text]');
-    //
-    //             if(!textContainer){
-    //                 console.error('CompleteInput requests an element width "data-complete-text"-attribute');
-    //             } else {
-    //                 updateInputs(textContainer.textContent);
-    //             }
-    //         })
-    //     })
-    //
-    //     function updateInputs(value){
-    //         inputs.forEach(input => {
-    //             input.value = value.trim();
-    //             if(input.InputFocusUpdate) input.InputFocusUpdate();
-    //         })
-    //     }
-    // },
     completeInput: function(inputSelector, groupSelector){
 
         const inputs = document.querySelectorAll(inputSelector);
@@ -857,7 +924,8 @@ const SiteJS = {
                         max: 1920,
                     },
                     facingMode: 'user'
-                }
+                },
+                audio: true
             }
         });
         new Counter('#video-counter');
