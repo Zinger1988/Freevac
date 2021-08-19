@@ -178,40 +178,103 @@ class Counter{
     }
 }
 
+class VideoPlayer {
+    constructor(element, isMuted = false, autoplay = false) {
+        this.element = element;
+        this.autoplay = autoplay;
+        this.state = {
+            isMuted: isMuted,
+            isPaused: !autoplay
+        };
+        this.controls = {
+            playBtn: document.createElement('div'),
+            soundBtn: document.createElement('div'),
+        }
+        VideoPlayer.init(this);
+    }
+
+    static destroy(instance){
+        let {element, controls: {playBtn, soundBtn}} = instance;
+        playBtn.remove();
+        soundBtn.remove();
+        delete element.VideoPlayer;
+    }
+
+    static init(instance){
+        let {element, autoplay, state: {isMuted, isPaused}, controls: {playBtn, soundBtn}} = instance;
+
+        if(!element) return
+
+        element.muted = isMuted;
+        element.autoplay = autoplay;
+        element.controls = false;
+        element.loop = false;
+
+        playBtn.classList.add('video-player__play');
+        element.after(playBtn);
+
+        if(isPaused) {
+            playBtn.classList.add('video-player__play--paused');
+        }
+
+        soundBtn.classList.add('video-player__sound', 'icon', 'icon--size--md', 'icon--soundon-24');
+        element.after(soundBtn);
+
+        if(isMuted) {
+            soundBtn.classList.add('icon--soundoff-24');
+            soundBtn.classList.remove('icon--soundon-24');
+        }
+
+        element.VideoPlayer = instance;
+
+        VideoPlayer.setHandlers(instance);
+    }
+
+    static setHandlers(instance){
+        let {element, controls: {playBtn, soundBtn}, state: {isMuted, isPaused}} = instance;
+
+        playBtn.addEventListener('click', () => {
+            if(isPaused){
+                element.play();
+                playBtn.classList.remove('video-player__play--paused');
+                playBtn.classList.add('video-player__play--active');
+            } else {
+                element.pause();
+                playBtn.classList.add('video-player__play--paused');
+                playBtn.classList.remove('video-player__play--active');
+            }
+
+            isPaused = !isPaused;
+        })
+
+        soundBtn.addEventListener('click', () => {
+            if(isMuted){
+                element.muted = false;
+                soundBtn.classList.remove('icon--soundoff-24');
+                soundBtn.classList.add('icon--soundon-24');
+            } else {
+                element.muted = true;
+                soundBtn.classList.add('icon--soundoff-24');
+                soundBtn.classList.remove('icon--soundon-24');
+            }
+
+            isMuted = !isMuted;
+        })
+
+        element.addEventListener('ended', () => {
+            playBtn.classList.add('video-player__play--paused');
+            playBtn.classList.remove('video-player__play--active');
+            isPaused = true;
+        });
+    }
+}
+
 class RecordStream{
     constructor({videoElementID, constraints}) {
         this.element = document.querySelector(videoElementID);
         this.constraints = constraints;
         this.mediaRecorder = null;
-        this.#init();
-    }
-
-    static #createPlayBtn(instance){
-        instance.playBtn = document.createElement('div');
-        const {element, playBtn} = instance;
-
-        playBtn.classList.add('video-canvas__btn');
-        this.#setPlayBtnState(playBtn);
-
-        playBtn.addEventListener('click', (e) => {
-            element.paused
-                ? element.play()
-                : element.pause();
-
-            this.#setPlayBtnState(e.currentTarget, element.paused);
-        })
-
-        element.before(playBtn);
-    }
-
-    static #setPlayBtnState(playBtn, isPaused = true){
-        if(isPaused){
-            playBtn.classList.remove('video-canvas__btn--active');
-            playBtn.classList.add('video-canvas__btn--paused');
-        } else {
-            playBtn.classList.add('video-canvas__btn--active');
-            playBtn.classList.remove('video-canvas__btn--paused');
-        }
+        this.init();
     }
 
     static async startRecording(instance){
@@ -232,8 +295,12 @@ class RecordStream{
             }
         });
 
-        instance.mediaRecorder = new MediaRecorder(instance.stream, options);
-        instance.mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+        instance.mediaRecorder = new MediaRecorder(stream, options);
+        instance.mediaRecorder.ondataavailable = (e) => {
+            if (e.data.size > 0) {
+                chunks.push(e.data);
+            }
+        };
         instance.mediaRecorder.start();
 
         instance.mediaRecorder.onstop = () => {
@@ -242,15 +309,10 @@ class RecordStream{
 
             stream.getTracks().forEach( (track) => track.stop());
             element.srcObject = null;
-            element.removeAttribute('autoplay');
             element.src = window.URL.createObjectURL(blob);
             element.muted = false;
 
-            this.#createPlayBtn(instance);
-
-            element.addEventListener('ended', () => {
-                this.#setPlayBtnState(instance.playBtn);
-            });
+            new VideoPlayer(element);
         }
     }
 
@@ -258,7 +320,7 @@ class RecordStream{
         instance.mediaRecorder.stop();
     }
 
-    async #init() {
+    async init() {
         this.element.RecordStream = this;
         await RecordStream.getStream(this);
         await RecordStream.bindStream(this);
@@ -266,17 +328,15 @@ class RecordStream{
 
     static async reset(instance){
         const {element} = instance;
-        let {playBtn} = instance;
+
+        VideoPlayer.destroy(element.VideoPlayer);
 
         element.srcObject = null;
         element.setAttribute('autoplay', '');
         element.removeAttribute('controls');
         element.src = '';
 
-        playBtn.remove();
-        playBtn = null;
-
-        await RecordStream.getStream(instance)
+        await RecordStream.getStream(instance);
         await RecordStream.bindStream(instance);
     }
 
@@ -299,7 +359,7 @@ class RecordStream{
         }
 
         try{
-            if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                 const error = new Error('Can\'t get acces to  navigator.mediaDevices.getUserMedia');
                 error.name = 'NoAccessGetUserMedia';
                 throw error;
@@ -493,6 +553,7 @@ const SiteJS = {
         SiteJS.init();
     }),
     init: function () {
+
         new Modal('.modal');
         new InputFocus('.input-row');
         this.moveElement({
@@ -551,6 +612,7 @@ const SiteJS = {
         this.inputFile('.input-row--file','.input-row__input-file','.input-row__input-text');
         this.tabs();
         this.replaceElements();
+        this.videoPlayer();
     },
     // stickyVideo(){
     //     const relativeEl = document.querySelector('.profile');
@@ -578,6 +640,11 @@ const SiteJS = {
     //         }
     //     }
     // },
+    videoPlayer(){
+        const player = document.querySelector('.video-player');
+        if(!player) return
+        new VideoPlayer(player);
+    },
     replaceElements(){
         const wrapperEl = document.querySelectorAll('.replace-elements');
 
@@ -978,6 +1045,7 @@ const SiteJS = {
 
         recordBtn.addEventListener('click',  (e) => {
             countdownCounter.start();
+
         });
 
 
@@ -985,6 +1053,7 @@ const SiteJS = {
 
         videoCounter.onStart = () => {
             recordStream.element.before(recordFlag);
+            RecordStream.reset(recordStream);
             RecordStream.startRecording(recordStream);
             controlBar.prepend(doneBtn);
         };
