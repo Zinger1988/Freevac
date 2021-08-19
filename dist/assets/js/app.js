@@ -260,7 +260,7 @@ class RecordStream{
 
     async #init() {
         this.element.RecordStream = this;
-        await RecordStream.getStream(this)
+        await RecordStream.getStream(this);
         await RecordStream.bindStream(this);
     }
 
@@ -281,42 +281,53 @@ class RecordStream{
     }
 
     static async getStream(instance){
+        const {constraints} = instance;
+        const errors = {
+            NotAllowedError: {
+                title: 'Ой...',
+                text: `Чтобы создать видеорезюме необходимо предоставить доступ к камере и микрофону
+                           твоего устройства. Проверь настройки браузера и обнови страницу.`,
+            },
+            OverconstrainedError: {
+                title: 'Ой...',
+                text: `Похоже, твоя камера не может обеспечить требуемое разрешение видео.`,
+            },
+            NoAccessGetUserMedia: {
+                title: 'Ой...',
+                text: `Похоже твой браузер не поддерживает технологию записи, используемую нами. Не пора ли обновиться?`,
+            }
+        }
+
         try{
-            if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) throw Error;
+            if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
+                const error = new Error('Can\'t get acces to  navigator.mediaDevices.getUserMedia');
+                error.name = 'NoAccessGetUserMedia';
+                throw error;
+            }
 
             if(localStorage.getItem('fatalError') === 'noMediaDevices'){
                 localStorage.removeItem('fatalError');
             }
 
-            const {constraints} = instance;
 
             try {
                 instance.stream = await navigator.mediaDevices.getUserMedia(constraints);
                 localStorage.removeItem('fatalError');
             } catch(err) {
-                const fatalErrorOptions = {
-                    title: 'Ой...',
-                    text: `Чтобы создать видеорезюме необходимо предоставить доступ к камере и микрофону
-                           твоего устройства. Проверь настройки браузера и обнови страницу.`,
-                }
-
                 if(localStorage.getItem('fatalError') === 'noAccessToCamera') {
-                    new FatalError({...fatalErrorOptions, isFullScreen: false})
+                    new FatalError({...errors[err.name], isFullScreen: false})
                 } else {
-                    new FatalError(fatalErrorOptions);
+                    new FatalError(errors[err.name]);
                     localStorage.setItem('fatalError','noAccessToCamera');
                 }
             }
-        } catch (e) {
-            const fatalErrorOptions = {
-                title: 'Ой...',
-                text: `Похоже твой браузер не поддерживает технологию записи, используемую нами. Не пора ли обновиться?`,
-            }
+        } catch (err) {
+            console.dir(err.name);
 
             if(localStorage.getItem('fatalError') === 'noMediaDevices'){
-                new FatalError({...fatalErrorOptions, isFullScreen: false})
+                new FatalError({...errors[err.name], isFullScreen: false})
             } else {
-                new FatalError(fatalErrorOptions)
+                new FatalError(errors[err.name])
                 localStorage.setItem('fatalError','noMediaDevices');
             }
         }
@@ -914,14 +925,14 @@ const SiteJS = {
             constraints: {
                 video: {
                     width: {
-                        min: 480,
-                        ideal: 780,
-                        max: 1080,
+                        min: 720,
+                        ideal: 1080,
+                        max: 3840,
                     },
                     height: {
-                        min: 640,
-                        ideal: 1360,
-                        max: 1920,
+                        min: 720,
+                        ideal: 1920,
+                        max: 2160,
                     },
                     facingMode: 'user'
                 },
