@@ -553,7 +553,6 @@ const SiteJS = {
         SiteJS.init();
     }),
     init: function () {
-
         new Modal('.modal');
         new InputFocus('.input-row');
         this.moveElement({
