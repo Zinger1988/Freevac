@@ -1053,29 +1053,7 @@ const SiteJS = {
             }
         });
 
-        recordBtn.addEventListener('click',  (e) => {
-            countdownCounter.start();
-        });
-
-
-        /* videoCounter callbacks ----------------------------- */
-
-        videoCounter.onStart = () => {
-            VideoRecorder.startRecording(recorderInstance);
-            controlBar.prepend(doneBtn);
-        };
-
-        videoCounter.onStop = () => {
-            VideoRecorder.stopRecording(recorderInstance);
-            doneBtn.remove();
-            controlBar.prepend(controlBarMarkup);
-            videoCounter.element.style.display = 'none';
-        };
-
-
-        /* Countdown callbacks ----------------------------- */
-
-        countdownCounter.onStart = async () => {
+        recordBtn.addEventListener('click',  async(e) => {
             if(!recorderInstance){
 
                 initialState = {
@@ -1109,6 +1087,28 @@ const SiteJS = {
                 await recorderInstance.init();
             }
 
+            countdownCounter.start();
+        });
+
+
+        /* videoCounter callbacks ----------------------------- */
+
+        videoCounter.onStart = () => {
+            VideoRecorder.startRecording(recorderInstance);
+            controlBar.prepend(doneBtn);
+        };
+
+        videoCounter.onStop = () => {
+            VideoRecorder.stopRecording(recorderInstance);
+            doneBtn.remove();
+            controlBar.prepend(controlBarMarkup);
+            videoCounter.element.style.display = 'none';
+        };
+
+
+        /* Countdown callbacks ----------------------------- */
+
+        countdownCounter.onStart = () => {
             countdownCounter.element.setAttribute('style','');
             recordBtn.remove();
             controlBar.prepend(cancelBtn);
