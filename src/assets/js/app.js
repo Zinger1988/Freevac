@@ -1047,7 +1047,7 @@ const SiteJS = {
                     videoElement.prepend(sourceElem);
                 })
 
-                // initialState = null;
+                initialState = null;
 
                 videoElement.addEventListener('loadeddata', function() {
                     new Video({element: videoElement}).init();
