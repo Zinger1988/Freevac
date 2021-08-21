@@ -178,30 +178,30 @@ class Counter{
     }
 }
 
-class VideoPlayer {
-    constructor(element, isMuted = false, autoplay = false) {
+class Video {
+    constructor({element, isMuted = false, autoplay = false, isControlled = true}) {
         this.element = element;
         this.autoplay = autoplay;
         this.state = {
             isMuted: isMuted,
-            isPaused: !autoplay
+            isPaused: !autoplay,
+            isControlled: isControlled,
         };
         this.controls = {
             playBtn: document.createElement('div'),
             soundBtn: document.createElement('div'),
         }
-        VideoPlayer.init(this);
     }
 
     static destroy(instance){
         let {element, controls: {playBtn, soundBtn}} = instance;
         playBtn.remove();
         soundBtn.remove();
-        delete element.VideoPlayer;
+        delete element.Video;
     }
 
-    static init(instance){
-        let {element, autoplay, state: {isMuted, isPaused}, controls: {playBtn, soundBtn}} = instance;
+    init(){
+        let {element, autoplay, state: {isMuted, isPaused, isControlled}, controls: {playBtn, soundBtn}} = this;
 
         if(!element) return
 
@@ -209,25 +209,26 @@ class VideoPlayer {
         element.autoplay = autoplay;
         element.controls = false;
         element.loop = false;
+        element.Video = this;
 
-        playBtn.classList.add('video-player__play');
-        element.after(playBtn);
+        if(isControlled){
+            playBtn.classList.add('video-player__play');
+            element.after(playBtn);
 
-        if(isPaused) {
-            playBtn.classList.add('video-player__play--paused');
+            if(isPaused) {
+                playBtn.classList.add('video-player__play--paused');
+            }
+
+            soundBtn.classList.add('video-player__sound', 'icon', 'icon--size--md', 'icon--soundon-24');
+            element.after(soundBtn);
+
+            if(isMuted) {
+                soundBtn.classList.add('icon--soundoff-24');
+                soundBtn.classList.remove('icon--soundon-24');
+            }
+
+            Video.setHandlers(this);
         }
-
-        soundBtn.classList.add('video-player__sound', 'icon', 'icon--size--md', 'icon--soundon-24');
-        element.after(soundBtn);
-
-        if(isMuted) {
-            soundBtn.classList.add('icon--soundoff-24');
-            soundBtn.classList.remove('icon--soundon-24');
-        }
-
-        element.VideoPlayer = instance;
-
-        VideoPlayer.setHandlers(instance);
     }
 
     static setHandlers(instance){
@@ -269,16 +270,88 @@ class VideoPlayer {
     }
 }
 
-class RecordStream{
-    constructor({videoElementID, constraints}) {
-        this.element = document.querySelector(videoElementID);
+class VideoRecorder{
+    constructor({element, constraints}) {
+        this.element = element;
         this.constraints = constraints;
-        this.mediaRecorder = null;
-        this.init();
+        this.controls = {
+            marker: document.createElement('div')
+        }
+    }
+
+    async init(){
+        let {element, controls: {marker}} = this;
+
+        element.innerHTML = '';
+        element.VideoRecorder = this;
+
+        marker.classList.add('video-canvas__record-dot');
+
+        await VideoRecorder.getStream(this);
+        await VideoRecorder.bindStream(this);
+    }
+
+    static async getStream(instance){
+        const {constraints} = instance;
+        const errors = {
+            NotAllowedError: {
+                title: 'Ой...',
+                text: `Чтобы создать видеорезюме необходимо предоставить доступ к камере и микрофону
+                           твоего устройства. Проверь настройки браузера и обнови страницу.`,
+            },
+            OverconstrainedError: {
+                title: 'Ой...',
+                text: `Похоже, твоя камера не может обеспечить требуемое разрешение видео.`,
+            },
+            NoAccessGetUserMedia: {
+                title: 'Ой...',
+                text: `Похоже твой браузер не поддерживает технологию записи, используемую нами. Не пора ли обновиться?`,
+            }
+        };
+
+        try{
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                const error = new Error('Can\'t get acces to  navigator.mediaDevices.getUserMedia');
+                error.name = 'NoAccessGetUserMedia';
+                throw error;
+            }
+
+            if(localStorage.getItem('fatalError') === 'noMediaDevices'){
+                localStorage.removeItem('fatalError');
+            }
+
+            try {
+                instance.stream = await navigator.mediaDevices.getUserMedia(constraints);
+                localStorage.removeItem('fatalError');
+            } catch(err) {
+                if(localStorage.getItem('fatalError') === 'noAccessToCamera') {
+                    new FatalError({...errors[err.name], isFullScreen: false})
+                } else {
+                    new FatalError(errors[err.name]);
+                    localStorage.setItem('fatalError','noAccessToCamera');
+                }
+            }
+        } catch (err) {
+            console.dir(err);
+
+            if(localStorage.getItem('fatalError') === 'noMediaDevices'){
+                new FatalError({...errors[err.name], isFullScreen: false})
+            } else {
+                new FatalError(errors[err.name])
+                localStorage.setItem('fatalError','noMediaDevices');
+            }
+        }
+    }
+
+    static async bindStream(instance){
+        const {stream, element} = instance;
+        element.srcObject = await stream;
+        element.muted = true;
+        element.play();
     }
 
     static async startRecording(instance){
-        const {stream, element} = instance;
+        const {stream, element, controls: {marker}} = instance;
         let chunks = [];
         let options = {};
         let types = ["video/webm",
@@ -301,6 +374,9 @@ class RecordStream{
                 chunks.push(e.data);
             }
         };
+
+        element.before(marker);
+
         instance.mediaRecorder.start();
 
         instance.mediaRecorder.onstop = () => {
@@ -310,9 +386,10 @@ class RecordStream{
             stream.getTracks().forEach( (track) => track.stop());
             element.srcObject = null;
             element.src = window.URL.createObjectURL(blob);
-            element.muted = false;
 
-            new VideoPlayer(element);
+            marker.remove();
+
+            new Video({element: element}).init();
         }
     }
 
@@ -320,84 +397,28 @@ class RecordStream{
         instance.mediaRecorder.stop();
     }
 
-    async init() {
-        this.element.RecordStream = this;
-        await RecordStream.getStream(this);
-        await RecordStream.bindStream(this);
-    }
-
     static async reset(instance){
         const {element} = instance;
 
-        VideoPlayer.destroy(element.VideoPlayer);
-
         element.srcObject = null;
-        element.setAttribute('autoplay', '');
-        element.removeAttribute('controls');
-        element.src = '';
+        Video.destroy(element.Video);
 
-        await RecordStream.getStream(instance);
-        await RecordStream.bindStream(instance);
+        await VideoRecorder.getStream(instance);
+        await VideoRecorder.bindStream(instance);
     }
 
-    static async getStream(instance){
-        const {constraints} = instance;
-        const errors = {
-            NotAllowedError: {
-                title: 'Ой...',
-                text: `Чтобы создать видеорезюме необходимо предоставить доступ к камере и микрофону
-                           твоего устройства. Проверь настройки браузера и обнови страницу.`,
-            },
-            OverconstrainedError: {
-                title: 'Ой...',
-                text: `Похоже, твоя камера не может обеспечить требуемое разрешение видео.`,
-            },
-            NoAccessGetUserMedia: {
-                title: 'Ой...',
-                text: `Похоже твой браузер не поддерживает технологию записи, используемую нами. Не пора ли обновиться?`,
-            }
+    static destroy(instance){
+        const {element, stream} = instance;
+
+        stream.getTracks().forEach( (track) => track.stop());
+        element.srcObject = null;
+        element.removeAttribute('src');
+        if(element.Video){
+            Video.destroy(element.Video);
+            delete element.Video;
         }
 
-        try{
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                const error = new Error('Can\'t get acces to  navigator.mediaDevices.getUserMedia');
-                error.name = 'NoAccessGetUserMedia';
-                throw error;
-            }
-
-            if(localStorage.getItem('fatalError') === 'noMediaDevices'){
-                localStorage.removeItem('fatalError');
-            }
-
-
-            try {
-                instance.stream = await navigator.mediaDevices.getUserMedia(constraints);
-                localStorage.removeItem('fatalError');
-            } catch(err) {
-                if(localStorage.getItem('fatalError') === 'noAccessToCamera') {
-                    new FatalError({...errors[err.name], isFullScreen: false})
-                } else {
-                    new FatalError(errors[err.name]);
-                    localStorage.setItem('fatalError','noAccessToCamera');
-                }
-            }
-        } catch (err) {
-            console.dir(err.name);
-
-            if(localStorage.getItem('fatalError') === 'noMediaDevices'){
-                new FatalError({...errors[err.name], isFullScreen: false})
-            } else {
-                new FatalError(errors[err.name])
-                localStorage.setItem('fatalError','noMediaDevices');
-            }
-        }
-    }
-
-    static async bindStream(instance){
-        const {stream, element} = instance;
-        element.srcObject = await stream;
-        element.play();
-        element.muted = true;
+        delete element.VideoRecorder;
     }
 }
 
@@ -613,36 +634,13 @@ const SiteJS = {
         this.replaceElements();
         this.videoPlayer();
     },
-    // stickyVideo(){
-    //     const relativeEl = document.querySelector('.profile');
-    //     const targetEl = document.querySelector('.profile__video--sticky');
-    //
-    //     if(!targetEl) return
-    //
-    //     const targetTop = targetEl.getBoundingClientRect().top;
-    //     const logo = document.querySelector('.page-header__logo');
-    //     logo.classList.add('page-header__logo--sticky');
-    //
-    //     checkPosition();
-    //
-    //     window.addEventListener('scroll', checkPosition);
-    //
-    //     function checkPosition() {
-    //         const relativeRect = relativeEl.getBoundingClientRect();
-    //
-    //         if(targetEl.offsetHeight + targetTop >= relativeRect.bottom){
-    //             targetEl.style.top = `${(targetEl.offsetHeight - relativeRect.bottom) * -1}px`;
-    //             logo.style.top = `${(targetEl.offsetHeight - relativeRect.bottom + targetTop) * -1}px`;
-    //         } else {
-    //             targetEl.style.top = '';
-    //             logo.style.top = '';
-    //         }
-    //     }
-    // },
     videoPlayer(){
         const player = document.querySelector('.video-player');
+
         if(!player) return
-        new VideoPlayer(player);
+        new Video({
+            element: player
+        }).init();
     },
     replaceElements(){
         const wrapperEl = document.querySelectorAll('.replace-elements');
@@ -982,35 +980,33 @@ const SiteJS = {
     },
     recordVideo(){
 
-        // TODO: remove this shit
-        const flag = document.querySelector('#take-video-here');
-        if(!flag) return;
+        const videoElement = document.querySelector('.video-record');
+        if(!videoElement) return;
 
-        new RecordStream({
-            videoElementID: '#live-stream',
-            constraints: {
-                video: {
-                    width: {
-                        min: 720,
-                        ideal: 720,
-                        max: 720,
+        let recorderInstance = null;
+        let initialState = null;
+
+        if(videoElement.hasAttribute('src') || !videoElement.querySelectorAll('source').length){
+            recorderInstance = new VideoRecorder({
+                element: videoElement,
+                constraints: {
+                    video: {
+                        width: 720,
+                        height: 720,
+                        facingMode: 'user'
                     },
-                    height: {
-                        min: 720,
-                        ideal: 720,
-                        max: 720,
-                    },
-                    facingMode: 'user'
-                },
-                audio: true
-            }
-        });
+                    audio: true
+                }
+            });
+
+            recorderInstance.init();
+        }
+
         new Counter('#video-counter');
         new Counter('#video-countdown');
 
         const controlBar = document.querySelector('#record-control-bar');
         const recordBtn = controlBar.querySelector('#record-btn');
-        const recordStream = document.querySelector('#live-stream').RecordStream;
         const videoCounter = document.querySelector('#video-counter').Counter;
         const countdownCounter = document.querySelector('#video-countdown').Counter;
 
@@ -1028,38 +1024,49 @@ const SiteJS = {
                    <span class="btn__text">Отмена</span>`
         });
 
-        const recordFlag = this.createElement({
-            tag: 'div',
-            classes: ['video-canvas__record-dot'],
-            html: ``
-        });
-
         doneBtn.addEventListener('click', (e) => videoCounter.stop());
 
         cancelBtn.addEventListener('click', (e) => {
             e.currentTarget.remove();
             controlBar.prepend(recordBtn);
             countdownCounter.reset();
+
+            if(initialState){
+                VideoRecorder.destroy(recorderInstance);
+
+                if(initialState.src){
+                    videoElement.src = initialState.src;
+                }
+
+                initialState.sources.forEach(source => {
+                    const sourceElem = document.createElement('source');
+                    sourceElem.src = source.src;
+                    sourceElem.type = source.type;
+                    videoElement.prepend(sourceElem);
+                })
+
+                videoElement.load();
+                new Video({element: videoElement}).init();
+
+                initialState = null;
+                recorderInstance = null;
+            }
         });
 
         recordBtn.addEventListener('click',  (e) => {
             countdownCounter.start();
-
         });
 
 
         /* videoCounter callbacks ----------------------------- */
 
         videoCounter.onStart = () => {
-            recordStream.element.before(recordFlag);
-            RecordStream.reset(recordStream);
-            RecordStream.startRecording(recordStream);
+            VideoRecorder.startRecording(recorderInstance);
             controlBar.prepend(doneBtn);
         };
 
         videoCounter.onStop = () => {
-            recordFlag.remove();
-            RecordStream.stopRecording(recordStream);
+            VideoRecorder.stopRecording(recorderInstance);
             doneBtn.remove();
             controlBar.prepend(controlBarMarkup);
             videoCounter.element.style.display = 'none';
@@ -1073,6 +1080,39 @@ const SiteJS = {
             recordBtn.remove();
             controlBar.prepend(cancelBtn);
             countdownCounter.element.style.display = 'block';
+
+            if(!recorderInstance){
+
+                initialState = {
+                    src: videoElement.getAttribute('src') || null,
+                    sources: []
+                }
+
+                videoElement.querySelectorAll('source').forEach(source => {
+                    initialState.sources.push({
+                        src: source.getAttribute('src'),
+                        type: source.getAttribute('type')
+                    })
+                })
+
+                if(videoElement.Video){
+                    Video.destroy(videoElement.Video);
+                }
+
+                recorderInstance = new VideoRecorder({
+                    element: videoElement,
+                    constraints: {
+                        video: {
+                            width: 720,
+                            height: 720,
+                            facingMode: 'user'
+                        },
+                        audio: true
+                    }
+                })
+
+                recorderInstance.init();
+            }
         };
 
         countdownCounter.beforeChange = () => {
@@ -1121,7 +1161,7 @@ const SiteJS = {
             countdownCounter.reset();
             videoCounter.reset();
             countdownCounter.start();
-            RecordStream.reset(recordStream);
+            VideoRecorder.reset(recorderInstance);
             videoCounter.element.style.display = '';
         });
 
@@ -1129,9 +1169,31 @@ const SiteJS = {
             controlBarMarkup.remove();
             countdownCounter.reset();
             videoCounter.reset();
-            RecordStream.reset(recordStream);
             videoCounter.element.style.display = '';
             controlBar.prepend(recordBtn);
+
+            if(initialState){
+                VideoRecorder.destroy(recorderInstance);
+
+                if(initialState.src){
+                    videoElement.src = initialState.src;
+                }
+
+                initialState.sources.forEach(source => {
+                    const sourceElem = document.createElement('source');
+                    sourceElem.src = source.src;
+                    sourceElem.type = source.type;
+                    videoElement.prepend(sourceElem);
+                })
+
+                videoElement.load();
+                new Video({element: videoElement}).init();
+
+                initialState = null;
+                recorderInstance = null;
+            } else {
+                VideoRecorder.reset(recorderInstance);
+            }
         })
     }
 };
