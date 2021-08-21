@@ -417,7 +417,7 @@ class VideoRecorder{
             Video.destroy(element.Video);
             delete element.Video;
         }
-        
+
         delete element.VideoRecorder;
     }
 }
@@ -1174,6 +1174,7 @@ const SiteJS = {
 
             if(initialState){
                 VideoRecorder.destroy(recorderInstance);
+                recorderInstance = null;
 
                 if(initialState.src){
                     videoElement.src = initialState.src;
@@ -1186,11 +1187,10 @@ const SiteJS = {
                     videoElement.prepend(sourceElem);
                 })
 
-                videoElement.load();
-                new Video({element: videoElement}).init();
-
                 initialState = null;
-                recorderInstance = null;
+
+                new Video({element: videoElement}).init();
+                videoElement.load();
             } else {
                 VideoRecorder.reset(recorderInstance);
             }
