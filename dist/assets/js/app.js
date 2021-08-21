@@ -193,13 +193,6 @@ class Video {
         }
     }
 
-    static destroy(instance){
-        let {element, controls: {playBtn, soundBtn}} = instance;
-        playBtn.remove();
-        soundBtn.remove();
-        delete element.Video;
-    }
-
     init(){
         let {element, autoplay, state: {isMuted, isPaused, isControlled}, controls: {playBtn, soundBtn}} = this;
 
@@ -267,6 +260,13 @@ class Video {
             playBtn.classList.remove('video-player__play--active');
             isPaused = true;
         });
+    }
+
+    static destroy(instance){
+        let {element, controls: {playBtn, soundBtn}} = instance;
+        playBtn.remove();
+        soundBtn.remove();
+        delete element.Video;
     }
 }
 
@@ -1033,6 +1033,9 @@ const SiteJS = {
             countdownCounter.reset();
 
             if(initialState){
+                VideoRecorder.destroy(recorderInstance);
+                recorderInstance = null;
+
                 if(initialState.src){
                     videoElement.src = initialState.src;
                 }
@@ -1044,15 +1047,13 @@ const SiteJS = {
                     videoElement.prepend(sourceElem);
                 })
 
-                VideoRecorder.destroy(recorderInstance);
-                recorderInstance = null;
+                // initialState = null;
 
                 videoElement.addEventListener('loadeddata', function() {
                     new Video({element: videoElement}).init();
                 }, {once: true});
 
                 videoElement.load();
-                initialState = null;
             }
         });
 
@@ -1092,7 +1093,6 @@ const SiteJS = {
 
             countdownCounter.start();
         });
-
 
         /* videoCounter callbacks ----------------------------- */
 
