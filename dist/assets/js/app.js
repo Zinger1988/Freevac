@@ -354,13 +354,7 @@ class VideoRecorder{
         const {stream, element, controls: {marker}} = instance;
         let chunks = [];
         let options = {};
-        let types = ["video/webm",
-            "audio/webm",
-            "video/webm\;codecs=vp8",
-            "video/webm\;codecs=daala",
-            "video/webm\;codecs=h264",
-            "audio/webm\;codecs=opus",
-            "video/mpeg"];
+        let types = ["video/mpeg"];
 
         types.find(type => {
             if(MediaRecorder.isTypeSupported(type)){
@@ -985,7 +979,7 @@ const SiteJS = {
         if(!videoElement) return;
 
         let recorderInstance = null;
-        let initialState = null;
+        let initialSrc = null;
 
         if(!videoElement.hasAttribute('src')){
             recorderInstance = new VideoRecorder({
@@ -1032,12 +1026,12 @@ const SiteJS = {
             controlBar.prepend(recordBtn);
             countdownCounter.reset();
 
-            if(initialState){
+            if(initialSrc){
                 VideoRecorder.destroy(recorderInstance);
                 recorderInstance = null;
 
-                videoElement.src = initialState;
-                initialState = null;
+                videoElement.src = initialSrc;
+                initialSrc = null;
 
                 videoElement.addEventListener('loadeddata', function() {
                     new Video({element: videoElement}).init();
@@ -1050,7 +1044,7 @@ const SiteJS = {
         recordBtn.addEventListener('click',  async(e) => {
             if(!recorderInstance){
 
-                initialState = videoElement.getAttribute('src') || null;
+                initialSrc = videoElement.getAttribute('src') || null;
 
                 if(videoElement.Video){
                     Video.destroy(videoElement.Video);
@@ -1156,12 +1150,12 @@ const SiteJS = {
             controlBar.prepend(recordBtn);
             await VideoRecorder.reset(recorderInstance);
 
-            if(initialState){
+            if(initialSrc){
                 VideoRecorder.destroy(recorderInstance);
                 recorderInstance = null;
 
-                videoElement.src = initialState;
-                initialState = null;
+                videoElement.src = initialSrc;
+                initialSrc = null;
 
                 videoElement.addEventListener('loadeddata', function() {
                     new Video({element: videoElement}).init();
