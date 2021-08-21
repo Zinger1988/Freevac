@@ -987,7 +987,7 @@ const SiteJS = {
         let recorderInstance = null;
         let initialState = null;
 
-        if(videoElement.hasAttribute('src') || !videoElement.querySelectorAll('source').length){
+        if(!videoElement.hasAttribute('src')){
             recorderInstance = new VideoRecorder({
                 element: videoElement,
                 constraints: {
@@ -1036,17 +1036,7 @@ const SiteJS = {
                 VideoRecorder.destroy(recorderInstance);
                 recorderInstance = null;
 
-                if(initialState.src){
-                    videoElement.src = initialState.src;
-                }
-
-                initialState.sources.forEach(source => {
-                    const sourceElem = document.createElement('source');
-                    sourceElem.src = source.src;
-                    sourceElem.type = source.type;
-                    videoElement.append(sourceElem);
-                })
-
+                videoElement.src = initialState;
                 initialState = null;
 
                 videoElement.addEventListener('loadeddata', function() {
@@ -1060,17 +1050,7 @@ const SiteJS = {
         recordBtn.addEventListener('click',  async(e) => {
             if(!recorderInstance){
 
-                initialState = {
-                    src: videoElement.getAttribute('src') || null,
-                    sources: []
-                }
-
-                videoElement.querySelectorAll('source').forEach(source => {
-                    initialState.sources.push({
-                        src: source.getAttribute('src'),
-                        type: source.getAttribute('type')
-                    })
-                })
+                initialState = videoElement.getAttribute('src') || null;
 
                 if(videoElement.Video){
                     Video.destroy(videoElement.Video);
@@ -1180,17 +1160,7 @@ const SiteJS = {
                 VideoRecorder.destroy(recorderInstance);
                 recorderInstance = null;
 
-                if(initialState.src){
-                    videoElement.src = initialState.src;
-                }
-
-                initialState.sources.forEach(source => {
-                    const sourceElem = document.createElement('source');
-                    sourceElem.src = source.src;
-                    sourceElem.type = source.type;
-                    videoElement.append(sourceElem);
-                })
-
+                videoElement.src = initialState;
                 initialState = null;
 
                 videoElement.addEventListener('loadeddata', function() {
