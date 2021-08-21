@@ -1075,10 +1075,7 @@ const SiteJS = {
 
         /* Countdown callbacks ----------------------------- */
 
-        countdownCounter.onStart = () => {
-            countdownCounter.element.setAttribute('style','');
-            countdownCounter.element.style.display = 'block';
-
+        countdownCounter.onStart = async () => {
             if(!recorderInstance){
 
                 initialState = {
@@ -1109,11 +1106,13 @@ const SiteJS = {
                     }
                 })
 
-                recorderInstance.init();
+                await recorderInstance.init();
             }
 
+            countdownCounter.element.setAttribute('style','');
             recordBtn.remove();
             controlBar.prepend(cancelBtn);
+            countdownCounter.element.style.display = 'block';
         };
 
         countdownCounter.beforeChange = () => {
@@ -1166,12 +1165,13 @@ const SiteJS = {
             videoCounter.element.style.display = '';
         });
 
-        cancelRecord.addEventListener('click', () => {
+        cancelRecord.addEventListener('click', async () => {
             controlBarMarkup.remove();
             countdownCounter.reset();
             videoCounter.reset();
             videoCounter.element.style.display = '';
             controlBar.prepend(recordBtn);
+            await VideoRecorder.reset(recorderInstance);
 
             if(initialState){
                 VideoRecorder.destroy(recorderInstance);
@@ -1192,8 +1192,6 @@ const SiteJS = {
 
                 new Video({element: videoElement}).init();
                 videoElement.load();
-            } else {
-                VideoRecorder.reset(recorderInstance);
             }
         })
     }
