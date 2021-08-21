@@ -1033,6 +1033,7 @@ const SiteJS = {
 
             if(initialState){
                 VideoRecorder.destroy(recorderInstance);
+                recorderInstance = null;
 
                 if(initialState.src){
                     videoElement.src = initialState.src;
@@ -1045,11 +1046,10 @@ const SiteJS = {
                     videoElement.prepend(sourceElem);
                 })
 
-                videoElement.load();
-                new Video({element: videoElement}).init();
-
                 initialState = null;
-                recorderInstance = null;
+
+                new Video({element: videoElement}).init();
+                videoElement.load();
             }
         });
 
@@ -1077,8 +1077,6 @@ const SiteJS = {
 
         countdownCounter.onStart = () => {
             countdownCounter.element.setAttribute('style','');
-            recordBtn.remove();
-            controlBar.prepend(cancelBtn);
             countdownCounter.element.style.display = 'block';
 
             if(!recorderInstance){
@@ -1113,6 +1111,9 @@ const SiteJS = {
 
                 recorderInstance.init();
             }
+
+            recordBtn.remove();
+            controlBar.prepend(cancelBtn);
         };
 
         countdownCounter.beforeChange = () => {
