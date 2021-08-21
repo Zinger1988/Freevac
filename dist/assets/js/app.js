@@ -1048,7 +1048,10 @@ const SiteJS = {
 
                 initialState = null;
 
-                new Video({element: videoElement}).init();
+                videoElement.addEventListener('loadeddata', function() {
+                    new Video({element: videoElement}).init();
+                }, {once: true});
+
                 videoElement.load();
             }
         });
@@ -1189,7 +1192,10 @@ const SiteJS = {
 
                 initialState = null;
 
-                new Video({element: videoElement}).init();
+                videoElement.addEventListener('loadeddata', function() {
+                    new Video({element: videoElement}).init();
+                }, {once: true});
+
                 videoElement.load();
             } else {
                 await VideoRecorder.reset(recorderInstance);
