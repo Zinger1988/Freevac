@@ -1171,7 +1171,6 @@ const SiteJS = {
             videoCounter.reset();
             videoCounter.element.style.display = '';
             controlBar.prepend(recordBtn);
-            await VideoRecorder.reset(recorderInstance);
 
             if(initialState){
                 VideoRecorder.destroy(recorderInstance);
@@ -1192,6 +1191,8 @@ const SiteJS = {
 
                 new Video({element: videoElement}).init();
                 videoElement.load();
+            } else {
+                await VideoRecorder.reset(recorderInstance);
             }
         })
     }
