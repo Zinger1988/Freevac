@@ -413,6 +413,7 @@ class VideoRecorder{
         stream.getTracks().forEach( (track) => track.stop());
         element.srcObject = null;
         element.removeAttribute('src');
+
         if(element.Video){
             Video.destroy(element.Video);
             delete element.Video;
@@ -1032,9 +1033,6 @@ const SiteJS = {
             countdownCounter.reset();
 
             if(initialState){
-                VideoRecorder.destroy(recorderInstance);
-                recorderInstance = null;
-
                 if(initialState.src){
                     videoElement.src = initialState.src;
                 }
@@ -1046,13 +1044,15 @@ const SiteJS = {
                     videoElement.prepend(sourceElem);
                 })
 
-                initialState = null;
+                VideoRecorder.destroy(recorderInstance);
+                recorderInstance = null;
 
                 videoElement.addEventListener('loadeddata', function() {
                     new Video({element: videoElement}).init();
                 }, {once: true});
 
                 videoElement.load();
+                initialState = null;
             }
         });
 
