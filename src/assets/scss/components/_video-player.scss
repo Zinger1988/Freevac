@@ -72,3 +72,11 @@
     }
   }
 }
+
+.touch-device .video-player__play:not(.video-player__play--paused):hover{
+  opacity: 0;
+}
+
+.touch-device .video-player__play--paused{
+  opacity: 1;
+}

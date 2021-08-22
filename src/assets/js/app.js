@@ -227,9 +227,9 @@ class Video {
     static setHandlers(instance){
         let {element, controls: {playBtn, soundBtn}, state: {isMuted, isPaused}} = instance;
 
-        playBtn.addEventListener('click', () => {
+        playBtn.addEventListener('click', async () => {
             if(isPaused){
-                element.play();
+                await element.play();
                 playBtn.classList.remove('video-player__play--paused');
                 playBtn.classList.add('video-player__play--active');
             } else {
@@ -347,7 +347,7 @@ class VideoRecorder{
         const {stream, element} = instance;
         element.srcObject = await stream;
         element.muted = true;
-        element.play();
+        await element.play();
     }
 
     static async startRecording(instance){
@@ -628,6 +628,14 @@ const SiteJS = {
         this.tabs();
         this.replaceElements();
         this.videoPlayer();
+        this.typeDisplay();
+    },
+    typeDisplay() {
+        if ("ontouchstart" in document.documentElement) {
+            document.body.classList.add('touch-device');
+        } else {
+            document.body.classList.add('hover-device');
+        }
     },
     videoPlayer(){
         const player = document.querySelector('.video-player');
@@ -973,7 +981,7 @@ const SiteJS = {
             })
         }
     },
-    recordVideo(){
+    async recordVideo(){
 
         const videoElement = document.querySelector('.video-record');
         if(!videoElement) return;
@@ -993,17 +1001,26 @@ const SiteJS = {
                     audio: true
                 }
             });
-
-            recorderInstance.init();
+            await recorderInstance.init();
         }
-
-        new Counter('#video-counter');
-        new Counter('#video-countdown');
 
         const controlBar = document.querySelector('#record-control-bar');
         const recordBtn = controlBar.querySelector('#record-btn');
-        const videoCounter = document.querySelector('#video-counter').Counter;
-        const countdownCounter = document.querySelector('#video-countdown').Counter;
+        const counterInstance = new Counter('#video-counter');
+        const countdownInstance = new Counter('#video-countdown');
+
+        function rollbackVideoElem(){
+            VideoRecorder.destroy(recorderInstance);
+            recorderInstance = null;
+            videoElement.src = initialSrc;
+            initialSrc = null;
+
+            videoElement.addEventListener('loadeddata', function() {
+                new Video({element: videoElement}).init();
+            }, {once: true});
+
+            videoElement.load();
+        }
 
         const doneBtn = this.createElement({
             tag: 'button',
@@ -1019,36 +1036,22 @@ const SiteJS = {
                    <span class="btn__text">Отмена</span>`
         });
 
-        doneBtn.addEventListener('click', (e) => videoCounter.stop());
+        doneBtn.addEventListener('click', (e) => counterInstance.stop());
 
         cancelBtn.addEventListener('click', (e) => {
             e.currentTarget.remove();
             controlBar.prepend(recordBtn);
-            countdownCounter.reset();
+            countdownInstance.reset();
+            counterInstance.element.style.display = '';
 
-            if(initialSrc){
-                VideoRecorder.destroy(recorderInstance);
-                recorderInstance = null;
-
-                videoElement.src = initialSrc;
-                initialSrc = null;
-
-                videoElement.addEventListener('loadeddata', function() {
-                    new Video({element: videoElement}).init();
-                }, {once: true});
-
-                videoElement.load();
-            }
+            if(initialSrc) rollbackVideoElem();
         });
 
         recordBtn.addEventListener('click',  async(e) => {
             if(!recorderInstance){
-
                 initialSrc = videoElement.getAttribute('src') || null;
 
-                if(videoElement.Video){
-                    Video.destroy(videoElement.Video);
-                }
+                if(videoElement.Video) Video.destroy(videoElement.Video);
 
                 recorderInstance = new VideoRecorder({
                     element: videoElement,
@@ -1061,47 +1064,47 @@ const SiteJS = {
                         audio: true
                     }
                 })
-
                 await recorderInstance.init();
             }
 
-            countdownCounter.start();
+            countdownInstance.start();
         });
 
         /* videoCounter callbacks ----------------------------- */
 
-        videoCounter.onStart = () => {
+        counterInstance.onStart = () => {
             VideoRecorder.startRecording(recorderInstance);
             controlBar.prepend(doneBtn);
         };
 
-        videoCounter.onStop = () => {
+        counterInstance.onStop = () => {
             VideoRecorder.stopRecording(recorderInstance);
             doneBtn.remove();
             controlBar.prepend(controlBarMarkup);
-            videoCounter.element.style.display = 'none';
+            counterInstance.element.style.display = 'none';
         };
 
 
         /* Countdown callbacks ----------------------------- */
 
-        countdownCounter.onStart = () => {
-            countdownCounter.element.setAttribute('style','');
+        countdownInstance.onStart = () => {
+            countdownInstance.element.setAttribute('style','');
             recordBtn.remove();
             controlBar.prepend(cancelBtn);
-            countdownCounter.element.style.display = 'block';
+            countdownInstance.element.style.display = 'block';
+            counterInstance.element.style.display = "block";
         };
 
-        countdownCounter.beforeChange = () => {
-            if(countdownCounter.timeLeft <= 1){
-                countdownCounter.element.style.display = 'none';
+        countdownInstance.beforeChange = () => {
+            if(countdownInstance.timeLeft <= 1){
+                countdownInstance.element.style.display = 'none';
                 cancelBtn.remove();
-                videoCounter.start();
+                counterInstance.start();
             }
         };
 
-        countdownCounter.onReset = () => {
-            countdownCounter.element.setAttribute('style','');
+        countdownInstance.onReset = () => {
+            countdownInstance.element.setAttribute('style','');
         };
 
 
@@ -1135,34 +1138,21 @@ const SiteJS = {
 
         overwriteBtn.addEventListener('click', () => {
             controlBarMarkup.remove();
-            countdownCounter.reset();
-            videoCounter.reset();
-            countdownCounter.start();
+            countdownInstance.reset();
+            counterInstance.reset();
+            countdownInstance.start();
             VideoRecorder.reset(recorderInstance);
-            videoCounter.element.style.display = '';
         });
 
         cancelRecord.addEventListener('click', async () => {
             controlBarMarkup.remove();
-            countdownCounter.reset();
-            videoCounter.reset();
-            videoCounter.element.style.display = '';
+            countdownInstance.reset();
+            counterInstance.reset();
+            counterInstance.element.style.display = '';
             controlBar.prepend(recordBtn);
             await VideoRecorder.reset(recorderInstance);
 
-            if(initialSrc){
-                VideoRecorder.destroy(recorderInstance);
-                recorderInstance = null;
-
-                videoElement.src = initialSrc;
-                initialSrc = null;
-
-                videoElement.addEventListener('loadeddata', function() {
-                    new Video({element: videoElement}).init();
-                }, {once: true});
-
-                videoElement.load();
-            }
+            if(initialSrc) rollbackVideoElem();
         })
     }
 };
