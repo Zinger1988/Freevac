@@ -37,7 +37,7 @@
 
         </div>
     </div>
-</header><!--header-->
+</header><!--page header-->
 <main class="page-content">
     <div class="container">
 
@@ -78,24 +78,24 @@
             
                                 <ul class="action-list profile__action-list" id="action-list">
                                     <li class="action-list__item" role="button" data-modal-id="user-question">
-                            <span class="action-list__icon">
-                                <i class="icon icon--size--sm icon--edit-16"></i>
-                            </span>
+                                        <span class="action-list__icon">
+                                            <i class="icon icon--size--sm icon--edit-16"></i>
+                                        </span>
                                         <span class="action-list__text">Изменить заголовок видео</span>
                                     </li>
-                                    <li class="action-list__item" role="button">
-                            <span class="action-list__icon">
-                                <i class="icon icon--size--sm icon--edit-16"></i>
-                            </span>
+                                    <li class="action-list__item" role="button" data-modal-id="hide-video">
+                                        <span class="action-list__icon">
+                                            <i class="icon icon--size--sm icon--edit-16"></i>
+                                        </span>
                                         <span class="action-list__text">Скрыть</span>
                                     </li>
-                                    <li class="action-list__item" role="button">
-                            <span class="action-list__icon">
-                                <i class="icon icon--size--sm icon--delete-16"></i>
-                            </span>
+                                    <li class="action-list__item" role="button" data-modal-id="delete-video">
+                                        <span class="action-list__icon">
+                                            <i class="icon icon--size--sm icon--delete-16"></i>
+                                        </span>
                                         <span class="action-list__text">Удалить видео</span>
                                     </li>
-                                </ul>
+                                </ul><!-- action list -->
             
                                 <div class="video-counter hidden" data-counter="120" id="video-counter">02:00</div>
             
@@ -130,7 +130,7 @@
 
         </div>
     </div>
-</footer>
+</footer><!-- page footer -->
 <div class="modal" id="user-question">
 
     <div class="modal__title-controls">
@@ -164,43 +164,95 @@
 
             <ul class="action-list" data-complete-group>
                 <li class="action-list__item" role="button" data-complete-btn>
-                        <span class="action-list__icon">
-                            <i class="icon icon--size--sm icon--plus-16"></i>
-                        </span>
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--plus-16"></i>
+                    </span>
                     <span class="action-list__text" data-complete-text>
-                            Чем занимался на прошлой работе?
-                        </span>
+                        Чем занимался на прошлой работе?
+                    </span>
                 </li>
                 <li class="action-list__item" role="button" data-complete-btn>
-                        <span class="action-list__icon">
-                            <i class="icon icon--size--sm icon--plus-16"></i>
-                        </span>
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--plus-16"></i>
+                    </span>
                     <span class="action-list__text" data-complete-text>
-                            Самый незабываемый проект
-                        </span>
+                        Самый незабываемый проект
+                    </span>
                 </li>
                 <li class="action-list__item" role="button" data-complete-btn>
-                        <span class="action-list__icon">
-                            <i class="icon icon--size--sm icon--plus-16"></i>
-                        </span>
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--plus-16"></i>
+                    </span>
                     <span class="action-list__text" data-complete-text>
-                            Самая сложная задача
-                        </span>
+                        Самая сложная задача
+                    </span>
                 </li>
                 <li class="action-list__item" role="button" data-complete-btn>
-                        <span class="action-list__icon">
-                            <i class="icon icon--size--sm icon--plus-16"></i>
-                        </span>
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--plus-16"></i>
+                    </span>
                     <span class="action-list__text" data-complete-text>
-                            Моя гордость
-                        </span>
+                        Моя гордость
+                    </span>
                 </li>
             </ul><!-- action-list -->
 
         </div><!-- body -->
     </div><!-- main -->
 
-</div><!-- user-name modal -->
+</div><!-- user-name modal --><div class="modal" id="delete-video">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Вы уверены?</div>
+
+        <div class="modal__body">
+            <p>Ты точно хочешь удалить это видео?</p>
+        </div><!-- body -->
+
+        <div class="modal__footer">
+            <button class="btn btn--style--primary btn--size--regular">
+                <span class="btn__text">Удалить</span>
+            </button>
+            <button class="btn btn--style--secondary btn--size--regular">
+                <span class="btn__text">Отмена</span>
+            </button>
+        </div><!-- form footer-->
+    </div><!-- main -->
+
+</div><!-- user about modal --><div class="modal" id="hide-video">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Вы уверены?</div>
+
+        <div class="modal__body">
+            <p>Ты точно хочешь скрыть это видео?</p>
+        </div><!-- body -->
+
+        <div class="modal__footer">
+            <button class="btn btn--style--primary btn--size--regular">
+                <span class="btn__text">Скрыть</span>
+            </button>
+            <button class="btn btn--style--secondary btn--size--regular">
+                <span class="btn__text">Отмена</span>
+            </button>
+        </div><!-- form footer-->
+    </div><!-- main -->
+
+</div><!-- user about modal -->
 <script src="assets/js/app.js"></script>
 </body>
 </html>
