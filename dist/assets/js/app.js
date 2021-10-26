@@ -993,10 +993,21 @@ const SiteJS = {
             recorderInstance = new VideoRecorder({
                 element: videoElement,
                 constraints: {
+                    // video: {
+                    //     width: 720,
+                    //     height: 720,
+                    //     facingMode: 'user'
+                    // },
                     video: {
-                        width: 720,
-                        height: 720,
-                        facingMode: 'user'
+                        width: {
+                            min: 480,
+                            max: 1280
+                        },
+                        height: {
+                            min: 480,
+                            max: 1280
+                        },
+                        facingMode: 'user',
                     },
                     audio: true
                 }
