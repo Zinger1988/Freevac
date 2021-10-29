@@ -224,41 +224,76 @@ class Video {
         }
     }
 
+    static async play(instance){
+        const {element, controls: {playBtn}} = instance;
+
+        element.play();
+        playBtn.classList.remove('video-player__play--paused');
+        playBtn.classList.add('video-player__play--active');
+
+        instance.state.isPaused = false;
+    }
+
+    static pause(instance){
+        const {element, controls: {playBtn}} = instance;
+
+        element.pause();
+        playBtn.classList.add('video-player__play--paused');
+        playBtn.classList.remove('video-player__play--active');
+
+        instance.state.isPaused = true;
+    }
+
+    static stop(instance){
+        const {element} = instance;
+
+        Video.pause(instance);
+        element.currentTime = 0;
+    }
+
+    static mute(instance){
+        let {element, controls: {soundBtn}} = instance;
+
+        element.muted = true;
+        soundBtn.classList.add('icon--soundoff-24');
+        soundBtn.classList.remove('icon--soundon-24');
+
+        instance.state.isMuted = true;
+    }
+
+    static unmute(instance){
+        let {element, controls: {soundBtn}} = instance;
+
+        element.muted = false;
+        soundBtn.classList.remove('icon--soundoff-24');
+        soundBtn.classList.add('icon--soundon-24');
+
+        instance.state.isMuted = false;
+    }
+
     static setHandlers(instance){
-        let {element, controls: {playBtn, soundBtn}, state: {isMuted, isPaused}} = instance;
+        let {element, controls: {playBtn, soundBtn}} = instance;
 
         playBtn.addEventListener('click', async () => {
-            if(isPaused){
-                await element.play();
-                playBtn.classList.remove('video-player__play--paused');
-                playBtn.classList.add('video-player__play--active');
+            if(instance.state.isPaused){
+                await Video.play(instance);
             } else {
-                element.pause();
-                playBtn.classList.add('video-player__play--paused');
-                playBtn.classList.remove('video-player__play--active');
+                Video.pause(instance);
             }
-
-            isPaused = !isPaused;
         })
 
         soundBtn.addEventListener('click', () => {
-            if(isMuted){
-                element.muted = false;
-                soundBtn.classList.remove('icon--soundoff-24');
-                soundBtn.classList.add('icon--soundon-24');
+            if(instance.state.isMuted){
+                Video.unmute(instance);
             } else {
-                element.muted = true;
-                soundBtn.classList.add('icon--soundoff-24');
-                soundBtn.classList.remove('icon--soundon-24');
+                Video.mute(instance);
             }
-
-            isMuted = !isMuted;
         })
 
         element.addEventListener('ended', () => {
             playBtn.classList.add('video-player__play--paused');
             playBtn.classList.remove('video-player__play--active');
-            isPaused = true;
+            instance.state.isPaused = true;
         });
     }
 
@@ -428,18 +463,22 @@ class Modal {
         Modal.setHandlers();
     }
 
+    static bindButton(buttonEl) {
+        buttonEl.addEventListener('click', () => {
+            if(Modal.activeModal){
+                Modal.hide();
+            }
+            const modalId = buttonEl.getAttribute('data-modal-id');
+            Modal.show(modalId);
+            Modal.showOverlay();
+        })
+    }
+
     static setHandlers(){
         const modalButtons = document.querySelectorAll('[data-modal-id]');
 
         modalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                if(Modal.activeModal){
-                    Modal.hide();
-                }
-                const modalId = button.getAttribute('data-modal-id');
-                Modal.show(modalId);
-                Modal.showOverlay();
-            })
+            Modal.bindButton(button);
         });
 
         Modal.modalOverlay.addEventListener('click', (e) => {
@@ -569,6 +608,39 @@ const SiteJS = {
         SiteJS.init();
     }),
     init: function () {
+
+        if(document.querySelector('.swiper')){
+            const videoSlider = new Swiper('.video-slider', {
+                pagination: {
+                    el: '.video-slider__pagination',
+                    type: 'bullets'
+                },
+            });
+
+            let previousSlideIndex = videoSlider.activeIndex
+
+            videoSlider.on('slideChange', function () {
+                const previousSlide = videoSlider.slides[previousSlideIndex];
+                const previousVideoElem = previousSlide.querySelector('.video-player');
+                const currentSlide = videoSlider.slides[videoSlider.activeIndex];
+                const currentVideoElem = currentSlide.querySelector('.video-player');
+
+                if(!previousVideoElem.Video.state.isPaused){
+                    Video.play(currentVideoElem.Video);
+                }
+
+                Video.stop(previousVideoElem.Video);
+
+                previousSlideIndex = videoSlider.activeIndex;
+            });
+
+            const currentVideoElem = videoSlider.slides[videoSlider.activeIndex].querySelector('.video-player');
+
+            currentVideoElem.addEventListener('ended', () => {
+                videoSlider.slideNext()
+            });
+        }
+
         new Modal('.modal');
         new InputFocus('.input-row');
         this.moveElement({
@@ -638,12 +710,11 @@ const SiteJS = {
         }
     },
     videoPlayer(){
-        const player = document.querySelector('.video-player');
+        const players = document.querySelectorAll('.video-player');
 
-        if(!player) return
-        new Video({
-            element: player
-        }).init();
+        if(!players.length) return;
+
+        players.forEach(player => new Video({element: player}).init())
     },
     replaceElements(){
         const wrapperEl = document.querySelectorAll('.replace-elements');
@@ -1123,9 +1194,9 @@ const SiteJS = {
 
         const controlBarMarkup = document.createElement('div');
         controlBarMarkup.classList.add('grid','grid--on-xs');
-        controlBarMarkup.innerHTML = `
+        controlBarMarkup.innerHTML = `т 
             <div class="grid__col--12">
-                <button class="btn btn--style--accent btn--size--lg btn--fluid">
+                <button class="btn btn--style--accent btn--size--lg btn--fluid" id="save-record">
                     <i class="icon icon--size--lg icon--check-48 btn__icon"></i>
                     <span class="btn__text">Сохранить</span>
                 </button>
@@ -1146,6 +1217,7 @@ const SiteJS = {
 
         const overwriteBtn = controlBarMarkup.querySelector('#record-overwrite');
         const cancelRecord = controlBarMarkup.querySelector('#record-cancel');
+        const saveRecord = controlBarMarkup.querySelector('#save-record');
 
         overwriteBtn.addEventListener('click', () => {
             controlBarMarkup.remove();
@@ -1165,5 +1237,24 @@ const SiteJS = {
 
             if(initialSrc) rollbackVideoElem();
         })
+
+        saveRecord.addEventListener('click', async () => {
+            const file = await fetch(videoElement.src)
+                .then(res => res.blob())
+                .then(blobFile => new File([blobFile], "video.mp4", { type: "video/mpeg" }));
+
+            uploadFile(file);
+        })
+
+        function uploadFile(file) {
+            const formData = new FormData();
+
+            formData.append('file', file);
+
+            fetch('https://example.com/profile/avatar', {
+                method: 'POST',
+                body: formData
+            })
+        }
     }
 };

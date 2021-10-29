@@ -8,35 +8,55 @@ title: Profile
     <div class="grid__col--4">
         <div class="profile__video profile__video--fixed" id="profile-video">
 
-                <div class="video-slider profile__video-slider">
-                    <div class="video-slider__slide">
+            <div class="swiper video-slider profile__video-slider">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
 
                         <div class="video-slider__video-holder video-holder">
                             <div class="video-holder__content">
                                 <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
-                                <video class="video-holder__content-video video-player" src="assets/video/02.mp4">
+                                <video class="video-holder__content-video video-player" src="assets/video/02.mp4" playsinline>
                                     You need an HTML 5-capable browser.
                                 </video>
                             </div>
                         </div><!--video holder-->
 
-                    </div><!--video slide-->
-                </div><!--video slider-->
+                    </div><!--swiper slide-->
 
-                <div class="emoji-bar">
-                    <button class="emoji-bar__item">
-                        <span class="emoji-bar__icon reaction-icon">&#128525;</span>
-                    </button>
-                    <button class="emoji-bar__item">
-                        <span class="emoji-bar__icon reaction-icon">&#129303;</span>
-                    </button>
-                    <button class="emoji-bar__item">
-                        <span class="emoji-bar__icon reaction-icon">&#128512;</span>
-                    </button>
-                    <button class="emoji-bar__item">
-                        <span class="emoji-bar__icon reaction-icon">&#129312;</span>
-                    </button>
-                </div>
+                    <div class="swiper-slide">
+
+                        <div class="video-slider__video-holder video-holder">
+                            <div class="video-holder__content">
+                                <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
+                                <video class="video-holder__content-video video-player" src="assets/video/02.mp4" playsinline>
+                                    You need an HTML 5-capable browser.
+                                </video>
+                            </div>
+                        </div><!--video holder-->
+
+                    </div><!--swiper slide-->
+
+                </div><!--swiper wrapper-->
+
+                <div class="video-slider__pagination"></div>
+
+            </div><!--swiper-->
+
+            <div class="emoji-bar">
+                <button class="emoji-bar__item">
+                    <span class="emoji-bar__icon reaction-icon">&#128525;</span>
+                </button>
+                <button class="emoji-bar__item">
+                    <span class="emoji-bar__icon reaction-icon">&#129303;</span>
+                </button>
+                <button class="emoji-bar__item">
+                    <span class="emoji-bar__icon reaction-icon">&#128512;</span>
+                </button>
+                <button class="emoji-bar__item">
+                    <span class="emoji-bar__icon reaction-icon">&#129312;</span>
+                </button>
+            </div>
 
         </div><!--profile video-->
     </div><!-- grid col -->

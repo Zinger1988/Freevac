@@ -1,1 +1,26 @@
-.video-slider{}
+.video-slider{
+
+  &__pagination{
+    position: absolute;
+    top: 1.2rem;
+    left: 1.5rem !important;
+    z-index: 100;
+    display: flex;
+    width: calc(100% - 3rem) !important;
+    height: .4rem;
+
+    .swiper-pagination-bullet{
+      flex: 1 0 auto;
+      border-radius: .2rem;
+      margin: 0 .1rem !important;
+      height: .4rem;
+      background-color: $white;
+      opacity: .24;
+    }
+
+    .swiper-pagination-bullet-active{
+      opacity: 1;
+    }
+  }
+
+}
