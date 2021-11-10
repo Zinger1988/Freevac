@@ -10,17 +10,50 @@
     height: .4rem;
 
     .swiper-pagination-bullet{
+      position: relative;
       flex: 1 0 auto;
       border-radius: .2rem;
       margin: 0 .1rem !important;
       height: .4rem;
       background-color: $white;
-      opacity: .24;
+      opacity: 1;
+
+      .bullet-progress{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background-color: $white;
+        border-radius: .2rem;
+
+        &--active{
+          animation: progress linear;
+        }
+      }
     }
 
     .swiper-pagination-bullet-active{
-      opacity: 1;
+      background-color: rgba($white,.24);
+
+      ~ .swiper-pagination-bullet{
+        opacity: .24;
+      }
     }
   }
 
+  .swiper-label{
+    position: absolute;
+    left: 1.2rem;
+    top: 2.8rem;
+    color: $white;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    z-index: 100;
+  }
+}
+
+@keyframes progress {
+  0% {width: 0}
+  100% {width: 100%}
 }

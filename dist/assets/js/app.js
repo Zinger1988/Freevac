@@ -190,6 +190,11 @@ class Video {
         this.controls = {
             playBtn: document.createElement('div'),
             soundBtn: document.createElement('div'),
+        };
+        this.callbacks = {
+            onPlay: null,
+            onPause: null,
+            onStop: null
         }
     }
 
@@ -224,6 +229,18 @@ class Video {
         }
     }
 
+    static onPlay(instance, cb) {
+        instance.callbacks.onPlay = cb;
+    }
+
+    static onStop(instance, cb) {
+        instance.callbacks.onStop = cb;
+    }
+
+    static onPause(instance, cb) {
+        instance.callbacks.onPause = cb;
+    }
+
     static async play(instance){
         const {element, controls: {playBtn}} = instance;
 
@@ -232,6 +249,7 @@ class Video {
         playBtn.classList.add('video-player__play--active');
 
         instance.state.isPaused = false;
+        instance.callbacks.onPlay();
     }
 
     static pause(instance){
@@ -242,6 +260,7 @@ class Video {
         playBtn.classList.remove('video-player__play--active');
 
         instance.state.isPaused = true;
+        instance.callbacks.onPause();
     }
 
     static stop(instance){
@@ -249,6 +268,7 @@ class Video {
 
         Video.pause(instance);
         element.currentTime = 0;
+        instance.callbacks.onStop();
     }
 
     static mute(instance){
@@ -294,6 +314,7 @@ class Video {
             playBtn.classList.add('video-player__play--paused');
             playBtn.classList.remove('video-player__play--active');
             instance.state.isPaused = true;
+            instance.callbacks.onStop();
         });
     }
 
@@ -457,6 +478,12 @@ class Modal {
     static activeModal = null;
     static modalOverlay = document.createElement('div');
 
+    static preventScroll(e){
+        if(!e.target.classList.contains('.modal__main') && !e.target.closest('.modal__main')){
+            e.preventDefault()
+        }
+    }
+
     constructor(modalSelector) {
         Modal.modalElements = Array.from(document.querySelectorAll(modalSelector));
         Modal.modalOverlay.id = 'modal-overlay';
@@ -493,6 +520,28 @@ class Modal {
                     Modal.hideOverlay();
                 }
             })
+
+            const modalMain = modal.querySelector('.modal__main');
+
+            function preventModalScroll(e){
+                let scrollTo = null;
+                e.stopPropagation();
+
+                if (e.type === 'wheel') {
+                    scrollTo = (e.wheelDelta * -1);
+                }
+
+                if (scrollTo) {
+                    e.preventDefault();
+                    this.scrollTo({
+                        top: scrollTo + this.scrollTop,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            modalMain.addEventListener("wheel", preventModalScroll);
         });
     }
 
@@ -501,7 +550,8 @@ class Modal {
         if(overlay) return;
 
         document.body.append(Modal.modalOverlay);
-        document.body.classList.add('no-overflow');
+        window.addEventListener("scroll", Modal.preventScroll, {passive: false});
+        // document.body.classList.add('no-overflow');
 
         let alpha = .01;
         const timer = setInterval(() => {
@@ -517,7 +567,9 @@ class Modal {
         const overlay = document.querySelector('#modal-overlay');
         if(!overlay) return;
 
-        document.body.classList.remove('no-overflow');
+        // document.body.classList.remove('no-overflow');
+        window.removeEventListener("wheel", Modal.preventScroll, {passive: false});
+        window.removeEventListener("touchmove", Modal.preventScroll, {passive: false});
 
         let alpha = 0.56;
         const timer = setInterval(() => {
@@ -537,6 +589,16 @@ class Modal {
     }
 
     static hide(){
+        const modalMain = Modal.activeModal.querySelector('.modal__main');
+
+        if(modalMain.scrollTop > 0){
+            modalMain.scrollTo({
+                top: scrollTo + modalMain.scrollTop,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+
         Modal.activeModal.classList.remove('visible');
         Modal.activeModal = null;
     }
@@ -608,39 +670,6 @@ const SiteJS = {
         SiteJS.init();
     }),
     init: function () {
-
-        if(document.querySelector('.swiper')){
-            const videoSlider = new Swiper('.video-slider', {
-                pagination: {
-                    el: '.video-slider__pagination',
-                    type: 'bullets'
-                },
-            });
-
-            let previousSlideIndex = videoSlider.activeIndex
-
-            videoSlider.on('slideChange', function () {
-                const previousSlide = videoSlider.slides[previousSlideIndex];
-                const previousVideoElem = previousSlide.querySelector('.video-player');
-                const currentSlide = videoSlider.slides[videoSlider.activeIndex];
-                const currentVideoElem = currentSlide.querySelector('.video-player');
-
-                if(!previousVideoElem.Video.state.isPaused){
-                    Video.play(currentVideoElem.Video);
-                }
-
-                Video.stop(previousVideoElem.Video);
-
-                previousSlideIndex = videoSlider.activeIndex;
-            });
-
-            const currentVideoElem = videoSlider.slides[videoSlider.activeIndex].querySelector('.video-player');
-
-            currentVideoElem.addEventListener('ended', () => {
-                videoSlider.slideNext()
-            });
-        }
-
         new Modal('.modal');
         new InputFocus('.input-row');
         this.moveElement({
@@ -701,6 +730,87 @@ const SiteJS = {
         this.replaceElements();
         this.videoPlayer();
         this.typeDisplay();
+
+        if(document.querySelector('.swiper')){
+            const videoSlider = new Swiper('.video-slider', {
+                pagination: {
+                    el: '.video-slider__pagination',
+                    type: 'bullets',
+                },
+                loop: false
+            });
+
+            let previousSlideIndex = videoSlider.activeIndex;
+
+            const label = document.createElement('div');
+            label.classList.add('swiper-label');
+            label.innerText = `${videoSlider.activeIndex + 1} / ${videoSlider.slides.length}`;
+            videoSlider.el.prepend(label);
+
+
+            videoSlider.on('slideChange', function () {
+                const previousSlide = videoSlider.slides[previousSlideIndex];
+                const previousVideoElem = previousSlide.querySelector('.video-player');
+                const currentSlide = videoSlider.slides[videoSlider.activeIndex];
+                const currentVideoElem = currentSlide.querySelector('.video-player');
+
+                label.innerText = `${videoSlider.activeIndex + 1} / ${videoSlider.slides.length}`;
+
+                if(!previousVideoElem.Video.state.isMuted){
+                    Video.unmute(currentVideoElem.Video);
+                } else {
+                    Video.mute(currentVideoElem.Video);
+                }
+
+                if(!previousVideoElem.Video.state.isPaused){
+                    Video.play(currentVideoElem.Video);
+                }
+
+                Video.stop(previousVideoElem.Video);
+
+                previousSlideIndex = videoSlider.activeIndex;
+            });
+
+            videoSlider.pagination.bullets.forEach(bullet => {
+                const progressBar = document.createElement('div');
+                progressBar.classList.add('bullet-progress');
+
+                bullet.prepend(progressBar);
+            })
+
+            videoSlider.slides.forEach((slide, i) => {
+                const videoEl = slide.querySelector('.video-player');
+                const currentBullet = videoSlider.pagination.bullets[i];
+                const progressBar = currentBullet.querySelector('.bullet-progress');
+
+                videoEl.addEventListener('ended', () => {
+                    if(videoSlider.activeIndex !== videoSlider.slides.length -1) {
+                        videoSlider.slideNext();
+
+                        const activeVideoEl = videoSlider.slides[videoSlider.activeIndex].querySelector('.video-player');
+                        Video.play(activeVideoEl.Video);
+                    }else{
+                        videoSlider.slideTo(0);
+                    }
+                });
+
+                Video.onPlay(videoEl.Video, function () {
+                    console.log('video play, slide ' + i);
+                    progressBar.style.animationDuration = videoEl.getAttribute('data-duration') + 's';
+                    progressBar.style.animationPlayState = 'running';
+                    progressBar.classList.add('bullet-progress--active');
+                })
+                Video.onPause(videoEl.Video, function () {
+                    console.log('video pause, slide ' + i);
+                    progressBar.style.animationPlayState = 'paused';
+                })
+                Video.onStop(videoEl.Video, function () {
+                    console.log('video stop, slide ' + i);
+                    progressBar.style = "";
+                    progressBar.classList.remove('bullet-progress--active');
+                })
+            })
+        }
     },
     typeDisplay() {
         if ("ontouchstart" in document.documentElement) {
