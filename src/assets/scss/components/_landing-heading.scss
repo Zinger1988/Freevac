@@ -1,0 +1,18 @@
+.landing-heading{
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2.4rem;
+  line-height: 1.6;
+
+  @include media(">=md"){
+    font-size: 2.6rem;
+  }
+
+  @include media(">=xl"){
+    font-size: 3rem;
+  }
+
+  @include media(">=1440px"){
+    font-size: 3.6rem;
+  }
+}

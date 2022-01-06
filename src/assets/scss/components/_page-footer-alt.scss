@@ -1,0 +1,15 @@
+.page-footer-alt{
+  background-color: $white;
+  padding: 1.6rem;
+  text-align: center;
+  color: $secondaryDarker2;
+  font-weight: bold;
+
+  @include media(">=lg"){
+    border-radius: 7.2rem 7.2rem 0 0;
+    padding: 3rem;
+    max-width: 139.5rem;
+    width: 100%;
+    margin: 0 auto;
+  }
+}

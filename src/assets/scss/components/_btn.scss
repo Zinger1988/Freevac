@@ -186,6 +186,21 @@
         color: $primary;
       }
     }
+
+    &--rounded{
+      border-radius: 5rem;
+      font-size: 1.6rem;
+
+      @include media(">=md"){
+        font-size: 1.8rem;
+      }
+      @include media(">=xl"){
+        font-size: 2rem;
+      }
+      @include media(">=1440px"){
+        font-size: 2.4rem;
+      }
+    }
   }
 
   &:disabled,

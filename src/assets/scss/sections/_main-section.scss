@@ -1,0 +1,166 @@
+.main-section{
+  background-color: $primary;
+  color: $white;
+  padding: 10rem 1.6rem 3rem;
+  min-height: 100vh;
+  display: flex;
+
+  @include media(">=lg"){
+    min-height: 66rem;
+    max-height: 80rem;
+    height: 100vh;
+    border-radius: 0 0 7.2rem 7.2rem;
+    max-width: 139.5rem;
+    padding: 10.8rem 3rem 3rem;
+  }
+
+  @include media(">=1440px"){
+    padding: 12.8rem 4.8rem 4.8rem 13rem;
+  }
+
+  &__holder{
+    display: flex;
+    flex-direction: column;
+
+    @include media(">=lg"){
+      flex-direction: row;
+      align-items: center;
+      padding-left: calc(100vw - 100% - 3rem + 3rem);
+    }
+
+    @include media(">=1440px"){
+      padding: 0;
+    }
+  }
+
+  &__balloon{
+    display: none;
+
+    @include media(">=lg"){
+      display: inline-block;
+      margin: 0 0 3.9rem;
+    }
+  }
+
+  &__text{
+    text-align: center;
+    margin: 0 0 2.4rem;
+
+    @include media(">=lg"){
+      position: relative;
+      z-index: 5;
+      text-align: left;
+      flex: 0 1 auto;
+      margin: 0 3rem 0 0;
+    }
+
+    @include media(">=1440px"){
+      margin: 0;
+    }
+  }
+
+  &__balloon{
+    color: $primary;
+  }
+
+  &__title{
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 1.6;
+    text-transform: uppercase;
+    margin: 0 0 .666em;
+
+    @include media(">=md"){
+      font-size: 4rem;
+    }
+
+    @include media(">=md"){
+      font-size: 3.6rem;
+    }
+
+    @include media(">=xl"){
+      font-size: 4.6rem;
+      line-height: 1.5;
+    }
+
+    @include media(">=1440px"){
+      font-size: 5.6rem;
+    }
+  }
+
+  &__desc{
+    @include media(">=1440px"){
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__desc-text{
+    font-size: 1.8rem;
+    line-height: 1.27;
+
+    @include media(">=md"){
+      font-size: 2rem;
+    }
+
+    @include media(">=lg"){
+      margin: 0 0 2rem;
+    }
+
+    @include media(">=1440px"){
+      font-size: 2.4rem;
+      margin: 0;
+    }
+  }
+
+  &__desc-btn{
+    margin: 0;
+    position: fixed;
+    left: 50%;
+    bottom: .8rem;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 100;
+
+    @include media(">=lg"){
+      position: static;
+      transform: none;
+    }
+  }
+
+  &__img{
+    flex: 1 1 auto;
+    display: flex;
+
+    @include media(">=lg"){
+      height: 100%;
+      flex: 0 0 42%;
+    }
+
+    @include media(">=1440px"){
+      margin: 0 0 0 -8.45%;
+      flex: 0 0 46.1%;
+    }
+  }
+
+  &__img-item{
+    display: block;
+    margin: 0 auto;
+    width: 94.7%;
+    object-fit: cover;
+    border-radius: 3.2rem;
+    max-width: 52rem;
+
+    @include media(">=lg"){
+      width: 100%;
+      max-width: none;
+      max-height: 62.4rem;
+      border-radius: 5rem;
+    }
+
+    @include media(">=1440px"){
+      border-radius: 6.4rem;
+    }
+  }
+}

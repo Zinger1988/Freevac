@@ -46,6 +46,38 @@
     }
   }
 
+  &--controlled{
+    position: relative;
+
+    #{$this}__input-text{
+      padding-right: 4.4rem;
+    }
+  }
+
+  &__controls-holder{
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+  }
+
+  &__controls-btn{
+    @extend %linkreset;
+    @extend %buttonreset;
+    margin: 0 1rem 0 0;
+    color: $secondaryDarker2;
+    @include animate(color);
+
+    &:hover{
+      color: $secondaryDarker4;
+    }
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
   &--checkbox-radio{
     margin: 0 0 1.6rem;
 

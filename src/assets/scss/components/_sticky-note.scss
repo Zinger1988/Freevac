@@ -1,0 +1,50 @@
+.sticky-note{
+  position: fixed;
+  top: -20rem;
+  transform: translateY(-100%);
+  left: .8rem;
+  right: .8rem;
+  z-index: $sticky-note-z-index;
+  @include animate(top transform);
+
+  &.active{
+    top: 1.8rem;
+    transform: translateY(0);
+  }
+
+  @include media(">=sm"){
+    left: 1.6rem;
+    right: 1.6rem;
+  }
+
+  @include media(">=md"){
+    left: 3rem;
+    right: 3rem
+  }
+
+  @include media(">=lg"){
+    left: calc(33.333% - 1.6rem + 3rem);
+    right: 3rem;
+  }
+
+  @include media(">=xl"){
+    left: calc((100% - (119.4rem * 0.333) + 3rem) / 2);
+    right: calc((100% - (119.4rem - 3rem * 2))/ 2);
+  }
+
+  &__item{
+    background-color: $primary;
+    color: $white;
+    padding: 1.6rem;
+    border-radius: 24px;
+    margin: 0 0 1rem;
+
+    &:last-child{
+      margin: 0;
+    }
+
+    @include media(">=md"){
+      padding: 1.6rem 2.4rem;
+    }
+  }
+}

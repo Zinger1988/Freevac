@@ -204,7 +204,7 @@ const images = () =>
         // .pipe(gulp.src(path.src.img))
         .pipe(
             imagemin([
-                imagemin.gifsicle({interlaced: true}),
+                // imagemin.gifsicle({interlaced: true}),
                 imagemin.mozjpeg({quality: 95, progressive: true}),
                 imagemin.optipng({optimizationLevel: 5}),
                 imagemin.svgo({

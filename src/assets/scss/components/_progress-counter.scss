@@ -1,0 +1,9 @@
+.progress-counter{
+  font-size: $fontSize28;
+  font-weight: bold;
+  @include calcLineHeight($fontSize28);
+
+  &__val::after{
+    content: " /";
+  }
+}

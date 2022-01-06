@@ -13,7 +13,7 @@
     <meta name="msapplication-TileColor" content="#7b41e7">
     <meta name="theme-color" content="#ffffff">
     
-    <link rel="stylesheet" href="assets/css/style.min.css">    <title>Freevac</title>
+    <link rel="stylesheet" href="assets/css/style.min.css">    <title>Vividi</title>
 </head>
 
 <body>
@@ -60,20 +60,20 @@
                                 </div>
                             </div>
                         </div><!-- banner -->
-            <!--            <div class="video-slider profile__video-slider">-->
-            <!--                <div class="video-slider__slide">-->
+                        <!--            <div class="video-slider profile__video-slider">-->
+                        <!--                <div class="video-slider__slide">-->
             
-            <!--                    <div class="video-slider__video-holder video-holder">-->
-            <!--                        <div class="video-holder__content">-->
-            <!--                            <div class="balloon balloon&#45;&#45;style&#45;&#45;accent video-holder__balloon">Расскажу немного о себе</div>-->
-            <!--                            <video class="video-holder__content-video video-player" src="assets/video/02.mp4">-->
-            <!--                                You need an HTML 5-capable browser.-->
-            <!--                            </video>-->
-            <!--                        </div>-->
-            <!--                    </div>&lt;!&ndash;video holder&ndash;&gt;-->
+                        <!--                    <div class="video-slider__video-holder video-holder">-->
+                        <!--                        <div class="video-holder__content">-->
+                        <!--                            <div class="balloon balloon&#45;&#45;style&#45;&#45;accent video-holder__balloon">Расскажу немного о себе</div>-->
+                        <!--                            <video class="video-holder__content-video video-player" src="assets/video/02.mp4">-->
+                        <!--                                You need an HTML 5-capable browser.-->
+                        <!--                            </video>-->
+                        <!--                        </div>-->
+                        <!--                    </div>&lt;!&ndash;video holder&ndash;&gt;-->
             
-            <!--                </div>&lt;!&ndash;video slide&ndash;&gt;-->
-            <!--            </div>&lt;!&ndash;video slider&ndash;&gt;-->
+                        <!--                </div>&lt;!&ndash;video slide&ndash;&gt;-->
+                        <!--            </div>&lt;!&ndash;video slider&ndash;&gt;-->
             
                     </div><!--profile video-->
                 </div><!-- grid col -->
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="user-info__link">
                                     <div class="user-info__link-holder">
-                                        <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24" id="freevak-link-copy"></a>
+                                        <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
                                         <a href="#" target="_blank" class="user-info__link-anchor icon icon--size--md icon--link-24"></a>
                                     </div>
                                     <input class="input-text input-text--style--primary user-info__link-input" id="freevak-link" readonly value="freevac.ua/po-f56" type="text">
@@ -122,31 +122,84 @@
             
                         </section><!-- user info -->
             
-                        <article class="content-tile content-tile--style--primary profile__content-tile">
+                        <div class="sticky-note">
+                            <div class="sticky-note__item steps steps--sticky">
+                                <div class="steps__text">
+                                    Давай заполним твой профиль.<br>
+                                    После этого можно будет удивлять всех необычным резюме.
+                                </div>
+                                <div class="steps__progress-counter progress-counter">
+                                    <span class="progress-counter__val">4</span>
+                                    <span class="progress-counter__total">8</span>
+                                </div>
+                            </div>
+                            <div class="sticky-note__item user-info user-info--sticky">
+                                <i class="icon icon--size--lg icon--user-48 user-info__icon"></i>
+                                <div class="user-info__name">
+                                    Анатолий Дементиевский
+                                </div>
+                                <div class="user-info__link">
+                                    <div class="user-info__link-holder">
+                                        <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
+                                        <a href="#" target="_blank" class="user-info__link-anchor icon icon--size--md icon--link-24"></a>
+                                    </div>
+                                    <input class="input-text input-text--style--primary user-info__link-input" readonly value="freevac.ua/po-f56" type="text">
+                                </div>
+                            </div>
+                        </div>
+            
+                        <article class="content-tile content-tile--style--primary content-tile--alt4 content-tile--relative profile__content-tile" id="steps-tile">
                             <section class="content-tile__section">
             
-                                <h2 class="content-tile__title">Привет &#128075;</h2>
+                                <h2 class="content-tile__title content-tile__title--counter">
+                                    <span>Привет &#128075;</span>
+                                    <span class="progress-counter">
+                                        <span class="progress-counter__val">4</span>
+                                        <span class="progress-counter__total">8</span>
+                                    </span>
+                                </h2>
             
                                 <div class="steps">
+            
                                     <div class="steps__text">
                                         Давай заполним твой профиль.<br>
                                         После этого можно будет удивлять всех необычным резюме.
                                     </div>
             
-                                    <div class="steps__body" role="button">
-                                        <div class="steps__checkpoint" data-scroll-to="create-video">
-                                            <div class="steps__checkpoint-status steps__checkpoint-status--done">
-                                                <i class="icon icon--check-48 steps__checkpoint-icon"></i>
-                                            </div>
-                                            <div class="steps__checkpoint-title">Запиши видеорезюме</div>
-                                        </div>
-                                        <div class="steps__checkpoint" role="button" data-scroll-to="update-info">
-                                            <div class="steps__checkpoint-status">
-                                                <i class="icon icon--check-48 steps__checkpoint-icon"></i>
-                                            </div>
-                                            <div class="steps__checkpoint-title">Заполни информацию о себе</div>
-                                        </div>
-                                    </div>
+                                    <ul class="steps__list">
+                                        <li class="steps__list-item" data-scroll-to="create-video">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>запиши видеорезюме</span>
+                                        </li>
+                                        <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-name">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>имя и фамилия</span>
+                                        </li>
+                                        <li class="steps__list-item" data-scroll-to="edit-city">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>где живешь?</span>
+                                        </li>
+                                        <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-age">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>возраст</span>
+                                        </li>
+                                        <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-position">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>должность</span>
+                                        </li>
+                                        <li class="steps__list-item" data-scroll-to="edit-about">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>о себе</span>
+                                        </li>
+                                        <li class="steps__list-item" data-scroll-to="edit-experience">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>опыт</span>
+                                        </li>
+                                        <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-contacts">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>контакты</span>
+                                        </li>
+                                    </ul>
                                 </div><!-- steps -->
             
                             </section>
@@ -269,7 +322,7 @@
                             </section>
                         </article><!-- content tile -->
             
-                        <article class="content-tile content-tile--alt2 profile__content-tile" id="update-info">
+                        <article class="content-tile content-tile--alt2 profile__content-tile">
                             <section class="content-tile__section">
             
                                 <h2 class="content-tile__title">Информация</h2>
@@ -282,21 +335,21 @@
                                             <div class="grid__col--12">
                                                 <div class="input-row input-row--pointer form__input-row" data-modal-id="user-name">
                                                     <div class="input-row__title">имя и фамилия</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text">
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" id="edit-name">
                                                 </div><!-- input row -->
                                             </div>
             
                                             <div class="grid__col--12 grid__col--md--6">
                                                 <div class="input-row input-row--pointer form__input-row input-row" data-modal-id="user-location">
                                                     <div class="input-row__title">где живешь? (необязательно)</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text">
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" id="edit-city">
                                                 </div><!-- input row -->
                                             </div>
             
                                             <div class="grid__col--12 grid__col--md--6">
                                                 <div class="input-row input-row--pointer form__input-row" data-modal-id="user-age">
                                                     <div class="input-row__title">сколько тебе лет? (необязательно)</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text">
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" id="edit-age">
                                                 </div><!-- input row -->
                                             </div>
             
@@ -326,7 +379,7 @@
                                             <div class="grid__col--12 grid__col--md--6">
                                                 <div class="input-row input-row--pointer form__input-row" data-modal-id="user-position">
                                                     <div class="input-row__title">должность</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Продуктовый дизайнер">
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Продуктовый дизайнер" id="edit-position">
                                                 </div><!-- input row -->
                                             </div>
             
@@ -340,7 +393,7 @@
                                             <div class="grid__col--12">
                                                 <div class="input-row input-row--pointer form__input-row" data-modal-id="user-about">
                                                     <div class="input-row__title">коротко о себе</div>
-                                                    <textarea class="input-text input-text--textarea input-row__input-text" readonly>Lorem ipsum</textarea>
+                                                    <textarea class="input-text input-text--textarea input-row__input-text" readonly id="edit-about">Lorem ipsum</textarea>
                                                 </div><!-- input row -->
                                             </div>
             
@@ -351,7 +404,7 @@
             
                             </section><!-- content tile section -->
             
-                            <section class="content-tile__section">
+                            <section class="content-tile__section" id="edit-experience">
             
                                 <h2 class="content-tile__title">Опыт</h2>
             
@@ -380,7 +433,7 @@
             
                             </section><!-- content tile section -->
             
-                            <section class="content-tile__section">
+                            <section class="content-tile__section" id="edit-contacts">
             
                                 <h2 class="content-tile__title">Контакты</h2>
             
@@ -920,16 +973,29 @@
                 </div><!-- form group -->
 
                 <div class="form__group" data-tab-group="cvv" data-tab-content-id="file">
-                    <div class="input-row input-row--pointer input-row--file form__input-row">
+                    <div class="input-row input-row--pointer input-row--file form__input-row"><!--input-row--controlled-->
                         <div class="input-row__title">Файл</div>
+
                         <input class="input-text input-row__input-text input-text--iconic input-text--iconic--angle-right"
                                type="text"
                                placeholder="загрузи файл word, power point или pdf"
                                readonly>
+
+<!--                        <input class="input-text input-row__input-text input-row__controlled-item"-->
+<!--                               type="text" value="filename.pdf"-->
+<!--                               placeholder="загрузи файл word, power point или pdf"-->
+<!--                               readonly>-->
+<!--                        <div class="input-row__controls-holder">-->
+<!--                            <a href="#" class="input-row__controls-btn">-->
+<!--                                <i class="icon icon&#45;&#45;download-24 icon&#45;&#45;size&#45;&#45;md"></i>-->
+<!--                            </a>-->
+<!--                        </div>-->
+
                         <input class="input-row__input-file"
                                type="file"
                                name=""
                                accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/pdf">
+
                     </div><!-- input row -->
                 </div><!-- form group -->
 

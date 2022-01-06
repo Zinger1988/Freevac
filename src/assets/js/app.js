@@ -194,7 +194,7 @@ class Video {
         this.callbacks = {
             onPlay: null,
             onPause: null,
-            onStop: null
+            onStop: null,
         }
     }
 
@@ -524,6 +524,7 @@ class Modal {
             const modalMain = modal.querySelector('.modal__main');
 
             function preventModalScroll(e){
+
                 let scrollTo = null;
                 e.stopPropagation();
 
@@ -550,7 +551,7 @@ class Modal {
         if(overlay) return;
 
         document.body.append(Modal.modalOverlay);
-        window.addEventListener("scroll", Modal.preventScroll, {passive: false});
+        window.addEventListener("wheel", Modal.preventScroll, {passive: false});
         // document.body.classList.add('no-overflow');
 
         let alpha = .01;
@@ -569,7 +570,6 @@ class Modal {
 
         // document.body.classList.remove('no-overflow');
         window.removeEventListener("wheel", Modal.preventScroll, {passive: false});
-        window.removeEventListener("touchmove", Modal.preventScroll, {passive: false});
 
         let alpha = 0.56;
         const timer = setInterval(() => {
@@ -705,7 +705,7 @@ const SiteJS = {
             }
         });
         this.moveElement({
-            elementId: 'take-video-tile',
+            elementId: 'take-video-balloon',
             targetId: 'profile-video',
             mediaQuery: 'max-width: 991px',
             insertionMethod: function (element, target) {
@@ -724,14 +724,49 @@ const SiteJS = {
         this.recordVideo();
         this.completeInput('[data-complete-input]','[data-complete-group]');
         this.smoothScroll('[data-scroll-to]');
-        this.copyToClipboard('#freevak-link-copy', '#freevak-link');
+        this.copyToClipboard('.freevak-link-copy', '#freevak-link');
         this.inputFile('.input-row--file','.input-row__input-file','.input-row__input-text');
         this.tabs();
         this.replaceElements();
         this.videoPlayer();
         this.typeDisplay();
 
-        if(document.querySelector('.swiper')){
+        this.onScrollToElement({
+            selector: '#steps-tile',
+            onReaching(element){
+                const stepsFixed = document.querySelector('.sticky-note');
+                if(!stepsFixed) return;
+                stepsFixed.classList.add('active');
+            },
+            onLeaving(element){
+                const stepsFixed = document.querySelector('.sticky-note');
+                if(!stepsFixed) return;
+                stepsFixed.classList.remove('active');
+            }
+        });
+
+        if(document.querySelector('.reviews-section__slider')){
+            const reviewsSlider = new Swiper('.reviews-section__slider', {
+                loop: false,
+                slidesPerView: 2,
+                navigation: {
+                    nextEl: '.reviews-section__nav-item--right',
+                    prevEl: '.reviews-section__nav-item--left',
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 7
+                    },
+                    600: {
+                        slidesPerView: 2,
+                        spaceBetween: 24
+                    }
+                }
+            });
+        }
+
+        if(document.querySelector('.video-slider')){
             const videoSlider = new Swiper('.video-slider', {
                 pagination: {
                     el: '.video-slider__pagination',
@@ -811,6 +846,29 @@ const SiteJS = {
                 })
             })
         }
+    },
+    onScrollToElement({selector, onReaching = () => undefined, onLeaving = () => undefined}){
+        const elementCollection = document.querySelectorAll(selector);
+
+        if(!elementCollection.length){
+            return
+        }
+
+        elementCollection.forEach(element => {
+            let isElementReached = false;
+
+            window.addEventListener('scroll', () => {
+                if(window.scrollY - element.offsetTop - element.offsetHeight > 150 && !isElementReached){
+                    isElementReached = true;
+                    onReaching(element);
+                }
+
+                if(window.scrollY - element.offsetTop - element.offsetHeight < 150 && isElementReached){
+                    isElementReached = false;
+                    onLeaving(element)
+                }
+            })
+        })
     },
     typeDisplay() {
         if ("ontouchstart" in document.documentElement) {
@@ -930,9 +988,13 @@ const SiteJS = {
     inputFile(wrapperSelector, inputFileSelector, inputTextSelector){
         const wrappers = document.querySelectorAll(wrapperSelector);
 
+        if(!wrappers.length) return
+
         wrappers.forEach(item => {
             const inputFile = item.querySelector(inputFileSelector);
             const inputText = item.querySelector(inputTextSelector);
+
+            if(!inputFile || !inputText) return
 
             inputText.addEventListener('click', () => {
                 inputFile.click();
@@ -957,7 +1019,8 @@ const SiteJS = {
         if(!sourceInput) return;
 
         triggers.forEach(trigger => {
-            trigger.addEventListener('click', () => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
                 sourceInput.select();
                 document.execCommand('copy');
                 this.alert('Ссылка скопирована', 'success').start
@@ -1055,21 +1118,43 @@ const SiteJS = {
     },
     smoothScroll: function(btnSelector){
         const buttons = document.querySelectorAll(btnSelector);
+        let timerId = null;
+
+        const resetTargetClass = () => {
+            const smoothScrollTargets = document.querySelectorAll('.smooth-scroll-target');
+
+            if(timerId) {
+                clearInterval(timerId);
+            }
+
+            if(smoothScrollTargets.length){
+                smoothScrollTargets.forEach(item => {
+                    item.classList.remove('smooth-scroll-target');
+                })
+            }
+        }
 
         buttons.forEach( btn => {
             const targetId = btn.getAttribute('data-scroll-to');
             const targetElement = document.querySelector('#' + targetId);
 
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                resetTargetClass();
+                e.stopPropagation();
                 const targetCoords = targetElement.getBoundingClientRect();
+                targetElement.classList.add('smooth-scroll-target')
 
                 window.scrollTo({
-                    top: targetCoords.top + pageYOffset - 50,
-                    left: targetCoords.left + pageXOffset - 50,
+                    top: targetCoords.top + pageYOffset + 150 - document.documentElement.clientHeight / 2,
+                    left: targetCoords.left + pageXOffset - 150,
                     behavior: 'smooth'
                 });
+
+                timerId = setTimeout(resetTargetClass, 3500);
             })
         })
+
+        document.addEventListener('click', resetTargetClass);
     },
     expandTextarea: function(selector){
         const elements = document.querySelectorAll(selector);
@@ -1304,7 +1389,7 @@ const SiteJS = {
 
         const controlBarMarkup = document.createElement('div');
         controlBarMarkup.classList.add('grid','grid--on-xs');
-        controlBarMarkup.innerHTML = `т 
+        controlBarMarkup.innerHTML = `
             <div class="grid__col--12">
                 <button class="btn btn--style--accent btn--size--lg btn--fluid" id="save-record">
                     <i class="icon icon--size--lg icon--check-48 btn__icon"></i>
@@ -1352,6 +1437,17 @@ const SiteJS = {
             const file = await fetch(videoElement.src)
                 .then(res => res.blob())
                 .then(blobFile => new File([blobFile], "video.mp4", { type: "video/mpeg" }));
+
+            const loader = document.createElement('div');
+            loader.classList.add('video-holder__loader');
+            loader.innerHTML = `
+                <div class="video-holder__loader">
+                    <div class="video-holder__loader-spinner"></div>
+                    <div class="video-holder__loader-title">Загружаем видео</div>
+                    <div class="video-holder__loader-subtitle">пару минут</div>
+                </div>`;
+
+            videoElement.closest('.video-holder').append(loader);
 
             uploadFile(file);
         })

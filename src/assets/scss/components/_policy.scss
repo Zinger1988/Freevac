@@ -1,0 +1,9 @@
+.policy{
+  color: $secondaryDarker2;
+  font-size: $fontSize12;
+  @include calcLineHeight($fontSize12);
+
+  a{
+    color: inherit;
+  }
+}

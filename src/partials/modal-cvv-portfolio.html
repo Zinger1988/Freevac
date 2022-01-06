@@ -57,16 +57,29 @@
                 </div><!-- form group -->
 
                 <div class="form__group" data-tab-group="cvv" data-tab-content-id="file">
-                    <div class="input-row input-row--pointer input-row--file form__input-row">
+                    <div class="input-row input-row--pointer input-row--file form__input-row"><!--input-row--controlled-->
                         <div class="input-row__title">Файл</div>
+
                         <input class="input-text input-row__input-text input-text--iconic input-text--iconic--angle-right"
                                type="text"
                                placeholder="загрузи файл word, power point или pdf"
                                readonly>
+
+<!--                        <input class="input-text input-row__input-text input-row__controlled-item"-->
+<!--                               type="text" value="filename.pdf"-->
+<!--                               placeholder="загрузи файл word, power point или pdf"-->
+<!--                               readonly>-->
+<!--                        <div class="input-row__controls-holder">-->
+<!--                            <a href="#" class="input-row__controls-btn">-->
+<!--                                <i class="icon icon&#45;&#45;download-24 icon&#45;&#45;size&#45;&#45;md"></i>-->
+<!--                            </a>-->
+<!--                        </div>-->
+
                         <input class="input-row__input-file"
                                type="file"
                                name=""
                                accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/pdf">
+
                     </div><!-- input row -->
                 </div><!-- form group -->
 

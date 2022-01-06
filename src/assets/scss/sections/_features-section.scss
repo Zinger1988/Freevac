@@ -1,0 +1,242 @@
+.features-section{
+  background-color: $primary;
+  color: $white;
+  padding: 5.6rem 1.6rem 10rem;
+  border-radius: 3.2rem;
+
+  $this: &;
+
+  @include media(">=md"){
+    padding: 10rem 3rem 10rem;
+  }
+
+  @include media(">=lg"){
+    border-radius: 7.2rem;
+    max-width: 139.5rem;
+  }
+
+  &__head{
+    max-width: 65.6rem;
+    margin: 0 auto 4.8rem;
+
+    @include media(">=lg"){
+      margin: 0 auto 6rem;
+    }
+
+    @include media(">=lg"){
+      margin: 0 auto 6rem;
+    }
+
+    @include media(">=1440px"){
+      margin: 0 auto 8rem;
+    }
+  }
+
+  &__landing-heading{
+    margin: 0 0 1em;
+    text-align: center;
+
+    @include media(">=lg"){
+      margin: 0 auto .44em;
+    }
+  }
+
+  &__subdesc{
+    font-size: 1.8rem;
+    text-align: center;
+
+    @include media(">=1440px"){
+      font-size: 2.4rem;
+    }
+  }
+
+  &__holder{
+    max-width: 113.4rem;
+    margin: 0 auto;
+  }
+
+  &__body{
+    @include media(">=600px"){
+      column-count: 2;
+      column-gap: 2rem;
+    }
+
+    @include media(">=992px"){
+      column-count: 3;
+    }
+
+    @include media(">=xl"){
+      column-count: unset;
+      display: grid;
+      grid-gap: 4.8rem;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &__item{
+    background-color: $secondary;
+    border-radius: 3.2rem;
+    margin: 0 0 3.2rem;
+    padding: 2.4rem 2.4rem 0;
+    min-height: 42.6rem;
+    color: $black;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    break-inside: avoid;
+
+    @include media(">=xl"){
+      margin: 0;
+      min-height: 32rem;
+    }
+
+    &--filters{
+      background-color: $accent;
+      color: $white;
+
+      @include media(">=xl"){
+        grid-row: 1 / 7;
+        min-height: 59.2rem;
+      }
+
+      #{$this}__item-img-item{
+        margin: 0 auto;
+        height: 27.2rem;
+
+        @include media(">=xl"){
+          height: 40.7rem;
+        }
+      }
+    }
+
+    &--overwrite{
+      @include media(">=xl"){
+        grid-row: 7 / 15;
+        min-height: 42.6rem;
+      }
+
+      #{$this}__item-img-item{
+        margin: 0 0 0 46.666%;
+        height: 24.4rem;
+
+        @include media(">=xl"){
+          height: 25.5rem;
+        }
+      }
+    }
+
+    &--questions{
+      @include media(">=xl"){
+        grid-row: 4 / 8;
+      }
+
+      #{$this}__item-balloon{
+        margin: auto 0 32px;
+        align-self: flex-start;
+      }
+    }
+
+    &--access{
+      @include media(">=xl"){
+        grid-row: 8 / 16;
+        min-height: 42.6rem;
+      }
+
+      #{$this}__item-img{
+        margin: auto -2.4rem 0;
+      }
+
+      #{$this}__item-img-item{
+        width: 100%;
+      }
+    }
+
+    &--storing{
+      background-color: $accent;
+      color: $white;
+
+      @include media(">=xl"){
+        grid-row: 4 / 12;
+        min-height: 59.2rem;
+      }
+
+      #{$this}__item-img{
+        margin: auto -2.4rem 0;
+
+        @include media(">=xl"){
+          margin: auto -2.4rem 5rem;
+          padding: 0 0 0 2.4rem;
+        }
+      }
+
+      #{$this}__item-img-item{
+        width: 100%;
+      }
+    }
+
+    &--fragments{
+      @include media(">=xl"){
+        grid-row: 1 / 4;
+        grid-column: 2 / -1;
+        flex-direction: row;
+      }
+
+      #{$this}__item-text{
+        margin: 0 0 3.1rem;
+
+        @include media(">=xl"){
+          margin: 0 0 2.4rem;
+          flex: 0 0 32.4%;
+        }
+      }
+
+      #{$this}__item-img{
+        margin: auto -2.4rem 0;
+
+        @include media(">=xl"){
+          margin: 0 3rem 0 6.6rem;
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+
+  &__item-title{
+    font-size: 2.6rem;
+    font-weight: bold;
+    margin: 0 0 .3em;
+    text-align: center;
+
+    @include media(">=600px"){
+      font-size: 2.4rem;
+    }
+
+    @include media(">=xl"){
+      font-size: 2.6rem;
+      text-align: left;
+    }
+  }
+
+  &__item-desc{
+    font-size: 1.8rem;
+    text-align: center;
+
+    @include media(">=600px"){
+      font-size: 1.6rem;
+    }
+
+    @include media(">=xl"){
+      font-size: 1.8rem;
+      text-align: left;
+    }
+  }
+
+  &__item-img{
+    margin: auto 0 0;
+  }
+
+  &__item-img-item{
+    display: block;
+    max-width: 100%;
+  }
+}

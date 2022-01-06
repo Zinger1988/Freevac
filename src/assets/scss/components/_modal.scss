@@ -56,8 +56,10 @@
 
   &__main{
     padding: 2.4rem 2.4rem 0;
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
   }
 
   &__heading{
@@ -74,6 +76,9 @@
 
   &__body{
     margin: 0 0 2.4rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
   }
 
   &__controls{
@@ -86,5 +91,9 @@
     &:last-child{
       margin: 0;
     }
+  }
+
+  &__policy{
+    margin-top: auto;
   }
 }

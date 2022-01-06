@@ -1,0 +1,125 @@
+.reviews-section{
+
+  &__heading{
+    @include media(">=lg"){
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 0 4rem;
+    }
+
+    @include media(">=xl"){
+      margin: 0 0 5.9rem;
+    }
+  }
+
+  &__landing-heading{
+    margin: 0 0 .83em;
+    text-align: center;
+
+    @include media(">=lg"){
+      margin: 0;
+      text-align: left;
+    }
+  }
+
+  &__nav{
+    display: none;
+
+    @include media(">=lg"){
+      display: flex;
+      align-items: center;
+      padding: 0 0 0 2rem;
+    }
+  }
+
+  &__nav-item{
+    cursor: pointer;
+    color: $primary;
+
+    &[aria-disabled="true"]{
+      color: $primaryLighter;
+      cursor: default;
+    }
+  }
+
+  &__slider{
+    overflow: visible;
+  }
+
+  &__slide{
+    background-color: $white;
+    border-radius: 3.2rem;
+    padding: 1.6rem 1.6rem 1.8rem;
+    @include animate(opacity)
+
+    @include media(">=1440px"){
+      padding: 2.4rem;
+    }
+
+    &:not(.swiper-slide-active):not(.swiper-slide-next){
+      opacity: .6;
+    }
+  }
+
+  &__slide-heading{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+            "photo name"
+            "photo position";
+    margin: 0 0 2.4rem;
+    grid-gap: .8rem 3.2rem;
+  }
+
+  &__slide-photo{
+    grid-area: photo;
+    position: relative;
+  }
+
+  &__slide-logo{
+    position: absolute;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: .8rem;
+    object-fit: cover;
+    right: 0;
+    bottom: 1rem;
+    transform: translateX(50%);
+  }
+
+  &__slide-photo-item{
+    display: block;
+    width: 9.6rem;
+    height: 9.6rem;
+    object-fit: cover;
+    border-radius: 1.6rem;
+  }
+
+  &__slide-name{
+    grid-area: name;
+    align-self: end;
+    font-weight: 500;
+    font-size: 2rem;
+
+    @include media(">=1440px"){
+      font-size: 2.8rem;
+    }
+  }
+
+  &__slide-position{
+    grid-area: position;
+    align-self: start;
+    color: $secondaryDarker2;
+
+    @include media(">=1440px"){
+      font-size: 2.4rem;
+    }
+  }
+
+  &__slide-body{
+    @include media(">=1440px"){
+      font-size: 2.4rem;
+    }
+  }
+}

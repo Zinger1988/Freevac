@@ -1,0 +1,50 @@
+.landing{
+
+  &__main-section{
+    margin: 0 auto 4.6rem;
+
+    @include media(">=xl"){
+      margin: 0 auto 10rem;
+    }
+
+    @include media(">=1440px"){
+      margin: 0 auto 15rem;
+    }
+  }
+
+  &__tagline-section,
+  &__tagline-section-last{
+    margin: 0 0 6.6rem;
+  }
+
+  &__tagline-section-last{
+
+    @include media(">=md"){
+      margin: 0 0 10rem;
+    }
+
+    @include media(">=xl"){
+      margin: 0 0 12rem;
+    }
+  }
+
+  &__features-section{
+    margin: 0 0 3.4rem;
+
+    @include media(">=md"){
+      margin: 0 0 10rem;
+    }
+
+    @include media(">=lg"){
+      margin: 0 auto 10rem;
+    }
+
+    @include media(">=1440px"){
+      margin: 0 auto 12rem;
+    }
+  }
+
+  &__reviews-section {
+    margin: 0 0 100px;
+  }
+}

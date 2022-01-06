@@ -13,6 +13,30 @@
     &:last-child{
       margin-bottom: 0;
     }
+
+    &.smooth-scroll-target{
+      position: relative;
+
+      * { z-index: 1; }
+
+      &::after{
+        content: "";
+        position: absolute;
+        z-index: 0;
+        left: -1.25rem;
+        top: -1.25rem;
+        right: -1.25rem;
+        bottom: -1.25rem;
+        border-radius: 16px;
+        border: 1px solid rgba($primary, .5);
+        box-shadow: inset 0 0 0 1px rgba($primary, .5);
+        animation: blink-border infinite ease-in-out 1s;
+
+        @include media(">=lg"){
+          border-radius: 18px;
+        }
+      }
+    }
   }
 
   &__title{
@@ -28,10 +52,20 @@
       font-size: $fontSize28;
       @include calcLineHeight($fontSize28);
     }
+
+    &--counter{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 
   &__balloon{
     margin: 0 0 2.2rem;
+  }
+
+  &__policy{
+    margin-top: auto;
   }
 
   &--alt{
@@ -50,6 +84,12 @@
     padding: 0;
     background-color: transparent;
     border-radius: 0;
+  }
+
+  &--alt4{
+    @include media(">=md"){
+      padding: 3.2rem;
+    }
   }
 
   &--style {
@@ -71,5 +111,24 @@
     @include media(">=lg"){
       padding-right: 3.2rem;
     }
+  }
+
+  &--relative{
+    position: relative;
+  }
+}
+
+@keyframes blink-pseudo {
+  0% {
+    border: 1px solid rgba($primary, .5);
+    box-shadow: inset 0 0 0 1px rgba($primary, .5);
+  }
+  50% {
+    border: 1px solid rgba($primary, 0);
+    box-shadow: inset 0 0 0 1px rgba($primary, 0);
+  }
+  100% {
+    border: 1px solid rgba($primary, .5);
+    box-shadow: inset 0 0 0 1px rgba($primary, .5);
   }
 }

@@ -1,0 +1,44 @@
+.tagline-section{
+
+  $this: &;
+
+  &__holder{
+    text-align: center;
+
+    @include media(">=lg"){
+      text-align: left;
+      width: 49.38%;
+    }
+  }
+
+  &__balloon{
+    margin: 0 0 2.4rem;
+    max-width: 69%;
+
+    @include media(">=lg"){
+      width: auto;
+      margin: 0 0 4.4rem;
+    }
+  }
+
+  &__landing-heading{
+    margin: 0 0 1em;
+    text-align: center;
+
+    @include media(">=lg"){
+      text-align: left;
+    }
+  }
+
+  &__btn{
+    margin: 0;
+  }
+
+  &--wide{
+    @include media(">=lg") {
+      #{$this}__holder {
+        width: 75.704%;
+      }
+    }
+  }
+}
