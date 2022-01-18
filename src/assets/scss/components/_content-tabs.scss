@@ -1,0 +1,87 @@
+.content-tabs{
+
+  $this: &;
+
+  &__head{
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    margin: 0 0 .8rem;
+
+    @include media(">=lg"){
+      margin: 0 0 1.6rem;
+    }
+  }
+
+  &__btn{
+    @extend %buttonreset;
+    font-size: 1.6rem;
+    background-color: $white;
+    color: $black;
+    padding: 1.2rem 1.6rem;
+    border-radius: .8rem;
+    margin: 0 .8rem 0 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include animate(background-color);
+
+    @include media(">=lg"){
+      flex: 1 1 auto;
+    }
+
+    &[data-tab-active]{
+      background-color: $primary;
+      color: $white;
+      cursor: default;
+
+      #{$this}__btn-counter{
+        color: $primaryLighter2;
+      }
+
+      #{$this}__btn-icon{
+        color: $white;
+      }
+    }
+
+    &--new{
+      #{$this}__btn-icon{
+        color: $primary;
+      }
+    }
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  &__btn-icon{
+    margin: 0 1.6rem 0 0;
+    color: $secondaryDarker2;
+  }
+
+  &__btn-text{
+    white-space: nowrap;
+  }
+
+  &__btn-counter{
+    color: $secondaryDarker2;
+  }
+
+  &__content-empty{
+    margin: 0 0 .8rem;
+
+    @include media(">=lg"){
+      margin: 0 0 1.6rem;
+    }
+  }
+
+  &__card{
+    margin: 0 0 .8rem;
+
+    @include media(">=md"){
+      margin: 0 0 1.6rem;
+    }
+  }
+}

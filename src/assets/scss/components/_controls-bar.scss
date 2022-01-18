@@ -1,0 +1,9 @@
+.controls-bar{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  grid-gap: .8rem;
+
+  @include media(">=lg"){
+    grid-gap: 1.6rem;
+  }
+}

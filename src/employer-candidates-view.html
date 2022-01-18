@@ -1,0 +1,523 @@
+---
+layout: vacancy-view
+title: Vacancy
+---
+
+<div class="grid grid--on-lg">
+
+    <div class="grid__col--12">
+        <div class="controls-bar vacancy-view__controls-bar">
+            <button class="btn btn--size--regular btn--style--white-alt">
+                <i class="icon icon--size--sm icon--arrowangleleft-16 btn__icon"></i>
+                <span class="btn__text">Назад</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="grid__col--4">
+        <div class="vacancy-view__sb">
+
+            <div class="user-info user-info--position vacancy-view__vacancy-info">
+                <div class="user-info__block user-info__block--primary">
+                    <div class="user-info__name">
+                        Продуктовый<br>
+                        дизайнер
+                    </div>
+                    <div class="user-info__link">
+                        <div class="user-info__link-holder">
+                            <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
+                            <a href="#" target="_blank" class="user-info__link-anchor icon icon--size--md icon--link-24"></a>
+                        </div>
+                        <input class="input-text input-text--style--primary user-info__link-input" id="freevak-link" readonly value="freevac.ua/po-f56" type="text">
+                    </div>
+                </div><!--user info block-->
+            </div><!--user info-->
+
+            <nav class="sb-nav vacancy-view__nav">
+                <ul class="sb-nav__list">
+                    <li class="sb-nav__item">
+                    <a class="sb-nav__link" href="#">
+                        <span class="sb-nav__link-text">Вакансия</span>
+                    </a>
+                    </li>
+                    <li class="sb-nav__item">
+                        <span class="sb-nav__link sb-nav__link--active">
+                            <span class="sb-nav__link-text">Кандидаты</span>
+                            <span class="sb-nav__link-counter">10</span>
+                        </span>
+                    </li>
+                </ul>
+            </nav><!-- sb nav -->
+
+        </div><!--profile video-->
+    </div><!-- grid col -->
+
+    <div class="grid__col--8 vacancy-view__content-wrapper">
+
+        <div class="vacancy-view__content">
+
+            <div class="content-tabs">
+                <div class="content-tabs__head">
+                    <button class="content-tabs__btn" data-tab-group="employer-cabinet" data-tab-anchor="all" data-tab-active>
+                        <span class="content-tabs__btn-text">Все</span>
+                        <sup class="content-tabs__btn-counter">26</sup>
+                    </button>
+                    <button class="content-tabs__btn" data-tab-group="employer-cabinet" data-tab-anchor="favorites">
+                        <i class="icon icon--size--sm icon--star-outline-16 content-tabs__btn-icon"></i>
+                        <span class="content-tabs__btn-text">Избранные</span>
+                    </button>
+                </div>
+                <div class="content-tabs__body">
+                    <div class="content-tabs__body-item" data-tab-group="employer-cabinet" data-tab-content-id="all">
+
+                        <!--TODO Если карточек нет - показываем заглушку -->
+
+                        <div class="content-empty content-tabs__content-empty">
+                            <img class="content-empty__img" src="assets/img/content-empty/04.jpg" alt="image">
+                            <div class="content-empty__text">Тут будут кандидаты, которые ответили на вакансии</div>
+                        </div><!-- content empty -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Анатолий Дементиевский
+                                        <i class="icon icon--size--md icon--star-outline-24 card__title-fav"></i>
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Продуктовый дизайнер
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__company">
+                                        <div class="card__company-logo">
+                                            <img class="card__company-img" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                        </div>
+                                        <div class="card__company-name">Teradek</div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Андрей Стерненко
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Long Junior UI/UX designer Health & Fitness
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__status">
+                                        <div class="card__status-item card__status-item--primaryLighter2">
+                                            <i class="icon icon--size--sm icon--circle-fill-16 card__status-icon"></i>
+                                            <div class="card__status-text">Новый</div>
+                                        </div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Анатолий Дементиевский
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Продуктовый дизайнер
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__company">
+                                        <div class="card__company-logo">
+                                            <img class="card__company-img" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                        </div>
+                                        <div class="card__company-name">Teradek</div>
+                                    </div>
+                                    <div class="card__status">
+                                        <div class="card__status-item card__status-item--primaryLighter2">
+                                            <i class="icon icon--size--sm icon--circle-fill-16 card__status-icon"></i>
+                                            <div class="card__status-text">Новый</div>
+                                        </div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Юлий Резкий
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Senior Java developer
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Анатолий Дементиевский
+                                        <i class="icon icon--size--md icon--star-outline-24 card__title-fav"></i>
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Продуктовый дизайнер
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__company">
+                                        <div class="card__company-logo">
+                                            <img class="card__company-img" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                        </div>
+                                        <div class="card__company-name">Teradek</div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Андрей Стерненко
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Long Junior UI/UX designer Health & Fitness
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__status">
+                                        <div class="card__status-item card__status-item--primaryLighter2">
+                                            <i class="icon icon--size--sm icon--circle-fill-16 card__status-icon"></i>
+                                            <div class="card__status-text">Новый</div>
+                                        </div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Анатолий Дементиевский
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Продуктовый дизайнер
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__company">
+                                        <div class="card__company-logo">
+                                            <img class="card__company-img" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                        </div>
+                                        <div class="card__company-name">Teradek</div>
+                                    </div>
+                                    <div class="card__status">
+                                        <div class="card__status-item card__status-item--primaryLighter2">
+                                            <i class="icon icon--size--sm icon--circle-fill-16 card__status-icon"></i>
+                                            <div class="card__status-text">Новый</div>
+                                        </div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Юлий Резкий
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Senior Java developer
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Анатолий Дементиевский
+                                        <i class="icon icon--size--md icon--star-outline-24 card__title-fav"></i>
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Продуктовый дизайнер
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__company">
+                                        <div class="card__company-logo">
+                                            <img class="card__company-img" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                        </div>
+                                        <div class="card__company-name">Teradek</div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Андрей Стерненко
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Long Junior UI/UX designer Health & Fitness
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <button class="btn btn--size--lg btn--fluid btn--style--primary-lighter">
+                            <i class="icon icon--size--lg icon--rotate-48 btn__icon"></i>
+                            <span class="btn__text">Загрузить еще</span>
+                        </button>
+                    </div><!-- content tabs body item -->
+
+                    <div class="content-tabs__body-item" data-tab-group="employer-cabinet" data-tab-content-id="favorites">
+
+                        <!--TODO Если карточек нет - показываем заглушку -->
+
+                        <div class="content-empty content-tabs__content-empty">
+                            <img class="content-empty__img" src="assets/img/content-empty/06.jpg" alt="image">
+                            <div class="content-empty__text">Тут будет список избранных кандидатов</div>
+                        </div><!-- content empty -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Анатолий Дементиевский
+                                        <i class="icon icon--size--md icon--star-outline-24 card__title-fav"></i>
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Продуктовый дизайнер
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Анатолий Дементиевский
+                                        <i class="icon icon--size--md icon--star-outline-24 card__title-fav"></i>
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Продуктовый дизайнер
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Анатолий Дементиевский
+                                        <i class="icon icon--size--md icon--star-outline-24 card__title-fav"></i>
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    Продуктовый дизайнер
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <!--TODO Если карточек больше 10 - показываем кнопку "Загрузить еще", после загрузки скролл должен оставться на том же самом месте -->
+
+                        <button class="btn btn--size--lg btn--fluid btn--style--primary-lighter">
+                            <i class="icon icon--size--lg icon--rotate-48 btn__icon"></i>
+                            <span class="btn__text">Загрузить еще</span>
+                        </button>
+                    </div><!-- content tabs body item -->
+
+                </div><!-- content tabs body -->
+
+            </div><!-- content tabs -->
+
+        </div><!-- profile content -->
+    </div><!-- grid col -->
+</div><!-- grid -->
+
+<!--<button class="btn btn&#45;&#45;size&#45;&#45;regular btn&#45;&#45;style&#45;&#45;primary">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;sm icon&#45;&#45;arrowangleright-16 btn__icon"></i>-->
+<!--    <span class="btn__text">Button</span>-->
+<!--</button>-->
+
+<!--<button class="btn btn&#45;&#45;size&#45;&#45;regular btn&#45;&#45;style&#45;&#45;secondary">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;sm icon&#45;&#45;arrowangleright-16 btn__icon"></i>-->
+<!--</button>-->
+
+<!--<button class="btn btn&#45;&#45;size&#45;&#45;regular btn&#45;&#45;style&#45;&#45;secondary">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;sm icon&#45;&#45;arrowangleright-16 btn__icon"></i>-->
+<!--    <span class="btn__text">Button</span>-->
+<!--</button>-->
+
+<!--<button class="btn btn&#45;&#45;size&#45;&#45;regular btn&#45;&#45;style&#45;&#45;disabled">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;sm icon&#45;&#45;arrowangleright-16 btn__icon"></i>-->
+<!--    <span class="btn__text">Button</span>-->
+<!--</button>-->
+
+<!--<button class="btn btn&#45;&#45;size&#45;&#45;regular btn&#45;&#45;style&#45;&#45;accent">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;sm icon&#45;&#45;arrowangleright-16 btn__icon"></i>-->
+<!--    <span class="btn__text">Button</span>-->
+<!--</button>-->
+
+<!--<button class="btn btn&#45;&#45;size&#45;&#45;regular btn&#45;&#45;style&#45;&#45;primary-lighter">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;sm icon&#45;&#45;arrowangleright-16 btn__icon"></i>-->
+<!--    <span class="btn__text">Button</span>-->
+<!--</button>-->
+
+<!--<button class="btn btn&#45;&#45;size&#45;&#45;lg btn&#45;&#45;style&#45;&#45;primary-lighter">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;lg icon&#45;&#45;camera-48 btn__icon"></i>-->
+<!--    <span class="btn__text">Button</span>-->
+<!--</button>-->
+
+<!--<button class="btn btn&#45;&#45;size&#45;&#45;xl btn&#45;&#45;style&#45;&#45;accent">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;lg icon&#45;&#45;download-48 btn__icon"></i>-->
+<!--    <span class="btn__text">Button</span>-->
+<!--</button>-->
+
+<!--<button class="contact-btn contact-btn&#45;&#45;style&#45;&#45;blue">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;md icon&#45;&#45;facebook-24 contact-btn__icon"></i>-->
+<!--    <span class="contact-btn__text">facebook</span>-->
+<!--</button>-->
+
+<!--<button class="contact-btn contact-btn&#45;&#45;style&#45;&#45;muted-red">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;md icon&#45;&#45;instagram-24 contact-btn__icon"></i>-->
+<!--    <span class="contact-btn__text">instagram</span>-->
+<!--</button>-->
+
+<!--<button class="contact-btn contact-btn&#45;&#45;style&#45;&#45;primary">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;md icon&#45;&#45;phone-24 contact-btn__icon"></i>-->
+<!--    <span class="contact-btn__text">phone</span>-->
+<!--</button>-->
+
+<!--<button class="contact-btn contact-btn&#45;&#45;style&#45;&#45;light-blue">-->
+<!--    <i class="icon icon&#45;&#45;size&#45;&#45;md icon&#45;&#45;telegram-24 contact-btn__icon"></i>-->
+<!--    <span class="contact-btn__text">telegram</span>-->
+<!--</button>-->
+<!--<br>-->
+<!--<input class="input-text" type="text">-->
+<!--<br><br>-->
+<!--<input class="input-text" type="text" placeholder="Placeholder">-->
+<!--<br><br>-->
+<!--<input class="input-text input-text&#45;&#45;iconic input-text&#45;&#45;iconic&#45;&#45;angle-right" type="text">-->
+<!--<br><br>-->
+<!--<div class="input-row">-->
+<!--    <div class="input-row__title">Title</div>-->
+<!--    <input class="input-text input-row__input-text" type="text" placeholder="Placeholder">-->
+<!--</div>-->
+<!--<br>-->
+<!--<div class="input-row">-->
+<!--    <div class="input-row__title">Title</div>-->
+<!--    <input class="input-text input-text&#45;&#45;iconic input-text&#45;&#45;iconic&#45;&#45;angle-right input-row__input-text" type="text" placeholder="Placeholder">-->
+<!--</div>-->
+
+<!--<div class="balloon">Расскажу немного о себе</div>-->
+<!--<div class="balloon balloon&#45;&#45;right">Расскажу немного о себе</div>-->
+<!--<div class="balloon balloon&#45;&#45;style&#45;&#45;accent">Расскажу немного о себе</div>-->
+<!--<div class="balloon balloon&#45;&#45;style&#45;&#45;accent balloon&#45;&#45;right">Расскажу немного о себе</div>-->
+

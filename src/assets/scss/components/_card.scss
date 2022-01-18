@@ -1,0 +1,230 @@
+.card{
+
+  $this: &;
+
+  &:hover{
+    #{$this}__pointer{
+      background-color: $primary;
+      color: $white;
+    }
+  }
+
+  &:active{
+    #{$this}__pointer{
+      background-color: $secondaryDarker2;
+    }
+  }
+
+  &__link{
+    @extend %linkreset;
+    display: block;
+    padding: 1.6rem 1.6rem 2.4rem;
+    border-radius: 2.4rem;
+    background-color: $white;
+
+    @include media(">=md"){
+      padding: 3.2rem;
+    }
+  }
+
+  &__header{
+    margin: 0 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 0 1.6rem;
+
+    @include media(">=md"){
+      margin: 0 0 1.2rem;
+    }
+  }
+  
+  &__company{
+    display: flex;
+    align-items: center;
+    margin: 0 2rem 0 0;
+    grid-column: 1 / 2;
+    grid-row: span 1;
+    min-height: 4.6rem;
+    min-width: 0;
+  }
+
+  &__company-logo{
+    position: relative;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: .8rem;
+    box-shadow: inset 0 0 0 1px $secondaryDarker;
+    margin: 0 1.2rem 0 0;
+
+    &::before{
+      content: "\e855";
+      font: 1.6rem 'Fontello';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      color: $black;
+      z-index: 1;
+    }
+  }
+
+  &__company-img{
+    width: 3.2rem;
+    height: 3.2rem;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    border-radius: .8rem;
+    border: 1px solid $secondaryDarker;
+  }
+
+  &__company-name{
+    font-size: $fontSize18;
+    font-weight: 500;
+    color: $secondaryDarker2;
+    @extend %nowrap;
+  }
+
+  &__badges{
+    display: flex;
+    align-items: center;
+    grid-column: 2 / 2;
+    grid-row: 1 / 3;
+    align-self: start;
+    min-height: 4.6rem;
+  }
+
+  &__badges-item{
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    margin: 0 1.6rem 0 0;
+    color: $secondaryDarker2;
+
+    &:last-child{
+      margin: 0;
+    }
+
+    &--primary{
+      color: $primary;
+    }
+  }
+
+  &__badges-icon{
+    margin: 0 .8rem 0 0;
+  }
+
+  &__badges-counter{
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+  }
+
+  &__status{
+    grid-column: 2 / 2;
+    grid-row: 1 / 3;
+  }
+
+  &__status-item{
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    grid-column: 2 / 2;
+    grid-row: 1 / 3;
+
+    &--primaryLighter2{
+      background-color: $primaryLighter2;
+      color: $primary;
+    }
+  }
+
+  &__status-icon{
+    margin: 0 1rem 0 0;
+  }
+
+  &__status-text{
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+  }
+
+  &__title{
+    font-weight: bold;
+    font-size: $fontSize28;
+    color: $secondaryDarker4;
+    margin: 0 0 .4rem;
+    @include calcLineHeight($fontSize28);
+    grid-column-start: 1;
+    grid-row: span 1;
+  }
+
+  &__title-fav{
+    color: $secondaryDarker2;
+    margin-left: 1rem;
+  }
+
+  &__details{
+    color: $secondaryDarker2;
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+  }
+
+  &__details-list{
+    @extend %listreset;
+  }
+
+  &__details-item{
+    display: inline-block;
+
+    &::before{
+      content: "\2022\00A0";
+    }
+  }
+
+  &__footer{
+    margin: 4.8rem 0 0 0;
+    padding: 0 5.8rem 0 0;
+    position: relative;
+    color: $secondaryDarker2;
+
+    @include media(">=md"){
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__salary{
+    font-size: $fontSize22;
+    font-weight: bold;
+    margin: 0 0 .4rem;
+    @include calcLineHeight($fontSize22);
+
+    @include media(">=md"){
+      padding-right: 1.6rem;
+      margin-right: 1.6rem;
+      position: relative;
+
+      &::after{
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: .2rem;
+        height: 58.82%;
+        background-color: $secondaryDarker;
+      }
+    }
+  }
+
+  &__time{
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+  }
+
+  &__pointer{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

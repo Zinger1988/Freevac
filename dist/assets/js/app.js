@@ -730,7 +730,7 @@ const SiteJS = {
         this.replaceElements();
         this.videoPlayer();
         this.typeDisplay();
-
+        this.fileAddImage();
         this.onScrollToElement({
             selector: '#steps-tile',
             onReaching(element){
@@ -847,6 +847,58 @@ const SiteJS = {
             })
         }
     },
+    fileAddImage: function(){
+        const wrapper = document.querySelectorAll('.add-file');
+
+        wrapper.forEach(item => {
+
+            const inputFile = item.querySelector('.add-file__control');
+            const fileListOutput = item.querySelector(`.add-file__img-holder`);
+            const clearFile = item.querySelector('.add-file__clear');
+            const inputText = item.querySelector('.add-file__input-text');
+
+            inputFile.addEventListener('change', () => {
+
+                fileListOutput.classList.remove('error');
+                fileListOutput.innerHTML = '';
+
+                for(let i = 0; i < inputFile.files.length; i++){
+
+                    const elem = document.createElement('div');
+                    elem.innerHTML = `<img src="" class="add-file__img" alt="image">`;
+
+                    const reader = new FileReader();
+                    reader.onload = function(){
+                        const dataURL = reader.result;
+                        const output = elem.querySelector('.add-file__img');
+                        output.src = dataURL;
+                    };
+
+                    reader.onerror = function (event) {
+                        fileListOutput.innerHTML = "";
+                        fileListOutput.classList.add('error');
+                        elem.innerHTML = `<div class="add-file_error">An error occurred during the operation. Aborting</div>`;
+                        reader.abort();
+                    };
+
+                    reader.readAsDataURL(inputFile.files[i]);
+
+                    fileListOutput.prepend(elem);
+                }
+            })
+
+            if(clearFile) {
+                clearFile.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    fileListOutput.classList.remove('error');
+                    fileListOutput.innerHTML = '';
+                    inputFile.value = '';
+                    inputText.value = '';
+                })
+            }
+
+        })
+    },
     onScrollToElement({selector, onReaching = () => undefined, onLeaving = () => undefined}){
         const elementCollection = document.querySelectorAll(selector);
 
@@ -906,6 +958,7 @@ const SiteJS = {
 
                 arrowLeft.addEventListener('click', (e) => {
 
+                    e.stopPropagation();
                     const prevElement = elem.previousElementSibling;
 
                     if(prevElement){
@@ -917,6 +970,7 @@ const SiteJS = {
 
                 arrowRight.addEventListener('click', (e) => {
 
+                    e.stopPropagation();
                     const nextElement = elem.nextElementSibling;
 
                     if(nextElement){

@@ -1,0 +1,22 @@
+.employer-cabinet{
+
+  &__sb-nav{
+    padding: .8rem;
+    border-radius: 2.4rem;
+    background-color: $white;
+    margin: 0 0 .8rem;
+
+    @include media(">=lg"){
+      padding: 1.6rem;
+      margin: 0;
+    }
+  }
+
+  &__content-tile{
+    margin: 0 0 .8rem;
+
+    @include media(">=lg"){
+      margin: 0 0 1.6rem;
+    }
+  }
+}

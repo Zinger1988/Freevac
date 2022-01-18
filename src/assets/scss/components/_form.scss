@@ -10,6 +10,12 @@
     }
   }
 
+  &__group-subtitle{
+    font-size: 1.2rem;
+    color: $secondaryDarker2;
+    margin: 0 0 1.6rem;
+  }
+
   &__input-row{
     margin: 0 0 .8rem;
 
@@ -26,5 +32,37 @@
     border: none;
     border-bottom: 1px solid $secondary;
     margin: 0 0 2.4rem;
+  }
+}
+
+.add-file {
+
+  .form__group{
+    position: relative;
+  }
+
+  &__img-holder{
+    position: absolute;
+    top: 50%;
+    right: 1.2rem;
+    transform: translateY(-50%);
+
+    &:empty{
+      display: none;
+    }
+  }
+
+  &__input-text{
+    padding-right: 5rem;
+  }
+
+  &__img{
+    display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+    object-fit: cover;
+    border: 1px solid $secondaryDarker;
+    border-radius: .8rem;
+    background-color: $white;
   }
 }

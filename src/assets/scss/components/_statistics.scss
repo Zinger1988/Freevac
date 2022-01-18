@@ -1,0 +1,71 @@
+.statistics{
+
+  &__list{
+    @extend %listreset;
+    display: flex;
+    align-items: center;
+  }
+
+  &__item{
+    margin: 0 0 2.4rem;
+    padding: 0 0 2.4rem;
+    border-bottom: 1px solid $accentLighter;
+
+    @include media(">=lg"){
+      display: flex;
+      width: 100%;
+      align-items: center;
+    }
+
+    &:last-child{
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+  }
+
+  &__list{
+    @include media(">=lg"){
+      flex: 0 0 70%;
+      padding: 0 0 0 2rem;
+      margin: 0 0 0 auto;
+    }
+
+    @include media(">=xl"){
+      flex: 0 0 54%;
+    }
+  }
+
+  &__list-item{
+    flex: 1 0 33.333%;
+  }
+
+  &__title{
+    font-size: $fontSize22;
+    @include calcLineHeight($fontSize22);
+    margin: 0 0 1.6rem;
+
+    @include media(">=lg"){
+      font-size: $fontSize24;
+      @include calcLineHeight($fontSize24);
+      margin: 0;
+    }
+  }
+
+  &__list-param{
+    font-size: $fontSize24;
+    font-weight: bold;
+    margin: 0;
+    @include calcLineHeight($fontSize24);
+
+    @include media(">=lg"){
+      font-size: $fontSize28;
+      @include calcLineHeight($fontSize28);
+    }
+  }
+
+  &__list-attr{
+    font-size: 1.6rem;
+  }
+
+}

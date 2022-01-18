@@ -1,0 +1,77 @@
+---
+layout: employer-cabinet
+title: Employer
+---
+
+<div class="grid grid--on-lg">
+
+    <div class="grid__col--4">
+
+        <nav class="employer-cabinet__sb-nav sb-nav">
+            <ul class="sb-nav__list">
+                <li class="sb-nav__item">
+                    <span class="sb-nav__link sb-nav__link--step sb-nav__link--step-completed">
+                        <span class="sb-nav__link-text">О вакансии</span>
+                    </span>
+                </li>
+                <li class="sb-nav__item">
+                    <span class="sb-nav__link sb-nav__link--step sb-nav__link--active">
+                        <span class="sb-nav__link-text">Вопросы</span>
+                    </span>
+                </li>
+                <li class="sb-nav__item">
+                    <span class="sb-nav__link sb-nav__link--step">
+                        <span class="sb-nav__link-text">Требования</span>
+                    </span>
+                </li>
+                <li class="sb-nav__item">
+                    <span class="sb-nav__link sb-nav__link--step">
+                        <span class="sb-nav__link-text">Обязанности</span>
+                    </span>
+                </li>
+                <li class="sb-nav__item">
+                    <span class="sb-nav__link sb-nav__link--step">
+                        <span class="sb-nav__link-text">Условия работы</span>
+                    </span>
+                </li>
+            </ul>
+        </nav><!-- sb nav -->
+
+    </div><!-- grid col -->
+
+    <div class="grid__col--8">
+
+        <div class="employer-cabinet__content">
+
+            <article class="content-tile content-tile--alt2 employer-cabinet__content-tile">
+
+                <section class="content-tile__section">
+
+                    <h2 class="content-tile__title">Вопросы</h2>
+
+                    <div class="content-tile__desc">
+                        На эти вопросы кандидат ответит в видео формате.
+                    </div>
+
+                    {{> vacancy-questions-tiles}}
+
+                </section><!-- content tile section -->
+
+            </article><!-- content tile -->
+
+            <div class="employer-cabinet__controls-bar controls-bar">
+                <button class="btn btn--size--lg btn--fluid btn--style--secondary-alt controls-bar__btn">
+                    <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                    <span class="btn__text">Назад</span>
+                </button>
+                <button class="btn btn--size--lg btn--fluid btn--style--accent controls-bar__btn">
+                    <i class="icon icon--size--lg icon--arrowright-48 btn__icon"></i>
+                    <span class="btn__text">Продолжить</span>
+                </button>
+            </div>
+
+        </div><!-- content -->
+
+    </div><!-- grid col -->
+
+</div><!-- grid -->

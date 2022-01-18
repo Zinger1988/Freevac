@@ -1,0 +1,227 @@
+---
+layout: employer-cabinet
+title: Employer
+---
+
+<div class="grid grid--on-lg">
+
+    <div class="grid__col--4">
+
+        <nav class="employer-cabinet__sb-nav sb-nav">
+            <ul class="sb-nav__list">
+                <li class="sb-nav__item">
+                    <span class="sb-nav__link sb-nav__link--active" href="#">
+                        <span class="sb-nav__link-text">Вакансии</span>
+                        <span class="sb-nav__link-counter">4</span>
+                    </span>
+                </li>
+                <li class="sb-nav__item">
+                    <a class="sb-nav__link" href="#">
+                        <span class="sb-nav__link-text">Кандидаты</span>
+                        <span class="sb-nav__link-counter">12</span>
+                    </a>
+                </li>
+                <li class="sb-nav__item">
+                    <a class="sb-nav__link" href="#">
+                        <span class="sb-nav__link-text">Настройки</span>
+                    </a>
+                </li>
+            </ul>
+        </nav><!-- sb nav -->
+
+    </div><!-- grid col -->
+
+    <div class="grid__col--8">
+
+        <div class="employer-cabinet__content">
+
+            <div class="content-tabs">
+                <div class="content-tabs__head">
+                    <button class="content-tabs__btn" data-tab-group="employer-cabinet" data-tab-anchor="all" data-tab-active>
+                        <span class="content-tabs__btn-text">Все</span>
+                        <sup class="content-tabs__btn-counter">21</sup>
+                    </button>
+                    <button class="content-tabs__btn" data-tab-group="employer-cabinet" data-tab-anchor="active">
+                        <span class="content-tabs__btn-text">Активные</span>
+                        <sup class="content-tabs__btn-counter">12</sup>
+                    </button>
+                    <button class="content-tabs__btn" data-tab-group="employer-cabinet" data-tab-anchor="archive">
+                        <span class="content-tabs__btn-text">Архив</span>
+                    </button>
+                </div>
+                <div class="content-tabs__body">
+
+                    <div class="content-tabs__body-item" data-tab-group="employer-cabinet" data-tab-content-id="all">
+
+                        <!--TODO Если карточек нет - показываем заглушку -->
+
+                        <div class="content-empty content-tabs__content-empty">
+                            <img class="content-empty__img" src="assets/img/content-empty/01.jpg" alt="image">
+                            <div class="content-empty__text">Тут будут созданные вакансии</div>
+                        </div><!-- content empty -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Продуктовый дизайнер
+                                    </h3>
+                                </div>
+
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__company">
+                                        <div class="card__company-logo">
+                                            <img class="card__company-img" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                        </div>
+                                        <div class="card__company-name">Teradek</div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Senior Java developer
+                                    </h3>
+                                </div>
+
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__badges">
+                                        <div class="card__badges-item card__badges-item--primary">
+                                            <i class="card__badges-icon icon icon--size--md icon--circle-fill-24"></i>
+                                            <div class="card__badges-counter">10</div>
+                                        </div>
+                                        <div class="card__badges-item">
+                                            <i class="card__badges-icon icon icon--size--md icon--pin-24"></i>
+                                            <div class="card__badges-counter">3</div>
+                                        </div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Middle UI/UX дизайнер
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    <ul class="card__details-list">
+                                        <li class="card__details-item">Киев</li>
+                                        <li class="card__details-item">Удалённая</li>
+                                        <li class="card__details-item">от 3 лет</li>
+                                        <li class="card__details-item">Fintech</li>
+                                    </ul>
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <div class="card__company">
+                                        <div class="card__company-logo">
+                                            <img class="card__company-img" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                        </div>
+                                        <div class="card__company-name">Teradek</div>
+                                    </div>
+                                    <div class="card__badges">
+                                        <div class="card__badges-item card__badges-item--primary">
+                                            <i class="card__badges-icon icon icon--size--md icon--circle-fill-24"></i>
+                                            <div class="card__badges-counter">10</div>
+                                        </div>
+                                        <div class="card__badges-item">
+                                            <i class="card__badges-icon icon icon--size--md icon--pin-24"></i>
+                                            <div class="card__badges-counter">3</div>
+                                        </div>
+                                    </div>
+                                    <h3 class="card__title">
+                                        Продуктовый дизайнер длиннющее название вакансии
+                                    </h3>
+                                </div>
+
+                                <div class="card__details">
+                                    <ul class="card__details-list">
+                                        <li class="card__details-item">Киев</li>
+                                        <li class="card__details-item">Удалённая</li>
+                                        <li class="card__details-item">от 3 лет</li>
+                                        <li class="card__details-item">Fintech</li>
+                                    </ul>
+                                </div>
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <button class="btn btn--size--lg btn--fluid btn--style--primary-lighter">
+                            <i class="icon icon--size--lg icon--plus-24 btn__icon"></i>
+                            <span class="btn__text">Создать вакансию</span>
+                        </button>
+                    </div><!-- content tabs body item -->
+
+                    <div class="content-tabs__body-item" data-tab-group="employer-cabinet" data-tab-content-id="active">
+
+                        <!--TODO Если карточек нет - показываем заглушку -->
+
+                        <div class="content-empty content-tabs__content-empty">
+                            <img class="content-empty__img" src="assets/img/content-empty/02.jpg" alt="image">
+                            <div class="content-empty__text">Тут будет список активных вакансий</div>
+                        </div><!-- content empty -->
+
+                        <button class="btn btn--size--lg btn--fluid btn--style--primary-lighter">
+                            <i class="icon icon--size--lg icon--plus-24 btn__icon"></i>
+                            <span class="btn__text">Создать вакансию</span>
+                        </button>
+                    </div><!-- content tabs body item -->
+
+                    <div class="content-tabs__body-item" data-tab-group="employer-cabinet" data-tab-content-id="archive">
+
+                        <!--TODO Если карточек нет - показываем заглушку -->
+
+                        <div class="content-empty content-tabs__content-empty">
+                            <img class="content-empty__img" src="assets/img/content-empty/03.jpg" alt="image">
+                            <div class="content-empty__text">Тут будет архив вакансий</div>
+                        </div><!-- content empty -->
+
+                        <button class="btn btn--size--lg btn--fluid btn--style--primary-lighter">
+                            <i class="icon icon--size--lg icon--plus-24 btn__icon"></i>
+                            <span class="btn__text">Создать вакансию</span>
+                        </button>
+                    </div><!-- content tabs body item -->
+
+                </div><!-- content tabs body -->
+
+            </div><!-- content tabs -->
+
+        </div><!-- content -->
+
+    </div><!-- grid col -->
+
+</div><!-- grid -->

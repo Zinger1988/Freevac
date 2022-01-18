@@ -3,6 +3,8 @@
   background-color: $white;
   padding: 2.4rem;
 
+  $this: &;
+
   &__section{
     margin: 0 0 2.4rem;
 
@@ -36,6 +38,17 @@
           border-radius: 18px;
         }
       }
+    }
+  }
+
+  &__desc{
+    font-size: $fontSize18;
+    margin: 0 0 2.4rem;
+    color: $secondaryDarker2;
+    @include calcLineHeight($fontSize18);
+
+    @include media(">=lg"){
+      margin: 0 0 4rem;
     }
   }
 
@@ -99,9 +112,18 @@
       color: $white;
     }
 
+    &--accent-lighter2 {
+      background-color: $accentLighter2;
+      color: $accent;
+    }
+
     &--primary-lighter {
       background-color: $primaryLighter2;
       color: $primary;
+
+      #{$this}__desc{
+        color: $primary;
+      }
     }
   }
 

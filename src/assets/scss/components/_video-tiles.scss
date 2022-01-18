@@ -26,6 +26,7 @@
     min-height: 19.3rem;
     width: 14rem;
     padding: 2rem 2rem 5.6rem;
+    cursor: pointer;
     @include animate(background-color color border-color);
 
     @include media(">=lg"){
@@ -53,10 +54,49 @@
       #{$this}__nav-btn{
         color: $primary;
       }
+
+      #{$this}__status--blink{
+        #{$this}__status-text{
+          display: none;
+
+          &--hidden{
+            display: block;
+          }
+        }
+      }
     }
 
     &:active{
       background-color: $primaryLighter2;
+    }
+
+    &--solid{
+      border: 2px solid $primary;
+
+      #{$this}__status{
+        color: $primary;
+      }
+
+      &:hover{
+        background-color: $primary;
+        color: $white;
+
+        #{$this}__status{
+          color: $white;
+        }
+
+        #{$this}__nav-btn{
+          color: $primaryLighter;
+        }
+      }
+
+      &:active{
+        color: $primaryLighter;
+
+        #{$this}__status{
+          color: $primaryLighter;
+        }
+      }
     }
 
     &--filled{
@@ -125,6 +165,12 @@
       font-size: 1.6rem;
       padding: 0 6rem 0 0;
     }
+
+    &--blink{
+      #{$this}__status-text--hidden{
+        display: none;
+      }
+    }
   }
 
   &__status-icon{
@@ -133,6 +179,7 @@
 
   &__status-text{
     font-weight: 500;
+    white-space: nowrap;
   }
 
   &__title{

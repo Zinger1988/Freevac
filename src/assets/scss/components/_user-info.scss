@@ -170,4 +170,13 @@
       border-radius: 16px;
     }
   }
+
+  &--position{
+    display: block;
+
+    #{$this}__block{
+      border-radius: 2.4rem;
+      min-height: 0;
+    }
+  }
 }

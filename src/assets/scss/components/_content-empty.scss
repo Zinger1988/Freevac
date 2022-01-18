@@ -1,0 +1,38 @@
+.content-empty{
+  border-radius: 2.4rem;
+  background-color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 37.6rem;
+  width: 100%;
+
+  @include media(">=xl"){
+    min-height: 0;
+  }
+
+  &__img{
+    border-radius: 2.4rem;
+    display: none;
+
+    @include media(">=xl"){
+      display: block;
+      flex: 0 0 41.75%;
+      width: 41.75%;
+    }
+  }
+
+  &__text{
+    font-size: $fontSize28;
+    @include calcLineHeight($fontSize28);
+    text-align: center;
+    font-weight: bold;
+    color: $secondaryDarker2;
+    padding: 2.8rem;
+
+    @include media(">=xl"){
+      text-align: left;
+      padding: 2.8rem 8.8rem 2.8rem 0;
+    }
+  }
+}

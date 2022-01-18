@@ -1,0 +1,135 @@
+.sb-nav{
+
+  $this: &;
+
+  &__list{
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    @extend %listreset;
+
+    @include media(">=lg"){
+      flex-direction: column;
+    }
+  }
+
+  &__item{
+    flex: 0 0 auto;
+    margin: 0 .8rem 0 0;
+
+    @include media(">=lg"){
+      margin: 0 0 1.6rem 0;
+    }
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  &__link{
+    @extend %linkreset;
+    background-color: $white;
+    color: $primaryLighter;
+    border-radius: 1.6rem;
+    display: flex;
+    align-items: center;
+    padding: .888em;
+    min-height: 4em;
+    font-size: 1.8rem;
+    @include animate(background-color color);
+
+    @include media(">=lg"){
+      font-size: 2.8rem;
+      min-height: 3.142em;
+      padding: .785em .888em;
+    }
+
+    &:hover:not(&--active):not(&--step){
+      background-color: $primaryLighter2;
+      color: $primary;
+
+      #{$this}__link-counter{
+        color: $white;
+        background-color: $primary;
+      }
+    }
+
+    &--step-completed{
+      color: $accentLighter;
+      padding-right: 7.6rem;
+      position: relative;
+
+      @include media(">=lg"){
+        padding-right: 8.8rem;
+      }
+
+      &::after{
+        content: "\e81e";
+        font: 2.4rem/1 "Fontello";
+        display: flex;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 1.2rem;
+        color: $white;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 1.6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: $accentLighter;
+
+        @include media(">=lg"){
+          right: 2.4rem;
+        }
+      }
+    }
+
+    &--active{
+      background-color: $primary;
+      color: $white;
+
+      #{$this}__link-counter{
+        color: $primary;
+        background-color: $white;
+      }
+    }
+  }
+
+  &__link-text{
+    line-height: 1;
+    white-space: nowrap;
+    margin: 0 1.6rem 0 0;
+    flex: 0 0 auto;
+
+    &:last-child{
+      margin: 0;
+    }
+
+    @include media(">=lg"){
+      font-weight: bold;
+    }
+  }
+
+  &__link-counter{
+    flex: 0 0 auto;
+    white-space: nowrap;
+    height: 2.222em;
+    min-width: 2.222em;
+    border-radius: 1.2rem;
+    text-align: center;
+    line-height: 1.222em;
+    background-color: $primaryLighter2;
+    color: $white;
+    padding: .5em;
+    @include animate(background-color color);
+
+    @include media(">=lg"){
+      font-size: 1.6rem;
+      height: 2.75em;
+      min-width: 2.75em;
+      line-height: 1.75em;
+      font-weight: bold;
+    }
+  }
+}
