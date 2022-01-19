@@ -1,0 +1,91 @@
+.candidate-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  $this: &;
+
+  &__body{
+    margin: 0 0 3rem;
+  }
+
+  &__company{
+    margin: 0 0 2.4rem;
+
+    @include media(">=lg"){
+      margin: 0 0 4rem;
+    }
+  }
+
+  &__title{
+    margin: 0 0 1.6rem;
+
+    @include media(">=lg"){
+      margin: 0 0 2.4rem;
+    }
+  }
+
+  &__name{
+    font-size: $fontSize22;
+    @include calcLineHeight($fontSize22);
+
+    @include media(">=lg"){
+      font-size: $fontSize28;
+      @include calcLineHeight($fontSize28);
+    }
+  }
+
+  &__salary{
+    font-weight: bold;
+    font-size: $fontSize22;
+    @include calcLineHeight($fontSize22);
+    color: $primaryLighter;
+  }
+
+  &__desk{
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+    margin: 0 0 2.4rem;
+    color: $primaryLighter2;
+
+    @include media(">=lg"){
+      margin: 0 0 3.2rem;
+    }
+  }
+
+  &__fields{
+
+    &--hor{
+      @include media(">=lg"){
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+        grid-gap: .8rem;
+      }
+
+      #{$this}__input-row{
+        @include media(">=lg") {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  &__input-row{
+    margin: 0 0 .8rem;
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  &__controls{
+
+    .btn__text{
+      display: none;
+
+      @include media(">=md"){
+        display: block;
+      }
+    }
+  }
+}

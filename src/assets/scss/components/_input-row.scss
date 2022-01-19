@@ -85,4 +85,20 @@
       margin: 0;
     }
   }
+
+  &--style{
+
+    &--outline-white{
+
+      #{$this}__title{
+        color: $primaryLighter;
+      }
+
+      #{$this}__input-text{
+        border: 1px solid rgba($primaryLighter, .3);
+        background: transparent;
+        color: $white;
+      }
+    }
+  }
 }

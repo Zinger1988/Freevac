@@ -1,0 +1,30 @@
+.default-list{
+  @extend %listreset;
+  
+  &__item{
+    position: relative;
+    padding: 1.6rem 0 1.6rem 2.6rem;
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+    border-bottom: 1px solid $secondary;
+
+    &:first-child{
+      padding: 0 0 1.6rem 2.4rem;
+    }
+
+    &:last-child{
+      padding: 1.6rem 0 0 2.4rem;
+      border: none;
+    }
+
+    &::before{
+      content: "\e849";
+      font: 1.6rem/1 'Fontello';
+      color: $secondaryDarker2;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

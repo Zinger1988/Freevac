@@ -12,7 +12,7 @@
     }
   }
 
-  &__nav{
+  &__sb-nav{
     background-color: $white;
     padding: .8rem;
     border-radius: 2.4rem;
@@ -33,14 +33,29 @@
     }
   }
 
-  &__vacancy-info{
+  &__sb-vacancy-info{
+    &:not(:last-child){
+      margin: 0 0 .8rem;
+    }
+
     @include media(">=lg"){
-      margin: 0 0 1.6rem;
+      &:not(:last-child) {
+        margin: 0 0 1.6rem;
+      }
     }
   }
 
   &__controls-bar{
     display: block;
     margin: 0 0 .8rem;
+  }
+
+  &__sb-controls-bar{
+    display: block;
+    order: -1;
+
+    @include media(">=lg"){
+      margin: 0 0 1.6rem;
+    }
   }
 }

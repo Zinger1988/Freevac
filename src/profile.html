@@ -8,22 +8,55 @@ title: Profile
     <div class="grid__col--4">
         <div class="profile__video profile__video--fixed" id="profile-video">
 
-            {{> banner-efficiency }}
+            <!-- banner-efficiency -->
 
-            <!--            <div class="video-slider profile__video-slider">-->
-            <!--                <div class="video-slider__slide">-->
+            <div class="swiper video-slider profile__video-slider">
+                <div class="swiper-wrapper">
 
-            <!--                    <div class="video-slider__video-holder video-holder">-->
-            <!--                        <div class="video-holder__content">-->
-            <!--                            <div class="balloon balloon&#45;&#45;style&#45;&#45;accent video-holder__balloon">Расскажу немного о себе</div>-->
-            <!--                            <video class="video-holder__content-video video-player" src="assets/video/02.mp4">-->
-            <!--                                You need an HTML 5-capable browser.-->
-            <!--                            </video>-->
-            <!--                        </div>-->
-            <!--                    </div>&lt;!&ndash;video holder&ndash;&gt;-->
+                    <div class="swiper-slide">
 
-            <!--                </div>&lt;!&ndash;video slide&ndash;&gt;-->
-            <!--            </div>&lt;!&ndash;video slider&ndash;&gt;-->
+                        <div class="video-slider__video-holder video-holder">
+                            <div class="video-holder__content">
+                                <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
+                                <video class="video-holder__content-video video-player" src="https://vividi.career/media/video/4c6642c4-ea03-43b1-b970-5ea257bb1e84.mp4#t=0.1" data-duration="3" playsinline>
+                                    You need an HTML 5-capable browser.
+                                </video>
+                            </div>
+                        </div><!--video holder-->
+
+                    </div><!--swiper slide-->
+
+                    <div class="swiper-slide">
+
+                        <div class="video-slider__video-holder video-holder">
+                            <div class="video-holder__content">
+                                <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
+                                <video class="video-holder__content-video video-player" src="https://vividi.career/media/video/ed55dff9-0ebc-46ce-9a4d-c496da928ab2.mp4#t=0.1" data-duration="120" playsinline>
+                                    You need an HTML 5-capable browser.
+                                </video>
+                            </div>
+                        </div><!--video holder-->
+
+                    </div><!--swiper slide-->
+
+                    <div class="swiper-slide">
+
+                        <div class="video-slider__video-holder video-holder">
+                            <div class="video-holder__content">
+                                <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
+                                <video class="video-holder__content-video video-player" src="https://vividi.career/media/video/59fe8068-4ac5-4815-bb3c-c07b17737f94.mp4#t=0.1" data-duration="4" playsinline>
+                                    You need an HTML 5-capable browser.
+                                </video>
+                            </div>
+                        </div><!--video holder-->
+
+                    </div><!--swiper slide-->
+
+                </div><!--swiper wrapper-->
+
+                <div class="video-slider__pagination"></div>
+
+            </div><!--swiper-->
 
         </div><!--profile video-->
     </div><!-- grid col -->
@@ -32,282 +65,496 @@ title: Profile
 
         <div class="profile__content">
 
-            <section class="user-info profile__user-info" id="user-info">
+            <div class="content-tabs content-tabs--lg">
 
-                <div class="user-info__block user-info__block--primary">
-                    <i class="icon icon--size--lg icon--user-48 user-info__icon"></i>
-                    <div class="user-info__name">
-                        Анатолий<br>
-                        Дементиевский
-                    </div>
-                    <div class="user-info__link">
-                        <div class="user-info__link-holder">
-                            <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
-                            <a href="#" target="_blank" class="user-info__link-anchor icon icon--size--md icon--link-24"></a>
-                        </div>
-                        <input class="input-text input-text--style--primary user-info__link-input" id="freevak-link" readonly value="freevac.ua/po-f56" type="text">
-                    </div>
-                </div><!--user info block-->
-
-                <div class="user-info__block user-info__block--accent">
-                    <table class="user-info__views">
-                        <tr class="user-info__views-row">
-                            <td class="user-info__views-cell user-info__views-cell--value">356</td>
-                            <td class="user-info__views-cell user-info__views-cell--attr">всего просмотров</td>
-                        </tr>
-                        <tr class="user-info__views-row">
-                            <td class="user-info__views-cell user-info__views-cell--value">34</td>
-                            <td class="user-info__views-cell user-info__views-cell--attr">просмотров за 7 дней</td>
-                        </tr>
-                        <tr class="user-info__views-row">
-                            <td class="user-info__views-cell user-info__views-cell--value">0</td>
-                            <td class="user-info__views-cell user-info__views-cell--attr">просмотров за сегодня</td>
-                        </tr>
-                        <tr class="user-info__views-row">
-                            <td class="user-info__views-cell user-info__views-cell--value">12</td>
-                            <td class="user-info__views-cell user-info__views-cell--attr">реакций за всё время</td>
-                        </tr>
-                    </table>
-                </div><!--user info block-->
-
-            </section><!-- user info -->
-
-            <div class="sticky-note">
-                <div class="sticky-note__item steps steps--sticky">
-                    <div class="steps__text">
-                        Давай заполним твой профиль.<br>
-                        После этого можно будет удивлять всех необычным резюме.
-                    </div>
-                    <div class="steps__progress-counter progress-counter">
-                        <span class="progress-counter__val">4</span>
-                        <span class="progress-counter__total">8</span>
-                    </div>
+                <div class="content-tabs__head">
+                    <button class="content-tabs__btn" data-tab-group="profile" data-tab-anchor="profile-main" data-tab-active>
+                        <span class="content-tabs__btn-text">Профиль</span>
+                    </button>
+                    <button class="content-tabs__btn" data-tab-group="profile" data-tab-anchor="profile-replies">
+                        <span class="content-tabs__btn-text">Ответы</span>
+                    </button>
                 </div>
-                <div class="sticky-note__item user-info user-info--sticky">
-                    <i class="icon icon--size--lg icon--user-48 user-info__icon"></i>
-                    <div class="user-info__name">
-                        Анатолий Дементиевский
-                    </div>
-                    <div class="user-info__link">
-                        <div class="user-info__link-holder">
-                            <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
-                            <a href="#" target="_blank" class="user-info__link-anchor icon icon--size--md icon--link-24"></a>
+
+                <div class="content-tabs__body">
+
+                    <div class="content-tabs__body-item" data-tab-group="profile" data-tab-content-id="profile-main">
+
+                        <section class="user-info profile__user-info" id="user-info">
+
+                            <div class="user-info__block user-info__block--primary">
+                                <i class="icon icon--size--lg icon--user-48 user-info__icon"></i>
+                                <div class="user-info__name">
+                                    Анатолий<br>
+                                    Дементиевский
+                                </div>
+                                <div class="user-info__link">
+                                    <div class="user-info__link-holder">
+                                        <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
+                                        <a href="#" target="_blank" class="user-info__link-anchor icon icon--size--md icon--link-24"></a>
+                                    </div>
+                                    <input class="input-text input-text--style--primary user-info__link-input" id="freevak-link" readonly value="freevac.ua/po-f56" type="text">
+                                </div>
+                            </div><!--user info block-->
+
+                            <div class="user-info__block user-info__block--accent">
+                                <table class="user-info__views">
+                                    <tr class="user-info__views-row">
+                                        <td class="user-info__views-cell user-info__views-cell--value">356</td>
+                                        <td class="user-info__views-cell user-info__views-cell--attr">всего просмотров</td>
+                                    </tr>
+                                    <tr class="user-info__views-row">
+                                        <td class="user-info__views-cell user-info__views-cell--value">34</td>
+                                        <td class="user-info__views-cell user-info__views-cell--attr">просмотров за 7 дней</td>
+                                    </tr>
+                                    <tr class="user-info__views-row">
+                                        <td class="user-info__views-cell user-info__views-cell--value">0</td>
+                                        <td class="user-info__views-cell user-info__views-cell--attr">просмотров за сегодня</td>
+                                    </tr>
+                                    <tr class="user-info__views-row">
+                                        <td class="user-info__views-cell user-info__views-cell--value">12</td>
+                                        <td class="user-info__views-cell user-info__views-cell--attr">реакций за всё время</td>
+                                    </tr>
+                                </table>
+                            </div><!--user info block-->
+
+                        </section><!-- user info -->
+
+                        <div class="sticky-note">
+                            <div class="sticky-note__item steps steps--sticky">
+                                <div class="steps__text">
+                                    Давай заполним твой профиль.<br>
+                                    После этого можно будет удивлять всех необычным резюме.
+                                </div>
+                                <div class="steps__progress-counter progress-counter">
+                                    <span class="progress-counter__val">4</span>
+                                    <span class="progress-counter__total">8</span>
+                                </div>
+                            </div>
+                            <div class="sticky-note__item user-info user-info--sticky">
+                                <i class="icon icon--size--lg icon--user-48 user-info__icon"></i>
+                                <div class="user-info__name">
+                                    Анатолий Дементиевский
+                                </div>
+                                <div class="user-info__link">
+                                    <div class="user-info__link-holder">
+                                        <a href="#" class="user-info__link-anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
+                                        <a href="#" target="_blank" class="user-info__link-anchor icon icon--size--md icon--link-24"></a>
+                                    </div>
+                                    <input class="input-text input-text--style--primary user-info__link-input" readonly value="freevac.ua/po-f56" type="text">
+                                </div>
+                            </div>
                         </div>
-                        <input class="input-text input-text--style--primary user-info__link-input" readonly value="freevac.ua/po-f56" type="text">
-                    </div>
-                </div>
-            </div>
 
-            <article class="content-tile content-tile--style--primary content-tile--alt4 content-tile--relative profile__content-tile" id="steps-tile">
-                <section class="content-tile__section">
+                        <article class="content-tile content-tile--style--primary content-tile--alt4 content-tile--relative profile__content-tile" id="steps-tile">
+                            <section class="content-tile__section">
 
-                    <h2 class="content-tile__title content-tile__title--counter">
-                        <span>Привет &#128075;</span>
-                        <span class="progress-counter">
+                                <h2 class="content-tile__title content-tile__title--counter">
+                                    <span>Привет &#128075;</span>
+                                    <span class="progress-counter">
                             <span class="progress-counter__val">4</span>
                             <span class="progress-counter__total">8</span>
                         </span>
-                    </h2>
+                                </h2>
 
-                    <div class="steps">
+                                <div class="steps">
 
-                        <div class="steps__text">
-                            Давай заполним твой профиль.<br>
-                            После этого можно будет удивлять всех необычным резюме.
-                        </div>
+                                    <div class="steps__text">
+                                        Давай заполним твой профиль.<br>
+                                        После этого можно будет удивлять всех необычным резюме.
+                                    </div>
 
-                        <ul class="steps__list">
-                            <li class="steps__list-item" data-scroll-to="create-video">
-                                <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
-                                <span>запиши видеорезюме</span>
-                            </li>
-                            <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-name">
-                                <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
-                                <span>имя и фамилия</span>
-                            </li>
-                            <li class="steps__list-item" data-scroll-to="edit-city">
-                                <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
-                                <span>где живешь?</span>
-                            </li>
-                            <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-age">
-                                <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
-                                <span>возраст</span>
-                            </li>
-                            <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-position">
-                                <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
-                                <span>должность</span>
-                            </li>
-                            <li class="steps__list-item" data-scroll-to="edit-about">
-                                <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
-                                <span>о себе</span>
-                            </li>
-                            <li class="steps__list-item" data-scroll-to="edit-experience">
-                                <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
-                                <span>опыт</span>
-                            </li>
-                            <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-contacts">
-                                <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
-                                <span>контакты</span>
-                            </li>
-                        </ul>
-                    </div><!-- steps -->
+                                    <ul class="steps__list">
+                                        <li class="steps__list-item" data-scroll-to="create-video">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>запиши видеорезюме</span>
+                                        </li>
+                                        <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-name">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>имя и фамилия</span>
+                                        </li>
+                                        <li class="steps__list-item" data-scroll-to="edit-city">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>где живешь?</span>
+                                        </li>
+                                        <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-age">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>возраст</span>
+                                        </li>
+                                        <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-position">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>должность</span>
+                                        </li>
+                                        <li class="steps__list-item" data-scroll-to="edit-about">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>о себе</span>
+                                        </li>
+                                        <li class="steps__list-item" data-scroll-to="edit-experience">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>опыт</span>
+                                        </li>
+                                        <li class="steps__list-item steps__list-item--completed" data-scroll-to="edit-contacts">
+                                            <i class="icon icon--size--sm icon--check-16 steps__list-icon"></i>
+                                            <span>контакты</span>
+                                        </li>
+                                    </ul>
+                                </div><!-- steps -->
 
-                </section>
-            </article><!-- content tile -->
+                            </section>
+                        </article><!-- content tile -->
 
-            <article class="content-tile content-tile--alt2 content-tile--style--primary-lighter content-tile--overflow-x profile__content-tile" id="create-video">
-                <section class="content-tile__section">
+                        <article class="content-tile content-tile--alt2 content-tile--style--primary-lighter content-tile--overflow-x profile__content-tile" id="create-video">
+                            <section class="content-tile__section">
 
-                    <h2 class="content-tile__title">Видео</h2>
+                                <h2 class="content-tile__title">Видео</h2>
 
-                    {{> video-tiles  }}
+                                {{> video-tiles  }}
 
-                </section>
-            </article><!-- content tile -->
+                            </section>
+                        </article><!-- content tile -->
 
-            <article class="content-tile content-tile--alt2 profile__content-tile">
-                <section class="content-tile__section">
+                        <article class="content-tile content-tile--alt2 profile__content-tile">
+                            <section class="content-tile__section">
 
-                    <h2 class="content-tile__title">Информация</h2>
+                                <h2 class="content-tile__title">Информация</h2>
 
-                    <div class="form content-tile__form">
+                                <div class="form content-tile__form">
 
-                        <div class="form__group">
-                            <div class="grid grid--on-xs">
+                                    <div class="form__group">
+                                        <div class="grid grid--on-xs">
 
-                                <div class="grid__col--12">
-                                    <div class="input-row input-row--pointer form__input-row" data-modal-id="user-name">
-                                        <div class="input-row__title">имя и фамилия</div>
-                                        <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" id="edit-name">
-                                    </div><!-- input row -->
+                                            <div class="grid__col--12">
+                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-name">
+                                                    <div class="input-row__title">имя и фамилия</div>
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" id="edit-name">
+                                                </div><!-- input row -->
+                                            </div>
+
+                                            <div class="grid__col--12 grid__col--md--6">
+                                                <div class="input-row input-row--pointer form__input-row input-row" data-modal-id="user-location">
+                                                    <div class="input-row__title">где живешь? (необязательно)</div>
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" id="edit-city">
+                                                </div><!-- input row -->
+                                            </div>
+
+                                            <div class="grid__col--12 grid__col--md--6">
+                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-age">
+                                                    <div class="input-row__title">сколько тебе лет? (необязательно)</div>
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" id="edit-age">
+                                                </div><!-- input row -->
+                                            </div>
+
+                                            <div class="grid__col--12">
+                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-cvv-portfolio">
+                                                    <div class="input-row__title">резюме / портфолио</div>
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" value="docs.google/sdfc43-3eret431-1.." readonly type="text">
+                                                </div><!-- input row -->
+                                            </div>
+
+                                        </div>
+                                    </div><!-- form group-->
+
+                                </div><!-- form -->
+
+                            </section><!-- content tile section -->
+
+                            <section class="content-tile__section">
+
+                                <h2 class="content-tile__title">Ищу работу</h2>
+
+                                <div class="form content-tile__form">
+                                    <div class="form__group">
+
+                                        <div class="grid grid--on-xs">
+
+                                            <div class="grid__col--12 grid__col--md--6">
+                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-position">
+                                                    <div class="input-row__title">должность</div>
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Продуктовый дизайнер" id="edit-position">
+                                                </div><!-- input row -->
+                                            </div>
+
+                                            <div class="grid__col--12 grid__col--md--6">
+                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-activity-field">
+                                                    <div class="input-row__title">сфера (необязательно)</div>
+                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly>
+                                                </div><!-- input row -->
+                                            </div>
+
+                                            <div class="grid__col--12">
+                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-about">
+                                                    <div class="input-row__title">коротко о себе</div>
+                                                    <textarea class="input-text input-text--textarea input-row__input-text" readonly id="edit-about">Lorem ipsum</textarea>
+                                                </div><!-- input row -->
+                                            </div>
+
+                                        </div>
+                                    </div><!-- form group-->
+
+                                </div><!-- form -->
+
+                            </section><!-- content tile section -->
+
+                            <section class="content-tile__section" id="edit-experience">
+
+                                <h2 class="content-tile__title">Опыт</h2>
+
+                                <div class="form content-tile__form">
+
+                                    <div class="form__group">
+                                        <div class="input-row input-row--pointer form__input-row" data-modal-id="user-experience-edit">
+                                            <div class="input-row__title">должность</div>
+                                            <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Monobank, UX дизайнер, несколько месяцев">
+                                        </div><!-- input row -->
+
+                                        <div class="input-row input-row--pointer form__input-row" data-modal-id="user-experience-edit">
+                                            <div class="input-row__title">должность</div>
+                                            <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="General Motors llc, UX дизайнер, больше 3 лет">
+                                        </div><!-- input row -->
+                                    </div><!-- form group-->
+
+                                    <div class="form__footer">
+                                        <button class="btn btn--style--primary btn--size--regular" data-modal-id="user-experience-add">
+                                            <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
+                                            <span class="btn__text">Добавить</span>
+                                        </button>
+                                    </div><!-- form footer-->
+
+                                </div><!-- form -->
+
+                            </section><!-- content tile section -->
+
+                            <section class="content-tile__section" id="edit-contacts">
+
+                                <h2 class="content-tile__title">Контакты</h2>
+
+                                <div class="form content-tile__form">
+
+                                    <div class="form__group">
+                                        <div class="input-row input-row--pointer form__input-row" data-modal-id="user-email-edit">
+                                            <div class="input-row__title">e-mail</div>
+                                            <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="email" readonly value="link.lazarenko@gmail.com">
+                                        </div><!-- input row -->
+
+                                        <div class="input-row input-row--pointer form__input-row" data-modal-id="user-email-edit">
+                                            <div class="input-row__title">телефон</div>
+                                            <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="tel" readonly value="+38 063 609 07 53">
+                                        </div><!-- input row -->
+                                    </div><!-- form group-->
+
+                                    <div class="form__footer">
+                                        <button class="btn btn--style--primary btn--size--regular" data-modal-id="user-contacts-add">
+                                            <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
+                                            <span class="btn__text">Добавить</span>
+                                        </button>
+                                    </div><!-- form footer-->
+
+                                </div><!-- form -->
+
+                            </section><!-- content tile section -->
+                        </article><!-- content tile -->
+
+                    </div><!-- content tabs body item -->
+
+                    <div class="content-tabs__body-item" data-tab-group="profile" data-tab-content-id="profile-replies">
+
+                        <!--TODO Если карточек нет - показываем заглушку -->
+
+                        <div class="content-empty content-tabs__content-empty">
+                            <img class="content-empty__img" src="assets/img/content-empty/07.jpg" alt="image">
+                            <div class="content-empty__text">Тут будут твои ответы на вакансии</div>
+                        </div><!-- content empty -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Продуктовый дизайнер длиннющее название вакансии
+                                    </h3>
                                 </div>
 
-                                <div class="grid__col--12 grid__col--md--6">
-                                    <div class="input-row input-row--pointer form__input-row input-row" data-modal-id="user-location">
-                                        <div class="input-row__title">где живешь? (необязательно)</div>
-                                        <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" id="edit-city">
-                                    </div><!-- input row -->
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Middle UI/UX designer
+                                    </h3>
                                 </div>
 
-                                <div class="grid__col--12 grid__col--md--6">
-                                    <div class="input-row input-row--pointer form__input-row" data-modal-id="user-age">
-                                        <div class="input-row__title">сколько тебе лет? (необязательно)</div>
-                                        <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" id="edit-age">
-                                    </div><!-- input row -->
+                                <div class="card__details">
+                                    <ul class="card__details-list">
+                                        <li class="card__details-item">Киев</li>
+                                        <li class="card__details-item">Удалённая</li>
+                                        <li class="card__details-item">от 3 лет</li>
+                                        <li class="card__details-item">Fintech</li>
+                                    </ul>
                                 </div>
 
-                                <div class="grid__col--12">
-                                    <div class="input-row input-row--pointer form__input-row" data-modal-id="user-cvv-portfolio">
-                                        <div class="input-row__title">резюме / портфолио</div>
-                                        <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" value="docs.google/sdfc43-3eret431-1.." readonly type="text">
-                                    </div><!-- input row -->
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Продуктовый дизайнер длиннющее название вакансии
+                                    </h3>
                                 </div>
 
-                            </div>
-                        </div><!-- form group-->
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
 
-                    </div><!-- form -->
-
-                </section><!-- content tile section -->
-
-                <section class="content-tile__section">
-
-                    <h2 class="content-tile__title">Ищу работу</h2>
-
-                    <div class="form content-tile__form">
-                        <div class="form__group">
-
-                            <div class="grid grid--on-xs">
-
-                                <div class="grid__col--12 grid__col--md--6">
-                                    <div class="input-row input-row--pointer form__input-row" data-modal-id="user-position">
-                                        <div class="input-row__title">должность</div>
-                                        <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Продуктовый дизайнер" id="edit-position">
-                                    </div><!-- input row -->
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Middle UI/UX designer
+                                    </h3>
                                 </div>
 
-                                <div class="grid__col--12 grid__col--md--6">
-                                    <div class="input-row input-row--pointer form__input-row" data-modal-id="user-activity-field">
-                                        <div class="input-row__title">сфера (необязательно)</div>
-                                        <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly>
-                                    </div><!-- input row -->
+                                <div class="card__details">
+                                    <ul class="card__details-list">
+                                        <li class="card__details-item">Киев</li>
+                                        <li class="card__details-item">Удалённая</li>
+                                        <li class="card__details-item">от 3 лет</li>
+                                        <li class="card__details-item">Fintech</li>
+                                    </ul>
                                 </div>
 
-                                <div class="grid__col--12">
-                                    <div class="input-row input-row--pointer form__input-row" data-modal-id="user-about">
-                                        <div class="input-row__title">коротко о себе</div>
-                                        <textarea class="input-text input-text--textarea input-row__input-text" readonly id="edit-about">Lorem ipsum</textarea>
-                                    </div><!-- input row -->
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
+
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Продуктовый дизайнер длиннющее название вакансии
+                                    </h3>
                                 </div>
 
-                            </div>
-                        </div><!-- form group-->
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
 
-                    </div><!-- form -->
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Middle UI/UX designer
+                                    </h3>
+                                </div>
 
-                </section><!-- content tile section -->
+                                <div class="card__details">
+                                    <ul class="card__details-list">
+                                        <li class="card__details-item">Киев</li>
+                                        <li class="card__details-item">Удалённая</li>
+                                        <li class="card__details-item">от 3 лет</li>
+                                        <li class="card__details-item">Fintech</li>
+                                    </ul>
+                                </div>
 
-                <section class="content-tile__section" id="edit-experience">
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
 
-                    <h2 class="content-tile__title">Опыт</h2>
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Продуктовый дизайнер длиннющее название вакансии
+                                    </h3>
+                                </div>
 
-                    <div class="form content-tile__form">
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
 
-                        <div class="form__group">
-                            <div class="input-row input-row--pointer form__input-row" data-modal-id="user-experience-edit">
-                                <div class="input-row__title">должность</div>
-                                <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Monobank, UX дизайнер, несколько месяцев">
-                            </div><!-- input row -->
+                        <article class="card content-tabs__card">
+                            <a class="card__link" href="">
+                                <div class="card__header">
+                                    <h3 class="card__title">
+                                        Middle UI/UX designer
+                                    </h3>
+                                </div>
 
-                            <div class="input-row input-row--pointer form__input-row" data-modal-id="user-experience-edit">
-                                <div class="input-row__title">должность</div>
-                                <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="General Motors llc, UX дизайнер, больше 3 лет">
-                            </div><!-- input row -->
-                        </div><!-- form group-->
+                                <div class="card__details">
+                                    <ul class="card__details-list">
+                                        <li class="card__details-item">Киев</li>
+                                        <li class="card__details-item">Удалённая</li>
+                                        <li class="card__details-item">от 3 лет</li>
+                                        <li class="card__details-item">Fintech</li>
+                                    </ul>
+                                </div>
 
-                        <div class="form__footer">
-                            <button class="btn btn--style--primary btn--size--regular" data-modal-id="user-experience-add">
-                                <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
-                                <span class="btn__text">Добавить</span>
-                            </button>
-                        </div><!-- form footer-->
+                                <div class="card__footer">
+                                    <div class="card__salary">3 000 - 4 500 $</div>
+                                    <time class="card__time" datetime="2021-12-12">12 декабря 2021</time>
+                                    <div class="card__pointer btn btn--size--regular btn--style--secondary">
+                                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </article><!-- card -->
 
-                    </div><!-- form -->
+                    </div><!-- content tabs body item -->
 
-                </section><!-- content tile section -->
+                </div><!-- content tabs body -->
 
-                <section class="content-tile__section" id="edit-contacts">
-
-                    <h2 class="content-tile__title">Контакты</h2>
-
-                    <div class="form content-tile__form">
-
-                        <div class="form__group">
-                            <div class="input-row input-row--pointer form__input-row" data-modal-id="user-email-edit">
-                                <div class="input-row__title">e-mail</div>
-                                <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="email" readonly value="link.lazarenko@gmail.com">
-                            </div><!-- input row -->
-
-                            <div class="input-row input-row--pointer form__input-row" data-modal-id="user-email-edit">
-                                <div class="input-row__title">телефон</div>
-                                <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="tel" readonly value="+38 063 609 07 53">
-                            </div><!-- input row -->
-                        </div><!-- form group-->
-
-                        <div class="form__footer">
-                            <button class="btn btn--style--primary btn--size--regular" data-modal-id="user-contacts-add">
-                                <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
-                                <span class="btn__text">Добавить</span>
-                            </button>
-                        </div><!-- form footer-->
-
-                    </div><!-- form -->
-
-                </section><!-- content tile section -->
-            </article><!-- content tile -->
+            </div><!-- content tabs -->
 
         </div><!-- profile content -->
+
     </div><!-- grid col -->
+
 </div><!-- grid -->
 
 <!--<button class="btn btn&#45;&#45;size&#45;&#45;regular btn&#45;&#45;style&#45;&#45;primary">-->

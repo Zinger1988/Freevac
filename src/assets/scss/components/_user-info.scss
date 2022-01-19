@@ -56,6 +56,11 @@
         background-color: $accentLighter2;
       }
     }
+
+    &--secondary{
+      background-color: $white;
+      color: $secondaryDarker2;
+    }
   }
 
   &__icon{

@@ -64,6 +64,10 @@
         }
       }
 
+      #{$this}__text{
+        white-space: nowrap;
+      }
+
       #{$this}__img{
         width: 2em;
         height: 2em;
@@ -83,6 +87,10 @@
 
         &--employer::before{
           content: "\e855";
+        }
+
+        &--employee::before{
+          content: "\e846";
         }
       }
 
@@ -186,6 +194,21 @@
       }
     }
 
+    &--primary-lighter-alt{
+      background-color: $primaryLighter2;
+      color: $primary;
+
+      &:hover,
+      &:active{
+        background-color: $white;
+      }
+
+      &:disabled{
+        background-color: $secondary;
+        color: $primaryLighter;
+      }
+    }
+
     &--secondary{
       background-color: $secondary;
       color: $black;
@@ -236,12 +259,20 @@
     }
 
     &--white-alt{
-      background-color: $secondaryLighter;
+      background-color: $secondary;
       color: $black;
 
-      &:hover,
+      &:hover{
+        background-color: $secondaryDarker;
+      }
+
       &:active{
-        background-color: $white;
+        background-color: $secondaryDarker2;
+      }
+
+      &:disabled{
+        background-color: $secondary;
+        color: $secondaryDarker2;
       }
     }
 

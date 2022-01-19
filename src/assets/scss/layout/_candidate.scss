@@ -1,0 +1,26 @@
+.candidate{
+  margin: 0 0 5rem;
+
+  &__content{
+    height: 100%;
+  }
+
+  &__content-tile{
+    margin: 0 0 1.6rem;
+
+    @include media(">=lg"){
+      margin: 0;
+      height: 100%;
+    }
+  }
+  
+  &__video-bugfix{
+    @include media(">=lg"){
+      overflow: hidden;
+    }
+  }
+
+  &__candidate-card{
+    height: 100%;
+  }
+}

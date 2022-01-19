@@ -1,0 +1,21 @@
+.modal-vacancy{
+  &__content-tile{
+    margin: 0 0 .8rem;
+
+    @include media(">=lg"){
+      margin: 0 0 1.6rem;
+    }
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  &__balloon{
+    margin: 0 0 2.4rem;
+
+    @include media(">=lg"){
+      margin: 0 0 3.2rem;
+    }
+  }
+}

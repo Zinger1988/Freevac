@@ -39,6 +39,22 @@
 
   &--style{
 
+    &--primary{
+      background-color: $primary;
+      color: $white;
+
+      &::after{
+        background-image: url("data:image/svg+xml;base64,\
+        PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSLQodC70L7QuV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5v\
+        cmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4\
+        PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjIgMTUuMiIgc3R5bGU9ImVuYWJsZS1iYWNr\
+        Z3JvdW5kOm5ldyAwIDAgMjIgMTUuMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlw\
+        ZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiM3QjQxRTc7fQo8L3N0eWxlPgo8cGF0aCBjbGFzcz0i\
+        c3QwIiBkPSJNOS41LDB2Mi4zaDBjMCwwLjMsMCwwLjYsMCwwLjhDOS41LDcsNCwxMi4xLDAsMTUu\
+        MkM5LjEsMTUsMTQuNCwxMy41LDIyLDlWMEg5LjV6Ii8+Cjwvc3ZnPg==");
+      }
+    }
+
     &--accent{
       background-color: $accent;
       color: $white;

@@ -38,4 +38,10 @@
   &__tagline-logo{
     width: 16.2rem;
   }
+
+  &--center{
+    #{$this}__inner{
+      display: block;
+    }
+  }
 }

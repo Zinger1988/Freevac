@@ -15,6 +15,7 @@
 
   &__btn{
     @extend %buttonreset;
+    @extend %nowrap;
     font-size: 1.6rem;
     background-color: $white;
     color: $black;
@@ -80,8 +81,59 @@
   &__card{
     margin: 0 0 .8rem;
 
-    @include media(">=md"){
+    @include media(">=lg"){
       margin: 0 0 1.6rem;
+    }
+  }
+
+  &--lg{
+
+
+    #{$this}__head{
+      background-color: $white;
+      border-radius: 1.6rem;
+
+      @include media(">=lg"){
+        border-radius: 2.4rem;
+      }
+    }
+
+    #{$this}__btn{
+      font-size: $fontSize22;
+      @include calcLineHeight($fontSize22);
+      position: relative;
+      padding: 1.142em;
+      color: $primaryLighter;
+      font-weight: bold;
+
+      @include media(">=lg"){
+        font-size: $fontSize28;
+        @include calcLineHeight($fontSize28);
+      }
+
+      &::after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-radius: .4rem .4rem 0 0;
+        background-color: $primary;
+        @include animate(width height color);
+      }
+
+      &[data-tab-active]{
+        background-color: transparent;
+        color: $primary;
+        cursor: default;
+
+        &::after{
+          width: 3rem;
+          height: .4rem;
+        }
+      }
     }
   }
 }

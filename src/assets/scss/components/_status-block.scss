@@ -1,0 +1,30 @@
+.status-block{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__item{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.6rem;
+    margin: 0 1.6rem 0 0;
+    padding: 1.6rem;
+    min-height: 5.8rem;
+
+    &--style{
+      &--secondary{
+        color: $secondaryDarker2;
+        border: 1px solid $secondaryDarker;
+      }
+    }
+  }
+
+  &__icon{
+    margin: 0 1.6rem 0 0;
+  }
+
+  &__text{
+    font-size: 1.6rem;
+  }
+}

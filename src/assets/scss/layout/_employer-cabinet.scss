@@ -19,4 +19,12 @@
       margin: 0 0 1.6rem;
     }
   }
+
+  &__controls-bar .btn__text{
+    display: none;
+
+    @include media(">=md"){
+      display: block;
+    }
+  }
 }
