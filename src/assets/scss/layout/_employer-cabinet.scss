@@ -27,4 +27,21 @@
       display: block;
     }
   }
+
+  &__socials-btn{
+    justify-content: flex-start;
+    margin: 0 0 .8rem;
+
+    &:last-child{
+      margin: 0;
+    }
+
+    @include media(">=lg"){
+      margin: 0 0 1.2rem;
+    }
+
+    .btn__text{
+      font-weight: 500;
+    }
+  }
 }

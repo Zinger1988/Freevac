@@ -1,0 +1,21 @@
+.reply-slider{
+
+  &__slide{
+    width: auto;
+    height: auto;
+
+    @include media(">=lg"){
+      width: calc(33.333% - .8rem);
+    }
+
+    &--candidate-card{
+      @include media(">=lg"){
+        width: calc(66.666% - .8rem);
+      }
+    }
+  }
+
+  &__content-tile{
+    height: 100%;
+  }
+}

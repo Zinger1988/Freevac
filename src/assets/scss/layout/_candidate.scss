@@ -23,4 +23,13 @@
   &__candidate-card{
     height: 100%;
   }
+
+  &__archived-elem{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50rem;
+  }
 }

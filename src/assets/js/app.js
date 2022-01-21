@@ -745,6 +745,27 @@ const SiteJS = {
             }
         });
 
+        if(document.querySelector('.reply-slider')){
+            const replySlider = new Swiper('.reply-slider', {
+                loop: false,
+                navigation: {
+                    nextEl: '.reviews-section__nav-item--right',
+                    prevEl: '.reviews-section__nav-item--left',
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 8
+                    },
+                    992: {
+                        slidesPerView: 'auto',
+                        freeMode: true,
+                        spaceBetween: 16
+                    }
+                }
+            });
+        }
+
         if(document.querySelector('.reviews-section__slider')){
             const reviewsSlider = new Swiper('.reviews-section__slider', {
                 loop: false,

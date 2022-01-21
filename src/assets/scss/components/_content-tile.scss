@@ -112,6 +112,11 @@
       color: $white;
     }
 
+    &--secondary {
+      background-color: $secondary;
+      color: $secondaryDarker2;
+    }
+
     &--accent-lighter2 {
       background-color: $accentLighter2;
       color: $accent;

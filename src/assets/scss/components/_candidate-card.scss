@@ -88,4 +88,16 @@
       }
     }
   }
+
+  &--archive{
+    color: $secondaryDarker2;
+
+    #{$this}__salary{
+      color: $secondaryDarker2;
+    }
+
+    #{$this}__desk{
+      color: $secondaryDarker2;
+    }
+  }
 }
