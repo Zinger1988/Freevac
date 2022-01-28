@@ -114,4 +114,12 @@
       }
     }
   }
+
+  &--disabled{
+    cursor: default;
+
+    #{$this}__title{
+      color: $secondaryDarker2;
+    }
+  }
 }

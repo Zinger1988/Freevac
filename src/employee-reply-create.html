@@ -8,88 +8,135 @@ title: Profile
 
         <div class="swiper-slide reply-slider__slide reply-slider__slide--candidate-card">
 
-            <article class="content-tile content-tile--style--primary content-tile--alt2 reply-slider__content-tile">
+            <div class="grid grid--on-lg">
 
-                <div class="candidate__candidate-card candidate-card">
+                <div class="grid__col--7">
+                    <article class="content-tile content-tile--style--primary content-tile--alt2 reply-slider__content-tile">
 
-                    <div class="candidate-card__body">
+                        <div class="candidate__candidate-card candidate-card">
 
-                        <div class="candidate-card__company name-balloon name-balloon--primary-lighter">
-                            <div class="name-balloon__img name-balloon__img--briefcase">
-                                <img class="name-balloon__img-item" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                            <div class="candidate-card__body">
+
+                                <div class="candidate-card__company name-balloon name-balloon--primary-lighter">
+                                    <div class="name-balloon__img name-balloon__img--briefcase">
+                                        <img class="name-balloon__img-item" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                    </div>
+                                    <div class="name-balloon__title">Teradek</div>
+                                </div>
+
+                                <div class="candidate-card__title">
+                                    <div class="candidate-card__name h1">Продуктовый дизайнер</div>
+                                    <div class="candidate-card__salary">3 000 - 4 500 $</div>
+                                </div>
+
+                                <div class="candidate-card__desk">
+                                    Мы ищем Product Designer, который готов(а) сделать свой вклад в разработку приложений № 1 в
+                                    мире в Health&Fitness направлении.
+                                </div>
+
+                                <div class="candidate-card__fields candidate-card__fields--hor">
+                                    <div class="input-row input-row--style--outline-white candidate-card__input-row">
+                                        <div class="input-row__title">город</div>
+                                        <input class="input-text input-row__input-text" readonly type="text" value="Киев">
+                                    </div><!-- input row -->
+                                    <div class="input-row input-row--style--outline-white candidate-card__input-row">
+                                        <div class="input-row__title">тип занятости</div>
+                                        <input class="input-text input-row__input-text" readonly type="text" value="полная">
+                                    </div><!-- input row -->
+                                    <div class="input-row input-row--style--outline-white candidate-card__input-row">
+                                        <div class="input-row__title">опыт работы</div>
+                                        <input class="input-text input-row__input-text" readonly type="text" value="от 2-х лет">
+                                    </div><!-- input row -->
+                                </div><!-- candidate card fields -->
+
+                            </div><!-- candidate card body -->
+
+                            <div class="controls-bar candidate-card__controls">
+                                <button class="btn btn--size--lg btn--style--primary-lighter-alt" data-modal-id="vacancy">
+                                    <i class="icon icon--size--lg icon--expand-48 btn__icon"></i>
+                                    <span class="btn__text">Подробнее</span>
+                                </button>
+                            </div><!-- candidate card controls -->
+
+                        </div><!-- candidate card -->
+
+                    </article><!-- content tile -->
+                </div>
+
+                <div class="grid__col--5">
+                    <article class="content-tile reply-slider__content-tile content-tile--alt2">
+
+                        <div class="balloon reply-slider__balloon balloon--style--accent">Давай знакомиться</div>
+
+                        <div class="form reply-slider__form">
+
+                            <div class="form__group">
+
+                                <div class="input-row input-row--disabled form__input-row">
+                                    <div class="input-row__title">имя и фамилия</div>
+                                    <input class="input-text input-row__input-text" type="text" disabled>
+                                </div><!-- input row -->
+
+                                <div class="input-row input-row--disabled form__input-row">
+                                    <div class="input-row__title">ссылка на резюме/ портфолио</div>
+                                    <input class="input-text input-row__input-text" type="text" disabled>
+                                </div><!-- input row -->
+
+                                <div class="input-row input-row--disabled form__input-row">
+                                    <div class="input-row__title">email</div>
+                                    <input class="input-text input-row__input-text" type="email" disabled>
+                                </div><!-- input row -->
+
+                                <div class="input-row input-row--disabled form__input-row">
+                                    <div class="input-row__title">телефон</div>
+                                    <input class="input-text input-row__input-text" type="tel" disabled>
+                                </div><!-- input row -->
+
+                            </div><!--form group-->
+
+                            <div class="form__pre-footer">
+                                <a class="form__link" href="#">У меня есть аккаут Vividi</a>
                             </div>
-                            <div class="name-balloon__title">Teradek</div>
-                        </div>
 
-                        <div class="candidate-card__title">
-                            <div class="candidate-card__name h1">Продуктовый дизайнер</div>
-                            <div class="candidate-card__salary">3 000 - 4 500 $</div>
-                        </div>
+                            <div class="form__footer">
+                                <button class="btn btn--fluid btn--style--accent btn--size--lg" disabled>
+                                    <i class="btn__icon icon icon--size--lg icon--send-48"></i>
+                                    <span class="btn__text">Ответить</span>
+                                </button>
+                            </div><!-- form footer-->
 
-                        <div class="candidate-card__desk">
-                            Мы ищем Product Designer, который готов(а) сделать свой вклад в разработку приложений № 1 в
-                            мире в Health&Fitness направлении.
-                        </div>
+                        </div><!--form-->
 
-                        <div class="candidate-card__fields candidate-card__fields--hor">
-                            <div class="input-row input-row--style--outline-white candidate-card__input-row">
-                                <div class="input-row__title">город</div>
-                                <input class="input-text input-row__input-text" readonly type="text" value="Киев">
-                            </div><!-- input row -->
-                            <div class="input-row input-row--style--outline-white candidate-card__input-row">
-                                <div class="input-row__title">тип занятости</div>
-                                <input class="input-text input-row__input-text" readonly type="text" value="полная">
-                            </div><!-- input row -->
-                            <div class="input-row input-row--style--outline-white candidate-card__input-row">
-                                <div class="input-row__title">опыт работы</div>
-                                <input class="input-text input-row__input-text" readonly type="text" value="от 2-х лет">
-                            </div><!-- input row -->
-                        </div><!-- candidate card fields -->
+                    </article><!--content tile-->
+                </div>
 
-                    </div><!-- candidate card body -->
-
-                    <div class="controls-bar candidate-card__controls">
-                        <button class="btn btn--size--lg btn--style--primary-lighter-alt" data-modal-id="vacancy">
-                            <i class="icon icon--size--lg icon--expand-48 btn__icon"></i>
-                            <span class="btn__text">Подробнее</span>
-                        </button>
-                    </div><!-- candidate card controls -->
-
-                </div><!-- candidate card -->
-
-            </article><!-- content tile -->
-
-        </div><!--swiper slide-->
-
-        <div class="swiper-slide reply-slider__slide reply-slider__slide--user-info">
-
-            <article class="content-tile reply-slider__content-tile">
-                1
-            </article><!--content tile-->
+            </div>
 
         </div><!--swiper slide-->
 
         <div class="swiper-slide reply-slider__slide">
 
-            <article class="content-tile reply-slider__content-tile">
-                2
-            </article><!--content tile-->
+            <div class="video" id="profile-video">
+                <div class="video-counter--countdown" data-counter="3" id="video-countdown">03</div>
 
-        </div><!--swiper slide-->
+                <div class="video-holder">
+                    <div class="video-holder__content">
+                        <video class="video-holder__content-video video-record" playsinline>
+                            You need an HTML 5-capable browser.
+                        </video>
+                    </div>
+                </div><!--video holder-->
 
-        <div class="swiper-slide reply-slider__slide">
+            </div><!--profile video-->
 
-            <article class="content-tile reply-slider__content-tile">
-                3
-            </article><!--content tile-->
+            <div class="video-counter video-counter--sm reply-slider__video-counter" data-counter="120" id="video-counter">02:00</div>
 
-        </div><!--swiper slide-->
-
-        <div class="swiper-slide reply-slider__slide">
-
-            <article class="content-tile reply-slider__content-tile">
-                4
-            </article><!--content tile-->
+            <div class="controls-bar" id="record-control-bar">
+                <button class="btn btn--style--accent btn--size--lg btn--fluid" id="record-btn">
+                    <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
+                    <span class="btn__text">Cнять</span>
+                </button>
+            </div><!-- controls bar -->
 
         </div><!--swiper slide-->
 

@@ -13,6 +13,20 @@
     font-size: 22rem;
   }
 
+  &--sm{
+    font-size: $fontSize28;
+    color: $white;
+    @include calcLineHeight($fontSize28);
+
+    @include media(">=lg"){
+      font-size: $fontSize28;
+    }
+
+    @include media(">=xl"){
+      font-size: $fontSize28;
+    }
+  }
+
   &--countdown{
     position: absolute;
     top: 50%;

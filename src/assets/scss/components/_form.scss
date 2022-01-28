@@ -33,6 +33,18 @@
     border-bottom: 1px solid $secondary;
     margin: 0 0 2.4rem;
   }
+
+  &__pre-footer{
+    margin: 0 0 2.4rem;
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  &__link{
+    color: $secondaryDarker2;
+  }
 }
 
 .add-file {

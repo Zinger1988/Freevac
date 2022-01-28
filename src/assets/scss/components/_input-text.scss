@@ -30,7 +30,7 @@
     outline: none;
   }
 
-  &:focus:not(:read-only) {
+  &:focus:not(:read-only):not(:disabled) {
     @include placeholder {
       opacity: 0;
     }
@@ -83,6 +83,12 @@
       MC40LDAuMiwwLjktMC4xLDEuM2wtNiw2CgljLTAuNCwwLjQtMSwwLjQtMS40LDBzLTAuNC0xLDAt\
       MS40TDEwLjYsOEw1LjMsMi43eiIvPgo8L3N2Zz4=");
     }
+  }
+
+  &:disabled{
+    background-color: transparent;
+    border: 1px solid $secondaryDarker;
+    color: $secondaryDarker2;
   }
 
   &.smooth-scroll-target{

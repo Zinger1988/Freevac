@@ -118,6 +118,9 @@
       #{$this}__item-img-item{
         margin: 0 0 0 46.666%;
         height: 24.4rem;
+        transform-origin: 50% 100%;
+        transform: rotate(0) translateY(5%);
+        animation: overwrite infinite ease 7s;
 
         @include media(">=xl"){
           height: 25.5rem;
@@ -133,6 +136,43 @@
       #{$this}__item-balloon{
         margin: auto 0 32px;
         align-self: flex-start;
+        position: relative;
+        height: 4.3rem;
+        width: 100%;
+      }
+
+      #{$this}__item-balloon-wrap{
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+
+        &:nth-child(1){
+          animation: questions infinite ease 6s;
+        }
+
+        &:nth-child(2){
+          animation: questions infinite ease 6s 2s;
+        }
+
+        &:nth-child(3){
+          animation: questions infinite ease 6s 4s;
+        }
+      }
+
+      #{$this}__balloon {
+
+        &::after{
+          left: 0;
+        }
+
+        .balloon__text{
+          display: block;
+          width: 100%;
+          white-space: nowrap;
+        }
       }
     }
 
@@ -162,15 +202,19 @@
 
       #{$this}__item-img{
         margin: auto -2.4rem 0;
+        padding: 4.2rem 0;
 
         @include media(">=xl"){
           margin: auto -2.4rem 5rem;
-          padding: 0 0 0 2.4rem;
+          padding: 0 0 2.4rem 2.4rem;
         }
       }
 
       #{$this}__item-img-item{
         width: 100%;
+        transform-origin: 87% 14%;
+        transform: rotate(0) scale(1);
+        animation: storing infinite ease-in-out 20s;
       }
     }
 
@@ -238,5 +282,68 @@
   &__item-img-item{
     display: block;
     max-width: 100%;
+  }
+}
+
+@keyframes questions {
+  0% {
+    width: 0;
+  }
+  8.25% {
+    width: 100%;
+  }
+  16.5% {
+    width: 100%;
+  }
+  33% {
+    width: 0;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes storing {
+  0% {
+    transform: rotate(-1deg) scale(.95);
+  }
+  30% {
+    transform: rotate(-15deg) scale(1.5);
+  }
+  40% {
+    transform: rotate(-13deg) scale(1.45);
+  }
+  50% {
+    transform: rotate(-15deg) scale(1.5);
+  }
+  80% {
+    transform: rotate(-1deg) scale(.95);
+  }
+  90% {
+    transform: rotate(0) scale(1);
+  }
+  100% {
+    transform: rotate(-1deg) scale(.95);
+  }
+}
+
+@keyframes overwrite {
+  0% {
+    transform: rotate(0deg) translateY(5%);
+  }
+  3% {
+    transform: rotate(-10deg) translateY(5%);
+  }
+  10% {
+    transform: rotate(15deg) translateY(5%);
+  }
+  40% {
+    transform: rotate(15deg) translateY(5%);
+  }
+  43% {
+    transform: rotate(25deg) translateY(5%);
+  }
+  50% {
+    transform: rotate(0) translateY(5%);
   }
 }

@@ -34,14 +34,14 @@ class InputFocus{
 
     static focus({input, title}){
         input.focus();
-        if(!title.classList.contains('input-row__title--focus') && !input.readOnly){
+        if(!title.classList.contains('input-row__title--focus') && !input.readOnly && !input.disabled){
             input.focus();
             InputFocus.minifyTitle(title);
         }
     }
 
     static blur({input, title}) {
-        if(!input.value.trim().length && !input.placeholder.length && !input.readOnly){
+        if(!input.value.trim().length && !input.placeholder.length && !input.readOnly && !input.disabled){
             input.value = "";
             InputFocus.unMinifyTitle(title);
         }
@@ -192,9 +192,9 @@ class Video {
             soundBtn: document.createElement('div'),
         };
         this.callbacks = {
-            onPlay: null,
-            onPause: null,
-            onStop: null,
+            onPlay: () => {},
+            onPause: () => {},
+            onStop: () => {},
         }
     }
 
@@ -362,6 +362,10 @@ class VideoRecorder{
             NoAccessGetUserMedia: {
                 title: 'Ой...',
                 text: `Похоже твой браузер не поддерживает технологию записи, используемую нами. Не пора ли обновиться?`,
+            },
+            NotReadableError: {
+                title: 'Oй...',
+                text: `Не можем подключиться к твоей камере`
             }
         };
 
@@ -388,8 +392,6 @@ class VideoRecorder{
                 }
             }
         } catch (err) {
-            console.dir(err);
-
             if(localStorage.getItem('fatalError') === 'noMediaDevices'){
                 new FatalError({...errors[err.name], isFullScreen: false})
             } else {
@@ -721,7 +723,7 @@ const SiteJS = {
             }
         });
         this.expandTextarea('.input-text--textarea');
-        this.recordVideo();
+        this.recordVideo('.video-record');
         this.completeInput('[data-complete-input]','[data-complete-group]');
         this.smoothScroll('[data-scroll-to]');
         this.copyToClipboard('.freevak-link-copy', '#freevak-link');
@@ -748,19 +750,19 @@ const SiteJS = {
         if(document.querySelector('.reply-slider')){
             const replySlider = new Swiper('.reply-slider', {
                 loop: false,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                autoHeight: true,
                 navigation: {
                     nextEl: '.reviews-section__nav-item--right',
                     prevEl: '.reviews-section__nav-item--left',
                 },
                 breakpoints: {
                     320: {
-                        slidesPerView: 1,
                         spaceBetween: 8
                     },
                     992: {
-                        slidesPerView: 'auto',
-                        freeMode: true,
-                        spaceBetween: 16
+                        spaceBetween: 16,
                     }
                 }
             });
@@ -1322,9 +1324,9 @@ const SiteJS = {
             })
         }
     },
-    async recordVideo(){
+    async recordVideo(selector){
 
-        const videoElement = document.querySelector('.video-record');
+        const videoElement = document.querySelector(selector);
         if(!videoElement) return;
 
         let recorderInstance = null;
@@ -1464,25 +1466,38 @@ const SiteJS = {
 
         const controlBarMarkup = document.createElement('div');
         controlBarMarkup.classList.add('grid','grid--on-xs');
-        controlBarMarkup.innerHTML = `
+
+        const controlBarSaveMarkup = `
             <div class="grid__col--12">
                 <button class="btn btn--style--accent btn--size--lg btn--fluid" id="save-record">
                     <i class="icon icon--size--lg icon--check-48 btn__icon"></i>
                     <span class="btn__text">Сохранить</span>
                 </button>
             </div>
+        `;
+
+        const controlBarOverwriteMarkup = `
             <div class="grid__col--12 grid__col--md--6">
                 <button class="btn btn--style--primary-lighter btn--size--lg btn--fluid" id="record-overwrite">
                     <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
                     <span class="btn__text">Переснять</span>
                 </button>
             </div>
+        `;
+
+        const controlBarCancelMarkup = `
             <div class="grid__col--12 grid__col--md--6">
                 <button class="btn btn--style--primary-lighter btn--size--lg btn--fluid" id="record-cancel">
                     <i class="icon icon--size--lg icon--close-48 btn__icon"></i>
                     <span class="btn__text">Отменить</span>
                 </button>
             </div>
+        `;
+
+        controlBarMarkup.innerHTML = `
+            ${controlBarSaveMarkup}
+            ${controlBarOverwriteMarkup}
+            ${controlBarCancelMarkup}
         `;
 
         const overwriteBtn = controlBarMarkup.querySelector('#record-overwrite');
