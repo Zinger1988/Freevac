@@ -212,6 +212,20 @@
       }
     }
 
+    &--accent-lighter{
+      background-color: $accentLighter2;
+      color: $accent;
+
+      &:hover,
+      &:active{
+        background-color: $white;
+      }
+
+      &:disabled{
+        background-color: rgba($accentLighter, .4);
+      }
+    }
+
     &--white{
       background-color: $white;
       color: $primaryLighter;

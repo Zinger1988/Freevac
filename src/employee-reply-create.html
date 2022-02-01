@@ -8,9 +8,9 @@ title: Profile
 
         <div class="swiper-slide reply-slider__slide reply-slider__slide--candidate-card">
 
-            <div class="grid grid--on-lg">
-
+            <div class="grid grid--on-lg reply-slider__grid">
                 <div class="grid__col--7">
+
                     <article class="content-tile content-tile--style--primary content-tile--alt2 reply-slider__content-tile">
 
                         <div class="candidate__candidate-card candidate-card">
@@ -61,12 +61,16 @@ title: Profile
                         </div><!-- candidate card -->
 
                     </article><!-- content tile -->
+
                 </div>
 
                 <div class="grid__col--5">
+
                     <article class="content-tile reply-slider__content-tile content-tile--alt2">
 
-                        <div class="balloon reply-slider__balloon balloon--style--accent">Давай знакомиться</div>
+                        <div class="reply-slider__slide-header">
+                            <div class="balloon reply-slider__balloon balloon--style--accent">Давай знакомиться</div>
+                        </div><!--slide header-->
 
                         <div class="form reply-slider__form">
 
@@ -74,22 +78,22 @@ title: Profile
 
                                 <div class="input-row input-row--disabled form__input-row">
                                     <div class="input-row__title">имя и фамилия</div>
-                                    <input class="input-text input-row__input-text" type="text" disabled>
+                                    <input class="input-text input-row__input-text" type="text">
                                 </div><!-- input row -->
 
                                 <div class="input-row input-row--disabled form__input-row">
                                     <div class="input-row__title">ссылка на резюме/ портфолио</div>
-                                    <input class="input-text input-row__input-text" type="text" disabled>
+                                    <input class="input-text input-row__input-text" type="text">
                                 </div><!-- input row -->
 
                                 <div class="input-row input-row--disabled form__input-row">
                                     <div class="input-row__title">email</div>
-                                    <input class="input-text input-row__input-text" type="email" disabled>
+                                    <input class="input-text input-row__input-text" type="email">
                                 </div><!-- input row -->
 
                                 <div class="input-row input-row--disabled form__input-row">
                                     <div class="input-row__title">телефон</div>
-                                    <input class="input-text input-row__input-text" type="tel" disabled>
+                                    <input class="input-text input-row__input-text" type="tel">
                                 </div><!-- input row -->
 
                             </div><!--form group-->
@@ -108,40 +112,47 @@ title: Profile
                         </div><!--form-->
 
                     </article><!--content tile-->
-                </div>
 
+                </div>
             </div>
 
         </div><!--swiper slide-->
 
         <div class="swiper-slide reply-slider__slide">
 
-            <div class="video" id="profile-video">
-                <div class="video-counter--countdown" data-counter="3" id="video-countdown">03</div>
+            <div class="reply-slider__tile">
+                tile
+            </div><!--video-->
 
-                <div class="video-holder">
-                    <div class="video-holder__content">
-                        <video class="video-holder__content-video video-record" playsinline>
-                            You need an HTML 5-capable browser.
-                        </video>
-                    </div>
-                </div><!--video holder-->
+        </div><!--swiper slide-->
 
-            </div><!--profile video-->
+        <div class="swiper-slide reply-slider__slide">
 
-            <div class="video-counter video-counter--sm reply-slider__video-counter" data-counter="120" id="video-counter">02:00</div>
+            <div class="reply-slider__tile">
+                tile
+            </div><!--video-->
 
-            <div class="controls-bar" id="record-control-bar">
-                <button class="btn btn--style--accent btn--size--lg btn--fluid" id="record-btn">
-                    <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
-                    <span class="btn__text">Cнять</span>
-                </button>
-            </div><!-- controls bar -->
+        </div><!--swiper slide-->
+
+        <div class="swiper-slide reply-slider__slide">
+
+            <div class="reply-slider__tile">
+                tile
+            </div><!--video-->
 
         </div><!--swiper slide-->
 
     </div><!--swiper wrapper-->
 
-    <div class="video-slider__pagination"></div>
+    <div class="reply-slider__nav">
+        <button class="reply-slider__nav-btn reply-slider__btn--left btn btn--size--lg btn--style--secondary">
+            <i class="icon icon--size--lg icon--arrowleft-48"></i>
+        </button>
+
+        <button class="reply-slider__nav-btn reply-slider__btn--right btn btn--size--lg btn--style--secondary">
+            <i class="icon icon--size--lg icon--arrowright-48"></i>
+        </button>
+    </div><!--swiper nav-->
+
 
 </div><!--swiper-->

@@ -130,6 +130,11 @@
         color: $primary;
       }
     }
+
+    &--accent{
+      background: $accent;
+      color: $white;
+    }
   }
 
   &--overflow-x{

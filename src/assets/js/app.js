@@ -62,8 +62,8 @@ class InputFocus{
 }
 
 class Counter{
-    constructor(elementID) {
-        this.element = document.querySelector(elementID);
+    constructor(elementSelector) {
+        this.element = document.querySelector(elementSelector);
         this.counterValue = parseInt(this.element.getAttribute('data-counter'));
         this.timer = null;
         this.timeLeft = this.counterValue;
@@ -752,20 +752,36 @@ const SiteJS = {
                 loop: false,
                 centeredSlides: true,
                 slidesPerView: 'auto',
-                autoHeight: true,
                 navigation: {
-                    nextEl: '.reviews-section__nav-item--right',
-                    prevEl: '.reviews-section__nav-item--left',
+                    nextEl: '.reply-slider__btn--right',
+                    prevEl: '.reply-slider__btn--left',
                 },
                 breakpoints: {
                     320: {
-                        spaceBetween: 8
+                        spaceBetween: 8,
+                        autoHeight: true,
                     },
                     992: {
                         spaceBetween: 16,
                     }
+                },
+                on: {
+                    init: function (swiper) {
+                        const nav = swiper.$el[0].querySelector('.reply-slider__nav');
+
+                        swiper.activeIndex === 0
+                            ? nav.style.display = 'none'
+                            : nav.style = '';
+                    },
+                    activeIndexChange: function (swiper) {
+                        const nav = swiper.$el[0].querySelector('.reply-slider__nav');
+
+                        swiper.activeIndex === 0
+                            ? nav.style.display = 'none'
+                            : nav.style = '';
+                    },
                 }
-            });
+            })
         }
 
         if(document.querySelector('.reviews-section__slider')){
@@ -1336,11 +1352,6 @@ const SiteJS = {
             recorderInstance = new VideoRecorder({
                 element: videoElement,
                 constraints: {
-                    // video: {
-                    //     width: 720,
-                    //     height: 720,
-                    //     facingMode: 'user'
-                    // },
                     video: {
                         width: {
                             min: 480,
