@@ -748,14 +748,34 @@ const SiteJS = {
         });
 
         if(document.querySelector('.reply-slider')){
+            
             const replySlider = new Swiper('.reply-slider', {
+                allowTouchMove: false,
                 loop: false,
-                centeredSlides: true,
                 slidesPerView: 'auto',
-                navigation: {
-                    nextEl: '.reply-slider__btn--right',
-                    prevEl: '.reply-slider__btn--left',
+                breakpoints: {
+                    320: {
+                        spaceBetween: 8,
+                    },
+                    992: {
+                        spaceBetween: 16,
+                        centeredSlides: true,
+                    }
                 },
+                on: {
+                    init: function (swiper) {
+                        swiper.$el[0].setAttribute('data-active-index', swiper.activeIndex);
+                    },
+                    slideChange: function (swiper) {
+                        swiper.$el[0].setAttribute('data-active-index', swiper.activeIndex)
+                    }
+                }
+            })
+
+            const replySliderNested = new Swiper('.reply-slider-nested', {
+                allowTouchMove: false,
+                loop: false,
+                slidesPerView: 'auto',
                 breakpoints: {
                     320: {
                         spaceBetween: 8,
@@ -763,25 +783,53 @@ const SiteJS = {
                     },
                     992: {
                         spaceBetween: 16,
+                        autoHeight: false,
+                    },
+                    1210: {
+                        spaceBetween: 32,
                     }
                 },
                 on: {
                     init: function (swiper) {
-                        const nav = swiper.$el[0].querySelector('.reply-slider__nav');
-
-                        swiper.activeIndex === 0
-                            ? nav.style.display = 'none'
-                            : nav.style = '';
+                        replySlider.$el[0].setAttribute('data-active-index-nested', swiper.activeIndex)
                     },
-                    activeIndexChange: function (swiper) {
-                        const nav = swiper.$el[0].querySelector('.reply-slider__nav');
-
-                        swiper.activeIndex === 0
-                            ? nav.style.display = 'none'
-                            : nav.style = '';
-                    },
+                    slideChange: function (swiper) {
+                        replySlider.$el[0].setAttribute('data-active-index-nested', swiper.activeIndex)
+                    }
                 }
             })
+
+            const slideNextBtn = replySlider.$el[0].querySelector('.reply-slider__slide-next');
+            const slidePrevBtn = replySlider.$el[0].querySelector('.reply-slider__slide-prev');
+
+            slideNextBtn.addEventListener('click', () => {
+
+                if(replySlider.activeIndex + 2 === replySlider.slides.length){
+                    slideNextBtn.classList.add('reply-slider__nav-btn--collapsed');
+                }
+                replySlider.slideNext();
+            });
+
+            slidePrevBtn.addEventListener('click', () => {
+                slideNextBtn.classList.remove('reply-slider__nav-btn--collapsed')
+
+                if(replySlider.activeIndex === 0){
+                    replySliderNested.slidePrev();
+                }
+
+                replySlider.slidePrev();
+            });
+
+            const nestedSlideNextBtn = replySliderNested.$el[0].querySelector('.reply-slider-nested__slide-next');
+            const parentSlideNextBtn = replySliderNested.$el[0].querySelector('.reply-slider-nested__slide-next-parent');
+
+            nestedSlideNextBtn.addEventListener('click', () => {
+                replySliderNested.slideNext();
+            });
+
+            parentSlideNextBtn.addEventListener('click', () => {
+                replySlider.slideNext();
+            });
         }
 
         if(document.querySelector('.reviews-section__slider')){
@@ -807,6 +855,7 @@ const SiteJS = {
 
         if(document.querySelector('.video-slider')){
             const videoSlider = new Swiper('.video-slider', {
+                effect: 'flip',
                 pagination: {
                     el: '.video-slider__pagination',
                     type: 'bullets',

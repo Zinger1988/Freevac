@@ -22,6 +22,10 @@
     }
   }
 
+  &--ver{
+    grid-template-columns: none;
+  }
+
   &--layout-1{
     grid-template-columns: 1fr auto;
   }

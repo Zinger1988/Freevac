@@ -1,6 +1,131 @@
 .reply-slider{
+  display: flex;
+  flex-direction: column;
+
+  @include media(">=lg"){
+    overflow: visible;
+    min-height: calc(100vh - 9.6rem);
+  }
+
+  &__wrapper{
+    margin: 0 0 .8rem;
+    flex: 1;
+  }
 
   &__slide{
+    height: auto;
+
+    &--video{
+      background-color: $secondaryDarker2;
+
+      @include media(">=lg") {
+        width: 33.333%;
+      }
+    }
+  }
+
+  &__nav{
+    display: flex;
+    margin: 0 -.4rem .8rem;
+    @include animate(opacity visibility);
+
+    @include media(">=lg"){
+      justify-content: center;
+      margin: 0 0 2rem;
+    }
+  }
+
+  &__nav-btn{
     width: 100%;
+    margin: 0 .4rem;
+    overflow: hidden;
+    @include animate(width padding margin);
+
+    @include media(">=lg"){
+      &:not(&--collapsed){
+        width: 9.6rem;
+      }
+    }
+
+    &--collapsed{
+      padding-left: 0;
+      padding-right: 0;
+      width: 0;
+      margin: 0;
+    }
+  }
+
+  &[data-active-index="0"][data-active-index-nested="0"] &__nav{
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.reply-slider-nested{
+  height: 100%;
+
+  &__slide{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    &--candidate-card{
+      @include media(">=lg"){
+        width: calc(60% - .8rem);
+      }
+
+      @include media(">=xl"){
+        width: calc(60% - 1.6rem);
+      }
+    }
+
+    &--form{
+      @include media(">=lg"){
+        width: calc(40% - .8rem);
+      }
+
+      @include media(">=xl"){
+        width: calc(40% - 1.6rem);
+      }
+
+      .content-tile{
+        min-height: calc(100vh - 20.8rem);
+      }
+    }
+  }
+
+  &__content-tile{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__candidate-card{
+    height: 100%;
+  }
+
+  &__slide-header{
+    margin: 0 0 3rem;
+
+    @include media(">=lg"){
+      margin: 0 0 6rem;
+    }
+  }
+
+  &__form{
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    .form__pre-footer{
+      margin-top: auto;
+      text-align: center;
+    }
+  }
+
+  .reply-slider-nested__slide-next{
+    @include media(">=lg"){
+      display: none;
+    }
   }
 }

@@ -78,17 +78,6 @@
     }
   }
 
-  &__controls{
-
-    .btn__text{
-      display: none;
-
-      @include media(">=md"){
-        display: block;
-      }
-    }
-  }
-
   &--archive{
     color: $secondaryDarker2;
 

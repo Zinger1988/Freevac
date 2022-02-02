@@ -4,155 +4,136 @@ title: Profile
 ---
 
 <div class="swiper reply-slider">
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper reply-slider__wrapper">
 
-        <div class="swiper-slide reply-slider__slide reply-slider__slide--candidate-card">
+        <div class="swiper-slide reply-slider__slide">
 
-            <div class="grid grid--on-lg reply-slider__grid">
-                <div class="grid__col--7">
+            <div class="swiper reply-slider-nested">
 
-                    <article class="content-tile content-tile--style--primary content-tile--alt2 reply-slider__content-tile">
+                <div class="swiper-wrapper reply-slider-nested__wrapper">
 
-                        <div class="candidate__candidate-card candidate-card">
+                    <div class="swiper-slide reply-slider-nested__slide reply-slider-nested__slide--candidate-card">
 
-                            <div class="candidate-card__body">
+                        <article class="content-tile content-tile--style--primary content-tile--alt2 reply-slider-nested__content-tile">
 
-                                <div class="candidate-card__company name-balloon name-balloon--primary-lighter">
-                                    <div class="name-balloon__img name-balloon__img--briefcase">
-                                        <img class="name-balloon__img-item" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                            <div class="reply-slider-nested__candidate-card candidate-card">
+
+                                <div class="candidate-card__body">
+
+                                    <div class="candidate-card__company name-balloon name-balloon--primary-lighter">
+                                        <div class="name-balloon__img name-balloon__img--briefcase">
+                                            <img class="name-balloon__img-item" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                        </div>
+                                        <div class="name-balloon__title">Teradek</div>
                                     </div>
-                                    <div class="name-balloon__title">Teradek</div>
+
+                                    <div class="candidate-card__title">
+                                        <div class="candidate-card__name h1">Продуктовый дизайнер</div>
+                                        <div class="candidate-card__salary">3 000 - 4 500 $</div>
+                                    </div>
+
+                                    <div class="candidate-card__desk">
+                                        Мы ищем Product Designer, который готов(а) сделать свой вклад в разработку приложений № 1 в
+                                        мире в Health&Fitness направлении.
+                                    </div>
+
+                                </div><!-- candidate card body -->
+
+                                <div class="controls-bar controls-bar--ver candidate-card__controls candidate-card__controls--reply">
+                                    <button class="btn btn--size--lg btn--style--primary-lighter-alt" data-modal-id="vacancy">
+                                        <i class="icon icon--size--lg icon--expand-48 btn__icon"></i>
+                                        <span class="btn__text">Подробнее</span>
+                                    </button>
+
+                                    <button class="btn btn--size--lg btn--style--accent reply-slider-nested__slide-next">
+                                        <i class="icon icon--size--lg icon--send-48 btn__icon"></i>
+                                        <span class="btn__text">Ответить</span>
+                                    </button>
+                                </div><!-- candidate card controls -->
+
+                            </div><!-- candidate card -->
+
+                        </article><!-- content tile -->
+
+                    </div><!--swiper nested slide-->
+
+                    <div class="swiper-slide reply-slider-nested__slide reply-slider-nested__slide--form">
+
+                        <article class="content-tile reply-slider-nested__content-tile reply-slider-nested__content-tile--form content-tile--alt2">
+
+                            <div class="reply-slider-nested__slide-header">
+                                <div class="balloon balloon--style--accent">Давай знакомиться</div>
+                            </div><!--slide header-->
+
+                            <div class="form reply-slider-nested__form">
+
+                                <div class="form__group">
+
+                                    <div class="input-row input-row--disabled form__input-row">
+                                        <div class="input-row__title">имя и фамилия</div>
+                                        <input class="input-text input-row__input-text" type="text">
+                                    </div><!-- input row -->
+
+                                    <div class="input-row input-row--disabled form__input-row">
+                                        <div class="input-row__title">ссылка на резюме/ портфолио</div>
+                                        <input class="input-text input-row__input-text" type="text">
+                                    </div><!-- input row -->
+
+                                    <div class="input-row input-row--disabled form__input-row">
+                                        <div class="input-row__title">email</div>
+                                        <input class="input-text input-row__input-text" type="email">
+                                    </div><!-- input row -->
+
+                                    <div class="input-row input-row--disabled form__input-row">
+                                        <div class="input-row__title">телефон</div>
+                                        <input class="input-text input-row__input-text" type="tel">
+                                    </div><!-- input row -->
+
+                                </div><!--form group-->
+
+                                <div class="form__pre-footer">
+                                    <a class="form__link" href="#">У меня есть аккаут Vividi</a>
                                 </div>
 
-                                <div class="candidate-card__title">
-                                    <div class="candidate-card__name h1">Продуктовый дизайнер</div>
-                                    <div class="candidate-card__salary">3 000 - 4 500 $</div>
-                                </div>
+                                <div class="form__footer">
+                                    <button class="btn btn--fluid btn--style--accent btn--size--lg reply-slider-nested__slide-next-parent">
+                                        <i class="btn__icon icon icon--size--lg icon--send-48"></i>
+                                        <span class="btn__text">Ответить</span>
+                                    </button>
+                                </div><!-- form footer-->
 
-                                <div class="candidate-card__desk">
-                                    Мы ищем Product Designer, который готов(а) сделать свой вклад в разработку приложений № 1 в
-                                    мире в Health&Fitness направлении.
-                                </div>
+                            </div><!--form-->
 
-                                <div class="candidate-card__fields candidate-card__fields--hor">
-                                    <div class="input-row input-row--style--outline-white candidate-card__input-row">
-                                        <div class="input-row__title">город</div>
-                                        <input class="input-text input-row__input-text" readonly type="text" value="Киев">
-                                    </div><!-- input row -->
-                                    <div class="input-row input-row--style--outline-white candidate-card__input-row">
-                                        <div class="input-row__title">тип занятости</div>
-                                        <input class="input-text input-row__input-text" readonly type="text" value="полная">
-                                    </div><!-- input row -->
-                                    <div class="input-row input-row--style--outline-white candidate-card__input-row">
-                                        <div class="input-row__title">опыт работы</div>
-                                        <input class="input-text input-row__input-text" readonly type="text" value="от 2-х лет">
-                                    </div><!-- input row -->
-                                </div><!-- candidate card fields -->
+                        </article><!--content tile-->
 
-                            </div><!-- candidate card body -->
+                    </div><!--swiper nested slide-->
 
-                            <div class="controls-bar candidate-card__controls">
-                                <button class="btn btn--size--lg btn--style--primary-lighter-alt" data-modal-id="vacancy">
-                                    <i class="icon icon--size--lg icon--expand-48 btn__icon"></i>
-                                    <span class="btn__text">Подробнее</span>
-                                </button>
-                            </div><!-- candidate card controls -->
+                </div><!--swiper nested wrapper-->
 
-                        </div><!-- candidate card -->
-
-                    </article><!-- content tile -->
-
-                </div>
-
-                <div class="grid__col--5">
-
-                    <article class="content-tile reply-slider__content-tile content-tile--alt2">
-
-                        <div class="reply-slider__slide-header">
-                            <div class="balloon reply-slider__balloon balloon--style--accent">Давай знакомиться</div>
-                        </div><!--slide header-->
-
-                        <div class="form reply-slider__form">
-
-                            <div class="form__group">
-
-                                <div class="input-row input-row--disabled form__input-row">
-                                    <div class="input-row__title">имя и фамилия</div>
-                                    <input class="input-text input-row__input-text" type="text">
-                                </div><!-- input row -->
-
-                                <div class="input-row input-row--disabled form__input-row">
-                                    <div class="input-row__title">ссылка на резюме/ портфолио</div>
-                                    <input class="input-text input-row__input-text" type="text">
-                                </div><!-- input row -->
-
-                                <div class="input-row input-row--disabled form__input-row">
-                                    <div class="input-row__title">email</div>
-                                    <input class="input-text input-row__input-text" type="email">
-                                </div><!-- input row -->
-
-                                <div class="input-row input-row--disabled form__input-row">
-                                    <div class="input-row__title">телефон</div>
-                                    <input class="input-text input-row__input-text" type="tel">
-                                </div><!-- input row -->
-
-                            </div><!--form group-->
-
-                            <div class="form__pre-footer">
-                                <a class="form__link" href="#">У меня есть аккаут Vividi</a>
-                            </div>
-
-                            <div class="form__footer">
-                                <button class="btn btn--fluid btn--style--accent btn--size--lg" disabled>
-                                    <i class="btn__icon icon icon--size--lg icon--send-48"></i>
-                                    <span class="btn__text">Ответить</span>
-                                </button>
-                            </div><!-- form footer-->
-
-                        </div><!--form-->
-
-                    </article><!--content tile-->
-
-                </div>
-            </div>
+            </div><!--swiper nested-->
 
         </div><!--swiper slide-->
 
-        <div class="swiper-slide reply-slider__slide">
-
-            <div class="reply-slider__tile">
-                tile
-            </div><!--video-->
-
+        <div class="swiper-slide reply-slider__slide reply-slider__slide--video">
+            1
         </div><!--swiper slide-->
 
-        <div class="swiper-slide reply-slider__slide">
-
-            <div class="reply-slider__tile">
-                tile
-            </div><!--video-->
-
-        </div><!--swiper slide-->
-
-        <div class="swiper-slide reply-slider__slide">
-
-            <div class="reply-slider__tile">
-                tile
-            </div><!--video-->
-
+        <div class="swiper-slide reply-slider__slide reply-slider__slide--video">
+            2
         </div><!--swiper slide-->
 
     </div><!--swiper wrapper-->
 
     <div class="reply-slider__nav">
-        <button class="reply-slider__nav-btn reply-slider__btn--left btn btn--size--lg btn--style--secondary">
+
+        <button class="reply-slider__nav-btn btn btn--size--lg btn--style--secondary-alt reply-slider__slide-prev">
             <i class="icon icon--size--lg icon--arrowleft-48"></i>
         </button>
 
-        <button class="reply-slider__nav-btn reply-slider__btn--right btn btn--size--lg btn--style--secondary">
+        <button class="reply-slider__nav-btn btn btn--size--lg btn--style--accent reply-slider__slide-next">
             <i class="icon icon--size--lg icon--arrowright-48"></i>
         </button>
-    </div><!--swiper nav-->
 
+    </div><!--swiper nav-->
 
 </div><!--swiper-->

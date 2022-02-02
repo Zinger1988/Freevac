@@ -283,6 +283,17 @@
     }
   }
 
+  &--text-md{
+
+    #{$this}__text{
+      display: none;
+
+      @include media(">=md"){
+        display: block;
+      }
+    }
+  }
+
   &:disabled,
   &--style--disabled{
     cursor: default;
