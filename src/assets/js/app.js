@@ -746,9 +746,10 @@ const SiteJS = {
                 stepsFixed.classList.remove('active');
             }
         });
+        this.recordReply();
 
         if(document.querySelector('.reply-slider')){
-            
+
             const replySlider = new Swiper('.reply-slider', {
                 allowTouchMove: false,
                 loop: false,
@@ -765,9 +766,18 @@ const SiteJS = {
                 on: {
                     init: function (swiper) {
                         swiper.$el[0].setAttribute('data-active-index', swiper.activeIndex);
+
+                        const nextBtn = swiper.$el[0].querySelector('.reply-slider__slide-next');
+                        const videoEl = swiper.slides[swiper.activeIndex].querySelector('.reply-video-record');
+                        nextBtn.disabled = swiper.activeIndex !== 0 && !(videoEl && videoEl.src);
                     },
                     slideChange: function (swiper) {
-                        swiper.$el[0].setAttribute('data-active-index', swiper.activeIndex)
+                        swiper.$el[0].setAttribute('data-active-index', swiper.activeIndex);
+
+                        const nextBtn = swiper.$el[0].querySelector('.reply-slider__slide-next');
+                        const videoEl = swiper.slides[swiper.activeIndex].querySelector('.reply-video-record');
+
+                        nextBtn.disabled = swiper.activeIndex !== 0 && !(videoEl && videoEl.src);
                     }
                 }
             })
@@ -1387,6 +1397,111 @@ const SiteJS = {
                 input.value = value.trim();
                 if(input.InputFocusUpdate) input.InputFocusUpdate();
             })
+        }
+    },
+    async recordReply(){
+
+        const slides = document.querySelectorAll('.reply-slider__slide--video');
+        const sliderNav = document.querySelector('.reply-slider__nav');
+
+        if(slides.length === 0) return;
+
+        slides.forEach(slide => {
+            const recordBtn = slide.querySelector('.video-slide__btn--record');
+
+            if(!recordBtn) return;
+
+            recordBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                createRecorder(slide, sliderNav);
+            })
+        })
+
+        async function createRecorder(wrapper, sliderNav){
+            const videoWrapper = wrapper.querySelector('.reply-video');
+            const videoElement = wrapper.querySelector('.reply-video-record');
+            const slideNextBtn = sliderNav.querySelector('.reply-slider__slide-next');
+            const slidePrevBtn = sliderNav.querySelector('.reply-slider__slide-prev');
+
+            if(!videoElement) return;
+
+            videoWrapper.style = 'display: block';
+
+            let recorderInstance = null;
+            let initialSrc = null;
+
+            const loader = SiteJS.createElement({
+                tag: 'div',
+                classes: ['loader', 'reply-slider__loader'],
+                html: `<div class="loader__spinner"></div>`
+            });
+
+            if(!videoElement.hasAttribute('src')){
+                const nestedLoader = wrapper.appendChild(loader);
+                slidePrevBtn.disabled = true;
+                recorderInstance = new VideoRecorder({
+                    element: videoElement,
+                    constraints: {
+                        video: {
+                            width: {
+                                min: 480,
+                                max: 1280
+                            },
+                            height: {
+                                min: 480,
+                                max: 1280
+                            },
+                            facingMode: 'user',
+                        },
+                        audio: true
+                    }
+                });
+                await recorderInstance.init();
+                setTimeout(() => {
+                    nestedLoader.remove();
+                    VideoRecorder.startRecording(recorderInstance);
+                }, 500);
+            }
+
+            const controlBar = wrapper.querySelector('.reply-video-control-bar');
+
+            const doneBtn = SiteJS.createElement({
+                tag: 'button',
+                classes: ['btn', 'reply-video__control-bar-btn', 'reply-video-overwrite', 'btn--style--accent-lighter', 'btn--size--lg', 'btn--fluid'],
+                html: `<i class="icon icon--size--lg icon--check-48 btn__icon"></i>
+                   <span class="btn__text">Снято</span>`
+            });
+
+            const overwriteBtn = SiteJS.createElement({
+                tag: 'button',
+                classes: ['btn', 'reply-video__control-bar-btn', 'reply-video-stop', 'btn--style--secondary', 'btn--size--lg', 'btn--fluid'],
+                html: `<i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
+                   <span class="btn__text">Переснять</span>`
+            });
+
+            doneBtn.addEventListener('click', () => {
+                VideoRecorder.stopRecording(recorderInstance);
+                controlBar.innerHTML = "";
+                controlBar.append(overwriteBtn);
+                slideNextBtn.disabled = false;
+                slidePrevBtn.disabled = false;
+            });
+
+            overwriteBtn.addEventListener('click', async () => {
+                slidePrevBtn.disabled = true;
+                slideNextBtn.disabled = true;
+                controlBar.innerHTML = "";
+                const nestedLoader = wrapper.appendChild(loader);
+                await VideoRecorder.reset(recorderInstance);
+                controlBar.append(doneBtn);
+
+                setTimeout(() => {
+                    nestedLoader.remove();
+                    VideoRecorder.startRecording(recorderInstance);
+                }, 500);
+            });
+
+            controlBar.append(doneBtn);
         }
     },
     async recordVideo(selector){
