@@ -62,8 +62,8 @@ class InputFocus{
 }
 
 class Counter{
-    constructor(elementSelector) {
-        this.element = document.querySelector(elementSelector);
+    constructor(element) {
+        this.element = element;
         this.counterValue = parseInt(this.element.getAttribute('data-counter'));
         this.timer = null;
         this.timeLeft = this.counterValue;
@@ -1408,7 +1408,6 @@ const SiteJS = {
 
         slides.forEach(slide => {
             const recordBtn = slide.querySelector('.video-slide__btn--record');
-
             if(!recordBtn) return;
 
             recordBtn.addEventListener('click', (e) => {
@@ -1420,10 +1419,63 @@ const SiteJS = {
         async function createRecorder(wrapper, sliderNav){
             const videoWrapper = wrapper.querySelector('.reply-video');
             const videoElement = wrapper.querySelector('.reply-video-record');
+            const videoDuration = videoWrapper.getAttribute('data-video-duration');
             const slideNextBtn = sliderNav.querySelector('.reply-slider__slide-next');
             const slidePrevBtn = sliderNav.querySelector('.reply-slider__slide-prev');
 
             if(!videoElement) return;
+
+            const controlBar = wrapper.querySelector('.reply-video-control-bar');
+
+            const doneBtn = SiteJS.createElement({
+                tag: 'button',
+                classes: ['btn', 'reply-video__control-bar-btn', 'reply-video-stop', 'btn--size--lg', 'btn--fluid'],
+                html: `<i class="icon icon--size--lg icon--check-48 btn__icon"></i>
+                    <span class="btn__text">
+                        <span class="btn__text--counter-text">Снято</span>
+                        <span class="btn__text--counter-value" data-counter="${videoDuration}s"></span>
+                    </span>`
+            });
+
+            const overwriteBtn = SiteJS.createElement({
+                tag: 'button',
+                classes: ['btn', 'reply-video__control-bar-btn', 'reply-video-overwrite', 'btn--style--secondary', 'btn--size--lg', 'btn--fluid'],
+                html: `<i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
+                   <span class="btn__text">Переснять</span>`
+            });
+
+            doneBtn.addEventListener('click', () => {
+                counterInstance.stop();
+            });
+
+            doneBtn.style = `animation-duration: ${videoDuration}s`;
+            controlBar.append(doneBtn);
+
+            const counterInstance = new Counter(wrapper.querySelector('.btn__text--counter-value'));
+
+            counterInstance.onStop = () => {
+                VideoRecorder.stopRecording(recorderInstance);
+                controlBar.innerHTML = "";
+                controlBar.append(overwriteBtn);
+                slideNextBtn.disabled = false;
+                slidePrevBtn.disabled = false;
+                counterInstance.reset();
+            };
+
+            overwriteBtn.addEventListener('click', async () => {
+                slidePrevBtn.disabled = true;
+                slideNextBtn.disabled = true;
+                controlBar.innerHTML = "";
+                const nestedLoader = wrapper.appendChild(loader);
+                await VideoRecorder.reset(recorderInstance);
+                controlBar.append(doneBtn);
+
+                setTimeout(() => {
+                    nestedLoader.remove();
+                    VideoRecorder.startRecording(recorderInstance);
+                    counterInstance.start();
+                }, 500);
+            });
 
             videoWrapper.style = 'display: block';
 
@@ -1459,49 +1511,10 @@ const SiteJS = {
                 await recorderInstance.init();
                 setTimeout(() => {
                     nestedLoader.remove();
+                    counterInstance.start();
                     VideoRecorder.startRecording(recorderInstance);
                 }, 500);
             }
-
-            const controlBar = wrapper.querySelector('.reply-video-control-bar');
-
-            const doneBtn = SiteJS.createElement({
-                tag: 'button',
-                classes: ['btn', 'reply-video__control-bar-btn', 'reply-video-overwrite', 'btn--style--accent-lighter', 'btn--size--lg', 'btn--fluid'],
-                html: `<i class="icon icon--size--lg icon--check-48 btn__icon"></i>
-                   <span class="btn__text">Снято</span>`
-            });
-
-            const overwriteBtn = SiteJS.createElement({
-                tag: 'button',
-                classes: ['btn', 'reply-video__control-bar-btn', 'reply-video-stop', 'btn--style--secondary', 'btn--size--lg', 'btn--fluid'],
-                html: `<i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
-                   <span class="btn__text">Переснять</span>`
-            });
-
-            doneBtn.addEventListener('click', () => {
-                VideoRecorder.stopRecording(recorderInstance);
-                controlBar.innerHTML = "";
-                controlBar.append(overwriteBtn);
-                slideNextBtn.disabled = false;
-                slidePrevBtn.disabled = false;
-            });
-
-            overwriteBtn.addEventListener('click', async () => {
-                slidePrevBtn.disabled = true;
-                slideNextBtn.disabled = true;
-                controlBar.innerHTML = "";
-                const nestedLoader = wrapper.appendChild(loader);
-                await VideoRecorder.reset(recorderInstance);
-                controlBar.append(doneBtn);
-
-                setTimeout(() => {
-                    nestedLoader.remove();
-                    VideoRecorder.startRecording(recorderInstance);
-                }, 500);
-            });
-
-            controlBar.append(doneBtn);
         }
     },
     async recordVideo(selector){
@@ -1535,8 +1548,8 @@ const SiteJS = {
 
         const controlBar = document.querySelector('#record-control-bar');
         const recordBtn = controlBar.querySelector('#record-btn');
-        const counterInstance = new Counter('#video-counter');
-        const countdownInstance = new Counter('#video-countdown');
+        const counterInstance = new Counter(document.querySelector('#video-counter'));
+        const countdownInstance = new Counter(document.querySelector('#video-countdown'));
 
         function rollbackVideoElem(){
             VideoRecorder.destroy(recorderInstance);
