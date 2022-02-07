@@ -1,0 +1,67 @@
+.registration-options{
+
+  &__item{
+    margin: 0 0 .8rem;
+    background-color: $secondary;
+    border-radius: 1.6rem;
+    display: flex;
+    padding: 1.6rem 1.6rem 0;
+    cursor: pointer;
+    @include animate(background-color);
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  $this: &;
+
+  &__text{
+    margin: 0 0 .8rem;
+    flex: 1 1 auto;
+  }
+
+  &__item-arrow{
+    color: $secondaryDarker2;
+    margin: 0 0 2.7rem;
+  }
+
+  &__item-title{
+    font-weight: 500;
+    color: $black;
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+    margin: 0 0 .4rem;
+    @include animate(color);
+  }
+
+  &__item-subtitle{
+    color: $secondaryDarker2;
+    font-size: $fontSize12;
+    @include calcLineHeight($fontSize12);
+    @include animate(color);
+  }
+
+  &__img{
+    flex-shrink: 0;
+    align-self: flex-end;
+  }
+
+  &__img-item{
+    display: block;
+    width: 12.2rem;
+  }
+
+  &__item:hover{
+    background-color: $primary;
+
+    #{$this}__item-arrow{
+      color: $primaryLighter2;
+    }
+
+    #{$this}__item-title,
+    #{$this}__item-subtitle{
+      color: $white;
+    }
+  }
+}

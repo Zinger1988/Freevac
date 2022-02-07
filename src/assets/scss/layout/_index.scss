@@ -47,7 +47,7 @@
     position: relative;
     z-index: 5;
 
-    @include media(">=md"){
+    @include media(">=lg"){
       flex-direction: row;
       justify-content: center;
       padding: 3.2rem;

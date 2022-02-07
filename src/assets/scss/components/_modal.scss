@@ -192,4 +192,21 @@
       padding: 0;
     }
   }
+
+  &__content-tabs{
+    margin: 0 0 3rem;
+  }
+
+  &__login-bar{
+    margin: 0 0 3.2rem;
+  }
+
+  &__text{
+    margin: 0 0 3.2rem;
+    color: $secondaryDarker2;
+
+    &:last-child{
+      margin: 0;
+    }
+  }
 }
