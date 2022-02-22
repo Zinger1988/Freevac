@@ -12,21 +12,21 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="name-form" novalidate>
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Имя</div>
-                        <input class="input-text input-row__input-text" type="text">
+                        <input class="input-text input-row__input-text" type="text" name="given-name" data-validation>
                     </div><!-- input row -->
 
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Фамилия</div>
-                        <input class="input-text input-row__input-text" type="text">
+                        <input class="input-text input-row__input-text" type="text" name="family-name" data-validation>
                     </div><!-- input row -->
                 </div><!-- form group-->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular" disabled>
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->

@@ -12,16 +12,16 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="email-form">
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">E-mail</div>
-                        <input class="input-text input-row__input-text" type="email" value="link.lazarenko@gmail.com">
+                        <input class="input-text input-row__input-text" type="email" value="link.lazarenko@gmail.com" data-validation="email">
                     </div><!-- input row -->
                 </div><!-- form group -->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                     <button class="btn btn--style--secondary btn--size--regular">

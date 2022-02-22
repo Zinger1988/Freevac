@@ -1,0 +1,111 @@
+.hiw-section{
+  background-color: #7B41E7;
+  color: #ffffff;
+  padding: 5.6rem 1.6rem;
+  border-radius: 3.2rem;
+  overflow: hidden;
+
+  @include media(">=sm"){
+    padding: 5.6rem 2.2rem;
+  }
+
+  @include media(">=lg"){
+    padding: 10rem 3rem;
+    border-radius: 7.2rem;
+  }
+
+  &__head{
+    margin: 0 auto 5.6rem;
+    max-width: 65.6rem;
+    text-align: center;
+
+    @include media(">=lg"){
+      margin: 0 auto 8rem;
+    }
+  }
+
+  &__body{
+    max-width: 113.5rem;
+    margin: 0 auto;
+  }
+
+  &__slider{
+    overflow: visible;
+  }
+
+  &__swiper-wrapper{
+    @include media(">=lg"){
+      margin: 0 0 5.6rem;
+      cursor: grab;
+    }
+    
+    &:active{
+      cursor: grabbing;
+    }
+  }
+
+  &__slide{
+    width: 27.6rem;
+    min-height: 30.4rem;
+    height: 100%;
+    background-color: rgba($white, .1);
+    border-radius: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: $white;
+    padding: 2.4rem;
+
+    @include media(">=lg"){
+      width: 37.7rem;
+      min-height: 36.6rem;
+      padding: 3.2rem;
+    }
+  }
+
+  &__slide-number{
+    font-size: 2.6rem;
+    line-height: 1;
+    font-weight: bold;
+    width: 6.4rem;
+    height: 6.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary;
+    margin: 0 0 auto;
+    border-radius: 1.6rem;
+  }
+
+  &__slide-title{
+    font-size: $fontSize22;
+    @include calcLineHeight($fontSize22);
+    margin: 0 0 .8rem;
+    font-weight: bold;
+  }
+
+  &__slide-text{
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+  }
+
+  &__nav{
+    display: none;
+
+    @include media(">=lg"){
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  &__nav-item{
+    margin: 0 .8rem;
+    cursor: pointer;
+    
+    &[aria-disabled="true"]{
+      color: $primaryLighter;
+      cursor: default;
+    }
+  }
+}

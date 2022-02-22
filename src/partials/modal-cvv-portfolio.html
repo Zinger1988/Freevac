@@ -12,18 +12,18 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="cvv-portfolio-form" novalidate>
                 <div class="form__group">
                     <div class="form__input-row form__input-row--checkbox-radio">
                         <label class="checkbox-radio">
-                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="" checked>
+                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="cvv" checked>
                             <span class="checkbox-radio__toggler"></span>
                             <span class="checkbox-radio__label">резюме</span>
                         </label>
                     </div><!-- input row -->
                     <div class="form__input-row form__input-row--checkbox-radio">
                         <label class="checkbox-radio">
-                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="">
+                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="portfolio">
                             <span class="checkbox-radio__toggler"></span>
                             <span class="checkbox-radio__label">портфолио</span>
                         </label>
@@ -35,14 +35,14 @@
                 <div class="form__group">
                     <div class="form__input-row form__input-row--checkbox-radio">
                         <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="link" data-tab-active>
-                            <input class="checkbox-radio__input" type="radio" name="link-type" value="" checked>
+                            <input class="checkbox-radio__input" type="radio" name="link-type" value="link" checked>
                             <span class="checkbox-radio__toggler"></span>
                             <span class="checkbox-radio__label">ссылка</span>
                         </label>
                     </div><!-- input row -->
                     <div class="form__input-row form__input-row--checkbox-radio">
                         <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="file">
-                            <input class="checkbox-radio__input" type="radio" name="link-type" value="">
+                            <input class="checkbox-radio__input" type="radio" name="link-type" value="file">
                             <span class="checkbox-radio__toggler"></span>
                             <span class="checkbox-radio__label">файл</span>
                         </label>
@@ -52,7 +52,7 @@
                 <div class="form__group" data-tab-group="cvv" data-tab-content-id="link">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Ссылка</div>
-                        <input class="input-text input-row__input-text" type="text" value="docs.google/sdfc43-3eret431-123/cr-er">
+                        <input class="input-text input-row__input-text" type="text" value="docs.google/sdfc43-3eret431-123/cr-er" name="link-src" data-validation>
                     </div><!-- input row -->
                 </div><!-- form group -->
 
@@ -61,14 +61,15 @@
                         <div class="input-row__title">Файл</div>
 
                         <input class="input-text input-row__input-text input-text--iconic input-text--iconic--angle-right"
+                               name="filename"
                                type="text"
                                placeholder="загрузи файл word, power point или pdf"
-                               readonly>
+                               readonly data-validation>
 
 <!--                        <input class="input-text input-row__input-text input-row__controlled-item"-->
 <!--                               type="text" value="filename.pdf"-->
 <!--                               placeholder="загрузи файл word, power point или pdf"-->
-<!--                               readonly>-->
+<!--                               readonly data-validation>-->
 <!--                        <div class="input-row__controls-holder">-->
 <!--                            <a href="#" class="input-row__controls-btn">-->
 <!--                                <i class="icon icon&#45;&#45;download-24 icon&#45;&#45;size&#45;&#45;md"></i>-->
@@ -77,14 +78,18 @@
 
                         <input class="input-row__input-file"
                                type="file"
-                               name=""
-                               accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/pdf">
+                               name="file"
+                               accept="application/msword,
+                               application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                               application/vnd.ms-powerpoint,
+                               application/vnd.openxmlformats-officedocument.presentationml.presentation,
+                               application/pdf">
 
                     </div><!-- input row -->
                 </div><!-- form group -->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                     <button class="btn btn--style--secondary btn--size--regular">

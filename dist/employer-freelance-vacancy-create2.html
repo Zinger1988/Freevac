@@ -202,16 +202,16 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="email-form">
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">E-mail</div>
-                        <input class="input-text input-row__input-text" type="email" value="link.lazarenko@gmail.com">
+                        <input class="input-text input-row__input-text" type="email" value="link.lazarenko@gmail.com" data-validation="email">
                     </div><!-- input row -->
                 </div><!-- form group -->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                     <button class="btn btn--style--secondary btn--size--regular">
@@ -316,16 +316,16 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="phone-form" novalidate>
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Номер телефона</div>
-                        <input class="input-text input-row__input-text" type="text">
+                        <input class="input-text input-row__input-text" type="tel" name="tel" data-validation="tel">
                     </div><!-- input row -->
                 </div><!-- form group-->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular" disabled>
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->
@@ -470,16 +470,16 @@
 
         <div class="modal__body">
 
-            <form class="form modal__form" method="post">
+            <form class="form modal__form" method="post" novalidate id="position-form">
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Напиши название должности</div>
-                        <input class="input-text input-row__input-text" type="text" value="Продуктовый дизайнер" data-complete-input>
+                        <input class="input-text input-row__input-text" type="text" value="Продуктовый дизайнер" name="position" data-complete-input data-validation>
                     </div><!-- input row -->
                 </div><!-- form group-->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->

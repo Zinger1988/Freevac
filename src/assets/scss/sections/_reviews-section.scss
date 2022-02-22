@@ -51,7 +51,7 @@
     background-color: $white;
     border-radius: 3.2rem;
     padding: 1.6rem 1.6rem 1.8rem;
-    @include animate(opacity)
+    @include animate(opacity);
 
     @include media(">=1440px"){
       padding: 2.4rem;

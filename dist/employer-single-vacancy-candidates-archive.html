@@ -551,21 +551,21 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="name-form" novalidate>
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Имя</div>
-                        <input class="input-text input-row__input-text" type="text">
+                        <input class="input-text input-row__input-text" type="text" name="given-name" data-validation>
                     </div><!-- input row -->
 
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Фамилия</div>
-                        <input class="input-text input-row__input-text" type="text">
+                        <input class="input-text input-row__input-text" type="text" name="family-name" data-validation>
                     </div><!-- input row -->
                 </div><!-- form group-->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular" disabled>
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->
@@ -588,16 +588,16 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="age-form" novalidate>
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Возраст</div>
-                        <input class="input-text input-row__input-text" type="number">
+                        <input class="input-text input-row__input-text" type="text" name="age" value="3">
                     </div><!-- input row -->
                 </div><!-- form group-->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular" disabled>
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->
@@ -620,16 +620,16 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="about-form" novalidate>
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">коротко о себе</div>
-                        <textarea class="input-text input-text--textarea input-row__input-text">Lorem Ipsum</textarea>
+                        <textarea class="input-text input-text--textarea input-row__input-text" name="description" data-validation>Lorem Ipsum</textarea>
                     </div><!-- input row -->
                 </div><!-- form group -->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->
@@ -652,7 +652,7 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="location-form" novalidate>
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Навзание населённого пункта</div>
@@ -661,7 +661,7 @@
                 </div><!-- form group-->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular" disabled>
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->
@@ -684,16 +684,16 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="email-form">
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">E-mail</div>
-                        <input class="input-text input-row__input-text" type="email" value="link.lazarenko@gmail.com">
+                        <input class="input-text input-row__input-text" type="email" value="link.lazarenko@gmail.com" data-validation="email">
                     </div><!-- input row -->
                 </div><!-- form group -->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                     <button class="btn btn--style--secondary btn--size--regular">
@@ -719,15 +719,15 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="experience-edit-form">
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Должность</div>
-                        <input class="input-text input-row__input-text" type="text" value="UX дизайнер, несколько месяцев">
+                        <input class="input-text input-row__input-text" type="text" value="UX дизайнер, несколько месяцев" name="duration" data-validation>
                     </div><!-- input row -->
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Компания</div>
-                        <input class="input-text input-row__input-text" type="text" value="Monobank">
+                        <input class="input-text input-row__input-text" type="text" value="Monobank" name="company" data-validation>
                     </div><!-- input row -->
                 </div><!-- form group -->
 
@@ -784,7 +784,7 @@
                 </div><!-- form group -->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                     <button class="btn btn--style--secondary btn--size--regular">
@@ -810,15 +810,15 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="experience-add-form">
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Должность</div>
-                        <input class="input-text input-row__input-text" type="text">
+                        <input class="input-text input-row__input-text" type="text" name="position" data-validation>
                     </div><!-- input row -->
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Компания</div>
-                        <input class="input-text input-row__input-text" type="text">
+                        <input class="input-text input-row__input-text" type="text" name="company" data-validation>
                     </div><!-- input row -->
                 </div><!-- form group -->
 
@@ -875,7 +875,7 @@
                 </div><!-- form group -->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->
@@ -898,18 +898,18 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="cvv-portfolio-form" novalidate>
                 <div class="form__group">
                     <div class="form__input-row form__input-row--checkbox-radio">
                         <label class="checkbox-radio">
-                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="" checked>
+                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="cvv" checked>
                             <span class="checkbox-radio__toggler"></span>
                             <span class="checkbox-radio__label">резюме</span>
                         </label>
                     </div><!-- input row -->
                     <div class="form__input-row form__input-row--checkbox-radio">
                         <label class="checkbox-radio">
-                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="">
+                            <input class="checkbox-radio__input" type="radio" name="cvv-type" value="portfolio">
                             <span class="checkbox-radio__toggler"></span>
                             <span class="checkbox-radio__label">портфолио</span>
                         </label>
@@ -921,14 +921,14 @@
                 <div class="form__group">
                     <div class="form__input-row form__input-row--checkbox-radio">
                         <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="link" data-tab-active>
-                            <input class="checkbox-radio__input" type="radio" name="link-type" value="" checked>
+                            <input class="checkbox-radio__input" type="radio" name="link-type" value="link" checked>
                             <span class="checkbox-radio__toggler"></span>
                             <span class="checkbox-radio__label">ссылка</span>
                         </label>
                     </div><!-- input row -->
                     <div class="form__input-row form__input-row--checkbox-radio">
                         <label class="checkbox-radio" data-tab-group="cvv" data-tab-anchor="file">
-                            <input class="checkbox-radio__input" type="radio" name="link-type" value="">
+                            <input class="checkbox-radio__input" type="radio" name="link-type" value="file">
                             <span class="checkbox-radio__toggler"></span>
                             <span class="checkbox-radio__label">файл</span>
                         </label>
@@ -938,7 +938,7 @@
                 <div class="form__group" data-tab-group="cvv" data-tab-content-id="link">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Ссылка</div>
-                        <input class="input-text input-row__input-text" type="text" value="docs.google/sdfc43-3eret431-123/cr-er">
+                        <input class="input-text input-row__input-text" type="text" value="docs.google/sdfc43-3eret431-123/cr-er" name="link-src" data-validation>
                     </div><!-- input row -->
                 </div><!-- form group -->
 
@@ -947,14 +947,15 @@
                         <div class="input-row__title">Файл</div>
 
                         <input class="input-text input-row__input-text input-text--iconic input-text--iconic--angle-right"
+                               name="filename"
                                type="text"
                                placeholder="загрузи файл word, power point или pdf"
-                               readonly>
+                               readonly data-validation>
 
 <!--                        <input class="input-text input-row__input-text input-row__controlled-item"-->
 <!--                               type="text" value="filename.pdf"-->
 <!--                               placeholder="загрузи файл word, power point или pdf"-->
-<!--                               readonly>-->
+<!--                               readonly data-validation>-->
 <!--                        <div class="input-row__controls-holder">-->
 <!--                            <a href="#" class="input-row__controls-btn">-->
 <!--                                <i class="icon icon&#45;&#45;download-24 icon&#45;&#45;size&#45;&#45;md"></i>-->
@@ -963,14 +964,18 @@
 
                         <input class="input-row__input-file"
                                type="file"
-                               name=""
-                               accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/pdf">
+                               name="file"
+                               accept="application/msword,
+                               application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                               application/vnd.ms-powerpoint,
+                               application/vnd.openxmlformats-officedocument.presentationml.presentation,
+                               application/pdf">
 
                     </div><!-- input row -->
                 </div><!-- form group -->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                     <button class="btn btn--style--secondary btn--size--regular">
@@ -1075,16 +1080,16 @@
 
         <div class="modal__body">
 
-            <form class="form" method="post">
+            <form class="form" method="post" id="phone-form" novalidate>
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Номер телефона</div>
-                        <input class="input-text input-row__input-text" type="text">
+                        <input class="input-text input-row__input-text" type="tel" name="tel" data-validation="tel">
                     </div><!-- input row -->
                 </div><!-- form group-->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular" disabled>
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->
@@ -1294,16 +1299,16 @@
 
         <div class="modal__body">
 
-            <form class="form modal__form" method="post">
+            <form class="form modal__form" method="post" novalidate id="position-form">
                 <div class="form__group">
                     <div class="input-row input-row--pointer form__input-row">
                         <div class="input-row__title">Напиши название должности</div>
-                        <input class="input-text input-row__input-text" type="text" value="Продуктовый дизайнер" data-complete-input>
+                        <input class="input-text input-row__input-text" type="text" value="Продуктовый дизайнер" name="position" data-complete-input data-validation>
                     </div><!-- input row -->
                 </div><!-- form group-->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
                         <span class="btn__text">Сохранить</span>
                     </button>
                 </div><!-- form footer-->

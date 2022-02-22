@@ -30,6 +30,10 @@
     outline: none;
   }
 
+  &.invalid{
+    border-color: $danger;
+  }
+
   &:focus:not(:read-only):not(:disabled) {
     @include placeholder {
       opacity: 0;

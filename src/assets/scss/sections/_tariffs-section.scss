@@ -1,0 +1,112 @@
+.tariffs-section{
+  background-color: #7B41E7;
+  color: #ffffff;
+  padding: 5.6rem 2.2rem;
+  border-radius: 3.2rem;
+
+  @include media(">=lg"){
+    padding: 10rem 3rem;
+    border-radius: 7.2rem;
+  }
+
+  &__head{
+    margin: 0 auto 4.8rem;
+    max-width: 65.6rem;
+    text-align: center;
+
+    @include media(">=lg"){
+      margin: 0 auto 5.6rem;
+    }
+  }
+
+  &__tabs-head{
+    margin: 0 0 5.6rem;
+    text-align: center;
+  }
+
+  &__tabs-head-holder{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primaryLighter2;
+    border-radius: 4rem;
+    border: 2px solid $primaryLighter2;
+  }
+
+  &__tabs-btn{
+    @extend %buttonreset;
+    font-size: $fontSize18;
+    @include calcLineHeight($fontSize18);
+    padding: .58em 1em;
+    border-radius: 2em;
+    min-width: 13.8rem;
+    color: $primary;
+    margin: 0 .5rem 0 0;
+    @include animate(box-shadow background-color color);
+
+    @include media(">=lg"){
+      font-size: $fontSize24;
+      @include calcLineHeight($fontSize24);
+      min-width: 16.8rem;
+    }
+
+    &[data-tab-active]{
+      background-color: $primary;
+      color: $white;
+    }
+
+    &:hover{
+      box-shadow: inset 0 0 0 1px $primary;
+    }
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  &__body{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-gap: 3.2rem;
+    max-width: 74rem;
+    margin: 0 auto;
+  }
+
+  &__item{
+    background-color: $white;
+    border-radius: 3.2rem;
+    padding: 2.4rem;
+    color: $black;
+    height: 100%;
+    min-height: 48.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include media(">=md"){
+      min-height: 56.3rem;
+      padding: 3.2rem;
+    }
+  }
+
+  &__balloon{
+    margin: 0 0 3.2rem;
+  }
+
+  &__default-list{
+    width: 100%;
+    margin: 0 0 3.2rem;
+    flex: 1 0 auto;
+  }
+
+  &__btn{
+    margin: 0 0 1.6rem;
+  }
+
+  &__price{
+    width: 100%;
+    text-align: center;
+    color: $secondaryDarker3;
+    font-size: 1.6rem;
+  }
+}

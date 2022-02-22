@@ -47,4 +47,38 @@
   &__reviews-section {
     margin: 0 0 100px;
   }
+
+  &__tariffs-section{
+    margin: 0 0 3.4rem;
+
+    @include media(">=md"){
+      margin: 0 0 8rem;
+    }
+
+    @include media(">=lg"){
+      margin: 0 auto 8rem;
+      max-width: 139.5rem;
+    }
+
+    @include media(">=xl"){
+      margin: 0 auto 12rem;
+    }
+  }
+
+  &__hiw-section{
+    margin: 0 0 5.6rem;
+
+    @include media(">=md"){
+      margin: 0 0 8rem;
+    }
+
+    @include media(">=lg"){
+      margin: 0 auto 8rem;
+      max-width: 139.5rem;
+    }
+
+    @include media(">=xl"){
+      margin: 0 auto 12rem;
+    }
+  }
 }

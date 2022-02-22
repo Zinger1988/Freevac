@@ -13,7 +13,7 @@ class InputFocus{
                 const {input, title} = el.InputFocus;
 
                 input.InputFocusUpdate = function() {
-                    if(input.value.trim().length){
+                    if(input.value.trim().length || input.placeholder.trim().length){
                         InputFocus.minifyTitle(title);
                     } else {
                         InputFocus.unMinifyTitle(title);
@@ -490,6 +490,11 @@ class Modal {
         Modal.modalElements = Array.from(document.querySelectorAll(modalSelector));
         Modal.modalOverlay.id = 'modal-overlay';
         Modal.setHandlers();
+        Modal.callbacks = {
+            onHide: (activeModal) => {
+                SiteJS.formReset(activeModal.querySelector('.form'));
+            },
+        }
     }
 
     static bindButton(buttonEl) {
@@ -511,8 +516,10 @@ class Modal {
         });
 
         Modal.modalOverlay.addEventListener('click', (e) => {
+            Modal.callbacks.onHide(Modal.activeModal);
             Modal.hide();
             Modal.hideOverlay();
+
         })
 
         Modal.modalElements.forEach(modal => {
@@ -520,6 +527,7 @@ class Modal {
                 if(e.target.classList.contains('modal-close') || e.target.closest('.modal-close')){
                     Modal.hide();
                     Modal.hideOverlay();
+                    Modal.callbacks.onHideBtnClick(Modal.activeModal);
                 }
             })
 
@@ -664,6 +672,95 @@ class FatalError {
 
         document.body.append(element);
         return element;
+    }
+}
+
+class Validation {
+    constructor(element) {
+        this.element = element;
+        this.validityChecks = [];
+        this.invalidities = [];
+        this.invaliditiesElements = [];
+    }
+
+    init() {
+        this.setHandler(this.element, 'validation')
+    }
+
+    setHandler(element, text) {
+        if (element.tagName.toLowerCase() !== 'select') {
+            element.addEventListener('keyup', (e) => {
+                e.preventDefault();
+                console.log(text)
+                this.checkValidity(element)
+            })
+        } else {
+            element.addEventListener('change', (e) => {
+                e.preventDefault();
+                console.log(text)
+                this.checkValidity(element)
+            })
+        }
+    }
+
+    checkValidity(element) {
+        this.clearInvalidities(element);
+
+        if (!this.element.disabled) {
+            this.validityChecks.forEach(check => {
+                if (check.isInvalid(this.element)) {
+                    this.addInvalidity(check.invalidityMessage);
+                }
+            })
+
+            if (this.invalidities.length) {
+                this.element.classList.add('invalid');
+                this.element.classList.remove('valid');
+
+                this.createInvalidityElements(this.invalidities);
+                this.showInvalidityElements(this.invaliditiesElements);
+
+                return false
+
+            } else {
+                this.element.classList.add('valid');
+                this.element.classList.remove('invalid');
+            }
+        }
+    }
+
+    createInvalidityElements(invalidities) {
+        invalidities.forEach(invalidity => {
+            const message = document.createElement('div');
+            message.classList.add('error-message');
+            message.textContent = invalidity;
+
+            this.invaliditiesElements.push(message);
+        })
+    }
+
+    showInvalidityElements(elements) {
+        elements.forEach(item => this.element.after(item))
+    }
+
+    clearInvalidities() {
+        this.invaliditiesElements.forEach(element => element.remove());
+        this.invaliditiesElements = [];
+        this.invalidities = [];
+        this.element.classList.remove('invalid');
+        this.element.classList.remove('valid');
+    }
+
+    addValidityChecks(check) {
+        this.validityChecks.push(...check)
+    }
+
+    addInvalidity(message) {
+        this.invalidities.push(message)
+    }
+
+    getStatus() {
+        return this.invalidities.length ? 'invalid' : 'valid'
     }
 }
 
@@ -863,6 +960,19 @@ const SiteJS = {
             });
         }
 
+        if(document.querySelector('.hiw-section__slider')){
+            const hiwSlider = new Swiper('.hiw-section__slider', {
+                loop: false,
+                slidesPerView: 'auto',
+                slidesPerGroup: 1,
+                spaceBetween: 16,
+                navigation: {
+                    nextEl: '.hiw-section__nav-item--right',
+                    prevEl: '.hiw-section__nav-item--left',
+                }
+            });
+        }
+
         if(document.querySelector('.video-slider')){
             const videoSlider = new Swiper('.video-slider', {
                 effect: 'flip',
@@ -944,6 +1054,229 @@ const SiteJS = {
                 })
             })
         }
+
+        // form validations
+
+        this.startValidation({
+            formSelector: '#name-form',
+            cb: () => {alert('valid')}
+        });
+
+        this.startValidation({
+            formSelector: '#age-form',
+            cb: () => {alert('valid')}
+        });
+
+        this.startValidation({
+            formSelector: '#location-form',
+            cb: () => {alert('valid')}
+        });
+
+        this.startValidation({
+            formSelector: '#cvv-portfolio-form',
+            cb: () => {alert('valid')}
+        });
+
+        this.startValidation({
+            formSelector: '#position-form',
+            cb: () => {alert('valid')}
+        });
+
+        this.startValidation({
+            formSelector: '#about-form',
+            cb: () => {alert('valid')}
+        });
+
+        this.startValidation({
+            formSelector: '#experience-edit-form',
+            cb: () => {alert('valid')}
+        });
+
+        this.startValidation({
+            formSelector: '#experience-add-form',
+            cb: () => {alert('valid')}
+        });
+
+        this.startValidation({
+            formSelector: '#phone-form',
+            cb: () => {alert('valid')}
+        });
+
+        this.startValidation({
+            formSelector: '#email-form',
+            cb: () => {alert('valid')}
+        });
+    },
+    formReset: function(formElement){
+        formElement.reset();
+
+        for ( const element of formElement){
+            if(element.InputFocusUpdate) element.InputFocusUpdate();
+            if(element.customValidation) element.customValidation.clearInvalidities(element);
+        }
+    },
+    startValidation: function({formSelector, cb = () => {}}){
+
+        const formCollection = document.querySelectorAll(formSelector);
+
+        if(!formCollection.length) return;
+
+        formCollection.forEach(formEl => {
+            const submitBtnCollection = formEl.querySelectorAll('[data-validation-btn]');
+
+            submitBtnCollection.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    this.appendValidation(formEl, cb);
+                })
+            })
+        })
+    },
+    appendValidation(formElement, cb) {
+
+        const formControls = formElement.querySelectorAll('[data-validation]');
+
+        // Validity checks
+        const validityChecks = {
+            empty: [
+                {
+                    isInvalid(elem) {
+                        if (elem.tagName.toLowerCase() == 'select') {
+                            this.invalidityMessage = 'Выберите один из пунктов';
+                        } else {
+                            this.invalidityMessage = 'Это поле не должно быть пустым';
+                        }
+                        return !elem.value;
+                    },
+                    invalidityMessage: '',
+                }
+            ],
+            age: [
+                {
+                    isInvalid(elem) {
+                        let illegalCharacters = elem.value.match(/[^0-9]/g);
+                        return !!illegalCharacters;
+                    },
+                    invalidityMessage: 'В это поле можно вводить только цифры'
+                }
+            ],
+            email: [
+                {
+                    isInvalid(elem) {
+                        let illegalCharacters = elem.value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g);
+                        return elem.value && !illegalCharacters;
+                    },
+                    invalidityMessage: 'Укажите корректный e-mail'
+                }
+            ],
+            password: [
+                {
+                    isInvalid(elem) {
+                        let illegalCharacters = elem.value.match(/[0-9]/g);
+                        return elem.value && !illegalCharacters;
+                    },
+                    invalidityMessage: 'At least 1 number is required'
+                },
+                {
+                    isInvalid(elem) {
+                        let illegalCharacters = elem.value.match(/[a-z]/g);
+                        return elem.value && !illegalCharacters;
+                    },
+                    invalidityMessage: 'At least 1 lowercase letter is required'
+                },
+                {
+                    isInvalid(elem) {
+                        let illegalCharacters = elem.value.match(/[A-Z]/g);
+                        return elem.value && !illegalCharacters;
+                    },
+                    invalidityMessage: 'At least 1 uppercase letter is required'
+                },
+                {
+                    isInvalid(elem) {
+                        return elem.value && elem.value.length < 8;
+                    },
+                    invalidityMessage: 'Password is to short, at least 8 characters required'
+                }
+            ],
+            passwordRepeat: [
+                {
+                    isInvalid(elem) {
+                        const password = formElement.querySelector('[name="password"]');
+                        return elem.value && password.value !== elem.value;
+                    },
+                    invalidityMessage: 'This password needs to match the first one'
+                }
+            ],
+            tel: [
+                {
+                    isInvalid(elem) {
+                        let illegalCharacters = elem.value.match(/[^0-9+()]/g);
+                        return !!illegalCharacters;
+                    },
+                    invalidityMessage: 'Недопустимые символы. Только цифры, знак плюс "+" и круглые скобки "()"'
+                }
+            ],
+        }
+
+
+        // applying Validation class and binding checks for inputs by data attribute
+        formControls.forEach(element => {
+            if(!element.customValidation){
+                element.customValidation = new Validation(element);
+                element.customValidation.init()
+
+                const validationPattern = element.getAttribute('data-validation');
+
+                element.customValidation.addValidityChecks(validityChecks.empty);
+
+                switch (validationPattern) {
+                    case 'name':
+                        element.customValidation.addValidityChecks(validityChecks.name);
+                        break;
+                    case 'zip':
+                        element.customValidation.addValidityChecks(validityChecks.zip);
+                        break;
+                    case 'tel':
+                        element.customValidation.addValidityChecks(validityChecks.tel);
+                        break;
+                    case 'cc-number':
+                        element.customValidation.addValidityChecks(validityChecks.ccNumber);
+                        break;
+                    case 'cc-exp':
+                        element.customValidation.addValidityChecks(validityChecks.ccExp);
+                        break;
+                    case 'age':
+                        element.customValidation.addValidityChecks(validityChecks.age);
+                        break;
+                    case 'date':
+                        element.customValidation.addValidityChecks(validityChecks.date);
+                        break;
+                    case 'email':
+                        element.customValidation.addValidityChecks(validityChecks.email);
+                        break;
+                    case 'password':
+                        element.customValidation.addValidityChecks(validityChecks.password);
+                        break;
+                    case 'password-repeat':
+                        element.customValidation.addValidityChecks(validityChecks.passwordRepeat);
+                        break;
+                }
+            }
+        });
+
+        // Checking inputs when form going to be submitted
+        formElement.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            formControls.forEach(element => {
+                element.customValidation.checkValidity()
+            });
+
+            const invalidElements = Array.from(formControls).some(element => element.customValidation.getStatus() === 'invalid');
+
+            if (!invalidElements) {
+                cb();
+            }
+        }, {once: true})
     },
     fileAddImage: function(){
         const wrapper = document.querySelectorAll('.add-file');
@@ -1111,10 +1444,16 @@ const SiteJS = {
             const anchorTarget = activeAnchor.getAttribute('data-tab-anchor');
 
             group.contentElements.forEach(element => {
-                const elementID = element.getAttribute('data-tab-content-id')
-                anchorTarget === elementID
-                    ? element.style = ''
-                    : element.style.display = 'none';
+                const elementID = element.getAttribute('data-tab-content-id');
+                const formFields = element.querySelectorAll('.input-text, .input-text--textarea, .input-row__input-file');
+
+                if(anchorTarget === elementID){
+                    element.style = '';
+                    formFields.forEach(field => field.disabled = false);
+                } else {
+                    element.style.display = 'none';
+                    formFields.forEach(field => field.disabled = true);
+                }
             })
 
             group.anchors.forEach(anchor => {
@@ -1161,6 +1500,7 @@ const SiteJS = {
                 }
                 inputText.value = value
                 if(inputText.InputFocusUpdate) inputText.InputFocusUpdate();
+                if(inputText.customValidation) inputText.customValidation.checkValidity(inputText);
             })
         });
     },
@@ -1396,6 +1736,7 @@ const SiteJS = {
             inputs.forEach(input => {
                 input.value = value.trim();
                 if(input.InputFocusUpdate) input.InputFocusUpdate();
+                if(input.customValidation) input.customValidation.checkValidity(input);
             })
         }
     },

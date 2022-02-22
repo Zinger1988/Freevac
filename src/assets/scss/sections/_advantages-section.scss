@@ -38,6 +38,19 @@
       max-height: none;
       width: 100%;
     }
+
+    &--anim1{
+      width: 100%;
+      animation: char-change1 infinite 7s;
+      background-image: url("../img/landing/005.png");
+      background-position: center bottom;
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      @include media(">=md"){
+        padding: 44.75% 0;
+      }
+    }
   }
 
   &__text{
@@ -77,3 +90,34 @@
     }
   }
 }
+
+@keyframes char-change1 {
+  0%{
+    background-image: url("../img/landing/005.png");
+  }
+  21.8%{
+    background-image: url("../img/landing/005.png");
+  }
+  25%{
+    background-image: url("../img/landing/005_1.png");
+  }
+  46.8%{
+    background-image: url("../img/landing/005_1.png");
+  }
+  50%{
+    background-image: url("../img/landing/005_2.png");
+  }
+  71.8%{
+    background-image: url("../img/landing/005_2.png");
+  }
+  75%{
+    background-image: url("../img/landing/005_3.png");
+  }
+  96.8%{
+    background-image: url("../img/landing/005_3.png");
+  }
+  100%{
+    background-image: url("../img/landing/005.png");
+  }
+}
+
