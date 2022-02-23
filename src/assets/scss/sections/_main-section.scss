@@ -5,6 +5,8 @@
   min-height: 100vh;
   display: flex;
 
+  $this: &;
+
   @include media(">=lg"){
     min-height: 66rem;
     max-height: 80rem;
@@ -132,6 +134,7 @@
   &__img{
     flex: 1 1 auto;
     display: flex;
+    position: relative;
 
     @include media(">=lg"){
       height: 100%;
@@ -162,5 +165,169 @@
     @include media(">=1440px"){
       border-radius: 6.4rem;
     }
+  }
+
+  &__chat{
+    position: absolute;
+    z-index: 6;
+    bottom: 0;
+    left: 50%;
+    padding: 2.4rem;
+    width: 94.7%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 52rem;
+    transform: translateX(-50%);
+
+    @include media(">=lg"){
+      width: 100%;
+    }
+  }
+
+  &__chat-balloon{
+    margin: 0 0 1.6rem;
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  &--alt{
+
+    @include media(">=1440px"){
+      padding-right: 14rem;
+      padding-left: 13rem;
+    }
+
+    @include media(">=1900px"){
+      padding: 16.5rem 14rem 12.7rem 13rem;
+      min-height: 0;
+      max-height: none;
+      height: 80rem;
+    }
+
+    #{$this}__holder{
+      @include media(">=xl"){
+        padding-right: calc(100vw - 100% - 3rem + 3rem);
+      }
+
+      @include media(">=1440px"){
+        padding-right: 0;
+      }
+    }
+
+    #{$this}__title{
+      @include media(">=1440px"){
+        font-size: 4.8rem;
+      }
+    }
+
+    #{$this}__text{
+      @include media(">=xl") {
+        width: 49.7%;
+        flex: 0 0 auto;
+      }
+    }
+
+    #{$this}__desc{
+      @include media(">=1440px") {
+        display: block;
+      }
+    }
+
+    #{$this}__desc-text{
+      @include media(">=1440px") {
+        margin: 0 0 4.8rem;
+      }
+    }
+
+    #{$this}__img {
+      @include media(">=lg") {
+        height: auto;
+      }
+
+      @include media(">=xl") {
+        height: auto;
+        margin: 0 0 0 auto;
+        flex: 0 0 32.74%;
+        transform: rotate(8.75deg) translateY(-3%);
+        animation: main-section-img infinite ease-in-out 12s;
+
+        &::before,
+        &::after{
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 2.4rem;
+        }
+
+        &::before{
+          z-index: 3;
+          background-color: rgba($primaryLighter, .5);
+          transform: rotate(16.75deg);
+          animation: main-section-img-before infinite ease-in-out 12s;
+        }
+
+        &::after{
+          z-index: 4;
+          background-color: $primaryLighter;
+          transform: rotate(8.75deg);
+          animation: main-section-img-after infinite ease-in-out 12s;
+        }
+      }
+    }
+
+    #{$this}__img-item{
+      @include media(">=lg") {
+        height: 50.08rem;
+        max-height: none;
+      }
+
+      @include media(">=xl") {
+        border-radius: 2.4rem;
+        position: relative;
+        z-index: 5;
+      }
+    }
+  }
+}
+
+@keyframes main-section-img {
+  0% {
+    transform: rotate(8.75deg) translateY(-3%);
+  }
+  50% {
+    transform: rotate(8.75deg) translateY(3%);
+  }
+  100% {
+    transform: rotate(8.75deg) translateY(-3%);
+  }
+}
+
+@keyframes main-section-img-before {
+  0% {
+    transform: rotate(16.75deg);
+  }
+  50% {
+    transform: rotate(-16.75deg);
+  }
+  100% {
+    transform: rotate(16.75deg);
+  }
+}
+
+@keyframes main-section-img-after {
+  0% {
+    transform: rotate(8.75deg);
+  }
+  50% {
+    transform: rotate(-8.75deg);
+  }
+  100% {
+    transform: rotate(8.75deg);
   }
 }

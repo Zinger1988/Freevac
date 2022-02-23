@@ -7,4 +7,8 @@
   &--accent{
     box-shadow: inset 0 0 0 2px $accent;
   }
+
+  &--primaryLighter{
+    box-shadow: inset 0 0 0 2px $primaryLighter;
+  }
 }

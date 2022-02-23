@@ -492,7 +492,9 @@ class Modal {
         Modal.setHandlers();
         Modal.callbacks = {
             onHide: (activeModal) => {
-                SiteJS.formReset(activeModal.querySelector('.form'));
+                if(activeModal.querySelector('.form')){
+                    SiteJS.formReset(activeModal.querySelector('.form'));
+                }
             },
         }
     }

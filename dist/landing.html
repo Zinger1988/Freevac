@@ -27,10 +27,11 @@
 
             <div class="page-header__controls">
                 <button class="btn btn--size--regular btn--style--secondary btn--style--rounded page-header__controls-btn"
-                        data-modal-id="login">
+                        data-modal-id="login-alt">
                     <span class="btn__text">Вход</span>
                 </button>
-                <button class="btn btn--size--regular btn--style--accent btn--style--rounded page-header__controls-btn">
+                <button class="btn btn--size--regular btn--style--accent btn--style--rounded page-header__controls-btn"
+                        data-modal-id="registration">
                     <span class="btn__text">Регистрация</span>
                 </button>
             </div>
@@ -54,7 +55,7 @@
                             Зніми відео про себе, щоб роботодавці тебе помітили
                         </div>
                         <button class="main-section__desc-btn btn btn--style--accent btn--size--regular btn--style--rounded"
-                                data-modal-id="login">
+                                data-modal-id="registration">
                             <span class="btn__text">Створити відеорезюме</span>
                             <span class="btn__icon icon icon--arrowright-48 icon--size--md"></span>
                         </button>
@@ -78,7 +79,7 @@
                     </div>
                     <div class="tagline-section__controls">
                         <button class="tagline-section__btn btn btn--style--primary btn--size--regular btn--style--rounded"
-                                data-modal-id="login">
+                                data-modal-id="registration">
                             <span class="btn__text">Створити відеорезюме</span>
                             <span class="btn__icon icon icon--arrowright-48 icon--size--md"></span>
                         </button>
@@ -345,7 +346,7 @@
                     </div>
                     <div class="tagline-section__controls">
                         <button class="tagline-section__btn btn btn--style--primary btn--size--regular btn--style--rounded"
-                                data-modal-id="login">
+                                data-modal-id="registration">
                             <span class="btn__text">Створити відеорезюме</span>
                             <span class="btn__icon icon icon--arrowright-48 icon--size--md"></span>
                         </button>
@@ -364,7 +365,7 @@
         </div>
     </div>
 </footer><!-- page footer -->
-<div class="modal" id="login">
+<div class="modal" id="login-alt">
 
     <div class="modal__title-controls">
         <button class="btn btn--size--regular btn--style--secondary modal-close">
@@ -374,32 +375,247 @@
 
     <div class="modal__main">
 
-        <div class="modal__heading h2">Вход на Vividi</div>
+        <div class="modal__heading h2">Vividi</div>
 
         <div class="modal__body">
-<!--            <div class="modal__login-bar login-bar">-->
 
-<!--                <a class="btn btn&#45;&#45;fluid btn&#45;&#45;style&#45;&#45;secondary btn&#45;&#45;size&#45;&#45;regular login-bar__btn" href="">-->
-<!--                    <img class="btn__img btn__img&#45;&#45;size&#45;&#45;sm" src="assets/img/socials/google.svg" alt="Google">-->
-<!--                    <span class="btn__text">Google</span>-->
-<!--                </a>&lt;!&ndash;button&ndash;&gt;-->
+            <div class="modal__login content-tabs content-tabs--sm">
+                <div class="content-tabs__head">
+                    <button class="content-tabs__btn" data-tab-active>
+                        <span class="content-tabs__btn-text">Вход</span>
+                    </button>
+                    <button class="content-tabs__btn content-tabs__btn--new" data-modal-id="registration">
+                        <span class="content-tabs__btn-text">Регистрация</span>
+                    </button>
+                </div><!-- content tabs head -->
 
-<!--                <a class="btn btn&#45;&#45;fluid btn&#45;&#45;style&#45;&#45;secondary btn&#45;&#45;size&#45;&#45;regular login-bar__btn" href="">-->
-<!--                    <img class="btn__img btn__img&#45;&#45;size&#45;&#45;sm" src="assets/img/socials/apple.svg" alt="Apple">-->
-<!--                    <span class="btn__text">Apple</span>-->
-<!--                </a>&lt;!&ndash;button&ndash;&gt;-->
+                <div class="modal__login-bar login-bar login-bar--hor">
 
-<!--                <a class="btn btn&#45;&#45;fluid btn&#45;&#45;style&#45;&#45;secondary btn&#45;&#45;size&#45;&#45;regular login-bar__btn" href="">-->
-<!--                    <img class="btn__img btn__img&#45;&#45;size&#45;&#45;sm" src="assets/img/socials/facebook.svg" alt="Facebook">-->
-<!--                    <span class="btn__text">Facebook</span>-->
-<!--                </a>&lt;!&ndash;button&ndash;&gt;-->
+                    <a class="btn btn--fluid btn--style--secondary btn--size--regular login-bar__btn" href="">
+                        <img class="btn__img btn__img--size--sm" src="assets/img/socials/google.svg" alt="Google">
+                        <span class="btn__text">Google</span>
+                    </a><!--button-->
 
-<!--                <a class="btn btn&#45;&#45;fluid btn&#45;&#45;style&#45;&#45;secondary btn&#45;&#45;size&#45;&#45;regular login-bar__btn" href="">-->
-<!--                    <img class="btn__img btn__img&#45;&#45;size&#45;&#45;sm" src="assets/img/socials/linkedin.svg" alt="LinkedIn">-->
-<!--                    <span class="btn__text">LinkedIn</span>-->
-<!--                </a>&lt;!&ndash;button&ndash;&gt;-->
+                    <a class="btn btn--fluid btn--style--secondary btn--size--regular login-bar__btn" href="">
+                        <img class="btn__img btn__img--size--sm" src="assets/img/socials/apple.svg" alt="Apple">
+                        <span class="btn__text">Apple</span>
+                    </a><!--button-->
 
-<!--            </div>&lt;!&ndash; login bar &ndash;&gt;-->
+                    <a class="btn btn--fluid btn--style--secondary btn--size--regular login-bar__btn" href="">
+                        <img class="btn__img btn__img--size--sm" src="assets/img/socials/facebook.svg" alt="Facebook">
+                        <span class="btn__text">Facebook</span>
+                    </a><!--button-->
+
+                    <a class="btn btn--fluid btn--style--secondary btn--size--regular login-bar__btn" href="">
+                        <img class="btn__img btn__img--size--sm" src="assets/img/socials/linkedin.svg" alt="LinkedIn">
+                        <span class="btn__text">LinkedIn</span>
+                    </a><!--button-->
+
+                </div><!-- login bar -->
+
+                <form class="form" method="post">
+                    <div class="form__group">
+                        <div class="input-row input-row--pointer form__input-row">
+                            <div class="input-row__title">E-mail</div>
+                            <input class="input-text input-row__input-text" type="email">
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <div class="form__group">
+                        <div class="input-row input-row--pointer form__input-row">
+                            <div class="input-row__title">Пароль</div>
+                            <input class="input-text input-row__input-text" type="password">
+                        </div><!-- input row -->
+                    </div><!-- form group -->
+
+                    <div class="form__footer">
+                        <button class="btn btn--style--primary btn--size--regular">
+                            <span class="btn__text">Вход</span>
+                        </button>
+                        <button class="btn btn--style--secondary btn--size--regular modal-close">
+                            <span class="btn__text">Забыл пароль</span>
+                        </button>
+                    </div><!-- form footer-->
+                </form><!-- form -->
+
+<!--                <div class="content-tabs__body-item" data-tab-group="modal-login" data-tab-content-id="registration">-->
+
+<!--                    <div class="registration-options">-->
+
+<!--                        <div class="registration-options__item" data-modal-id="hr-registration">-->
+<!--                            <div class="registration-options__text">-->
+<!--                                <i class="registration-options__item-arrow icon icon&#45;&#45;size&#45;&#45;md icon&#45;&#45;arrowright-48"></i>-->
+<!--                                <div class="registration-options__item-title">-->
+<!--                                    HR-->
+<!--                                </div>-->
+<!--                                <div class="registration-options__item-subtitle">-->
+<!--                                    Может выставлять вакансии от одной компании-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="registration-options__img">-->
+<!--                                <img class="registration-options__img-item" src="assets/img/login-form/01.png" alt="image">-->
+<!--                            </div>-->
+<!--                        </div>&lt;!&ndash; registration options item&ndash;&gt;-->
+
+<!--                        <div class="registration-options__item" data-modal-id="freelance-registration">-->
+<!--                            <div class="registration-options__text">-->
+<!--                                <i class="registration-options__item-arrow icon icon&#45;&#45;size&#45;&#45;md icon&#45;&#45;arrowright-48"></i>-->
+<!--                                <div class="registration-options__item-title">-->
+<!--                                    Фрилансер-->
+<!--                                </div>-->
+<!--                                <div class="registration-options__item-subtitle">-->
+<!--                                    Может выставлять вакансии от разных компаний-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="registration-options__img">-->
+<!--                                <img class="registration-options__img-item" src="assets/img/login-form/02.png" alt="image">-->
+<!--                            </div>-->
+<!--                        </div>&lt;!&ndash; registration options item&ndash;&gt;-->
+
+<!--                    </div>&lt;!&ndash; registration options &ndash;&gt;-->
+
+<!--                </div>-->
+
+            </div><!-- content tabs -->
+
+            <div class="policy modal__policy">
+                Выбирая способ авторизации, вы соглашаетесь с <a href="#" target="_blank">политикой конфиденциальности</a>
+            </div>
+
+        </div><!-- body -->
+
+    </div><!-- main -->
+
+</div><!-- user-name modal --><div class="modal" id="registration">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Vividi</div>
+
+        <div class="modal__body">
+
+            <div class="modal__login content-tabs content-tabs--sm">
+                <div class="content-tabs__head">
+                    <button class="content-tabs__btn" data-modal-id="login-alt">
+                        <span class="content-tabs__btn-text">Вход</span>
+                    </button>
+                    <button class="content-tabs__btn content-tabs__btn--new" data-tab-active>
+                        <span class="content-tabs__btn-text">Регистрация</span>
+                    </button>
+                </div><!-- content tabs head -->
+
+                <div class="registration-options">
+
+                    <div class="registration-options__item" data-modal-id="hr-registration">
+                        <div class="registration-options__text">
+                            <i class="registration-options__item-arrow icon icon--size--md icon--arrowright-48"></i>
+                            <div class="registration-options__item-title">
+                                HR
+                            </div>
+                            <div class="registration-options__item-subtitle">
+                                Может выставлять вакансии от одной компании
+                            </div>
+                        </div>
+                        <div class="registration-options__img">
+                            <img class="registration-options__img-item" src="assets/img/login-form/01.png" alt="image">
+                        </div>
+                    </div><!-- registration options item-->
+
+                    <div class="registration-options__item" data-modal-id="freelance-registration">
+                        <div class="registration-options__text">
+                            <i class="registration-options__item-arrow icon icon--size--md icon--arrowright-48"></i>
+                            <div class="registration-options__item-title">
+                                Фрилансер
+                            </div>
+                            <div class="registration-options__item-subtitle">
+                                Может выставлять вакансии от разных компаний
+                            </div>
+                        </div>
+                        <div class="registration-options__img">
+                            <img class="registration-options__img-item" src="assets/img/login-form/02.png" alt="image">
+                        </div>
+                    </div><!-- registration options item-->
+
+                </div><!-- registration options -->
+
+            </div><!-- content tabs -->
+
+            <div class="policy modal__policy">
+                Выбирая способ авторизации, вы соглашаетесь с <a href="#" target="_blank">политикой конфиденциальности</a>
+            </div>
+
+        </div><!-- body -->
+    </div><!-- main -->
+
+</div><!-- user-name modal --><div class="modal" id="freelance-registration">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="registration">
+            <i class="icon icon--size--sm icon--arrowangleleft-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Регистрация</div>
+
+        <div class="modal__body">
+            <div class="modal__login-bar login-bar">
+
+                <a class="btn btn--fluid btn--style--secondary btn--size--regular login-bar__btn" href="">
+                    <img class="btn__img btn__img--size--sm" src="assets/img/socials/google.svg" alt="Google">
+                    <span class="btn__text">Google</span>
+                </a><!--button-->
+
+                <a class="btn btn--fluid btn--style--secondary btn--size--regular login-bar__btn" href="">
+                    <img class="btn__img btn__img--size--sm" src="assets/img/socials/apple.svg" alt="Apple">
+                    <span class="btn__text">Apple</span>
+                </a><!--button-->
+
+                <a class="btn btn--fluid btn--style--secondary btn--size--regular login-bar__btn" href="">
+                    <img class="btn__img btn__img--size--sm" src="assets/img/socials/facebook.svg" alt="Facebook">
+                    <span class="btn__text">Facebook</span>
+                </a><!--button-->
+
+                <a class="btn btn--fluid btn--style--secondary btn--size--regular login-bar__btn" href="">
+                    <img class="btn__img btn__img--size--sm" src="assets/img/socials/linkedin.svg" alt="LinkedIn">
+                    <span class="btn__text">LinkedIn</span>
+                </a><!--button-->
+
+            </div><!-- login bar -->
+
+            <div class="policy modal__policy">
+                Выбирая способ авторизации, вы соглашаетесь с <a href="#" target="_blank">политикой конфиденциальности</a>
+            </div>
+
+        </div><!-- body -->
+    </div><!-- main -->
+
+</div><!-- user-name modal --><div class="modal" id="hr-registration">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="registration">
+            <i class="icon icon--size--sm icon--arrowangleleft-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Напиши логин и пароль</div>
+
+        <div class="modal__body">
 
             <form class="form" method="post">
                 <div class="form__group">
@@ -417,11 +633,49 @@
                 </div><!-- form group -->
 
                 <div class="form__footer">
-                    <button class="btn btn--style--primary btn--size--regular">
-                        <span class="btn__text">Вход</span>
+                    <button type="button" class="btn btn--style--primary btn--size--regular" data-modal-id="hr-registration-2">
+                        <span class="btn__text">Продолжить</span>
                     </button>
-                    <button class="btn btn--style--secondary btn--size--regular modal-close">
-                        <span class="btn__text">Отмена</span>
+                </div><!-- form footer-->
+            </form><!-- form -->
+
+            <div class="policy modal__policy">
+                Выбирая способ авторизации, вы соглашаетесь с <a href="#" target="_blank">политикой конфиденциальности</a>
+            </div>
+
+        </div><!-- body -->
+    </div><!-- main -->
+
+</div><!-- user-name modal --><div class="modal" id="hr-registration-2">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="hr-registration">
+            <i class="icon icon--size--sm icon--arrowangleleft-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Напиши название компании</div>
+
+        <div class="modal__body">
+
+            <div class="modal__text">Для создания вакансий. Потом можно будет изменить</div>
+
+            <form class="form" method="post">
+                <div class="form__group">
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">Название компании</div>
+                        <input class="input-text input-row__input-text" type="text">
+                    </div><!-- input row -->
+                </div><!-- form group -->
+
+                <div class="form__footer">
+                    <button type="button" class="btn btn--style--primary btn--size--regular" data-modal-id="hr-registration-2">
+                        <span class="btn__text">Создать аккаунт</span>
                     </button>
                 </div><!-- form footer-->
             </form><!-- form -->
