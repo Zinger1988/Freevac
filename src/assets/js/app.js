@@ -846,6 +846,7 @@ const SiteJS = {
             }
         });
         this.recordReply();
+        this.vacancyDetails();
 
         if(document.querySelector('.reply-slider')){
 
@@ -1108,6 +1109,36 @@ const SiteJS = {
             formSelector: '#email-form',
             cb: () => {alert('valid')}
         });
+    },
+    vacancyDetails: function (){
+        const detailsEl = document.querySelector('#vacancy-details');
+        const btn = document.querySelector('#show-vacancy-details');
+
+        if(!btn || !detailsEl) {
+            return
+        }
+
+        const closeDetailsBtn = detailsEl.querySelectorAll('.vacancy-details__close');
+
+        btn.addEventListener('click', toggleDetailsVisibility);
+        closeDetailsBtn.forEach(item => {
+            item.addEventListener('click', toggleDetailsVisibility)
+        });
+        detailsEl.addEventListener('click', (e) => {
+            if(e.target === e.currentTarget){
+                toggleDetailsVisibility();
+            }
+        })
+
+        function toggleDetailsVisibility(){
+            if(detailsEl.classList.contains('vacancy-details--active')){
+                detailsEl.classList.remove('vacancy-details--active');
+                document.body.classList.remove('no-overflow');
+            } else {
+                detailsEl.classList.add('vacancy-details--active');
+                document.body.classList.add('no-overflow');
+            }
+        }
     },
     formReset: function(formElement){
         formElement.reset();
