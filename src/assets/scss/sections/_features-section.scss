@@ -139,7 +139,7 @@
         margin: 0 0 0 46.666%;
         height: 24.4rem;
         transform-origin: 50% 100%;
-        transform: rotate(0) translateY(5%);
+        transform: rotate(0) translateY(13%);
         animation: overwrite infinite ease 7s;
 
         @include media(">=xl"){
@@ -570,22 +570,22 @@
 
 @keyframes overwrite {
   0% {
-    transform: rotate(0deg) translateY(5%);
+    transform: rotate(0deg) translateY(13%);
   }
   3% {
-    transform: rotate(-10deg) translateY(5%);
+    transform: rotate(-10deg) translateY(13%);
   }
   10% {
-    transform: rotate(15deg) translateY(5%);
+    transform: rotate(15deg) translateY(13%);
   }
   40% {
-    transform: rotate(15deg) translateY(5%);
+    transform: rotate(15deg) translateY(13%);
   }
   43% {
-    transform: rotate(25deg) translateY(5%);
+    transform: rotate(25deg) translateY(13%);
   }
   50% {
-    transform: rotate(0) translateY(5%);
+    transform: rotate(0) translateY(13%);
   }
 }
 

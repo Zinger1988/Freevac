@@ -11,9 +11,15 @@
 
   &__logo{
     width: 16.2rem;
+    flex-shrink: 0;
+    margin: 0 2rem 0 0;
 
     @include media(">=md"){
       width: 18.2rem;
+    }
+
+    @include media(">=lg"){
+      margin: 0 4.8rem 0 0;
     }
 
     &--fixed{
@@ -34,6 +40,8 @@
 
   &__controls{
     margin: 0 0 0 auto;
+    flex: 0 1 auto;
+    min-width: 0;
   }
 
   &__controls-btn{
@@ -81,6 +89,28 @@
   }
 
   &__btn-dropdown .btn-dropdown__btn{
-    max-width: 15rem;
+    max-width: 100%;
+  }
+
+  &__tabs{
+    display: none;
+
+    @include media(">=lg"){
+      display: flex;
+    }
+  }
+
+  &__tabs-item{
+    margin: 0 1.6rem 0 0;
+    color: $primaryLighter;
+    text-decoration: none;
+    position: relative;
+    line-height: 2.25;
+    border-bottom: .2rem solid $primaryLighter;
+
+    &--active{
+      color: $white;
+      border-bottom: .2rem solid $white;
+    }
   }
 }

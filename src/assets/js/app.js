@@ -529,7 +529,7 @@ class Modal {
                 if(e.target.classList.contains('modal-close') || e.target.closest('.modal-close')){
                     Modal.hide();
                     Modal.hideOverlay();
-                    Modal.callbacks.onHideBtnClick(Modal.activeModal);
+                    // Modal.callbacks.onHideBtnClick(Modal.activeModal);
                 }
             })
 
@@ -554,7 +554,7 @@ class Modal {
                 }
             }
 
-            modalMain.addEventListener("wheel", preventModalScroll);
+            // modalMain.addEventListener("wheel", preventModalScroll);
         });
     }
 
@@ -563,8 +563,8 @@ class Modal {
         if(overlay) return;
 
         document.body.append(Modal.modalOverlay);
-        window.addEventListener("wheel", Modal.preventScroll, {passive: false});
-        // document.body.classList.add('no-overflow');
+        // window.addEventListener("wheel", Modal.preventScroll, {passive: false});
+        document.body.classList.add('no-overflow');
 
         let alpha = .01;
         const timer = setInterval(() => {
@@ -580,8 +580,8 @@ class Modal {
         const overlay = document.querySelector('#modal-overlay');
         if(!overlay) return;
 
-        // document.body.classList.remove('no-overflow');
-        window.removeEventListener("wheel", Modal.preventScroll, {passive: false});
+        document.body.classList.remove('no-overflow');
+        // window.removeEventListener("wheel", Modal.preventScroll, {passive: false});
 
         let alpha = 0.56;
         const timer = setInterval(() => {
@@ -1630,7 +1630,7 @@ const SiteJS = {
 
         buttons.forEach( btn => {
             const targetId = btn.getAttribute('data-scroll-to');
-            const targetElement = document.querySelector('#' + targetId);
+            const targetElement = document.querySelector(`[data-scroll-id="${targetId}"]`);
 
             btn.addEventListener('click', (e) => {
                 resetTargetClass();
@@ -1640,7 +1640,7 @@ const SiteJS = {
 
                 window.scrollTo({
                     top: targetCoords.top + pageYOffset + 150 - document.documentElement.clientHeight / 2,
-                    left: targetCoords.left + pageXOffset - 150,
+                    left: 0,
                     behavior: 'smooth'
                 });
 

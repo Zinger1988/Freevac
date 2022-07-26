@@ -59,6 +59,10 @@
     padding: 1.6rem;
     text-align: center;
 
+    @include media(">=md"){
+      text-align: left;
+    }
+
     @include media(">=xl"){
       padding: 3.2rem 3.2rem 2rem;
     }

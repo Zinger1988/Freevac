@@ -249,8 +249,10 @@
 
       @include media(">=xl") {
         height: auto;
+        //margin: 0 auto;
         margin: 0 0 0 auto;
         flex: 0 0 32.74%;
+        // flex: 0 0 26%;
         transform: rotate(8.75deg) translateY(-3%);
         animation: main-section-img infinite ease-in-out 12s;
 
@@ -285,6 +287,7 @@
       @include media(">=lg") {
         height: 50.08rem;
         max-height: none;
+        //width: auto;
       }
 
       @include media(">=xl") {

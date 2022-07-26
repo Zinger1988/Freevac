@@ -1,0 +1,25 @@
+.modal-big{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 10;
+  background-color: #e8e6ec;
+  padding: 0 .8rem;
+  opacity: 0;
+  visibility: hidden;
+  @include animate('opacity visibility');
+
+  &__title-controls{
+    margin: 3rem 0 0.8rem 0;
+
+    .btn{
+      color: $black;
+    }
+  }
+
+  &--active{
+    opacity: 1;
+    visibility: visible;
+  }
+}

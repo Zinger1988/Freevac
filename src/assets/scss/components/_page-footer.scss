@@ -20,6 +20,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
       margin: 0 0 3.7rem;
 
       #{$this}__tagline-pre{
@@ -37,6 +38,21 @@
 
   &__tagline-logo{
     width: 16.2rem;
+  }
+
+  &__tagline-sources{
+    font-weight: normal;
+    color: $secondaryDarker2;
+    margin: 1rem 0 0;
+    font-size: 1.2rem;
+
+    a {
+      color: $secondaryDarker2;
+    }
+
+    @include media(">=lg"){
+      flex: 1 0 100%;
+    }
   }
 
   &--center{

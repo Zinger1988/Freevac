@@ -25,16 +25,16 @@
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",
     "gulp-rename": "^2.0.0",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify-es": "^2.0.0",
     "gulp-webp-html": "^1.0.2",
+    "node-sass": "^6.0.0",
     "panini": "^1.7.1",
     "webp-converter": "^2.2.3",
     "webpack": "^5.22.0",
     "webpack-stream": "^6.1.2"
   },
-  "dependencies": {},
   "browserslist": [
     "last 1 version",
     "> 1%",

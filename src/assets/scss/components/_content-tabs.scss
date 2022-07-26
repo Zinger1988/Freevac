@@ -26,7 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    @include animate(background-color);
+    @include animate(background-color color);
 
     @include media(">=lg"){
       flex: 1 1 auto;
@@ -60,6 +60,7 @@
   &__btn-icon{
     margin: 0 1.6rem 0 0;
     color: $secondaryDarker2;
+    @include animate(color);
   }
 
   &__btn-text{
@@ -68,6 +69,8 @@
 
   &__btn-counter{
     color: $secondaryDarker2;
+    margin-left: .25em;
+    @include animate(color opacity);
   }
 
   &__content-empty{
@@ -172,6 +175,22 @@
       &[data-tab-active]{
         color: $primary;
         border-bottom: 1px solid $primary;
+      }
+    }
+  }
+
+  &:not(#{$this}--lg):not(#{$this}--sm){
+    #{$this}__btn:hover:not([data-tab-active]){
+      background-color: $primaryLighter;
+      color: $white;
+
+      #{$this}__btn-counter{
+        color: $white;
+        opacity: .5;
+      }
+
+      #{$this}__btn-icon{
+        color: $white;
       }
     }
   }

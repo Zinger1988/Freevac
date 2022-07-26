@@ -18,6 +18,7 @@
     @include media(">=lg"){
       width: auto;
       margin: 0 0 4.4rem;
+      max-width: none;
     }
   }
 
