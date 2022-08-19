@@ -22,7 +22,7 @@
     &:hover{
       ~ #{$this}__input-text{
         border-color: $secondaryDarker;
-        background-color: transparent;
+        background-color: $white;
         outline: none;
         background-position: calc(100% - 1.2rem) 50%;
 

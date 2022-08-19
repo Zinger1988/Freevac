@@ -29,4 +29,8 @@
   &--layout-1{
     grid-template-columns: 1fr auto;
   }
+
+  &--layout-2{
+    grid-template-columns: auto 1fr;
+  }
 }

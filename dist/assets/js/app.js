@@ -766,6 +766,80 @@ class Validation {
     }
 }
 
+class TalkBubbles{
+    constructor(element, timeout) {
+        this.$wrapper = null;
+        this.$list = null;
+        this.$bubbles = null;
+        this.$typeMarker = null;
+        this.timeout = timeout;
+        this.init(element);
+        this.isDone = false;
+        this.events = {
+            talkBubblesDone: new Event('talkBubblesDone')
+        }
+        this.on = function (eventName, callback) {
+            this.$wrapper.addEventListener(eventName, callback);
+        }
+    }
+
+    init = function(element){
+        try {
+            this.$wrapper = element;
+            this.$wrapper.TalkBubbles = this;
+            this.$list = this.$wrapper.querySelector('.talk-bubbles__list');
+            this.$bubbles = this.$list.querySelectorAll('.talk-bubbles__item');
+        } catch (e) {
+            console.error('TalkBubbles: invalid starter markup');
+        }
+
+        this.createTypeMarker();
+    }
+
+    restart = function (){
+        this.$bubbles.forEach(item => item.classList.remove('talk-bubbles__item--visible'));
+        this.$typeMarker.classList.remove('talk-bubbles__type-marker--hidden');
+        this.$list.style.height = this.$typeMarker.offsetHeight + 'px';
+        this.animateBubbles(Array.from(this.$bubbles), 2000);
+    }
+
+    createTypeMarker = function(){
+        this.$typeMarker = document.createElement('div');
+        this.$typeMarker.classList.add('talk-bubbles__type-marker');
+        this.$typeMarker.innerHTML = `
+                    <i class="talk-bubbles__marker-point">1</i>
+                    <i class="talk-bubbles__marker-point">2</i>
+                    <i class="talk-bubbles__marker-point">3</i>`;
+        this.$wrapper.append(this.$typeMarker);
+        this.$list.style.height = this.$typeMarker.offsetHeight + 'px';
+    }
+
+    animate = function(bubbles = Array.from(this.$bubbles)){
+        const bubble = bubbles[0];
+        const bubbleMargin = parseInt(window.getComputedStyle(bubble).marginBottom);
+
+        bubble.classList.add('talk-bubbles__item--visible');
+        this.$list.style.height = parseInt(this.$list.style.height) + bubble.offsetHeight + bubbleMargin + 'px';
+
+        if(bubbles.length === 1){
+            this.$list.style.height = parseInt(this.$list.style.height) - this.$typeMarker.offsetHeight + 'px';
+            this.$typeMarker.classList.add('talk-bubbles__type-marker--hidden');
+
+            window.addEventListener('resize', () => {
+                this.$list.style = '';
+            }, {once: true})
+
+            this.isDone = true;
+            this.$wrapper.dispatchEvent(this.events.talkBubblesDone);
+            return;
+        }
+
+        setTimeout(() => {
+            this.animate(bubbles.slice(1), this.timeout)
+        }, this.timeout)
+    }
+}
+
 const SiteJS = {
     onload: document.addEventListener('DOMContentLoaded', function () {
         SiteJS.init();
@@ -819,6 +893,14 @@ const SiteJS = {
             mediaQuery: 'max-width: 991px',
             insertionMethod: function (element, target) {
                 target.prepend(element);
+            }
+        });
+        this.moveElement({
+            elementId: 'onoborading-exit',
+            targetId: 'onboarding-controls',
+            mediaQuery: 'max-width: 991px',
+            insertionMethod: function (element, target) {
+                target.append(element);
             }
         });
         this.expandTextarea('.input-text--textarea');
@@ -1054,6 +1136,76 @@ const SiteJS = {
                     console.log('video stop, slide ' + i);
                     progressBar.style = "";
                     progressBar.classList.remove('bullet-progress--active');
+                })
+            })
+        }
+
+        if(document.querySelector('.onboarding-slider')){
+            const slider = document.querySelector('.onboarding-slider');
+            const progressBar = slider.querySelector('.onboarding-slider__progress-inner');
+            const onboardingSlider = new Swiper(slider, {
+                allowTouchMove: false,
+                loop: false,
+                slidesPerView: 1,
+                effect: 'fade',
+                on: {
+                    afterInit: function (swiper) {
+                        const index = swiper.activeIndex;
+                        const slides = swiper.slides;
+                        initTalkBubbles(slides[index]);
+                        progressBar.style.width = ((index + 1) / slides.length * 100).toFixed(2) + '%';
+                    },
+                },
+            });
+
+
+            onboardingSlider.on('slideChange', function (swiper) {
+                const index = swiper.activeIndex;
+                const slides = swiper.slides;
+                initTalkBubbles(slides[index]);
+                progressBar.style.width = ((index + 1) / slides.length * 100).toFixed(2) + '%';
+            });
+
+            onboardingSlider.on('slideChangeTransitionEnd', function (swiper) {
+                const previousIndex = swiper.previousIndex;
+                const slides = swiper.slides;
+
+                slides[previousIndex].style.height = '0';
+            });
+
+            onboardingSlider.on('slideChangeTransitionStart', function (swiper) {
+                const activeIndex = swiper.activeIndex;
+                const slides = swiper.slides;
+
+                slides[activeIndex].style.height = '';
+            });
+
+            function initTalkBubbles(wrapper){
+                if(!wrapper.querySelector('.talk-bubbles') || wrapper.querySelector('.talk-bubbles').TalkBubbles){
+                    return;
+                }
+
+                const bubbles = wrapper.querySelector('.talk-bubbles');
+                const bubblesInstanse = new TalkBubbles(bubbles, 1500);
+                bubblesInstanse.animate();
+                bubblesInstanse.on('talkBubblesDone', (e) => {
+                    const activeSlide = onboardingSlider.slides[onboardingSlider.activeIndex];
+                    activeSlide.querySelector('.onboarding-slider__btn--next').disabled = false;
+                });
+            }
+
+            const nextBtn = document.querySelectorAll('.onboarding-slider__btn--next');
+            const prevBtn = document.querySelectorAll('.onboarding-slider__btn--prev');
+
+            nextBtn.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    onboardingSlider.slideNext();
+                })
+            })
+
+            prevBtn.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    onboardingSlider.slidePrev();
                 })
             })
         }

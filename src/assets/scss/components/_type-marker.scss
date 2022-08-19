@@ -1,0 +1,38 @@
+.type-marker{
+  align-items: center;
+  background-color: $primaryLighter3;
+  display: inline-flex;
+  padding: .5rem;
+  border-radius: .8rem;
+
+  &__marker-point{
+    width: .6rem;
+    height: .6rem;
+    border-radius: 50%;
+    background-color: $primaryLighter;
+    margin: 0 .8rem 0 0;
+    font-size: 0;
+
+    &:last-child{
+      margin: 0;
+    }
+  }
+
+  @for $i from 1 through 3 {
+    &__marker-point:nth-child(#{$i}n) {
+      animation: type-animation 2s  #{($i - 1) / 3}s infinite ease;
+    }
+  }
+}
+
+@keyframes type-animation {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.66);
+  }
+  50% {
+    transform: scale(1);
+  }
+}

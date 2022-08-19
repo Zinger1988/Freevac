@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    {{> head }}
+    <title>Vividi</title>
+</head>
+
+<body>
+
+{{> header-onboarding }}
+
+<main class="page-content">
+    <div class="container container--fluid">
+
+        <div class="onboarding-slider page-content__onboarding-slider swiper" id="onboarding-slider">
+
+            <div class="container onboarding-slider__progress">
+                <div class="onboarding-slider__progress-track">
+                    <div class="onboarding-slider__progress-inner"></div>
+                </div>
+            </div>
+
+            <div class="swiper-wrapper onboarding-slider__wrapper">
+
+                {{> body }}
+
+            </div>
+        </div><!--onboarding slider-->
+
+        <div id="onboarding-controls" class="onboarding-controls">
+
+        </div>
+
+    </div><!--container-->
+</main><!--page content-->
+
+{{> modal-activity-field }}
+{{> modal-activity-field-sub }}
+
+<script src="assets/js/swiper.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

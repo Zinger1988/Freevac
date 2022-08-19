@@ -15,4 +15,12 @@
   &__employer-cabinet{
     margin: 0 0 5rem;
   }
+
+  &--no-header{
+    padding-top: 2.4rem;
+
+    @include media(">=md"){
+      padding-top: 3.2rem;
+    }
+  }
 }

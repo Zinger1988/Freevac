@@ -11,4 +11,8 @@
   @include media(">=md"){
     padding: 0 3rem;
   }
+
+  &--fluid{
+    max-width: none;
+  }
 }
