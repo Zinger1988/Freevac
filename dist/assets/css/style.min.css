@@ -5829,7 +5829,6 @@ body {
 .onboarding-slider {
   background-color: #7B41E7;
   color: #ffffff;
-  min-height: calc(100vh - 16rem);
   border-radius: 1.6rem;
   display: flex;
   width: 100%;
@@ -5838,8 +5837,9 @@ body {
 }
 
 .onboarding-slider__slide {
-  padding: .8rem 0;
   background-color: #7B41E7;
+  min-height: calc(100vh - 16rem);
+  transition: height 2s ease-in-out;
 }
 
 .onboarding-slider__progress {
@@ -5863,7 +5863,7 @@ body {
   height: .8rem;
   border-radius: .4rem;
   background-color: #DED1F5;
-  transition: width 0.5s ease-in-out;
+  transition: width 0.5s 0.5s;
 }
 
 .onboarding-slider__container {
@@ -5872,6 +5872,8 @@ body {
   display: flex;
   flex-direction: column-reverse;
   position: relative;
+  padding-top: .8rem;
+  padding-bottom: .8rem;
 }
 
 .onboarding-slider__slide-media {

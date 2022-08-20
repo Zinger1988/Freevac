@@ -789,6 +789,7 @@ class TalkBubbles{
             this.$wrapper.TalkBubbles = this;
             this.$list = this.$wrapper.querySelector('.talk-bubbles__list');
             this.$bubbles = this.$list.querySelectorAll('.talk-bubbles__item');
+            element.TalkBubbles = this;
         } catch (e) {
             console.error('TalkBubbles: invalid starter markup');
         }
@@ -1147,7 +1148,6 @@ const SiteJS = {
                 allowTouchMove: false,
                 loop: false,
                 slidesPerView: 1,
-                effect: 'fade',
                 on: {
                     afterInit: function (swiper) {
                         const index = swiper.activeIndex;
@@ -1176,8 +1176,14 @@ const SiteJS = {
             onboardingSlider.on('slideChangeTransitionStart', function (swiper) {
                 const activeIndex = swiper.activeIndex;
                 const slides = swiper.slides;
+                const slideContainer = slides[activeIndex].querySelector('.onboarding-slider__container');
+                const talkBalloons = slides[activeIndex].querySelector('.onboarding-slider__talk-bubbles');
 
-                slides[activeIndex].style.height = '';
+                if(talkBalloons.TalkBubbles.isDone){
+                    slides[activeIndex].style.height = window.getComputedStyle(slideContainer).height;
+                } else {
+                    slides[activeIndex].style.height = '';
+                }
             });
 
             function initTalkBubbles(wrapper){
