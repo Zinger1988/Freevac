@@ -20,7 +20,7 @@
   &__slide{
     background-color: $primary;
     min-height: calc(100vh - 16rem);
-    @include animate(height, 2s);
+    @include animate(height, .3s);
 
     @include media(">=lg"){
       padding: 6.4rem 0;
@@ -57,7 +57,7 @@
     height: .8rem;
     border-radius: .4rem;
     background-color: $primaryLighter2;
-    @include animate(width, .5s, .5s);
+    @include animate(width, .5s);
 
     @include media(">=lg"){
       height: 1.6rem;

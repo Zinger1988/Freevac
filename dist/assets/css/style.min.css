@@ -5839,7 +5839,7 @@ body {
 .onboarding-slider__slide {
   background-color: #7B41E7;
   min-height: calc(100vh - 16rem);
-  transition: height 2s ease-in-out;
+  transition: height 0.3s ease-in-out;
 }
 
 .onboarding-slider__progress {
@@ -5863,7 +5863,7 @@ body {
   height: .8rem;
   border-radius: .4rem;
   background-color: #DED1F5;
-  transition: width 0.5s 0.5s;
+  transition: width 0.5s ease-in-out;
 }
 
 .onboarding-slider__container {
