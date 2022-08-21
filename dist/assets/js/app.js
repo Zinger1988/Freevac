@@ -776,7 +776,8 @@ class TalkBubbles{
         this.init(element);
         this.isDone = false;
         this.events = {
-            talkBubblesDone: new Event('talkBubblesDone')
+            talkBubblesDone: new Event('talkBubblesDone'),
+            talkBubblesStart: new Event('talkBubblesStart')
         }
         this.on = function (eventName, callback) {
             this.$wrapper.addEventListener(eventName, callback);
@@ -801,7 +802,8 @@ class TalkBubbles{
         this.$bubbles.forEach(item => item.classList.remove('talk-bubbles__item--visible'));
         this.$typeMarker.classList.remove('talk-bubbles__type-marker--hidden');
         this.$list.style.height = this.$typeMarker.offsetHeight + 'px';
-        this.animateBubbles(Array.from(this.$bubbles), 2000);
+        this.isDone = false;
+        this.animate(Array.from(this.$bubbles), 2000);
     }
 
     createTypeMarker = function(){
@@ -816,6 +818,13 @@ class TalkBubbles{
     }
 
     animate = function(bubbles = Array.from(this.$bubbles)){
+
+        if(!this.isDone)
+
+        if(bubbles.length === this.$bubbles.length){
+            this.$wrapper.dispatchEvent(this.events.talkBubblesStart);
+        }
+
         const bubble = bubbles[0];
         const bubbleMargin = parseInt(window.getComputedStyle(bubble).marginBottom);
 
@@ -830,8 +839,11 @@ class TalkBubbles{
                 this.$list.style = '';
             }, {once: true})
 
-            this.isDone = true;
-            this.$wrapper.dispatchEvent(this.events.talkBubblesDone);
+            bubble.addEventListener('transitionend', () => {
+                this.isDone = true;
+                this.$wrapper.dispatchEvent(this.events.talkBubblesDone);
+            })
+
             return;
         }
 
@@ -1144,7 +1156,7 @@ const SiteJS = {
         if(document.querySelector('.onboarding-slider')){
             const slider = document.querySelector('.onboarding-slider');
             const progressBar = slider.querySelector('.onboarding-slider__progress-inner');
-            const onboardingSlider = new Swiper(slider, {
+            const onboardSlider = new Swiper(slider, {
                 allowTouchMove: false,
                 loop: false,
                 slidesPerView: 1,
@@ -1152,51 +1164,64 @@ const SiteJS = {
                     afterInit: function (swiper) {
                         const index = swiper.activeIndex;
                         const slides = swiper.slides;
-                        initTalkBubbles(slides[index]);
                         progressBar.style.width = ((index + 1) / slides.length * 100).toFixed(2) + '%';
+                        initTalkBubbles(slides[index]);
+
+                        const spacer = document.createElement('div');
+                        spacer.classList.add('onboarding-slider__spacer');
+                        swiper.$wrapperEl.append(spacer);
+                        swiper.$spacer = spacer;
+
+                        calcSlideHeight(swiper);
                     },
                 },
             });
 
-
-            onboardingSlider.on('slideChange', function (swiper) {
+            onboardSlider.on('slideChange', function (swiper) {
                 const index = swiper.activeIndex;
                 const slides = swiper.slides;
-                initTalkBubbles(slides[index]);
+                const activeSlide = swiper.slides[swiper.activeIndex];
+
                 progressBar.style.width = ((index + 1) / slides.length * 100).toFixed(2) + '%';
+
+                initTalkBubbles(activeSlide);
+                calcSlideHeight(swiper);
             });
 
-            onboardingSlider.on('slideChangeTransitionEnd', function (swiper) {
-                const previousIndex = swiper.previousIndex;
+            function calcSlideHeight(swiper){
+                const index = swiper.activeIndex;
                 const slides = swiper.slides;
+                const activeSlide = swiper.slides[swiper.activeIndex];
+                const prevSlide = swiper.slides[swiper.previousIndex];
 
-                slides[previousIndex].style.height = '0';
-            });
-
-            onboardingSlider.on('slideChangeTransitionStart', function (swiper) {
-                const activeIndex = swiper.activeIndex;
-                const slides = swiper.slides;
-                const slideContainer = slides[activeIndex].querySelector('.onboarding-slider__container');
-                const talkBalloons = slides[activeIndex].querySelector('.onboarding-slider__talk-bubbles');
-
-                if(talkBalloons.TalkBubbles.isDone){
-                    slides[activeIndex].style.height = window.getComputedStyle(slideContainer).height;
-                } else {
-                    slides[activeIndex].style.height = '';
+                if(prevSlide){
+                    prevSlide.style.height = window.getComputedStyle(swiper.$spacer).height;
                 }
-            });
+
+                if(!activeSlide.dataset.height){
+                    const bubbles = activeSlide.querySelector('.talk-bubbles');
+
+                    bubbles.TalkBubbles.on('talkBubblesDone', () => {
+                        activeSlide.style.height = window.getComputedStyle(slides[index]).height;
+                        activeSlide.dataset.height = window.getComputedStyle(slides[index]).height;
+                    })
+                } else {
+                    activeSlide.style.height = activeSlide.dataset.height;
+                }
+            }
 
             function initTalkBubbles(wrapper){
                 if(!wrapper.querySelector('.talk-bubbles') || wrapper.querySelector('.talk-bubbles').TalkBubbles){
                     return;
                 }
-
                 const bubbles = wrapper.querySelector('.talk-bubbles');
-                const bubblesInstanse = new TalkBubbles(bubbles, 1500);
-                bubblesInstanse.animate();
-                bubblesInstanse.on('talkBubblesDone', (e) => {
-                    const activeSlide = onboardingSlider.slides[onboardingSlider.activeIndex];
+                const bubblesInstance = new TalkBubbles(bubbles, 1500);
+                bubblesInstance.animate();
+
+                bubblesInstance.on('talkBubblesDone', (e) => {
+                    const activeSlide = onboardSlider.slides[onboardSlider.activeIndex];
                     activeSlide.querySelector('.onboarding-slider__btn--next').disabled = false;
+                    activeSlide.querySelector('.onboarding-slider__btn--prev').disabled = false;
                 });
             }
 
@@ -1205,13 +1230,13 @@ const SiteJS = {
 
             nextBtn.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    onboardingSlider.slideNext();
+                    onboardSlider.slideNext();
                 })
             })
 
             prevBtn.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    onboardingSlider.slidePrev();
+                    onboardSlider.slidePrev();
                 })
             })
         }
