@@ -1,0 +1,28 @@
+.video-examples{
+  display: flex;
+
+  &__item{
+    cursor: pointer;
+    margin: 0 1.2rem 0 0;
+    position: relative;
+
+    &::before{
+      content: "";
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      background: url("../img/onboarding/play_thumb.svg");
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+
+  &__thumb{
+    display: block;
+    width: 8.8rem;
+    height: 12rem;
+    border-radius: 1.6rem;
+    object-fit: cover;
+  }
+}

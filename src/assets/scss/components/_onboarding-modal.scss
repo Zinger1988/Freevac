@@ -1,0 +1,66 @@
+.onboarding-modal{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba($primary, .5);
+  display: none;
+
+  &--active{
+    display: block;
+    opacity: 0;
+  }
+
+  &__body{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%,);
+    overflow: hidden;
+    border-radius: 2.4rem;
+  }
+
+  &__balloon{
+    z-index: 101;
+    position: absolute;
+    left: 1.7rem;
+    top: 1.1rem;
+    max-width: calc(100% - 7.4rem);
+    border-radius: 2rem;
+  }
+
+  &__close{
+    @extend %buttonreset;
+    color: $white;
+    position: absolute;
+    left: 50%;
+    bottom: 2rem;
+    transform: translate(-50%, 0);
+    z-index: 150;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    height: 6rem;
+    border: 1px solid rgba($white, .2);
+    border-radius: 50%;
+
+    @include media(">=xl"){
+      display: none;
+    }
+  }
+
+  &__video-item{
+    display: block;
+    width: 36rem;
+    height: 54rem;
+    object-fit: cover;
+
+    @include media(">=xxl"){
+      width: 40rem;
+      height: 60rem;
+    }
+  }
+}

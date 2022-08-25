@@ -36,393 +36,653 @@
 <main class="page-content">
     <div class="container container--fluid">
 
-        <div class="onboarding-slider page-content__onboarding-slider swiper" id="onboarding-slider">
-
-            <div class="container onboarding-slider__progress">
-                <div class="onboarding-slider__progress-track">
-                    <div class="onboarding-slider__progress-inner"></div>
-                </div>
-            </div>
-
-            <div class="swiper-wrapper onboarding-slider__wrapper">
-
-                
-                <div class="onboarding-slider__slide swiper-slide">
-                
-                    <div class="container onboarding-slider__container">
-                
-                        <div class="onboarding-slider__slide-text">
-                
-                            <div class="talk-bubbles onboarding-slider__talk-bubbles">
-                                <div class="talk-bubbles__list" style="height: 0">
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">привіт :)</div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Vividi допоможе тобі розповісти про себе, під час пошуку роботи.
+        <div class="onboarding">
+            
+            <div class="onboarding-slider onboarding__onboarding-slider swiper" id="onboarding-slider">
+            
+                <div class="progress onboarding__progress container">
+                    <div class="progress__track">
+                        <div class="progress__inner"></div>
+                    </div>
+                </div><!--progress-->
+            
+                <div class="swiper-wrapper onboarding-slider__wrapper">
+            
+                    <div class="onboarding-slider__slide swiper-slide">
+                        <div class="onboarding-slider__container container">
+            
+                            <div class="onboarding-slider__content">
+            
+                                <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                    <div class="talk-bubbles__list" style="height: 0">
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">привіт :)</div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Vividi допоможе тобі розповісти про себе, під час пошуку роботи.
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                А я — допоможу заповнити профіль, щоб твої пошуки були ефективними
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Спечатку декілька питань, а далі найцікавіше — відеорезюме!
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Почнемо знайомитись?
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            А я — допоможу заповнити профіль, щоб твої пошуки були ефективними
+                                </div><!--talk bubbles-->
+            
+                                <div class="onboarding-slider__slide-controls controls-bar">
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--accent
+                                            btn--fluid
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--next" disabled>
+                                        <span class="btn__text">Заповнити профіль</span>
+                                    </button>
+                                </div><!--controls bar-->
+            
+                            </div><!--slide content-->
+            
+                            <div class="onboarding-slider__media">
+                                <img class="onboarding-slider__media-img" src="assets/img/onboarding/1.png" alt="image">
+                            </div><!--slide media-->
+            
+                        </div><!--container-->
+                    </div><!--slide-->
+            
+                            <div class="onboarding-slider__slide swiper-slide">
+                                <div class="onboarding-slider__container container">
+            
+                                    <div class="onboarding-slider__content">
+            
+                                        <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                            <div class="talk-bubbles__list" style="height: 0">
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        це не займе більше 15 хвилин
+                                                    </div>
+                                                </div>
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        тим більше що ми с тобою лише заповнимо першу версію — все це ти зможеш змініти пізнише
+                                                    </div>
+                                                </div>
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        Як тебе звуть?
+                                                    </div>
+                                                    <div class="form">
+                                                        <div class="input-row form__input-row">
+                                                            <div class="input-row__title">Ім'я та прізвище</div>
+                                                            <input class="input-text input-row__input-text" type="text">
+                                                        </div>
+                                                        <div class="text-node--color--primaryLighter">
+                                                            пізніше цю інформацію можна буде змінити в профілі
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!--talk bubbles-->
+            
+                                        <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                            <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--primary-lighter-alt
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--prev" disabled>
+                                                <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                            </button>
+                                            <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--accent btn--fluid
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--next" disabled>
+                                                <span class="btn__text">Продовжити</span>
+                                            </button>
+                                        </div><!--controls bar-->
+            
+                                    </div><!--slide content-->
+            
+                                    <div class="onboarding-slider__media">
+                                        <img class="onboarding-slider__media-img" src="assets/img/onboarding/1.png" alt="image">
+                                    </div><!--slide media-->
+            
+                                </div><!--container-->
+                            </div><!--slide-->
+            
+                            <div class="onboarding-slider__slide swiper-slide">
+                                <div class="onboarding-slider__container container">
+            
+                                    <div class="onboarding-slider__content">
+            
+                                        <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                            <div class="talk-bubbles__list" style="height: 0">
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        Дуже приємно, Каніфолій
+                                                    </div>
+                                                </div>
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        Яку роботу ти шукаєш?
+                                                    </div>
+                                                    <div class="form">
+                                                        <div class="input-row input-row--pointer form__input-row form__input-row" data-modal-id="user-activity-field">
+                                                            <div class="input-row__title">сфера</div>
+                                                            <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly>
+                                                        </div>
+                                                        <div class="input-row form__input-row">
+                                                            <div class="input-row__title">Посада</div>
+                                                            <input class="input-text input-row__input-text" type="text">
+                                                        </div>
+                                                        <div class="text-node--color--primaryLighter">
+                                                            пізніше цю інформацію можна буде змінити в профілі
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!--talk bubbles-->
+            
+                                        <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                            <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--primary-lighter-alt
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--prev" disabled>
+                                                <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                            </button>
+                                            <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--accent btn--fluid
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--next" disabled>
+                                                <span class="btn__text">Продовжити</span>
+                                            </button>
+                                        </div><!--controls bar-->
+            
+                                    </div><!--slide content-->
+            
+                                    <div class="onboarding-slider__media">
+                                        <img class="onboarding-slider__media-img" src="assets/img/onboarding/1.png" alt="image">
+                                    </div><!--slide media-->
+            
+                                </div><!--container-->
+                            </div><!--slide-->
+            
+                            <div class="onboarding-slider__slide swiper-slide">
+                                <div class="onboarding-slider__container container">
+            
+                                    <div class="onboarding-slider__content">
+            
+                                        <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                            <div class="talk-bubbles__list" style="height: 0">
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        впевнена, ти крутий дизайнер
+                                                    </div>
+                                                </div>
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        розкажеш трохи про себе? але не багато — ніхто не полюбляє багато читати
+                                                    </div>
+                                                    <div class="form">
+                                                        <div class="input-row form__input-row">
+                                                            <div class="input-row__title">Трохи про себе</div>
+                                                            <textarea class="input-text input-text--textarea input-text--textarea--no-expand input-row__input-text" name="description"></textarea>
+                                                        </div>
+                                                        <div class="text-node--color--primaryLighter">
+                                                            пізніше цю інформацію можна буде змінити в профілі
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!--talk bubbles-->
+            
+                                        <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                            <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--primary-lighter-alt
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--prev" disabled>
+                                                <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                            </button>
+                                            <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--accent btn--fluid
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--next" disabled>
+                                                <span class="btn__text">Продовжити</span>
+                                            </button>
+                                        </div><!--controls bar-->
+            
+                                    </div><!--slide content-->
+            
+                                    <div class="onboarding-slider__media">
+                                        <img class="onboarding-slider__media-img" src="assets/img/onboarding/1.png" alt="image">
+                                    </div><!--slide media-->
+            
+                                </div><!--container-->
+                            </div><!--slide-->
+            
+                            <div class="onboarding-slider__slide swiper-slide">
+                                <div class="onboarding-slider__container container">
+            
+                                    <div class="onboarding-slider__content">
+            
+                                        <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                            <div class="talk-bubbles__list" style="height: 0">
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        Тепер час створити відеорезюме
+                                                    </div>
+                                                </div>
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        Це дасть можливість проявити себе, сподобатись работодавцю,  відрізнитись від інших
+                                                    </div>
+                                                </div>
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        можна подивись декілька прикладів для натхнення:
+                                                    </div>
+            
+                                                    <div class="video-examples">
+                                                        <div class="video-examples__item" data-onboarding-example="video1">
+                                                            <img class="video-examples__thumb"
+                                                                 src="assets/img/onboarding/video_thumb1.jpg"
+                                                                 alt="example">
+                                                        </div>
+                                                        <div class="video-examples__item" data-onboarding-example="video1">
+                                                            <img class="video-examples__thumb"
+                                                                 src="assets/img/onboarding/video_thumb2.jpg"
+                                                                 alt="example">
+                                                        </div>
+                                                        <div class="video-examples__item" data-onboarding-example="video1">
+                                                            <img class="video-examples__thumb"
+                                                                 src="assets/img/onboarding/video_thumb3.jpg"
+                                                                 alt="example">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="talk-bubbles__item">
+                                                    <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                        поїхали?
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!--talk bubbles-->
+            
+                                        <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                            <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--primary-lighter-alt
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--prev" disabled>
+                                                <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                            </button>
+                                            <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--accent btn--fluid
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--next" disabled>
+                                                <span class="btn__text">Продовжити</span>
+                                            </button>
+                                        </div><!--controls bar-->
+            
+                                    </div><!--slide content-->
+            
+                                    <div class="onboarding-slider__media">
+                                        <img class="onboarding-slider__media-img" src="assets/img/onboarding/2.png" alt="image">
+                                    </div><!--slide media-->
+            
+                                </div><!--container-->
+                            </div><!--slide-->
+            
+                    <div class="onboarding-slider__slide swiper-slide">
+                        <div class="onboarding-slider__container container">
+            
+                            <div class="onboarding-slider__content">
+            
+                                <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                    <div class="talk-bubbles__list" style="height: 0">
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Відерезюме — це кілька коротких відео, на різні теми. Тему кожного відео обираєш самостійно.
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Давай почнемо з першого, просто уяви, що записуєш сторіси. Причепурися, знайди світле місце.
+                                            </div>
+                                            <div class="form">
+                                                <div class="input-row form__input-row">
+                                                    <div class="input-row__title">тема першого відео</div>
+                                                    <input class="input-text input-row__input-text" type="text" value="Чим мені подобається професія «Дизайнер»?">
+                                                </div>
+                                                <div class="text-node--color--primaryLighter">
+                                                    пізніше цю інформацію можна буде змінити в профілі
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                натисни «Зняти відео»
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Спечатку декілька питань, а далі найцікавіше — відеорезюме!
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Почнемо знайомитись?
-                                        </div>
+                                </div><!--talk bubbles-->
+            
+                                <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--primary-lighter-alt
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--prev" disabled>
+                                        <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                    </button>
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--accent
+                                            btn--fluid
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--toggle-wrapper" disabled>
+                                        <span class="btn__text">Зняти відео</span>
+                                    </button>
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--accent
+                                            btn--fluid
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--next
+                                            onboarding-slider__btn--after-record" disabled>
+                                        <span class="btn__text">Продовжити</span>
+                                    </button>
+                                </div><!--controls bar-->
+            
+                            </div><!--slide content-->
+            
+                            <div class="onboarding-slider__media">
+                                <div class="onboarding-video" data-video-duration="5">
+                                    <div class="video-counter--countdown onboarding-video__countdown" data-counter="3">0</div>
+                                    <video class="onboarding-video__item" playsinline>
+                                        You need an HTML 5-capable browser.
+                                    </video>
+                                    <div class="onboarding-video__record-controls"></div>
+                                    <div class="onboarding-video__controls controls-bar controls-bar--layout-3">
+                                        <button class="btn
+                                                btn--size--lg
+                                                btn--style--primary-lighter-alt
+                                                onboarding-video__btn
+                                                onboarding-slider__btn--toggle-wrapper">
+                                            <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                        </button>
+                                        <button class="btn
+                                                btn--size--lg
+                                                btn--style--primary-lighter-alt
+                                                btn--fluid
+                                                onboarding-video__btn
+                                                onboarding-video__btn--record">
+                                            <i class="icon icon--camera-48 icon--size--lg btn__icon"></i>
+                                            <span class="btn__text">Зняти</span>
+                                        </button>
+                                        <button class="btn
+                                                btn--size--lg
+                                                btn--style--accent
+                                                onboarding-video__btn
+                                                onboarding-video__btn--next
+                                                onboarding-slider__btn--next" disabled>
+                                            <i class="icon icon--size--lg icon--arrowright-48 btn__icon"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                
-                            <div class="onboarding-slider__slide-controls controls-bar">
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--accent btn--fluid
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--next" disabled>
-                                    <span class="btn__text">Продовжити</span>
-                                </button>
-                            </div>
-                
-                        </div>
-                
-                        <div class="onboarding-slider__slide-media">
-                            <img class="onboarding-slider__img" src="assets/img/onboarding/1.png" alt="img">
-                        </div>
-                
-                    </div>
-                
-                </div>
-                
-                <div class="onboarding-slider__slide swiper-slide">
-                
-                    <div class="container onboarding-slider__container">
-                
-                        <div class="onboarding-slider__slide-text">
-                
-                            <div class="talk-bubbles onboarding-slider__talk-bubbles">
-                                <div class="talk-bubbles__list" style="height: 0">
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            це не займе більше 15 хвилин
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            тим більше що ми с тобою лише заповнимо першу версію — все це ти зможеш змініти пізнише
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Як тебе звуть?
-                                        </div>
-                                        <div class="form">
-                                            <div class="input-row form__input-row">
-                                                <div class="input-row__title">Ім'я та прізвище</div>
-                                                <input class="input-text input-row__input-text" type="text">
-                                            </div>
-                                            <div class="text-node--color--primaryLighter">
-                                                пізніше цю інформацію можна буде змінити в профілі
+            
+                        </div><!--container-->
+                    </div><!--slide-->
+            
+                    <div class="onboarding-slider__slide swiper-slide">
+                        <div class="onboarding-slider__container container">
+            
+                            <div class="onboarding-slider__content">
+            
+                                <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                    <div class="talk-bubbles__list" style="height: 0">
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Для початку супер!
                                             </div>
                                         </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Можна зняти до 8 таких відео. Тобто розкрити 8 тем. Vividi змонтує всі фрагменти в один ролик.
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Але для початку давай спробуємо ще хочаб один?
+                                            </div>
+                                            <div class="form">
+                                                <div class="input-row form__input-row">
+                                                    <div class="input-row__title">тема другого відео</div>
+                                                    <input class="input-text input-row__input-text" type="text" value="Мої сильні сторони">
+                                                </div>
+                                                <div class="text-node--color--primaryLighter">
+                                                    пізніше цю інформацію можна буде змінити в профілі
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                знову натискай «Зняти відео»
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--talk bubbles-->
+            
+                                <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--primary-lighter-alt
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--prev" disabled>
+                                        <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                    </button>
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--accent
+                                            btn--fluid
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--toggle-wrapper" disabled>
+                                        <span class="btn__text">Зняти відео</span>
+                                    </button>
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--accent
+                                            btn--fluid
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--next
+                                            onboarding-slider__btn--after-record" disabled>
+                                        <span class="btn__text">Продовжити</span>
+                                    </button>
+                                </div><!--controls bar-->
+            
+                            </div><!--slide content-->
+            
+                            <div class="onboarding-slider__media">
+                                <div class="onboarding-video" data-video-duration="5">
+                                    <div class="video-counter--countdown onboarding-video__countdown" data-counter="3">0</div>
+                                    <video class="onboarding-video__item" playsinline>
+                                        You need an HTML 5-capable browser.
+                                    </video>
+                                    <div class="onboarding-video__controls controls-bar controls-bar--layout-3">
+                                        <button class="btn
+                                                btn--size--lg
+                                                btn--style--primary-lighter-alt
+                                                onboarding-video__btn
+                                                onboarding-slider__btn--toggle-wrapper">
+                                            <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                        </button>
+                                        <button class="btn
+                                                btn--size--lg
+                                                btn--style--primary-lighter-alt
+                                                btn--fluid
+                                                onboarding-video__btn
+                                                onboarding-video__btn--record">
+                                            <i class="icon icon--camera-48 icon--size--lg btn__icon"></i>
+                                            <span class="btn__text">Зняти</span>
+                                        </button>
+                                        <button class="btn
+                                                btn--size--lg
+                                                btn--style--accent
+                                                onboarding-video__btn
+                                                onboarding-video__btn--next
+                                                onboarding-slider__btn--next" disabled>
+                                            <i class="icon icon--size--lg icon--arrowright-48 btn__icon"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                
-                            <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--primary-lighter
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--prev" disabled>
-                                    <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
-                                </button>
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--accent btn--fluid
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--next" disabled>
-                                    <span class="btn__text">Продовжити</span>
-                                </button>
-                            </div>
-                
-                        </div>
-                
-                        <div class="onboarding-slider__slide-media">
-                            <img class="onboarding-slider__img" src="assets/img/onboarding/1.png" alt="img">
-                        </div>
-                
-                    </div>
-                
+            
+                        </div><!--container-->
+                    </div><!--slide-->
+            
+                    <div class="onboarding-slider__slide swiper-slide">
+                        <div class="onboarding-slider__container container">
+            
+                            <div class="onboarding-slider__content">
+            
+                                <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                    <div class="talk-bubbles__list" style="height: 0">
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Круто!
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Твій профіль заповнений на 80%, але навіть цього достатньо, щоб сгенерувати силку та
+                                                відправляти работодавцям.
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Можешь подивитись лінку і повертайся:
+                                            </div>
+                                            <div class="talk-bubbles__link-panel link-panel">
+                                                <div class="link-panel__holder">
+                                                    <a href="#" class="link-panel__anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
+                                                    <a href="#" target="_blank" class="link-panel__anchor icon icon--size--md icon--link-24"></a>
+                                                </div>
+                                                <input class="input-text input-text--style--primary link-panel__input" id="freevak-link" readonly value="freevac.ua/po-f56" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Тепер рекомендую перейти в профайл та додати будь-яку корисну інформацію (резюме,
+                                                контакто, тощо).
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Удачі у пошуку цікавої роботи
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--talk bubbles-->
+            
+                                <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--primary-lighter-alt
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--prev" disabled>
+                                        <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                    </button>
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--accent btn--fluid
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--next" disabled>
+                                        <span class="btn__text">В профіль</span>
+                                    </button>
+                                </div><!--controls bar-->
+            
+                            </div><!--slide content-->
+            
+                            <div class="onboarding-slider__media">
+                                <img class="onboarding-slider__media-img" src="assets/img/onboarding/2.png" alt="image">
+                            </div><!--slide media-->
+            
+                        </div><!--container-->
+                    </div><!--slide-->
+            
                 </div>
-                
-                <div class="onboarding-slider__slide swiper-slide">
-                
-                    <div class="container onboarding-slider__container">
-                
-                        <div class="onboarding-slider__slide-text">
-                
-                            <div class="talk-bubbles onboarding-slider__talk-bubbles">
-                                <div class="talk-bubbles__list" style="height: 0">
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Дуже приємно, Каніфолій
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Яку роботу ти шукаєш?
-                                        </div>
-                                        <div class="form">
-                                            <div class="input-row input-row--pointer form__input-row form__input-row" data-modal-id="user-activity-field">
-                                                <div class="input-row__title">сфера</div>
-                                                <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly>
-                                            </div>
-                                            <div class="input-row form__input-row">
-                                                <div class="input-row__title">Посада</div>
-                                                <input class="input-text input-row__input-text" type="text">
-                                            </div>
-                                            <div class="text-node--color--primaryLighter">
-                                                пізніше цю інформацію можна буде змінити в профілі
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                
-                            <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--primary-lighter
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--prev" disabled>
-                                    <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
-                                </button>
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--accent btn--fluid
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--next" disabled>
-                                    <span class="btn__text">Продовжити</span>
-                                </button>
-                            </div>
-                
-                        </div>
-                
-                        <div class="onboarding-slider__slide-media">
-                            <img class="onboarding-slider__img" src="assets/img/onboarding/1.png" alt="img">
-                        </div>
-                
+            </div><!--onboarding slider-->
+            
+            <div class="onboarding-modal" id="video1">
+                <div class="onboarding-modal__body">
+                    <div class="balloon balloon--style--accent onboarding-modal__balloon">
+                        Чим мені подобається професія «Дизайнер»?
                     </div>
-                
-                </div>
-                
-                <div class="onboarding-slider__slide swiper-slide">
-                
-                    <div class="container onboarding-slider__container">
-                
-                        <div class="onboarding-slider__slide-text">
-                
-                            <div class="talk-bubbles onboarding-slider__talk-bubbles">
-                                <div class="talk-bubbles__list" style="height: 0">
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            впевнена, ти крутий дизайнер
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            розкажеш трохи про себе? але не багато — ніхто не полюбляє багато читати
-                                        </div>
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            розкажеш трохи про себе? але не багато — ніхто не полюбляє багато читати
-                                        </div>
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            розкажеш трохи про себе? але не багато — ніхто не полюбляє багато читати
-                                        </div>
-                                        <div class="form">
-                                            <div class="input-row form__input-row">
-                                                <div class="input-row__title">Трохи про себе</div>
-                                                <textarea class="input-text input-text--textarea input-row__input-text" name="description" data-validation></textarea>
-                                            </div>
-                                            <div class="text-node--color--primaryLighter">
-                                                пізніше цю інформацію можна буде змінити в профілі
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                
-                            <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--primary-lighter
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--prev" disabled>
-                                    <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
-                                </button>
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--accent btn--fluid
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--next" disabled>
-                                    <span class="btn__text">Продовжити</span>
-                                </button>
-                            </div>
-                
-                        </div>
-                
-                        <div class="onboarding-slider__slide-media">
-                            <img class="onboarding-slider__img" src="assets/img/onboarding/1.png" alt="img">
-                        </div>
-                
+                    <button class="onboarding-modal__close">
+                        <i class="icon icon--size--md icon--close-24"></i>
+                    </button>
+                    <div class="onboarding-modal__video">
+                        <video class="onboarding-modal__video-item video-player"
+                               src="https://vividi.career/media/video/4c6642c4-ea03-43b1-b970-5ea257bb1e84.mp4#t=0.1"
+                               data-duration="3"
+                               playsinline>
+                            You need an HTML 5-capable browser.
+                        </video>
                     </div>
-                
                 </div>
-                
-                <div class="onboarding-slider__slide swiper-slide">
-                
-                    <div class="container onboarding-slider__container">
-                
-                        <div class="onboarding-slider__slide-text">
-                
-                            <div class="talk-bubbles onboarding-slider__talk-bubbles">
-                                <div class="talk-bubbles__list" style="height: 0">
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Тепер час створити відеорезюме
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Це дасть можливість проявити себе, сподобатись работодавцю,  відрізнитись від інших
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            можна подивись декілька прикладів для натхнення:
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            поїхали?
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                
-                            <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--primary-lighter
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--prev" disabled>
-                                    <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
-                                </button>
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--accent btn--fluid
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--next" disabled>
-                                    <span class="btn__text">Продовжити</span>
-                                </button>
-                            </div>
-                
-                        </div>
-                
-                        <div class="onboarding-slider__slide-media">
-                            <img class="onboarding-slider__img" src="assets/img/onboarding/1.png" alt="img">
-                        </div>
-                
+            </div><!--modal video example-->
+            
+            <div class="onboarding-modal" id="video2">
+                <div class="onboarding-modal__body">
+                    <div class="balloon balloon--style--accent onboarding-modal__balloon">
+                        Чим мені подобається професія «Дизайнер»?
                     </div>
-                
-                </div>
-                
-                <div class="onboarding-slider__slide swiper-slide">
-                
-                    <div class="container onboarding-slider__container">
-                
-                        <div class="onboarding-slider__slide-text">
-                
-                            <div class="talk-bubbles onboarding-slider__talk-bubbles">
-                                <div class="talk-bubbles__list" style="height: 0">
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Круто!
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Твій профіль заповнений на 80%, але навіть цього достатньо, щоб сгенерувати силку та
-                                            відправляти работодавцям.
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Можешь подивитись лінку і повертайся:
-                                        </div>
-                                        <div class="talk-bubbles__link-panel link-panel">
-                                            <div class="link-panel__holder">
-                                                <a href="#" class="link-panel__anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
-                                                <a href="#" target="_blank" class="link-panel__anchor icon icon--size--md icon--link-24"></a>
-                                            </div>
-                                            <input class="input-text input-text--style--primary link-panel__input" id="freevak-link" readonly value="freevac.ua/po-f56" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Тепер рекомендую перейти в профайл та додати будь-яку корисну інформацію (резюме,
-                                            контакто, тощо).
-                                        </div>
-                                    </div>
-                                    <div class="talk-bubbles__item">
-                                        <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
-                                            Удачі у пошуку цікавої роботи
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                
-                            <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--primary-lighter
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--prev" disabled>
-                                    <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
-                                </button>
-                                <button class="btn
-                                        btn--size--lg
-                                        btn--style--accent btn--fluid
-                                        onboarding-slider__btn
-                                        onboarding-slider__btn--next" disabled>
-                                    <span class="btn__text">В профіль</span>
-                                </button>
-                            </div>
-                
-                        </div>
-                
-                        <div class="onboarding-slider__slide-media">
-                            <img class="onboarding-slider__img" src="assets/img/onboarding/1.png" alt="img">
-                        </div>
-                
+                    <div class="onboarding-modal__video">
+                        <video class="onboarding-modal__video-item video-player"
+                               src="https://vividi.career/media/video/4c6642c4-ea03-43b1-b970-5ea257bb1e84.mp4#t=0.1"
+                               data-duration="3"
+                               playsinline>
+                            You need an HTML 5-capable browser.
+                        </video>
                     </div>
-                
                 </div>
-
-            </div>
-        </div><!--onboarding slider-->
-
-        <div id="onboarding-controls" class="onboarding-controls">
-
+            </div><!--modal video example-->
+            
+            <div class="onboarding-modal" id="video3">
+                <div class="onboarding-modal__body">
+                    <div class="balloon balloon--style--accent onboarding-modal__balloon">
+                        Чим мені подобається професія «Дизайнер»?
+                    </div>
+                    <div class="onboarding-modal__video">
+                        <video class="onboarding-modal__video-item video-player"
+                               src="https://vividi.career/media/video/4c6642c4-ea03-43b1-b970-5ea257bb1e84.mp4#t=0.1"
+                               data-duration="3"
+                               playsinline>
+                            You need an HTML 5-capable browser.
+                        </video>
+                    </div>
+                </div>
+            </div><!--modal video example-->
         </div>
+
+        <div id="onboarding-controls" class="onboarding-controls"></div>
 
     </div><!--container-->
 </main><!--page content-->

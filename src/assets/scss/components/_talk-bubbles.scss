@@ -16,7 +16,7 @@
     visibility: hidden;
     @include animate(opacity transform, 1s);
 
-    @include media(">=lg"){
+    @include media(">=md"){
       margin: 0 0 1.2rem;
     }
 
@@ -33,12 +33,12 @@
   &__balloon{
     margin: 0 0 .8rem;
 
-    @include media("<lg"){
+    @include media("<md"){
       font-size: 1.6rem;
       border-radius: 2rem;
     }
 
-    @include media(">=lg"){
+    @include media(">=md"){
       margin: 0 0 1.2rem;
     }
 
@@ -84,7 +84,7 @@
   }
 
   &__link-panel{
-    display: inline-block;
+    max-width: 30rem;
   }
 }
 

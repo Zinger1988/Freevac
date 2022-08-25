@@ -1,20 +1,17 @@
 .onboarding-slider{
-  background-color: $primary;
-  color: $white;
-
-  border-radius: 1.6rem;
   display: flex;
   width: 100%;
   justify-content: center;
   margin: 0 0 1.2rem;
+  position: relative;
+  z-index: 15;
 
   @include media(">=lg"){
-    min-height: calc(100vh - 12.6rem);
-    border-radius: 2.4rem;
+    margin: 0;
   }
 
-  @include media(">=md"){
-    border-radius: 3.2rem;
+  &__wrapper{
+    z-index: 25;
   }
 
   &__spacer{
@@ -27,147 +24,140 @@
   }
 
   &__slide{
-    background-color: $primary;
     min-height: calc(100vh - 16rem);
-    @include animate(height, .3s);
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 0 .8rem 0;
+    @include animate(height opacity, .3s);
 
-    @include media(">=lg"){
-      padding: 6.4rem 0;
+    @include media(">=sm"){
+      padding: 4rem 0 1.6rem 0;
     }
-  }
 
-  &__progress{
-    top: .8rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    z-index: 10;
-    min-width: 0;
-
-    @include media(">=lg"){
-      top: 1.6rem;
+    @include media(">=md"){
+      padding: 6rem 0 3rem 0;
     }
-  }
-
-  &__progress-track{
-    background-color: $primaryLighter3;
-    height: 1.6rem;
-    border-radius: .8rem;
-    padding: .4rem;
 
     @include media(">=lg"){
-      height: 2.4rem;
-      border-radius: 1.2rem;
+      min-height: calc(100vh - 12.6rem);
     }
-  }
 
-  &__progress-inner{
-    height: .8rem;
-    border-radius: .4rem;
-    background-color: $primaryLighter2;
-    @include animate(width, .5s);
-
-    @include media(">=lg"){
-      height: 1.6rem;
-      border-radius: .8rem;
+    @include media(">=1400px"){
+      padding: 9.4rem 0 6.4rem;
+      min-height: calc(100vh - 12.6rem);
     }
   }
 
   &__container{
-    min-height: 100%;
-    min-width: 0;
     display: flex;
     flex-direction: column-reverse;
-    position: relative;
-    padding-top: .8rem;
-    padding-bottom: .8rem;
+    justify-content: space-between;
+    max-width: 76.8rem;
+    min-width: 0;
+    width: 100%;
+    height: 100%;
 
     @include media(">=lg"){
       display: grid;
       grid-template-columns: 1fr 1fr;
-      height: 100%;
+      grid-gap: 5.6rem;
       align-items: end;
       align-content: center;
-      grid-gap: 5.6rem;
+      max-width: 119.4rem;
     }
   }
 
-  &__slide-media{
-    width: 16.5rem;
-    position: absolute;
-    right: .8rem;
-    top: 4rem;
+  &__media{
+    height: 27.7vw;
+    max-height: 25.4rem;
+    flex: 0 0 auto;
+    text-align: right;
 
     @include media(">=lg"){
-      width: auto;
+      height: auto;
+      max-height: none;
     }
   }
 
-  &__slide-text{
-    margin: 12.7rem 0 0;
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  &__media-img{
+    display: inline-block;
+    height: 46vw;
+    max-height: 30rem;
 
     @include media(">=lg"){
       display: block;
+      max-height: none;
+      height: auto;
+      width: 80%;
+      max-width: 50rem;
+      margin: 0 auto;
+    }
+
+    @include media(">=1400px"){
+      width: 92%;
     }
   }
 
-  &__img{
-    display: block;
-    max-width: 500px;
-    width: 100%;
-    margin: 0 auto;
+  &__text{
+    flex: 1 0 auto;
   }
 
   &__talk-bubbles{
     margin: 0 0 2.4rem;
 
-    @include media(">=lg"){
+    @include media(">=md"){
       margin: 0 0 3.2rem;
     }
   }
 
-  &__btn--next:disabled{
-    background-color: $accent;
-    color: $white;
-    opacity: .5;
-    @include animate(opacity color background-color);
-  }
-
   &__slide-controls .btn{
-    @include media("<lg") {
-      padding: .59em 1em;
+    @include media("<md") {
+      padding: .59em;
       min-height: 6rem;
       border-radius: 1.6rem;
     }
   }
 
   &__slide-controls .btn__icon{
-    @include media("<lg") {
+    @include media("<md") {
       font-size: 3.2rem;
     }
   }
 
   &__slide-controls .btn__text{
-    @include media("<lg") {
+    @include media("<md") {
       font-size: $fontSize22;
       @include calcLineHeight($fontSize22);
     }
   }
-}
 
-.onboarding-controls{
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  &__btn.btn--style--accent:disabled{
+    background-color: $accent;
+    color: $white;
+    opacity: .5;
+    @include animate(opacity color background-color);
+  }
 
-  .btn{
-    width: 100%;
-    margin: 0;
-    background-color: transparent;
+  &__btn--prev.btn--style--primary-lighter-alt:disabled{
+    background-color: #DED1F5;
+    color: #7B41E7;
+    opacity: .5;
+    @include animate(opacity color background-color);
+  }
+
+  &__btn--after-record{
+    display: none;
+
+    @include media(">=lg"){
+      display: block;
+    }
+  }
+
+  &__btn--toggle-wrapper{
+    display: block;
+
+    @include media(">=lg"){
+      display: none;
+    }
   }
 }

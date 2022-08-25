@@ -821,9 +821,9 @@ class TalkBubbles{
 
         if(!this.isDone)
 
-        if(bubbles.length === this.$bubbles.length){
-            this.$wrapper.dispatchEvent(this.events.talkBubblesStart);
-        }
+            if(bubbles.length === this.$bubbles.length){
+                this.$wrapper.dispatchEvent(this.events.talkBubblesStart);
+            }
 
         const bubble = bubbles[0];
         const bubbleMargin = parseInt(window.getComputedStyle(bubble).marginBottom);
@@ -916,7 +916,7 @@ const SiteJS = {
                 target.append(element);
             }
         });
-        this.expandTextarea('.input-text--textarea');
+        this.expandTextarea('.input-text--textarea:not(.input-text--textarea--no-expand)');
         this.recordVideo('.video-record');
         this.completeInput('[data-complete-input]','[data-complete-group]');
         this.smoothScroll('[data-scroll-to]');
@@ -942,6 +942,7 @@ const SiteJS = {
         });
         this.recordReply();
         this.vacancyDetails();
+        this.videoExamples();
 
         if(document.querySelector('.reply-slider')){
 
@@ -1153,13 +1154,19 @@ const SiteJS = {
             })
         }
 
-        if(document.querySelector('.onboarding-slider')){
-            const slider = document.querySelector('.onboarding-slider');
-            const progressBar = slider.querySelector('.onboarding-slider__progress-inner');
+        if(document.querySelector('.onboarding')){
+            const wrapper = document.querySelector('.onboarding');
+            const slider = wrapper.querySelector('.onboarding-slider');
+            const progress = wrapper.querySelector('.progress');
+            const progressBar = progress.querySelector('.progress__inner');
+            const nextBtn = document.querySelectorAll('.onboarding-slider__btn--next');
+            const prevBtn = document.querySelectorAll('.onboarding-slider__btn--prev');
+            const videoWrapperToggleBtn = document.querySelectorAll('.onboarding-slider__btn--toggle-wrapper');
             const onboardSlider = new Swiper(slider, {
                 allowTouchMove: false,
                 loop: false,
                 slidesPerView: 1,
+                effect: 'swipe',
                 on: {
                     afterInit: function (swiper) {
                         const index = swiper.activeIndex;
@@ -1177,15 +1184,54 @@ const SiteJS = {
                 },
             });
 
+            videoWrapperToggleBtn.forEach(btn => {
+                const slide = btn.closest('.onboarding-slider__slide');
+                const videoWrapper = slide.querySelector('.onboarding-video');
+
+                btn.addEventListener('click', () => {
+
+                    if(!videoWrapper.classList.contains('onboarding-video--active')){
+                        SiteJS.fadeIn(videoWrapper, {
+                            onComplete: () => {
+                                videoWrapper.classList.add('onboarding-video--active');
+                            }
+                        });
+                    } else {
+                        SiteJS.fadeOut(videoWrapper, {
+                            onComplete: () => {
+                                videoWrapper.classList.remove('onboarding-video--active');
+                                videoWrapper.style = '';
+                            }
+                        });
+                    }
+                })
+            })
+
             onboardSlider.on('slideChange', function (swiper) {
                 const index = swiper.activeIndex;
+                const prevIndex = swiper.previousIndex;
                 const slides = swiper.slides;
-                const activeSlide = swiper.slides[swiper.activeIndex];
+                const activeSlide = swiper.slides[index];
+                const slideOnboardingVideo = activeSlide.querySelector('.onboarding-video');
+                const prevSlide = swiper.slides[prevIndex];
+                const videoElement = activeSlide.querySelector('.onboarding-video__item');
 
                 progressBar.style.width = ((index + 1) / slides.length * 100).toFixed(2) + '%';
 
                 initTalkBubbles(activeSlide);
                 calcSlideHeight(swiper);
+
+                if(slideOnboardingVideo && !videoElement.src && !videoElement.VideoRecorder){
+                    SiteJS.onboardingRecord(slideOnboardingVideo);
+                }
+
+                // if(prevSlide && prevSlide.querySelector('.onboarding-video__item')){
+                //     const prevVideoEl = prevSlide.querySelector('.onboarding-video__item');
+                //
+                //     if(prevVideoEl.VideoRecorder && !prevVideoEl.Video){
+                //         VideoRecorder.destroy(prevVideoEl.VideoRecorder);
+                //     }
+                // }
             });
 
             function calcSlideHeight(swiper){
@@ -1220,13 +1266,13 @@ const SiteJS = {
 
                 bubblesInstance.on('talkBubblesDone', (e) => {
                     const activeSlide = onboardSlider.slides[onboardSlider.activeIndex];
-                    activeSlide.querySelector('.onboarding-slider__btn--next').disabled = false;
-                    activeSlide.querySelector('.onboarding-slider__btn--prev').disabled = false;
+                    activeSlide.querySelectorAll('.onboarding-slider__btn').forEach(btn => {
+                        if(!btn.classList.contains('onboarding-slider__btn--after-record')){
+                            btn.disabled = false;
+                        }
+                    })
                 });
             }
-
-            const nextBtn = document.querySelectorAll('.onboarding-slider__btn--next');
-            const prevBtn = document.querySelectorAll('.onboarding-slider__btn--prev');
 
             nextBtn.forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -1293,6 +1339,81 @@ const SiteJS = {
             cb: () => {alert('valid')}
         });
     },
+    fadeOut: function (element, options){
+        let callbacks = {
+            onStart: () => {},
+            onComplete: () => {},
+        }
+
+        callbacks = {...callbacks, ...options}
+
+        let alpha = 1;
+        callbacks.onStart();
+        const timer = setInterval(() => {
+            if (alpha <= 0){
+                element.style.opacity = '';
+                element.style.display = 'none'
+                clearInterval(timer);
+                callbacks.onComplete();
+            } else {
+                element.style.opacity = `${alpha -= 0.1}`;
+            }
+        }, 20);
+    },
+    fadeIn: function (element, options){
+        let callbacks = {
+            onStart: () => {},
+            onComplete: () => {},
+        }
+
+        callbacks = {...callbacks, ...options}
+
+        let alpha = .0;
+        element.style.opacity = '0';
+        element.style.display = 'block';
+        callbacks.onStart();
+        const timer = setInterval(() => {
+            if (alpha >= 1){
+                clearInterval(timer);
+                element.style.opacity = '1';
+                callbacks.onComplete();
+            } else {
+                element.style.opacity = `${alpha += 0.1}`;
+            }
+        }, 20);
+    },
+    videoExamples: function (){
+        const modalButtons = document.querySelectorAll('.video-examples__item');
+        const modals = document.querySelectorAll('.onboarding-modal');
+
+        if(!modalButtons.length || !modals.length) return;
+
+        modalButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modalId = btn.dataset.onboardingExample;
+                const modal = document.getElementById(modalId);
+
+
+                SiteJS.fadeIn(modal, {
+                    onStart: () => modal.classList.add('onboarding-modal--active')
+                })
+            })
+        })
+
+        modals.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if(e.target === e.currentTarget
+                    || e.target.classList.contains('onboarding-modal__close')
+                    || e.target.closest('.onboarding-modal__close'))
+                {
+                    SiteJS.fadeOut(modal, {
+                        onComplete: () => modal.classList.remove('onboarding-modal--active')
+                    })
+                    Video.stop(modal.querySelector('.onboarding-modal__video-item').Video);
+                }
+            })
+        })
+    }, //---------------------------------------------------------------------------------
     vacancyDetails: function (){
         const detailsEl = document.querySelector('#vacancy-details');
         const btn = document.querySelector('#show-vacancy-details');
@@ -2183,7 +2304,6 @@ const SiteJS = {
             counterInstance.element.style.display = 'none';
         };
 
-
         /* Countdown callbacks ----------------------------- */
 
         countdownInstance.onStart = () => {
@@ -2205,7 +2325,6 @@ const SiteJS = {
         countdownInstance.onReset = () => {
             countdownInstance.element.setAttribute('style','');
         };
-
 
         /* Control bar ----------------------------- */
 
@@ -2297,5 +2416,115 @@ const SiteJS = {
                 body: formData
             })
         }
+    },
+    async onboardingRecord(videoWrapper){
+        const videoElement = videoWrapper.querySelector('.onboarding-video__item');
+        const videoDuration = videoWrapper.getAttribute('data-video-duration');
+        const controlBar = videoWrapper.querySelector('.onboarding-video__controls');
+        const recordControlBar = videoWrapper.querySelector('.onboarding-video__record-controls');
+        const countdownInstance = new Counter(videoWrapper.querySelector('.onboarding-video__countdown'));
+        const recordBtn = videoWrapper.querySelector('.onboarding-video__btn--record');
+        const doneBtn = SiteJS.createElement({
+            tag: 'button',
+            classes: ['btn', 'onboarding-video__btn', 'onboarding-video-stop', 'btn--size--lg', 'btn--fluid'],
+            html: `<i class="icon icon--size--lg icon--check-48 btn__icon"></i>
+                    <span class="btn__text">
+                        <span class="btn__text--counter-text">Снято</span>
+                        <span class="btn__text--counter-value" data-counter="${videoDuration}s"></span>
+                    </span>`
+        });
+        const counterInstance = new Counter(doneBtn.querySelector('.btn__text--counter-value'));
+        const overwriteBtn = SiteJS.createElement({
+            tag: 'button',
+            classes: ['btn', 'onboarding-video__btn', 'onboarding-video-overwrite', 'btn--style--secondary', 'btn--size--lg', 'btn--fluid'],
+            html: `<i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
+                   <span class="btn__text">Перезняти</span>`
+        });
+
+        let recorderInstance = null;
+
+        if(!videoElement.hasAttribute('src') || !videoElement.VideoRecorder){
+            recorderInstance = new VideoRecorder({
+                element: videoElement,
+                constraints: {
+                    video: {
+                        width: {
+                            min: 480,
+                            max: 1280
+                        },
+                        height: {
+                            min: 480,
+                            max: 1280
+                        },
+                        facingMode: 'user',
+                    },
+                    audio: true
+                }
+            });
+            await recorderInstance.init();
+        }
+
+        recordBtn.addEventListener('click', () => {
+            countdownInstance.start();
+        });
+
+        countdownInstance.onStart = () => {
+            countdownInstance.element.setAttribute('style', '');
+            countdownInstance.element.style.display = 'block';
+            controlBar.style.display = 'none';
+
+            const currentSlide = controlBar.closest('.onboarding-slider__slide');
+
+            if (currentSlide) {
+                const prevBtn = currentSlide.querySelectorAll('.onboarding-slider__btn--prev');
+                const nextBtn = currentSlide.querySelectorAll('.onboarding-slider__btn--next');
+                nextBtn.forEach(btn => btn.disabled = true);
+                prevBtn.forEach(btn => btn.disabled = true);
+            }
+        };
+
+        countdownInstance.beforeChange = () => {
+            if (countdownInstance.timeLeft <= 1) {
+                countdownInstance.element.style.display = 'none';
+                counterInstance.start();
+            }
+        };
+
+        counterInstance.onStart = () => {
+            VideoRecorder.startRecording(recorderInstance);
+            doneBtn.style = `animation-duration: ${videoDuration}s`;
+            recordControlBar.append(doneBtn);
+            recordControlBar.style.display = 'block';
+            recordBtn.after(overwriteBtn);
+            recordBtn.style.display = 'none';
+        }
+
+        doneBtn.addEventListener('click', () => {
+            counterInstance.stop();
+        });
+
+        counterInstance.onStop = () => {
+            countdownInstance.reset();
+            counterInstance.reset();
+            controlBar.style = '';
+            recordControlBar.style.display = 'none';
+            VideoRecorder.stopRecording(recorderInstance);
+
+            const currentSlide = controlBar.closest('.onboarding-slider__slide');
+
+            if (currentSlide) {
+                const prevBtn = currentSlide.querySelectorAll('.onboarding-slider__btn--prev');
+                const nextBtn = currentSlide.querySelectorAll('.onboarding-slider__btn--next');
+                nextBtn.forEach(btn => btn.disabled = false);
+                prevBtn.forEach(btn => btn.disabled = false);
+            }
+        };
+
+        overwriteBtn.addEventListener('click', async () => {
+            await VideoRecorder.reset(recorderInstance);
+            countdownInstance.start();
+        });
+
+        videoWrapper.classList.add('onboarding-video__item--handled');
     }
 };
