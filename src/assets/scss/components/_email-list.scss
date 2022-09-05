@@ -1,0 +1,14 @@
+.email-list{
+  @extend %listreset;
+
+  &__item{
+    margin: 0 0 3rem;
+    padding: 0 0 2.4rem;
+    border-bottom: 1px solid #E8E6EC;
+
+    &:last-child{
+      margin: 0;
+      border: none;
+    }
+  }
+}

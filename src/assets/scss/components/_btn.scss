@@ -123,6 +123,28 @@
         @include calcLineHeight($fontSize24);
       }
     }
+
+    &--xs{
+      padding: .375em .75em;
+      border-radius: 2.4rem;
+
+      #{$this}__icon,
+      #{$this}__img{
+        margin: 0 .4rem;
+
+        &:last-child{
+          margin: 0 0 0 .4rem;
+        }
+
+        &:first-child{
+          margin: 0 .4rem 0 0;
+        }
+
+        &:only-child{
+          margin: 0;
+        }
+      }
+    }
   }
 
   &--style{
@@ -162,6 +184,22 @@
       &:hover,
       &:active{
         background-color: $white;
+      }
+
+      &:disabled{
+        background-color: $secondary;
+        color: $primaryLighter;
+      }
+    }
+
+    &--primary-lighter-alt2{
+      background-color: $primaryLighter3;
+      color: $primaryLighter2;
+
+      &:hover,
+      &:active{
+        background-color: $white;
+        color: $primary;
       }
 
       &:disabled{

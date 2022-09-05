@@ -22,7 +22,7 @@
     <div class="container">
         <div class="page-header__inner">
 
-            <a href="#" class="logo page-header__logo page-header__logo--fixed">
+            <a href="#" class="logo page-header__logo">
                 <img src="assets/img/logo.svg" alt="Freevac">
             </a>
 
@@ -60,78 +60,82 @@
         <div class="profile page-content__profile">
 
             
-            <div class="grid grid--on-lg">
+            <div class="content-tabs content-tabs--lg">
             
-                <div class="grid__col--4">
-                    <div class="profile__video profile__video--fixed" id="profile-video">
+                <div class="content-tabs__head">
+                    <button class="content-tabs__btn" data-tab-group="profile" data-tab-anchor="profile-main" data-tab-active>
+                        <span class="content-tabs__btn-text">Профиль</span>
+                    </button>
+                    <button class="content-tabs__btn" data-tab-group="profile" data-tab-anchor="profile-sended-cv">
+                        <span class="content-tabs__btn-text">Отправленные резюме</span>
+                        <span class="content-tabs__btn-counter">9</span>
+                    </button>
+                    <button class="content-tabs__btn" data-tab-group="profile" data-tab-anchor="profile-replies">
+                        <span class="content-tabs__btn-text">Ответы на вакансии</span>
+                    </button>
+                </div>
             
-                        <!-- banner-efficiency -->
+                <div class="grid grid--on-lg">
             
-                        <div class="swiper video-slider profile__video-slider">
-                            <div class="swiper-wrapper">
+                    <div class="grid__col--4">
+                        <div class="profile__video" id="profile-video">
             
-                                <div class="swiper-slide">
+                            <!-- banner-efficiency -->
             
-                                    <div class="video-slider__video-holder video-holder">
-                                        <div class="video-holder__content">
-                                            <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
-                                            <video class="video-holder__content-video video-player" src="https://vividi.career/media/video/4c6642c4-ea03-43b1-b970-5ea257bb1e84.mp4#t=0.1" data-duration="3" playsinline>
-                                                You need an HTML 5-capable browser.
-                                            </video>
-                                        </div>
-                                    </div><!--video holder-->
+                            <div class="swiper video-slider profile__video-slider">
+                                <div class="swiper-wrapper">
             
-                                </div><!--swiper slide-->
+                                    <div class="swiper-slide">
             
-                                <div class="swiper-slide">
+                                        <div class="video-slider__video-holder video-holder">
+                                            <div class="video-holder__content">
+                                                <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
+                                                <video class="video-holder__content-video video-player" src="https://vividi.career/media/video/4c6642c4-ea03-43b1-b970-5ea257bb1e84.mp4#t=0.1" data-duration="3" playsinline>
+                                                    You need an HTML 5-capable browser.
+                                                </video>
+                                            </div>
+                                        </div><!--video holder-->
             
-                                    <div class="video-slider__video-holder video-holder">
-                                        <div class="video-holder__content">
-                                            <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
-                                            <video class="video-holder__content-video video-player" src="https://vividi.career/media/video/ed55dff9-0ebc-46ce-9a4d-c496da928ab2.mp4#t=0.1" data-duration="120" playsinline>
-                                                You need an HTML 5-capable browser.
-                                            </video>
-                                        </div>
-                                    </div><!--video holder-->
+                                    </div><!--swiper slide-->
             
-                                </div><!--swiper slide-->
+                                    <div class="swiper-slide">
             
-                                <div class="swiper-slide">
+                                        <div class="video-slider__video-holder video-holder">
+                                            <div class="video-holder__content">
+                                                <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
+                                                <video class="video-holder__content-video video-player" src="https://vividi.career/media/video/ed55dff9-0ebc-46ce-9a4d-c496da928ab2.mp4#t=0.1" data-duration="120" playsinline>
+                                                    You need an HTML 5-capable browser.
+                                                </video>
+                                            </div>
+                                        </div><!--video holder-->
             
-                                    <div class="video-slider__video-holder video-holder">
-                                        <div class="video-holder__content">
-                                            <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
-                                            <video class="video-holder__content-video video-player" src="https://vividi.career/media/video/59fe8068-4ac5-4815-bb3c-c07b17737f94.mp4#t=0.1" data-duration="4" playsinline>
-                                                You need an HTML 5-capable browser.
-                                            </video>
-                                        </div>
-                                    </div><!--video holder-->
+                                    </div><!--swiper slide-->
             
-                                </div><!--swiper slide-->
+                                    <div class="swiper-slide">
             
-                            </div><!--swiper wrapper-->
+                                        <div class="video-slider__video-holder video-holder">
+                                            <div class="video-holder__content">
+                                                <div class="balloon balloon--style--accent video-holder__balloon">Расскажу немного о себе</div>
+                                                <video class="video-holder__content-video video-player" src="https://vividi.career/media/video/59fe8068-4ac5-4815-bb3c-c07b17737f94.mp4#t=0.1" data-duration="4" playsinline>
+                                                    You need an HTML 5-capable browser.
+                                                </video>
+                                            </div>
+                                        </div><!--video holder-->
             
-                            <div class="video-slider__pagination"></div>
+                                    </div><!--swiper slide-->
             
-                        </div><!--swiper-->
+                                </div><!--swiper wrapper-->
             
-                    </div><!--profile video-->
-                </div><!-- grid col -->
+                                <div class="video-slider__pagination"></div>
             
-                <div class="grid__col--8 profile__content-wrapper">
+                            </div><!--swiper-->
             
-                    <div class="profile__content">
+                        </div><!--profile video-->
+                    </div><!-- grid col -->
             
-                        <div class="content-tabs content-tabs--lg">
+                    <div class="grid__col--8 profile__content-wrapper">
             
-                            <div class="content-tabs__head">
-                                <button class="content-tabs__btn" data-tab-group="profile" data-tab-anchor="profile-main" data-tab-active>
-                                    <span class="content-tabs__btn-text">Профиль</span>
-                                </button>
-                                <button class="content-tabs__btn" data-tab-group="profile" data-tab-anchor="profile-replies">
-                                    <span class="content-tabs__btn-text">Ответы</span>
-                                </button>
-                            </div>
+                        <div class="profile__content">
             
                             <div class="content-tabs__body">
             
@@ -193,7 +197,7 @@
                                             <div class="user-info__name">
                                                 Анатолий Дементиевский
                                             </div>
-                                            <div class="user-info__link-panel">
+                                            <div class="user-info__link-panel link-panel">
                                                 <div class="link-panel__holder">
                                                     <a href="#" class="link-panel__anchor icon icon--size--md icon--copy-24 freevak-link-copy"></a>
                                                     <a href="#" target="_blank" class="link-panel__anchor icon icon--size--md icon--link-24"></a>
@@ -520,6 +524,129 @@
             
                                 </div><!-- content tabs body item -->
             
+                                <div class="content-tabs__body-item" data-tab-group="profile" data-tab-content-id="profile-sended-cv">
+            
+                                    <article class="content-tile content-tile--alt2 profile__content-tile">
+                                        <section class="content-tile__section">
+            
+                                            <h2 class="content-tile__title">Отправленные на email</h2>
+            
+                                            <ul class="email-list">
+                                                <li class="email-list__item email-info">
+                                                    <div class="email-info__content">
+                                                        <div class="email-info__name">
+                                                            kurt_bates@outlook.com
+                                                        </div>
+                                                        <div class="email-info__date">
+                                                            Отправлено 12.09, 12:00
+                                                        </div>
+                                                        <div class="email-info__state state state--orange">
+                                                            Не просмотрено
+                                                        </div>
+                                                    </div>
+                                                    <div class="email-info__controls">
+                                                        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                            <span class="btn__text">Повторить</span>
+                                                        </button>
+                                                    </div>
+                                                </li><!-- email list item-->
+                                                <li class="email-list__item email-info">
+                                                    <div class="email-info__content">
+                                                        <div class="email-info__name">
+                                                            jerry73@aol.com
+                                                        </div>
+                                                        <div class="email-info__date">
+                                                            Отправлено 12.09, 12:00
+                                                        </div>
+                                                        <div class="email-info__state state state--primary">
+                                                            Переход по ccылке 12.09, в 13:41
+                                                        </div>
+                                                    </div>
+                                                    <div class="email-info__controls">
+                                                        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                            <span class="btn__text">Повторить</span>
+                                                        </button>
+                                                    </div>
+                                                </li><!-- email list item-->
+                                                <li class="email-list__item email-info">
+                                                    <div class="email-info__content">
+                                                        <div class="email-info__name">
+                                                            judith403@gmail.com
+                                                        </div>
+                                                        <div class="email-info__date">
+                                                            Отправлено 12.09, 12:00
+                                                        </div>
+                                                        <div class="email-info__state state state--accent">
+                                                            Просмотрено 12.09, в 13:41
+                                                        </div>
+                                                    </div>
+                                                    <div class="email-info__controls">
+                                                        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                            <span class="btn__text">Повторить</span>
+                                                        </button>
+                                                    </div>
+                                                </li><!-- email list item-->
+                                                <li class="email-list__item email-info">
+                                                    <div class="email-info__content">
+                                                        <div class="email-info__name">
+                                                            autumn_philips@aol.com
+                                                        </div>
+                                                        <div class="email-info__date">
+                                                            Отправлено 12.09, 12:00
+                                                        </div>
+                                                        <div class="email-info__state state state--orange">
+                                                            Не просмотрено
+                                                        </div>
+                                                    </div>
+                                                    <div class="email-info__controls">
+                                                        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                            <span class="btn__text">Повторить</span>
+                                                        </button>
+                                                    </div>
+                                                </li><!-- email list item-->
+                                                <li class="email-list__item email-info">
+                                                    <div class="email-info__content">
+                                                        <div class="email-info__name">
+                                                            katie63@aol.com
+                                                        </div>
+                                                        <div class="email-info__date">
+                                                            Отправлено 12.09, 12:00
+                                                        </div>
+                                                        <div class="email-info__state state state--primary">
+                                                            Переход по ccылке 12.09, в 13:41
+                                                        </div>
+                                                    </div>
+                                                    <div class="email-info__controls">
+                                                        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                            <span class="btn__text">Повторить</span>
+                                                        </button>
+                                                    </div>
+                                                </li><!-- email list item-->
+                                                <li class="email-list__item email-info">
+                                                    <div class="email-info__content">
+                                                        <div class="email-info__name">
+                                                            c.a.glasser@outlook.com
+                                                        </div>
+                                                        <div class="email-info__date">
+                                                            Отправлено 12.09, 12:00
+                                                        </div>
+                                                        <div class="email-info__state state state--accent">
+                                                            Просмотрено 12.09, в 13:41
+                                                        </div>
+                                                    </div>
+                                                    <div class="email-info__controls">
+                                                        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                            <span class="btn__text">Повторить</span>
+                                                        </button>
+                                                    </div>
+                                                </li><!-- email list item-->
+                                            </ul><!-- email list -->
+            
+                                        </section><!-- content tile section -->
+                                    </article><!-- content tile -->
+            
+                                </div><!-- content tabs body item -->
+            
                                 <div class="content-tabs__body-item" data-tab-group="profile" data-tab-content-id="profile-replies">
             
                                     <!--TODO Если карточек нет - показываем заглушку -->
@@ -713,13 +840,13 @@
             
                             </div><!-- content tabs body -->
             
-                        </div><!-- content tabs -->
+                        </div><!-- profile content -->
             
-                    </div><!-- profile content -->
+                    </div><!-- grid col -->
             
-                </div><!-- grid col -->
+                </div><!-- grid -->
             
-            </div><!-- grid -->
+            </div><!-- content tabs -->
             
             <!--<button class="btn btn&#45;&#45;size&#45;&#45;regular btn&#45;&#45;style&#45;&#45;primary">-->
             <!--    <i class="icon icon&#45;&#45;size&#45;&#45;sm icon&#45;&#45;arrowangleright-16 btn__icon"></i>-->
@@ -2479,7 +2606,47 @@
         </div><!-- body -->
     </div><!-- main -->
 
-</div><!-- user position edit modal -->
+</div><!-- user position edit modal --><div class="modal" id="modal-cv-send">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Отправить резюме на e-mail</div>
+
+        <div class="modal__body">
+
+            <form class="form" method="post" id="about-form" novalidate>
+                <div class="form__group">
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">E-mail</div>
+                        <input class="input-text input-row__input-text" type="email">
+                    </div><!-- input row -->
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">Комментарий (необязательно)</div>
+                        <textarea class="input-text input-text--textarea input-row__input-text" name="description" data-validation></textarea>
+                    </div><!-- input row -->
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">Имя</div>
+                        <input class="input-text input-row__input-text" type="text">
+                    </div><!-- input row -->
+                </div><!-- form group -->
+
+                <div class="form__footer">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
+                        <span class="btn__text">Отправить</span>
+                    </button>
+                </div><!-- form footer-->
+            </form><!-- form -->
+
+        </div><!-- body -->
+    </div><!-- main -->
+
+</div><!-- user about modal -->
 <script src="assets/js/swiper.js"></script>
 <script src="assets/js/app.js"></script>
 </body>

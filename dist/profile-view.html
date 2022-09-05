@@ -22,7 +22,7 @@
     <div class="container">
         <div class="page-header__inner">
 
-            <a href="#" class="logo page-header__logo page-header__logo--fixed">
+            <a href="#" class="logo page-header__logo">
                 <img src="assets/img/logo.svg" alt="Freevac">
             </a>
 
@@ -1941,7 +1941,47 @@
         </div><!-- body -->
     </div><!-- main -->
 
-</div><!-- user position edit modal -->
+</div><!-- user position edit modal --><div class="modal" id="modal-cv-send">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Отправить резюме на e-mail</div>
+
+        <div class="modal__body">
+
+            <form class="form" method="post" id="about-form" novalidate>
+                <div class="form__group">
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">E-mail</div>
+                        <input class="input-text input-row__input-text" type="email">
+                    </div><!-- input row -->
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">Комментарий (необязательно)</div>
+                        <textarea class="input-text input-text--textarea input-row__input-text" name="description" data-validation></textarea>
+                    </div><!-- input row -->
+                    <div class="input-row input-row--pointer form__input-row">
+                        <div class="input-row__title">Имя</div>
+                        <input class="input-text input-row__input-text" type="text">
+                    </div><!-- input row -->
+                </div><!-- form group -->
+
+                <div class="form__footer">
+                    <button class="btn btn--style--primary btn--size--regular" data-validation-btn>
+                        <span class="btn__text">Отправить</span>
+                    </button>
+                </div><!-- form footer-->
+            </form><!-- form -->
+
+        </div><!-- body -->
+    </div><!-- main -->
+
+</div><!-- user about modal -->
 <script src="assets/js/swiper.js"></script>
 <script src="assets/js/app.js"></script>
 </body>

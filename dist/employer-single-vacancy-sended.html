@@ -102,9 +102,9 @@
                         <nav class="sb-nav vacancy-view__sb-nav">
                             <ul class="sb-nav__list">
                                 <li class="sb-nav__item">
-                                <span class="sb-nav__link sb-nav__link--active">
-                                    <span class="sb-nav__link-text">Вакансия</span>
-                                </span>
+                                    <a class="sb-nav__link" href="#">
+                                        <span class="sb-nav__link-text">Вакансия</span>
+                                    </a>
                                 </li>
                                 <li class="sb-nav__item">
                                     <a class="sb-nav__link" href="#">
@@ -113,10 +113,10 @@
                                     </a>
                                 </li>
                                 <li class="sb-nav__item">
-                                    <a class="sb-nav__link" href="#">
+                                    <span class="sb-nav__link sb-nav__link--active">
                                         <span class="sb-nav__link-text">Отправлено</span>
                                         <span class="sb-nav__link-counter">11</span>
-                                    </a>
+                                    </span>
                                 </li>
                             </ul>
                         </nav><!-- sb nav -->
@@ -128,357 +128,124 @@
             
                     <div class="vacancy-view__content">
             
-                        <article class="content-tile content-tile--alt2 content-tile--style--accent-lighter2 profile__content-tile">
-                            <section class="content-tile__section">
-                                <div class="statistics">
-                                    <div class="statistics__item">
-                                        <h3 class="statistics__title">просмотры</h3>
-                                        <ul class="statistics__list">
-                                            <li class="statistics__list-item">
-                                                <div class="statistics__list-param">356</div>
-                                                <div class="statistics__list-attr">всего</div>
-                                            </li>
-                                            <li class="statistics__list-item">
-                                                <div class="statistics__list-param">34</div>
-                                                <div class="statistics__list-attr">за 7 дней</div>
-                                            </li>
-                                            <li class="statistics__list-item">
-                                                <div class="statistics__list-param">1</div>
-                                                <div class="statistics__list-attr">за сегодня</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="statistics__item">
-                                        <h3 class="statistics__title">кандидаты</h3>
-                                        <ul class="statistics__list">
-                                            <li class="statistics__list-item">
-                                                <div class="statistics__list-param">102</div>
-                                                <div class="statistics__list-attr">всего</div>
-                                            </li>
-                                            <li class="statistics__list-item">
-                                                <div class="statistics__list-param">21</div>
-                                                <div class="statistics__list-attr">за 7 дней</div>
-                                            </li>
-                                            <li class="statistics__list-item">
-                                                <div class="statistics__list-param">0</div>
-                                                <div class="statistics__list-attr">за сегодня</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div><!-- statistics -->
-                            </section>
-                        </article><!-- content tile -->
-            
-                        <article class="content-tile content-tile--alt2 content-tile--style--primary-lighter content-tile--overflow-x profile__content-tile">
-                            <section class="content-tile__section">
-            
-                                <h2 class="content-tile__title">Вопросы</h2>
-            
-                                <div class="content-tile__desc">
-                                    Добавь вопросы для кандидата. Он должен будет ответить на них с помощью видео
-                                </div>
-            
-                                <section class="video-tiles replace-elements">
-                                
-                                    <div class="video-tiles__item video-tiles__item--solid replace-elements__item" data-modal-id="vacancy-question-edit">
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--left replace-elements__arr-left" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleleft-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить левее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--right replace-elements__arr-right" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleright-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить правее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__status video-tiles__status--blink">
-                                            <span class="video-tiles__status-text">Вопрос №1</span>
-                                            <span class="video-tiles__status-text video-tiles__status-text--hidden">03:00</span>
-                                        </div>
-                                        <div class="video-tiles__title">Расскажи немного о себе</div>
-                                    </div><!--video tiles item-->
-                                
-                                    <div class="video-tiles__item video-tiles__item--solid replace-elements__item" data-modal-id="vacancy-question-edit">
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--left replace-elements__arr-left" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleleft-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить левее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--right replace-elements__arr-right" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleright-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить правее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__status video-tiles__status--blink">
-                                            <span class="video-tiles__status-text">Вопрос №2</span>
-                                            <span class="video-tiles__status-text video-tiles__status-text--hidden">03:00</span>
-                                        </div>
-                                        <div class="video-tiles__title">Опыт работы в Fintech</div>
-                                    </div><!--video tiles item-->
-                                
-                                    <div class="video-tiles__item video-tiles__item--solid replace-elements__item" data-modal-id="vacancy-question-edit">
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--left replace-elements__arr-left" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleleft-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить левее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--right replace-elements__arr-right" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleright-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить правее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__status video-tiles__status--blink">
-                                            <span class="video-tiles__status-text">Вопрос №3</span>
-                                            <span class="video-tiles__status-text video-tiles__status-text--hidden">03:00</span>
-                                        </div>
-                                        <div class="video-tiles__title">Почему дизайн?</div>
-                                    </div><!--video tiles item-->
-                                
-                                    <div class="video-tiles__item video-tiles__item--solid replace-elements__item" data-modal-id="vacancy-question-edit">
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--left replace-elements__arr-left" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleleft-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить левее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--right replace-elements__arr-right" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleright-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить правее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__status video-tiles__status--blink">
-                                            <span class="video-tiles__status-text">Вопрос №4</span>
-                                            <span class="video-tiles__status-text video-tiles__status-text--hidden">03:00</span>
-                                        </div>
-                                        <div class="video-tiles__title">Работа в команде?</div>
-                                    </div><!--video tiles item-->
-                                
-                                    <div class="video-tiles__item video-tiles__item--solid replace-elements__item" data-modal-id="vacancy-question-edit">
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--left replace-elements__arr-left" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleleft-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить левее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__nav-btn video-tiles__nav-btn--right replace-elements__arr-right" role="button">
-                                            <i class="icon icon--size--sm icon--arrowangleright-16 video-tiles__nav-btn-icon"></i>
-                                            <span class="video-tiles__nav-btn-text">Переместить правее</span>
-                                        </div>
-                                
-                                        <div class="video-tiles__status video-tiles__status--blink">
-                                            <span class="video-tiles__status-text">Вопрос №5</span>
-                                            <span class="video-tiles__status-text video-tiles__status-text--hidden">03:00</span>
-                                        </div>
-                                        <div class="video-tiles__title">Сильные стороны</div>
-                                    </div><!--video tiles item-->
-                                
-                                    <div class="video-tiles__item replace-elements__item" data-modal-id="vacancy-question-edit">
-                                        <div class="video-tiles__status">
-                                            <i class="icon icon--size--sm icon--plus-16 video-tiles__status-icon"></i>
-                                            <span class="video-tiles__status-text">добавить</span>
-                                        </div>
-                                    </div><!--video tiles item-->
-                                
-                                </section><!--video tiles-->
-                            </section>
-                        </article><!-- content tile -->
-            
                         <article class="content-tile content-tile--alt2 profile__content-tile">
                             <section class="content-tile__section">
             
-                                <h2 class="content-tile__title">О вакансии</h2>
+                                <h2 class="content-tile__title">Отправленные на email</h2>
             
-                                <div class="form content-tile__form">
-            
-                                    <div class="form__group">
-                                        <div class="grid grid--on-xs">
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-position">
-                                                    <div class="input-row__title">должность</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" readonly type="text" value="Продуктовый дизанер">
-                                                </div><!-- input row -->
+                                <ul class="email-list">
+                                    <li class="email-list__item email-info">
+                                        <div class="email-info__content">
+                                            <div class="email-info__name">
+                                                kurt_bates@outlook.com
                                             </div>
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="user-activity-field">
-                                                    <div class="input-row__title">сфера (необязательно)</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" readonly value="Health & Fitness">
-                                                </div><!-- input row -->
+                                            <div class="email-info__date">
+                                                Отправлено 12.09, 12:00
                                             </div>
-            
-                                            <div class="grid__col--12 grid__col--md--6">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-experience">
-                                                    <div class="input-row__title">опыт работы (необязательно)</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="до года" readonly>
-                                                </div><!-- input row -->
+                                            <div class="email-info__state state state--orange">
+                                                Не просмотрено
                                             </div>
-            
-                                            <div class="grid__col--12 grid__col--md--6">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="salary">
-                                                    <div class="input-row__title">зарплата (необязательно)</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="3 500 $ - 4 000 $" readonly>
-                                                </div><!-- input row -->
-                                            </div>
-            
-                                            <div class="grid__col--12 grid__col--md--6">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-location">
-                                                    <div class="input-row__title">город (необязательно)</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="Киев" readonly>
-                                                </div><!-- input row -->
-                                            </div>
-            
-                                            <div class="grid__col--12 grid__col--md--6">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="employment">
-                                                    <div class="input-row__title">занятость (необязательно)</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="удаленная" readonly>
-                                                </div><!-- input row -->
-                                            </div>
-            
                                         </div>
-                                    </div><!-- form group-->
-            
-                                </div><!-- form -->
-            
-                            </section><!-- content tile section -->
-            
-                            <section class="content-tile__section">
-            
-                                <h2 class="content-tile__title">Требования</h2>
-            
-                                <div class="form content-tile__form">
-            
-                                    <div class="form__group">
-                                        <div class="grid grid--on-xs">
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-requirement-edit">
-                                                    <div class="input-row__title">требование №1</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="3+ years of proven experience as UI/UX designer" readonly>
-                                                </div><!-- input row -->
-                                            </div>
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-requirement-edit">
-                                                    <div class="input-row__title">требование №2</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="Ability to design an adaptive interface" readonly>
-                                                </div><!-- input row -->
-                                            </div>
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-requirement-edit">
-                                                    <div class="input-row__title">требование №3</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="Knowledge of native and mobile patterns and understanding of their differences" readonly>
-                                                </div><!-- input row -->
-                                            </div>
-            
+                                        <div class="email-info__controls">
+                                            <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                <span class="btn__text">Повторить</span>
+                                            </button>
                                         </div>
-                                    </div><!-- form group-->
-            
-                                    <div class="form__footer">
-                                        <button class="btn btn--size--regular btn--style--primary" data-modal-id="vacancy-requirement-add">
-                                            <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
-                                            <span class="btn__text">Добавить</span>
-                                        </button>
-                                    </div><!-- form footer -->
-            
-                                </div><!-- form -->
-            
-                            </section><!-- content tile section -->
-            
-                            <section class="content-tile__section">
-            
-                                <h2 class="content-tile__title">Обязанности</h2>
-            
-                                <div class="form content-tile__form">
-            
-                                    <div class="form__group">
-                                        <div class="grid grid--on-xs">
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-duty-edit">
-                                                    <div class="input-row__title">обязанность №1</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="Gather and evaluate user requirements in collaboration with product managers" readonly>
-                                                </div><!-- input row -->
+                                    </li><!-- email list item-->
+                                    <li class="email-list__item email-info">
+                                        <div class="email-info__content">
+                                            <div class="email-info__name">
+                                                jerry73@aol.com
                                             </div>
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-duty-edit">
-                                                    <div class="input-row__title">обязанность №2</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="Illustrate design ideas using storyboards, process flows and sitemaps" readonly>
-                                                </div><!-- input row -->
+                                            <div class="email-info__date">
+                                                Отправлено 12.09, 12:00
                                             </div>
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-duty-edit">
-                                                    <div class="input-row__title">обязанность №3</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="Illustrate design ideas using storyboards, process flows and sitemaps" readonly>
-                                                </div><!-- input row -->
+                                            <div class="email-info__state state state--primary">
+                                                Переход по ccылке 12.09, в 13:41
                                             </div>
-            
                                         </div>
-                                    </div><!-- form group-->
-            
-                                    <div class="form__footer">
-                                        <button class="btn btn--size--regular btn--style--primary" data-modal-id="vacancy-duty-add">
-                                            <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
-                                            <span class="btn__text">Добавить</span>
-                                        </button>
-                                    </div><!-- form footer-->
-            
-                                </div><!-- form -->
-            
-                            </section><!-- content tile section -->
-            
-                            <section class="content-tile__section">
-            
-                                <h2 class="content-tile__title">Условия работы</h2>
-            
-                                <div class="form content-tile__form">
-            
-                                    <div class="form__group">
-                                        <div class="grid grid--on-xs">
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-condition-edit">
-                                                    <div class="input-row__title">условие №1</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="Medical insurance/Sport compensation" readonly>
-                                                </div><!-- input row -->
-                                            </div>
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-condition-edit">
-                                                    <div class="input-row__title">условие №2</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="Competitive salary and сonstant encouragement for your efforts and contributions" readonly>
-                                                </div><!-- input row -->
-                                            </div>
-            
-                                            <div class="grid__col--12">
-                                                <div class="input-row input-row--pointer form__input-row" data-modal-id="vacancy-condition-edit">
-                                                    <div class="input-row__title">условие №3</div>
-                                                    <input class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text" type="text" value="OIndividual annual training budget with an opportunity to visit paid conferences" readonly>
-                                                </div><!-- input row -->
-                                            </div>
-            
+                                        <div class="email-info__controls">
+                                            <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                <span class="btn__text">Повторить</span>
+                                            </button>
                                         </div>
-                                    </div><!-- form group-->
-            
-                                    <div class="form__footer">
-                                        <button class="btn btn--size--regular btn--style--primary" data-modal-id="vacancy-condition-add">
-                                            <i class="icon icon--size--sm icon--plus-16 btn__icon"></i>
-                                            <span class="btn__text">Добавить</span>
-                                        </button>
-                                    </div><!-- form footer-->
-            
-                                </div><!-- form -->
+                                    </li><!-- email list item-->
+                                    <li class="email-list__item email-info">
+                                        <div class="email-info__content">
+                                            <div class="email-info__name">
+                                                judith403@gmail.com
+                                            </div>
+                                            <div class="email-info__date">
+                                                Отправлено 12.09, 12:00
+                                            </div>
+                                            <div class="email-info__state state state--accent">
+                                                Просмотрено 12.09, в 13:41
+                                            </div>
+                                        </div>
+                                        <div class="email-info__controls">
+                                            <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                <span class="btn__text">Повторить</span>
+                                            </button>
+                                        </div>
+                                    </li><!-- email list item-->
+                                    <li class="email-list__item email-info">
+                                        <div class="email-info__content">
+                                            <div class="email-info__name">
+                                                autumn_philips@aol.com
+                                            </div>
+                                            <div class="email-info__date">
+                                                Отправлено 12.09, 12:00
+                                            </div>
+                                            <div class="email-info__state state state--orange">
+                                                Не просмотрено
+                                            </div>
+                                        </div>
+                                        <div class="email-info__controls">
+                                            <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                <span class="btn__text">Повторить</span>
+                                            </button>
+                                        </div>
+                                    </li><!-- email list item-->
+                                    <li class="email-list__item email-info">
+                                        <div class="email-info__content">
+                                            <div class="email-info__name">
+                                                katie63@aol.com
+                                            </div>
+                                            <div class="email-info__date">
+                                                Отправлено 12.09, 12:00
+                                            </div>
+                                            <div class="email-info__state state state--primary">
+                                                Переход по ccылке 12.09, в 13:41
+                                            </div>
+                                        </div>
+                                        <div class="email-info__controls">
+                                            <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                <span class="btn__text">Повторить</span>
+                                            </button>
+                                        </div>
+                                    </li><!-- email list item-->
+                                    <li class="email-list__item email-info">
+                                        <div class="email-info__content">
+                                            <div class="email-info__name">
+                                                c.a.glasser@outlook.com
+                                            </div>
+                                            <div class="email-info__date">
+                                                Отправлено 12.09, 12:00
+                                            </div>
+                                            <div class="email-info__state state state--accent">
+                                                Просмотрено 12.09, в 13:41
+                                            </div>
+                                        </div>
+                                        <div class="email-info__controls">
+                                            <button class="btn btn--size--regular btn--style--secondary" data-modal-id="modal-cv-send">
+                                                <span class="btn__text">Повторить</span>
+                                            </button>
+                                        </div>
+                                    </li><!-- email list item-->
+                                </ul><!-- email list -->
             
                             </section><!-- content tile section -->
                         </article><!-- content tile -->
-            
-                        <div class="controls-bar">
-                            <button class="btn btn--size--lg btn--fluid btn--style--secondary-alt controls-bar__btn" data-modal-id="vacancy-archiving">
-                                <i class="icon icon--size--lg icon--trash-48 btn__icon"></i>
-                                <span class="btn__text">Архивировать</span>
-                            </button>
-                        </div>
             
                     </div><!-- profile content -->
                 </div><!-- grid col -->

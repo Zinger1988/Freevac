@@ -1,0 +1,23 @@
+.state{
+  display: inline-block;
+  font-size: $fontSize12;
+  font-weight: 500;
+  @include calcLineHeight($fontSize12);
+  padding: .4rem .5rem;
+  border-radius: .4rem;
+}
+
+.state--orange{
+  background-color: $orange;
+  color: $white;
+}
+
+.state--primary{
+  background-color: $primary;
+  color: $white;
+}
+
+.state--accent{
+  background-color: $accent;
+  color: $white;
+}

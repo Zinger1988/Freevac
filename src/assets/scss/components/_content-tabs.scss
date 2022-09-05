@@ -106,10 +106,12 @@
       padding: 1.142em;
       color: $primaryLighter;
       font-weight: bold;
+      flex-shrink: 0;
 
       @include media(">=lg"){
-        font-size: $fontSize28;
-        @include calcLineHeight($fontSize28);
+        font-size: $fontSize24;
+        padding: 1em;
+        @include calcLineHeight($fontSize24);
       }
 
       &::after{
@@ -134,6 +136,33 @@
           width: 3rem;
           height: .4rem;
         }
+
+        #{$this}__btn-counter{
+          background-color: $primary;
+          color: $white;
+        }
+      }
+    }
+
+    #{$this}__btn-counter{
+      font-size: 1.4rem;
+      height: 2.25em;
+      min-width: 2.25em;
+      border-radius: 1rem;
+      text-align: center;
+      line-height: 1.25;
+      background-color: $primaryLighter2;
+      color: $white;
+      padding: 0.5em;
+      margin: 0 0 0 .8rem;
+      @include animate(background-color);
+
+      @include media(">=lg"){
+        border-radius: 1.2rem;
+        font-size: 1.6rem;
+        height: 2.75em;
+        min-width: 2.75em;
+        line-height: 1.75;
       }
     }
   }

@@ -1707,6 +1707,8 @@ const SiteJS = {
     replaceElements(){
         const wrapperEl = document.querySelectorAll('.replace-elements');
 
+        if(!wrapperEl.length) return;
+
         wrapperEl.forEach(wrapper => {
 
             const elements = wrapper.querySelectorAll('.replace-elements__item');

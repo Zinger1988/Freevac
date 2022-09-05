@@ -71,6 +71,15 @@
     }
   }
 
+  &__balloon{
+    position: absolute;
+    z-index: 150;
+    left: 1.7rem;
+    top: 1.1rem;
+    max-width: calc(100% - 8.2rem);
+    text-align: left;
+  }
+
   &--active{
     display: block;
     opacity: 1;
