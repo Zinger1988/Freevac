@@ -1,4 +1,4 @@
-.btn{
+.btn {
   @extend %buttonreset;
   @extend %linkreset;
   display: inline-flex;
@@ -10,88 +10,88 @@
 
   $this: &;
 
-  &--fluid{
+  &--fluid {
     display: flex;
     width: 100%;
     margin: 0;
   }
 
-  &__img{
+  &__img {
     flex-shrink: 0;
     object-fit: contain;
     object-position: center;
 
-    &--size{
+    &--size {
 
-      &--sm{
+      &--sm {
         width: 1.6rem;
         height: 1.6rem;
       }
 
-      &--md{
+      &--md {
         width: 2.4rem;
         height: 2.4rem;
       }
 
-      &--lg{
+      &--lg {
         width: 4.8rem;
         height: 4.8rem;
       }
     }
   }
 
-  &--size{
+  &--size {
 
     &--regular,
-    &--lg{
+    &--lg {
       justify-content: center;
       align-items: center;
 
       #{$this}__icon,
-      #{$this}__img{
+      #{$this}__img {
         margin: 0 1.6rem;
 
-        &:last-child{
+        &:last-child {
           margin: 0 0 0 1.6rem;
         }
 
-        &:first-child{
+        &:first-child {
           margin: 0 1.6rem 0 0;
         }
 
-        &:only-child{
+        &:only-child {
           margin: 0;
         }
       }
 
-      #{$this}__text{
+      #{$this}__text {
         white-space: nowrap;
       }
     }
 
-    &--regular{
+    &--regular {
       padding: .5em 1em;
       border-radius: 8px;
       min-height: 4.8rem;
 
-      #{$this}__text{
+      #{$this}__text {
         @include calcLineHeight(1.6rem);
       }
     }
 
-    &--lg{
+    &--lg {
       padding: .857em;
       min-height: 9.6rem;
       font-size: $fontSize28;
       border-radius: 24px;
 
-      #{$this}__text{
+      #{$this}__text {
         font-weight: 700;
         @include calcLineHeight($fontSize28);
       }
     }
 
-    &--xl{
+    &--xl {
       flex-direction: column;
       font-size: $fontSize24;
       align-items: center;
@@ -102,240 +102,249 @@
       min-height: 14.9rem;
 
       #{$this}__icon,
-      #{$this}__img{
+      #{$this}__img {
         margin: 1.6rem 0;
 
-        &:last-child{
+        &:last-child {
           margin: 1.6rem 0 0 0;
         }
 
-        &:first-child{
+        &:first-child {
           margin: 0 0 1.6rem;
         }
 
-        &:only-child{
+        &:only-child {
           margin: 0;
         }
       }
 
-      #{$this}__text{
+      #{$this}__text {
         font-weight: 700;
         @include calcLineHeight($fontSize24);
       }
     }
 
-    &--xs{
+    &--xs {
       padding: .375em .75em;
       border-radius: 2.4rem;
 
       #{$this}__icon,
-      #{$this}__img{
+      #{$this}__img {
         margin: 0 .4rem;
 
-        &:last-child{
+        &:last-child {
           margin: 0 0 0 .4rem;
         }
 
-        &:first-child{
+        &:first-child {
           margin: 0 .4rem 0 0;
         }
 
-        &:only-child{
+        &:only-child {
           margin: 0;
         }
       }
     }
   }
 
-  &--style{
+  &--style {
 
-    &--primary{
+    &--primary {
       background-color: $primary;
       color: $white;
 
-      &:hover{
+      &:hover {
         background-color: $primaryLighter;
       }
 
-      &:active{
+      &:active {
         background-color: $primary;
         color: $primaryLighter;
       }
     }
 
-    &--primary-lighter{
+    &--primary-lighter {
       background-color: $primaryLighter2;
       color: $primary;
 
-      &:hover{
+      &:hover {
         background-color: $primary;
         color: $primaryLighter2;
       }
 
-      &:active{
+      &:active {
         color: $white;
       }
     }
 
-    &--primary-lighter-alt{
+    &--primary-lighter-alt {
       background-color: $primaryLighter2;
       color: $primary;
 
       &:hover,
-      &:active{
+      &:active {
         background-color: $white;
       }
 
-      &:disabled{
+      &:disabled {
         background-color: $secondary;
         color: $primaryLighter;
       }
     }
 
-    &--primary-lighter-alt2{
+    &--primary-lighter-alt2 {
       background-color: $primaryLighter3;
       color: $primaryLighter2;
 
       &:hover,
-      &:active{
+      &:active {
         background-color: $white;
         color: $primary;
       }
 
-      &:disabled{
+      &:disabled {
         background-color: $secondary;
         color: $primaryLighter;
       }
     }
 
-    &--secondary{
+    &--secondary {
       background-color: $secondary;
       color: $black;
 
-      &:hover{
+      &:hover {
         background-color: $secondaryDarker;
       }
 
-      &:active{
+      &:active {
         background-color: $secondaryDarker2;
       }
     }
 
-    &--secondary-alt{
+    &--secondary-alt {
       background-color: $secondary;
       color: $secondaryDarker4;
 
-      &:hover{
+      &:hover {
         background-color: $primary;
         color: $primaryLighter2;
       }
 
-      &:active{
+      &:active {
         color: $white;
       }
     }
 
-    &--accent{
+    &--accent {
       background-color: $accent;
       color: $white;
 
       &:hover,
-      &:active{
+      &:active {
         background-color: $accentLighter2;
         color: $accent;
       }
 
-      &:disabled{
+      &:disabled {
         background-color: rgba($accent, .4);
       }
     }
 
-    &--accent-lighter{
+    &--accent-lighter {
       background-color: $accentLighter2;
       color: $accent;
 
       &:hover,
-      &:active{
+      &:active {
         background-color: $white;
       }
 
-      &:disabled{
+      &:disabled {
         background-color: rgba($accentLighter, .4);
       }
     }
 
-    &--white{
+    &--white {
       background-color: $white;
       color: $primaryLighter;
 
       &:hover,
-      &:active{
+      &:active {
         background-color: $primaryLighter2;
         color: $primary;
       }
     }
 
-    &--white-alt{
+    &--white-alt {
       background-color: $secondary;
       color: $black;
 
-      &:hover{
+      &:hover {
         background-color: $secondaryDarker;
       }
 
-      &:active{
+      &:active {
         background-color: $secondaryDarker2;
       }
 
-      &:disabled{
+      &:disabled {
         background-color: $secondary;
         color: $secondaryDarker2;
       }
     }
 
-    &--outline-white{
+    &--outline-white {
       background-color: transparent;
       box-shadow: inset 0 0 0 .2rem $white;
       color: $white;
 
       &:hover,
-      &:active{
+      &:active {
         background-color: $white;
         color: $primary;
       }
     }
 
-    &--rounded{
+    &--rounded {
       border-radius: 5rem;
       font-size: 1.6rem;
 
-      @include media(">=md"){
+      @include media(">=md") {
         font-size: 1.8rem;
       }
-      @include media(">=xl"){
+
+      @include media(">=xl") {
         font-size: 2rem;
       }
-      @include media(">=1440px"){
+
+      @include media(">=1440px") {
         font-size: 2.4rem;
       }
     }
   }
 
-  &--text-md{
+  &--text-md {
 
-    #{$this}__text{
+    #{$this}__text {
       display: none;
 
-      @include media(">=md"){
+      @include media(">=md") {
         display: block;
       }
     }
   }
 
   &:disabled,
-  &--style--disabled{
+  &--style--disabled {
     cursor: default;
     background-color: $secondary;
     color: $secondaryDarker2;
+
+    &:hover,
+    &:active {
+      cursor: default;
+      background-color: $secondary;
+      color: $secondaryDarker2;
+    }
   }
 }

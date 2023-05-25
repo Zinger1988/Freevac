@@ -1,7 +1,7 @@
 .main-section{
   background-color: $primary;
   color: $white;
-  padding: 10rem 1.6rem 3rem;
+  padding: 8rem 1.6rem 3rem;
   min-height: 100vh;
   display: flex;
 
@@ -131,10 +131,22 @@
     }
   }
 
+  &__tabs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 2rem;
+
+    @include media(">=lg"){
+      display: none;
+    }
+  }
+
   &__img{
     flex: 1 1 auto;
     display: flex;
     position: relative;
+    align-items: center;
 
     @include media(">=lg"){
       height: 100%;
@@ -151,20 +163,24 @@
     display: block;
     margin: 0 auto;
     width: 94.7%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 3.2rem;
     max-width: 52rem;
 
     @include media(">=lg"){
-      width: 100%;
+      width: auto;
       max-width: none;
-      max-height: 62.4rem;
+      max-height: 100%;
       border-radius: 5rem;
     }
 
-    @include media(">=1440px"){
-      border-radius: 6.4rem;
+    @include media(">=xl"){
+      margin: 0 2rem 0 auto;
     }
+
+    //@include media(">=1440px"){
+    //  border-radius: 6.4rem;
+    //}
   }
 
   &__chat{
@@ -284,10 +300,13 @@
     }
 
     #{$this}__img-item{
+      object-fit: cover;
+      margin: 0 auto;
+
       @include media(">=lg") {
         height: 50.08rem;
         max-height: none;
-        //width: auto;
+        width: 100%;
       }
 
       @include media(">=xl") {

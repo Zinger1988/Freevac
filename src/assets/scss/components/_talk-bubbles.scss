@@ -77,14 +77,14 @@
     }
   }
 
+  &__link-panel-holder{
+    width: 100%;
+  }
+
   @for $i from 1 through 3 {
     &__marker-point:nth-child(#{$i}n) {
       animation: type-animation 2s  #{($i - 1) / 3}s infinite ease;
     }
-  }
-
-  &__link-panel{
-    max-width: 30rem;
   }
 }
 

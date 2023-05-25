@@ -125,7 +125,8 @@
       display: block;
     }
 
-    .onboarding-slider__btn--next{
+    .onboarding-slider__btn--next,
+    .onboarding-slider__btn--undisable{
       @include media(">=lg"){
         display: none;
       }

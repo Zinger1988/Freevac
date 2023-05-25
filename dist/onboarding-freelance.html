@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#7b41e7">
+    <meta name="msapplication-TileColor" content="#7b41e7">
+    <meta name="theme-color" content="#ffffff">
+    
+    <link rel="stylesheet" href="assets/css/style.min.css">    <title>Vividi</title>
+</head>
+
+<body>
+
+<header class="page-header">
+    <div class="container">
+        <div class="page-header__inner">
+
+            <a href="#" class="logo page-header__logo">
+                <img src="assets/img/logo.svg" alt="Freevac">
+            </a>
+
+            <div class="page-header__controls">
+                <button class="btn btn--size--regular btn--style--white-alt" id="onoborading-exit">Вийти</button>
+            </div>
+
+        </div>
+    </div>
+</header><!--page header logo fixed-->
+<main class="page-content">
+    <div class="container container--fluid">
+
+        <div class="onboarding">
+            
+            <div class="onboarding-slider onboarding__onboarding-slider swiper" id="onboarding-slider">
+            
+                <div class="progress onboarding__progress container">
+                    <div class="progress__track">
+                        <div class="progress__inner"></div>
+                    </div>
+                </div><!--progress-->
+            
+                <div class="swiper-wrapper onboarding-slider__wrapper">
+            
+                    <div class="onboarding-slider__slide swiper-slide">
+                        <div class="onboarding-slider__container container">
+            
+                            <div class="onboarding-slider__content">
+            
+                                <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                    <div class="talk-bubbles__list" style="height: 0">
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">привіт :)</div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Vividi допоможе тобі знайти талановитих та цікавих людей, щоб побудувати міцну команду.
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Відеорезюме це простий та цікавий процес. Ви ставите запитання, а кандидати надсилають відеответи.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--talk bubbles-->
+            
+                                <div class="onboarding-slider__slide-controls controls-bar">
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--accent
+                                            btn--fluid
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--next" disabled>
+                                        <span class="btn__text">Продовжити</span>
+                                    </button>
+                                </div><!--controls bar-->
+            
+                            </div><!--slide content-->
+            
+                            <div class="onboarding-slider__media">
+                                <img class="onboarding-slider__media-img" src="assets/img/onboarding/1.png" alt="image">
+                            </div><!--slide media-->
+            
+                        </div><!--container-->
+                    </div><!--slide-->
+            
+                    <div class="onboarding-slider__slide swiper-slide">
+                        <div class="onboarding-slider__container container">
+            
+                            <div class="onboarding-slider__content">
+            
+                                <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                    <div class="talk-bubbles__list" style="height: 0">
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Просто подивіться на кілька прикладів відповідей:
+                                            </div>
+            
+                                            <div class="video-examples">
+                                                <div class="video-examples__item" data-onboarding-example="video1">
+                                                    <img class="video-examples__thumb"
+                                                         src="assets/img/onboarding/video_thumb1.jpg"
+                                                         alt="example">
+                                                </div>
+                                                <div class="video-examples__item" data-onboarding-example="video1">
+                                                    <img class="video-examples__thumb"
+                                                         src="assets/img/onboarding/video_thumb2.jpg"
+                                                         alt="example">
+                                                </div>
+                                                <div class="video-examples__item" data-onboarding-example="video1">
+                                                    <img class="video-examples__thumb"
+                                                         src="assets/img/onboarding/video_thumb3.jpg"
+                                                         alt="example">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Це допомагає кандидату проявити себе, а вам краще його дізнатися на перших етапах.
+                                                Круто, правда?
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--talk bubbles-->
+            
+                                <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                    <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--primary-lighter-alt
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--prev" disabled>
+                                        <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                    </button>
+                                    <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--accent btn--fluid
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--next" disabled>
+                                        <span class="btn__text">Як це працює?</span>
+                                    </button>
+                                </div><!--controls bar-->
+            
+                            </div><!--slide content-->
+            
+                            <div class="onboarding-slider__media">
+                                <img class="onboarding-slider__media-img" src="assets/img/onboarding/1.png" alt="image">
+                            </div><!--slide media-->
+            
+                        </div><!--container-->
+                    </div><!--slide-->
+            
+                    <div class="onboarding-slider__slide swiper-slide">
+                        <div class="onboarding-slider__container container">
+            
+                            <div class="onboarding-slider__content">
+            
+                                <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                    <div class="talk-bubbles__list" style="height: 0">
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Дуже просто: додаєте опис вакансії та питання, на які кандидати повинні відповісти
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                В результаті отримуєте посилання, яке можете надсилати під час спілкування з
+                                                кандидатами, або публікувати на сайтах пошуку роботи
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Ось кілька справжніх прикладів:
+                                            </div>
+            
+                                            <div class="talk-bubbles__link-panel-holder link-panel-holder">
+                                                <div class="link-panel-holder__link-panel link-panel">
+                                                    <div class="link-panel__holder">
+                                                        <a href="#" class="link-panel__anchor icon icon--size--md icon--copy-24 freevak-link-copy" data-source-input-id="freevak-link1"></a>
+                                                        <a href="#" target="_blank" class="link-panel__anchor icon icon--size--md icon--link-24"></a>
+                                                    </div>
+                                                    <div class="input-text input-text--style--primary link-panel__input" id="freevak-link1">
+                                                        freevac.ua/po-f56
+                                                    </div>
+                                                </div>
+                                                <div class="link-panel-holder__link-panel link-panel">
+                                                    <div class="link-panel__holder">
+                                                        <a href="#" class="link-panel__anchor icon icon--size--md icon--copy-24 freevak-link-copy" data-source-input-id="freevak-link2"></a>
+                                                        <a href="#" target="_blank" class="link-panel__anchor icon icon--size--md icon--link-24"></a>
+                                                    </div>
+                                                    <div class="input-text input-text--style--primary link-panel__input" id="freevak-link2">
+                                                        freevac.ua/peo-f7156
+                                                    </div>
+                                                </div>
+                                                <div class="link-panel-holder__link-panel link-panel">
+                                                    <div class="link-panel__holder">
+                                                        <a href="#" class="link-panel__anchor icon icon--size--md icon--copy-24 freevak-link-copy" data-source-input-id="freevak-link3"></a>
+                                                        <a href="#" target="_blank" class="link-panel__anchor icon icon--size--md icon--link-24"></a>
+                                                    </div>
+                                                    <div class="input-text input-text--style--primary link-panel__input" id="freevak-link3">
+                                                        freevac.ua/p21eo-f7156
+                                                    </div>
+                                                </div>
+                                                <div class="link-panel-holder__link-panel link-panel">
+                                                    <div class="link-panel__holder">
+                                                        <a href="#" class="link-panel__anchor icon icon--size--md icon--copy-24 freevak-link-copy" data-source-input-id="freevak-link4"></a>
+                                                        <a href="#" target="_blank" class="link-panel__anchor icon icon--size--md icon--link-24"></a>
+                                                    </div>
+                                                    <div class="input-text input-text--style--primary link-panel__input" id="freevak-link4">
+                                                        freevac.ua/o-78f
+                                                    </div>
+                                                </div>
+                                            </div><!--talk bubbles link list-->
+            
+                                        </div>
+                                    </div>
+                                </div><!--talk bubbles-->
+            
+                                <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--primary-lighter-alt
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--prev" disabled>
+                                        <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                    </button>
+                                    <button class="btn
+                                            btn--size--lg
+                                            btn--style--accent btn--fluid
+                                            onboarding-slider__btn
+                                            onboarding-slider__btn--next" disabled>
+                                        <span class="btn__text">Круто</span>
+                                    </button>
+                                </div><!--controls bar-->
+            
+                            </div><!--slide content-->
+            
+                            <div class="onboarding-slider__media">
+                                <img class="onboarding-slider__media-img" src="assets/img/onboarding/2.png" alt="image">
+                            </div><!--slide media-->
+            
+                        </div><!--container-->
+                    </div><!--slide-->
+            
+                    <div class="onboarding-slider__slide swiper-slide">
+                        <div class="onboarding-slider__container container">
+            
+                            <div class="onboarding-slider__content">
+            
+                                <div class="talk-bubbles onboarding-slider__talk-bubbles">
+                                    <div class="talk-bubbles__list" style="height: 0">
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Круто!
+                                            </div>
+                                        </div>
+                                        <div class="talk-bubbles__item">
+                                            <div class="balloon balloon--style--primaryLighter3 talk-bubbles__balloon">
+                                                Ти за крок від створення першої вакансії. Для цього просто перейди у профіль та
+                                                натисніть «Створити вакансію»
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--talk bubbles-->
+            
+                                <div class="onboarding-slider__slide-controls controls-bar controls-bar--layout-2">
+                                    <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--primary-lighter-alt
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--prev" disabled>
+                                        <i class="icon icon--size--lg icon--arrowleft-48 btn__icon"></i>
+                                    </button>
+                                    <button class="btn
+                                                    btn--size--lg
+                                                    btn--style--accent btn--fluid
+                                                    onboarding-slider__btn
+                                                    onboarding-slider__btn--next" disabled>
+                                        <span class="btn__text">Поїхали</span>
+                                    </button>
+                                </div><!--controls bar-->
+            
+                            </div><!--slide content-->
+            
+                            <div class="onboarding-slider__media">
+                                <img class="onboarding-slider__media-img" src="assets/img/onboarding/1.png" alt="image">
+                            </div><!--slide media-->
+            
+                        </div><!--container-->
+                    </div><!--slide-->
+            
+                </div>
+            </div><!--onboarding slider-->
+            
+            <div class="onboarding-modal" id="video1">
+                <div class="onboarding-modal__body">
+                    <div class="balloon balloon--style--accent onboarding-modal__balloon">
+                        Чим мені подобається професія «Дизайнер»?
+                    </div>
+                    <button class="onboarding-modal__close">
+                        <i class="icon icon--size--md icon--close-24"></i>
+                    </button>
+                    <div class="onboarding-modal__video">
+                        <video class="onboarding-modal__video-item video-player"
+                               src="https://vividi.career/media/video/4c6642c4-ea03-43b1-b970-5ea257bb1e84.mp4#t=0.1"
+                               data-duration="3"
+                               playsinline>
+                            You need an HTML 5-capable browser.
+                        </video>
+                    </div>
+                </div>
+            </div><!--modal video example-->
+            
+            <div class="onboarding-modal" id="video2">
+                <div class="onboarding-modal__body">
+                    <div class="balloon balloon--style--accent onboarding-modal__balloon">
+                        Чим мені подобається професія «Дизайнер»?
+                    </div>
+                    <div class="onboarding-modal__video">
+                        <video class="onboarding-modal__video-item video-player"
+                               src="https://vividi.career/media/video/4c6642c4-ea03-43b1-b970-5ea257bb1e84.mp4#t=0.1"
+                               data-duration="3"
+                               playsinline>
+                            You need an HTML 5-capable browser.
+                        </video>
+                    </div>
+                </div>
+            </div><!--modal video example-->
+            
+            <div class="onboarding-modal" id="video3">
+                <div class="onboarding-modal__body">
+                    <div class="balloon balloon--style--accent onboarding-modal__balloon">
+                        Чим мені подобається професія «Дизайнер»?
+                    </div>
+                    <div class="onboarding-modal__video">
+                        <video class="onboarding-modal__video-item video-player"
+                               src="https://vividi.career/media/video/4c6642c4-ea03-43b1-b970-5ea257bb1e84.mp4#t=0.1"
+                               data-duration="3"
+                               playsinline>
+                            You need an HTML 5-capable browser.
+                        </video>
+                    </div>
+                </div>
+            </div><!--modal video example-->
+        </div>
+
+        <div id="onboarding-controls" class="onboarding-controls"></div>
+
+    </div><!--container-->
+</main><!--page content-->
+
+<div class="modal" id="user-activity-field">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Сфера деятельности</div>
+
+        <div class="modal__body">
+
+            <ul class="action-list">
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        HR специалист
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        IT
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Автобизнес
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Административный персонал
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Банки, инвестиции, лизинг
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Гостиницы, рестораны, кафе
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Государственные учреждения
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Дизайн, графика, фото
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Закупки, снабжение
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        HR специалист
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        IT
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Автобизнес
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Административный персонал
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Банки, инвестиции, лизинг
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Гостиницы, рестораны, кафе
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Государственные учреждения
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Дизайн, графика, фото
+                    </span>
+                </li>
+                <li class="action-list__item action-list__item--secondary" role="button" data-modal-id="user-activity-field-sub">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Закупки, снабжение
+                    </span>
+                </li>
+            </ul><!-- action-list -->
+
+        </div><!-- body -->
+    </div><!-- main -->
+
+</div><!-- user-name modal --><div class="modal" id="user-activity-field-sub">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+        <button class="btn btn--size--regular btn--style--secondary" data-modal-id="user-activity-field">
+            <i class="icon icon--size--sm icon--arrowangleleft-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Сфера деятельности</div>
+
+        <div class="modal__body">
+
+            <ul class="action-list">
+                <li class="action-list__item" role="button">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Автобизнес
+                    </span>
+                </li>
+                <li class="action-list__item" role="button">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Государственные учреждения
+                    </span>
+                </li>
+                <li class="action-list__item" role="button">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Закупки, снабжение
+                    </span>
+                </li>
+                <li class="action-list__item" role="button">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Гостиницы, рестораны, кафе
+                    </span>
+                </li>
+                <li class="action-list__item" role="button">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Административный персонал
+                    </span>
+                </li>
+                <li class="action-list__item" role="button">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Банки, инвестиции, лизинг
+                    </span>
+                </li>
+                <li class="action-list__item" role="button">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        HR специалист
+                    </span>
+                </li>
+                <li class="action-list__item" role="button">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        IT
+                    </span>
+                </li>
+                <li class="action-list__item" role="button">
+                    <span class="action-list__icon">
+                        <i class="icon icon--size--sm icon--arrowangleright-16"></i>
+                    </span>
+                    <span class="action-list__text">
+                        Дизайн, графика, фото
+                    </span>
+                </li>
+            </ul><!-- action-list -->
+
+        </div><!-- body -->
+    </div><!-- main -->
+
+</div><!-- user-name modal --><div class="modal" id="logo-loading">
+
+    <div class="modal__title-controls">
+        <button class="btn btn--size--regular btn--style--secondary modal-close">
+            <i class="icon icon--size--sm icon--close-16 btn__icon"></i>
+        </button>
+    </div><!-- title -->
+
+    <div class="modal__main">
+
+        <div class="modal__heading h2">Логотип компании</div>
+
+        <div class="modal__body">
+
+            <form class="form add-file" method="post">
+
+                <div class="form__group">
+                    <div class="input-row input-row--pointer input-row--file form__input-row">
+                        <div class="input-row__title">Файл</div>
+
+                        <div class="add-file__img-holder">
+                            <!-- предустановленная картинка <img class="add-file__img" src="assets/img/temp/company-logo.jpg" alt="logo"> -->
+                        </div>
+
+                        <input class="input-text input-row__input-text input-text--iconic input-text--iconic--angle-right add-file__input-text"
+                               type="text"
+                               placeholder="загрузи файл svg, png или jpg"
+                               readonly>
+                        <!-- предустановленная значение: добавить аттрибут value -->
+
+                        <input class="input-row__input-file add-file__control"
+                               type="file"
+                               name=""
+                               accept="image/svg+xml, image/jpg, image/jpeg, image/jpe, image/png">
+
+                    </div><!-- input row -->
+                </div><!-- form group -->
+
+                <div class="form__footer">
+                    <button class="btn btn--style--primary btn--size--regular" disabled>
+                        <span class="btn__text">Сохранить</span>
+                    </button>
+                </div><!-- form footer-->
+            </form><!-- form -->
+
+        </div><!-- body -->
+    </div><!-- main -->
+
+</div><!-- user cvv portfolio modal -->
+<script src="assets/js/swiper.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.link-panel-holder{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+
+  &__link-panel{
+    max-width: 100%;
+  }
+}

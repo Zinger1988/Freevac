@@ -1,40 +1,48 @@
-.controls-bar{
+.controls-bar {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   grid-gap: .8rem;
 
-  @include media(">=lg"){
+  @include media(">=lg") {
     grid-gap: 1.6rem;
   }
 
-  &--top{
+  &--top {
     display: block;
     margin: 0 0 .8rem;
   }
 
-  &--navbar{
+  &--navbar {
     display: block;
     margin: 0 0 1.6rem;
 
-    @include media(">=lg"){
+    @include media(">=lg") {
       padding-bottom: 1.5rem;
       border-bottom: 1px solid $secondary;
     }
   }
 
-  &--ver{
+  &--ver {
     grid-template-columns: none;
   }
 
-  &--layout-1{
+  &--layout-1 {
     grid-template-columns: 1fr auto;
   }
 
-  &--layout-2{
+  &--layout-2 {
     grid-template-columns: auto 1fr;
   }
 
-  &--layout-3{
+  &--layout-3 {
     grid-template-columns: auto 1fr auto;
+  }
+
+  &--layout-4 {
+    grid-template-columns: 1fr;
+
+    @include media(">=md") {
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    }
   }
 }

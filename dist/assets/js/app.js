@@ -1,8 +1,8 @@
 "use strict"
 
-class InputFocus{
-    static init(elements){
-        if(elements.length){
+class InputFocus {
+    static init(elements) {
+        if (elements.length) {
             elements.forEach(el => {
 
                 el.InputFocus = {
@@ -10,17 +10,17 @@ class InputFocus{
                     title: el.querySelector('.input-row__title'),
                 }
 
-                const {input, title} = el.InputFocus;
+                const { input, title } = el.InputFocus;
 
-                input.InputFocusUpdate = function() {
-                    if(input.value.trim().length || input.placeholder.trim().length){
+                input.InputFocusUpdate = function () {
+                    if (input.value.trim().length || input.placeholder.trim().length) {
                         InputFocus.minifyTitle(title);
                     } else {
                         InputFocus.unMinifyTitle(title);
                     }
                 }
 
-                if(input.value.length || input.placeholder.length){
+                if (input.value.length || input.placeholder.length) {
                     InputFocus.minifyTitle(title);
                 }
 
@@ -32,26 +32,26 @@ class InputFocus{
         }
     }
 
-    static focus({input, title}){
+    static focus({ input, title }) {
         input.focus();
-        if(!title.classList.contains('input-row__title--focus') && !input.readOnly && !input.disabled){
+        if (!title.classList.contains('input-row__title--focus') && !input.readOnly && !input.disabled) {
             input.focus();
             InputFocus.minifyTitle(title);
         }
     }
 
-    static blur({input, title}) {
-        if(!input.value.trim().length && !input.placeholder.length && !input.readOnly && !input.disabled){
+    static blur({ input, title }) {
+        if (!input.value.trim().length && !input.placeholder.length && !input.readOnly && !input.disabled) {
             input.value = "";
             InputFocus.unMinifyTitle(title);
         }
     }
 
-    static minifyTitle(title){
+    static minifyTitle(title) {
         title.classList.add('input-row__title--focus');
     }
 
-    static unMinifyTitle(title){
+    static unMinifyTitle(title) {
         title.classList.remove('input-row__title--focus');
     }
 
@@ -61,7 +61,7 @@ class InputFocus{
     }
 }
 
-class Counter{
+class Counter {
     constructor(element) {
         this.element = element;
         this.counterValue = parseInt(this.element.getAttribute('data-counter'));
@@ -80,7 +80,7 @@ class Counter{
     }
 
     set onStart(cb) {
-        if(typeof cb !== 'function'){
+        if (typeof cb !== 'function') {
             console.error('Callback should be a function')
         } else {
             this.eventsCb.onStart.push(cb);
@@ -88,7 +88,7 @@ class Counter{
     }
 
     set onReset(cb) {
-        if(typeof cb !== 'function'){
+        if (typeof cb !== 'function') {
             console.error('Callback should be a function')
         } else {
             this.eventsCb.onReset.push(cb);
@@ -96,7 +96,7 @@ class Counter{
     }
 
     set onStop(cb) {
-        if(typeof cb !== 'function'){
+        if (typeof cb !== 'function') {
             console.error('Callback should be a function')
         } else {
             this.eventsCb.onStop.push(cb);
@@ -104,7 +104,7 @@ class Counter{
     }
 
     set beforeChange(cb) {
-        if(typeof cb !== 'function'){
+        if (typeof cb !== 'function') {
             console.error('Callback should be a function')
         } else {
             this.eventsCb.beforeChange.push(cb);
@@ -112,16 +112,16 @@ class Counter{
     }
 
     set afterChange(cb) {
-        if(typeof cb !== 'function'){
+        if (typeof cb !== 'function') {
             console.error('Callback should be a function')
         } else {
             this.eventsCb.afterChange.push(cb);
         }
     }
 
-    static init(){
+    static init() {
         this.element.Counter = this;
-        if((this.counterValue / 60) >= 1){
+        if ((this.counterValue / 60) >= 1) {
             this.element.textContent = `${Counter.getZero(Math.floor(this.counterValue / 60))}:${Counter.getZero(this.counterValue % 60)}`;
         } else {
             this.element.textContent = `${this.counterValue % 60}`;
@@ -129,20 +129,20 @@ class Counter{
     }
 
     static getZero(value) {
-        return value >= 10 ? value: '0' + value;
+        return value >= 10 ? value : '0' + value;
     }
 
     start() {
-        if(this.isCountdown) return;
+        if (this.isCountdown) return;
 
         this.reset();
         this.isCountdown = true;
         this.timer = setInterval(() => {
             this.eventsCb.beforeChange.forEach(cb => cb())
-            if(this.timeLeft > 0){
+            if (this.timeLeft > 0) {
                 this.timeLeft -= 1;
                 this.eventsCb.afterChange.forEach(cb => cb())
-                if((this.counterValue / 60) >= 1){
+                if ((this.counterValue / 60) >= 1) {
                     this.element.textContent = `${Counter.getZero(Math.floor(this.timeLeft / 60))}:${Counter.getZero(this.timeLeft % 60)}`;
                 } else {
                     this.element.textContent = `${this.timeLeft % 60}`;
@@ -150,7 +150,7 @@ class Counter{
             } else {
                 this.stop()
             }
-        },1000);
+        }, 1000);
 
         this.eventsCb.onStart.forEach(cb => cb())
     }
@@ -165,7 +165,7 @@ class Counter{
     reset() {
         this.timeLeft = this.counterValue;
 
-        if((this.counterValue / 60) >= 1){
+        if ((this.counterValue / 60) >= 1) {
             this.element.textContent = `${Counter.getZero(Math.floor(this.counterValue / 60))}:${Counter.getZero(this.counterValue % 60)}`;
         } else {
             this.element.textContent = `${this.counterValue % 60}`;
@@ -179,7 +179,7 @@ class Counter{
 }
 
 class Video {
-    constructor({element, isMuted = false, autoplay = false, isControlled = true}) {
+    constructor({ element, isMuted = false, autoplay = false, isControlled = true }) {
         this.element = element;
         this.autoplay = autoplay;
         this.state = {
@@ -192,16 +192,16 @@ class Video {
             soundBtn: document.createElement('div'),
         };
         this.callbacks = {
-            onPlay: () => {},
-            onPause: () => {},
-            onStop: () => {},
+            onPlay: () => { },
+            onPause: () => { },
+            onStop: () => { },
         }
     }
 
-    init(){
-        let {element, autoplay, state: {isMuted, isPaused, isControlled}, controls: {playBtn, soundBtn}} = this;
+    init() {
+        let { element, autoplay, state: { isMuted, isPaused, isControlled }, controls: { playBtn, soundBtn } } = this;
 
-        if(!element) return
+        if (!element) return
 
         element.muted = isMuted;
         element.autoplay = autoplay;
@@ -209,18 +209,18 @@ class Video {
         element.loop = false;
         element.Video = this;
 
-        if(isControlled){
+        if (isControlled) {
             playBtn.classList.add('video-player__play');
             element.after(playBtn);
 
-            if(isPaused) {
+            if (isPaused) {
                 playBtn.classList.add('video-player__play--paused');
             }
 
             soundBtn.classList.add('video-player__sound', 'icon', 'icon--size--md', 'icon--soundon-24');
             element.after(soundBtn);
 
-            if(isMuted) {
+            if (isMuted) {
                 soundBtn.classList.add('icon--soundoff-24');
                 soundBtn.classList.remove('icon--soundon-24');
             }
@@ -241,8 +241,8 @@ class Video {
         instance.callbacks.onPause = cb;
     }
 
-    static async play(instance){
-        const {element, controls: {playBtn}} = instance;
+    static async play(instance) {
+        const { element, controls: { playBtn } } = instance;
 
         element.play();
         playBtn.classList.remove('video-player__play--paused');
@@ -252,8 +252,8 @@ class Video {
         instance.callbacks.onPlay();
     }
 
-    static pause(instance){
-        const {element, controls: {playBtn}} = instance;
+    static pause(instance) {
+        const { element, controls: { playBtn } } = instance;
 
         element.pause();
         playBtn.classList.add('video-player__play--paused');
@@ -263,16 +263,16 @@ class Video {
         instance.callbacks.onPause();
     }
 
-    static stop(instance){
-        const {element} = instance;
+    static stop(instance) {
+        const { element } = instance;
 
         Video.pause(instance);
         element.currentTime = 0;
         instance.callbacks.onStop();
     }
 
-    static mute(instance){
-        let {element, controls: {soundBtn}} = instance;
+    static mute(instance) {
+        let { element, controls: { soundBtn } } = instance;
 
         element.muted = true;
         soundBtn.classList.add('icon--soundoff-24');
@@ -281,8 +281,8 @@ class Video {
         instance.state.isMuted = true;
     }
 
-    static unmute(instance){
-        let {element, controls: {soundBtn}} = instance;
+    static unmute(instance) {
+        let { element, controls: { soundBtn } } = instance;
 
         element.muted = false;
         soundBtn.classList.remove('icon--soundoff-24');
@@ -291,11 +291,11 @@ class Video {
         instance.state.isMuted = false;
     }
 
-    static setHandlers(instance){
-        let {element, controls: {playBtn, soundBtn}} = instance;
+    static setHandlers(instance) {
+        let { element, controls: { playBtn, soundBtn } } = instance;
 
         playBtn.addEventListener('click', async () => {
-            if(instance.state.isPaused){
+            if (instance.state.isPaused) {
                 await Video.play(instance);
             } else {
                 Video.pause(instance);
@@ -303,7 +303,7 @@ class Video {
         })
 
         soundBtn.addEventListener('click', () => {
-            if(instance.state.isMuted){
+            if (instance.state.isMuted) {
                 Video.unmute(instance);
             } else {
                 Video.mute(instance);
@@ -318,16 +318,16 @@ class Video {
         });
     }
 
-    static destroy(instance){
-        let {element, controls: {playBtn, soundBtn}} = instance;
+    static destroy(instance) {
+        let { element, controls: { playBtn, soundBtn } } = instance;
         playBtn.remove();
         soundBtn.remove();
         delete element.Video;
     }
 }
 
-class VideoRecorder{
-    constructor({element, constraints}) {
+class VideoRecorder {
+    constructor({ element, constraints }) {
         this.element = element;
         this.constraints = constraints;
         this.controls = {
@@ -335,8 +335,8 @@ class VideoRecorder{
         }
     }
 
-    async init(){
-        let {element, controls: {marker}} = this;
+    async init() {
+        let { element, controls: { marker } } = this;
 
         element.innerHTML = '';
         element.VideoRecorder = this;
@@ -347,8 +347,8 @@ class VideoRecorder{
         await VideoRecorder.bindStream(this);
     }
 
-    static async getStream(instance){
-        const {constraints} = instance;
+    static async getStream(instance) {
+        const { constraints } = instance;
         const errors = {
             NotAllowedError: {
                 title: 'Ой...',
@@ -369,54 +369,54 @@ class VideoRecorder{
             }
         };
 
-        try{
+        try {
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                 const error = new Error('Can\'t get acces to  navigator.mediaDevices.getUserMedia');
                 error.name = 'NoAccessGetUserMedia';
                 throw error;
             }
 
-            if(localStorage.getItem('fatalError') === 'noMediaDevices'){
+            if (localStorage.getItem('fatalError') === 'noMediaDevices') {
                 localStorage.removeItem('fatalError');
             }
 
             try {
                 instance.stream = await navigator.mediaDevices.getUserMedia(constraints);
                 localStorage.removeItem('fatalError');
-            } catch(err) {
-                if(localStorage.getItem('fatalError') === 'noAccessToCamera') {
-                    new FatalError({...errors[err.name], isFullScreen: false})
+            } catch (err) {
+                if (localStorage.getItem('fatalError') === 'noAccessToCamera') {
+                    new FatalError({ ...errors[err.name], isFullScreen: false })
                 } else {
                     new FatalError(errors[err.name]);
-                    localStorage.setItem('fatalError','noAccessToCamera');
+                    localStorage.setItem('fatalError', 'noAccessToCamera');
                 }
             }
         } catch (err) {
-            if(localStorage.getItem('fatalError') === 'noMediaDevices'){
-                new FatalError({...errors[err.name], isFullScreen: false})
+            if (localStorage.getItem('fatalError') === 'noMediaDevices') {
+                new FatalError({ ...errors[err.name], isFullScreen: false })
             } else {
                 new FatalError(errors[err.name])
-                localStorage.setItem('fatalError','noMediaDevices');
+                localStorage.setItem('fatalError', 'noMediaDevices');
             }
         }
     }
 
-    static async bindStream(instance){
-        const {stream, element} = instance;
+    static async bindStream(instance) {
+        const { stream, element } = instance;
         element.srcObject = await stream;
         element.muted = true;
         await element.play();
     }
 
-    static async startRecording(instance){
-        const {stream, element, controls: {marker}} = instance;
+    static async startRecording(instance) {
+        const { stream, element, controls: { marker } } = instance;
         let chunks = [];
         let options = {};
         let types = ["video/mpeg"];
 
         types.find(type => {
-            if(MediaRecorder.isTypeSupported(type)){
-                options = {mimeType: type};
+            if (MediaRecorder.isTypeSupported(type)) {
+                options = { mimeType: type };
             }
         });
 
@@ -435,22 +435,24 @@ class VideoRecorder{
             const blob = new Blob(chunks, options);
             chunks = [];
 
-            stream.getTracks().forEach( (track) => track.stop());
+            stream.getTracks().forEach((track) => track.stop());
             element.srcObject = null;
             element.src = window.URL.createObjectURL(blob);
 
             marker.remove();
 
-            new Video({element: element}).init();
+            new Video({ element: element }).init();
+
+            element.dispatchEvent(new CustomEvent("videoRecorderAfterSRCCreated"));
         }
     }
 
-    static stopRecording(instance){
+    static stopRecording(instance) {
         instance.mediaRecorder.stop();
     }
 
-    static async reset(instance){
-        const {element} = instance;
+    static async reset(instance) {
+        const { element } = instance;
 
         element.srcObject = null;
         Video.destroy(element.Video);
@@ -459,14 +461,14 @@ class VideoRecorder{
         await VideoRecorder.bindStream(instance);
     }
 
-    static destroy(instance){
-        const {element, stream} = instance;
+    static destroy(instance) {
+        const { element, stream } = instance;
 
-        stream.getTracks().forEach( (track) => track.stop());
+        stream.getTracks().forEach((track) => track.stop());
         element.srcObject = null;
         element.removeAttribute('src');
 
-        if(element.Video){
+        if (element.Video) {
             Video.destroy(element.Video);
             delete element.Video;
         }
@@ -480,8 +482,8 @@ class Modal {
     static activeModal = null;
     static modalOverlay = document.createElement('div');
 
-    static preventScroll(e){
-        if(!e.target.classList.contains('.modal__main') && !e.target.closest('.modal__main')){
+    static preventScroll(e) {
+        if (!e.target.classList.contains('.modal__main') && !e.target.closest('.modal__main')) {
             e.preventDefault()
         }
     }
@@ -492,7 +494,7 @@ class Modal {
         Modal.setHandlers();
         Modal.callbacks = {
             onHide: (activeModal) => {
-                if(activeModal.querySelector('.form')){
+                if (activeModal.querySelector('.form')) {
                     SiteJS.formReset(activeModal.querySelector('.form'));
                 }
             },
@@ -501,7 +503,7 @@ class Modal {
 
     static bindButton(buttonEl) {
         buttonEl.addEventListener('click', () => {
-            if(Modal.activeModal){
+            if (Modal.activeModal) {
                 Modal.hide();
             }
             const modalId = buttonEl.getAttribute('data-modal-id');
@@ -510,7 +512,7 @@ class Modal {
         })
     }
 
-    static setHandlers(){
+    static setHandlers() {
         const modalButtons = document.querySelectorAll('[data-modal-id]');
 
         modalButtons.forEach(button => {
@@ -526,7 +528,7 @@ class Modal {
 
         Modal.modalElements.forEach(modal => {
             modal.addEventListener('click', (e) => {
-                if(e.target.classList.contains('modal-close') || e.target.closest('.modal-close')){
+                if (e.target.classList.contains('modal-close') || e.target.closest('.modal-close')) {
                     Modal.hide();
                     Modal.hideOverlay();
                     // Modal.callbacks.onHideBtnClick(Modal.activeModal);
@@ -535,7 +537,7 @@ class Modal {
 
             const modalMain = modal.querySelector('.modal__main');
 
-            function preventModalScroll(e){
+            function preventModalScroll(e) {
 
                 let scrollTo = null;
                 e.stopPropagation();
@@ -558,9 +560,9 @@ class Modal {
         });
     }
 
-    static showOverlay(){
+    static showOverlay() {
         const overlay = document.querySelector('#modal-overlay');
-        if(overlay) return;
+        if (overlay) return;
 
         document.body.append(Modal.modalOverlay);
         // window.addEventListener("wheel", Modal.preventScroll, {passive: false});
@@ -568,7 +570,7 @@ class Modal {
 
         let alpha = .01;
         const timer = setInterval(() => {
-            if (alpha >= 0.56){
+            if (alpha >= 0.56) {
                 clearInterval(timer);
             } else {
                 Modal.modalOverlay.style.backgroundColor = `rgba(0,0,0, ${alpha += 0.1})`;
@@ -576,16 +578,16 @@ class Modal {
         }, 20);
     }
 
-    static hideOverlay(){
+    static hideOverlay() {
         const overlay = document.querySelector('#modal-overlay');
-        if(!overlay) return;
+        if (!overlay) return;
 
         document.body.classList.remove('no-overflow');
         // window.removeEventListener("wheel", Modal.preventScroll, {passive: false});
 
         let alpha = 0.56;
         const timer = setInterval(() => {
-            if (alpha <= 0.1){
+            if (alpha <= 0.1) {
                 overlay.remove()
                 clearInterval(timer);
             } else {
@@ -594,16 +596,16 @@ class Modal {
         }, 20);
     }
 
-    static show(modalId){
+    static show(modalId) {
         const targetModal = Modal.modalElements.find(element => element.id === modalId);
         Modal.activeModal = targetModal;
         targetModal.classList.add('visible');
     }
 
-    static hide(){
+    static hide() {
         const modalMain = Modal.activeModal.querySelector('.modal__main');
 
-        if(modalMain.scrollTop > 0){
+        if (modalMain.scrollTop > 0) {
             modalMain.scrollTo({
                 top: scrollTo + modalMain.scrollTop,
                 left: 0,
@@ -617,18 +619,18 @@ class Modal {
 }
 
 class FatalError {
-    constructor({title, text, isFullScreen = true}) {
+    constructor({ title, text, isFullScreen = true }) {
         this.title = title;
         this.text = text;
         this.isFullScreen = isFullScreen;
         this.element = FatalError.render(this);
     }
 
-    static minify(element){
+    static minify(element) {
         element.classList.add('fatal-error--minified');
     }
 
-    static render({title, text, isFullScreen}){
+    static render({ title, text, isFullScreen }) {
         const element = document.createElement('div');
         element.classList.add('fatal-error');
         element.innerHTML = `
@@ -658,7 +660,7 @@ class FatalError {
         const closeBtn = element.querySelector('.fatal-error__close-btn');
 
         closeBtn.addEventListener('click', () => {
-            if(isFullScreen){
+            if (isFullScreen) {
                 isFullScreen = false;
                 FatalError.minify(element);
                 document.body.classList.remove('no-overflow');
@@ -666,7 +668,7 @@ class FatalError {
             }
         })
 
-        if(!isFullScreen){
+        if (!isFullScreen) {
             FatalError.minify(element);
             document.body.classList.remove('no-overflow');
             closeBtn.remove();
@@ -766,7 +768,7 @@ class Validation {
     }
 }
 
-class TalkBubbles{
+class TalkBubbles {
     constructor(element, timeout) {
         this.$wrapper = null;
         this.$list = null;
@@ -784,7 +786,7 @@ class TalkBubbles{
         }
     }
 
-    init = function(element){
+    init = function (element) {
         try {
             this.$wrapper = element;
             this.$wrapper.TalkBubbles = this;
@@ -798,7 +800,7 @@ class TalkBubbles{
         this.createTypeMarker();
     }
 
-    restart = function (){
+    restart = function () {
         this.$bubbles.forEach(item => item.classList.remove('talk-bubbles__item--visible'));
         this.$typeMarker.classList.remove('talk-bubbles__type-marker--hidden');
         this.$list.style.height = this.$typeMarker.offsetHeight + 'px';
@@ -806,7 +808,7 @@ class TalkBubbles{
         this.animate(Array.from(this.$bubbles), 2000);
     }
 
-    createTypeMarker = function(){
+    createTypeMarker = function () {
         this.$typeMarker = document.createElement('div');
         this.$typeMarker.classList.add('talk-bubbles__type-marker');
         this.$typeMarker.innerHTML = `
@@ -817,11 +819,11 @@ class TalkBubbles{
         this.$list.style.height = this.$typeMarker.offsetHeight + 'px';
     }
 
-    animate = function(bubbles = Array.from(this.$bubbles)){
+    animate = function (bubbles = Array.from(this.$bubbles)) {
 
-        if(!this.isDone)
+        if (!this.isDone)
 
-            if(bubbles.length === this.$bubbles.length){
+            if (bubbles.length === this.$bubbles.length) {
                 this.$wrapper.dispatchEvent(this.events.talkBubblesStart);
             }
 
@@ -831,13 +833,13 @@ class TalkBubbles{
         bubble.classList.add('talk-bubbles__item--visible');
         this.$list.style.height = parseInt(this.$list.style.height) + bubble.offsetHeight + bubbleMargin + 'px';
 
-        if(bubbles.length === 1){
+        if (bubbles.length === 1) {
             this.$list.style.height = parseInt(this.$list.style.height) - this.$typeMarker.offsetHeight + 'px';
             this.$typeMarker.classList.add('talk-bubbles__type-marker--hidden');
 
             window.addEventListener('resize', () => {
                 this.$list.style = '';
-            }, {once: true})
+            }, { once: true })
 
             bubble.addEventListener('transitionend', () => {
                 this.isDone = true;
@@ -848,8 +850,8 @@ class TalkBubbles{
         }
 
         setTimeout(() => {
-            this.animate(bubbles.slice(1), this.timeout)
-        }, this.timeout)
+            this.animate(bubbles.slice(1), 0) //this.timeout
+        }, 0)
     }
 }
 
@@ -918,10 +920,10 @@ const SiteJS = {
         });
         this.expandTextarea('.input-text--textarea:not(.input-text--textarea--no-expand)');
         this.recordVideo('.video-record');
-        this.completeInput('[data-complete-input]','[data-complete-group]');
+        this.completeInput('[data-complete-input]', '[data-complete-group]');
         this.smoothScroll('[data-scroll-to]');
         this.copyToClipboard('.freevak-link-copy', '#freevak-link');
-        this.inputFile('.input-row--file','.input-row__input-file','.input-row__input-text');
+        this.inputFile('.input-row--file', '.input-row__input-file', '.input-row__input-text');
         this.tabs();
         this.replaceElements();
         this.videoPlayer();
@@ -929,14 +931,14 @@ const SiteJS = {
         this.fileAddImage();
         this.onScrollToElement({
             selector: '#steps-tile',
-            onReaching(element){
+            onReaching(element) {
                 const stepsFixed = document.querySelector('.sticky-note');
-                if(!stepsFixed) return;
+                if (!stepsFixed) return;
                 stepsFixed.classList.add('active');
             },
-            onLeaving(element){
+            onLeaving(element) {
                 const stepsFixed = document.querySelector('.sticky-note');
-                if(!stepsFixed) return;
+                if (!stepsFixed) return;
                 stepsFixed.classList.remove('active');
             }
         });
@@ -944,7 +946,11 @@ const SiteJS = {
         this.vacancyDetails();
         this.videoExamples();
 
-        if(document.querySelector('.reply-slider')){
+        if (document.querySelector('.main-section__img-item')) {
+            document.querySelector('.main-section__img-item')?.play();
+        }
+
+        if (document.querySelector('.reply-slider')) {
 
             const replySlider = new Swiper('.reply-slider', {
                 allowTouchMove: false,
@@ -1010,7 +1016,7 @@ const SiteJS = {
 
             slideNextBtn.addEventListener('click', () => {
 
-                if(replySlider.activeIndex + 2 === replySlider.slides.length){
+                if (replySlider.activeIndex + 2 === replySlider.slides.length) {
                     slideNextBtn.classList.add('reply-slider__nav-btn--collapsed');
                 }
                 replySlider.slideNext();
@@ -1019,7 +1025,7 @@ const SiteJS = {
             slidePrevBtn.addEventListener('click', () => {
                 slideNextBtn.classList.remove('reply-slider__nav-btn--collapsed')
 
-                if(replySlider.activeIndex === 0){
+                if (replySlider.activeIndex === 0) {
                     replySliderNested.slidePrev();
                 }
 
@@ -1038,7 +1044,7 @@ const SiteJS = {
             });
         }
 
-        if(document.querySelector('.reviews-section__slider')){
+        if (document.querySelector('.reviews-section__slider')) {
             const reviewsSlider = new Swiper('.reviews-section__slider', {
                 loop: false,
                 slidesPerView: 2,
@@ -1059,7 +1065,7 @@ const SiteJS = {
             });
         }
 
-        if(document.querySelector('.hiw-section__slider')){
+        if (document.querySelector('.hiw-section__slider')) {
             const hiwSlider = new Swiper('.hiw-section__slider', {
                 loop: false,
                 slidesPerView: 'auto',
@@ -1072,7 +1078,7 @@ const SiteJS = {
             });
         }
 
-        if(document.querySelector('.video-slider')){
+        if (document.querySelector('.video-slider')) {
             const videoSlider = new Swiper('.video-slider', {
                 effect: 'flip',
                 pagination: {
@@ -1098,13 +1104,13 @@ const SiteJS = {
 
                 label.innerText = `${videoSlider.activeIndex + 1} / ${videoSlider.slides.length}`;
 
-                if(!previousVideoElem.Video.state.isMuted){
+                if (!previousVideoElem.Video.state.isMuted) {
                     Video.unmute(currentVideoElem.Video);
                 } else {
                     Video.mute(currentVideoElem.Video);
                 }
 
-                if(!previousVideoElem.Video.state.isPaused){
+                if (!previousVideoElem.Video.state.isPaused) {
                     Video.play(currentVideoElem.Video);
                 }
 
@@ -1126,12 +1132,12 @@ const SiteJS = {
                 const progressBar = currentBullet.querySelector('.bullet-progress');
 
                 videoEl.addEventListener('ended', () => {
-                    if(videoSlider.activeIndex !== videoSlider.slides.length -1) {
+                    if (videoSlider.activeIndex !== videoSlider.slides.length - 1) {
                         videoSlider.slideNext();
 
                         const activeVideoEl = videoSlider.slides[videoSlider.activeIndex].querySelector('.video-player');
                         Video.play(activeVideoEl.Video);
-                    }else{
+                    } else {
                         videoSlider.slideTo(0);
                     }
                 });
@@ -1154,7 +1160,7 @@ const SiteJS = {
             })
         }
 
-        if(document.querySelector('.onboarding')){
+        if (document.querySelector('.onboarding')) {
             const wrapper = document.querySelector('.onboarding');
             const slider = wrapper.querySelector('.onboarding-slider');
             const progress = wrapper.querySelector('.progress');
@@ -1190,7 +1196,7 @@ const SiteJS = {
 
                 btn.addEventListener('click', () => {
 
-                    if(!videoWrapper.classList.contains('onboarding-video--active')){
+                    if (!videoWrapper.classList.contains('onboarding-video--active')) {
                         SiteJS.fadeIn(videoWrapper, {
                             onComplete: () => {
                                 videoWrapper.classList.add('onboarding-video--active');
@@ -1221,7 +1227,7 @@ const SiteJS = {
                 initTalkBubbles(activeSlide);
                 calcSlideHeight(swiper);
 
-                if(slideOnboardingVideo && !videoElement.src && !videoElement.VideoRecorder){
+                if (slideOnboardingVideo && !videoElement.src && !videoElement.VideoRecorder) {
                     SiteJS.onboardingRecord(slideOnboardingVideo);
                 }
 
@@ -1234,17 +1240,17 @@ const SiteJS = {
                 // }
             });
 
-            function calcSlideHeight(swiper){
+            function calcSlideHeight(swiper) {
                 const index = swiper.activeIndex;
                 const slides = swiper.slides;
                 const activeSlide = swiper.slides[swiper.activeIndex];
                 const prevSlide = swiper.slides[swiper.previousIndex];
 
-                if(prevSlide){
+                if (prevSlide) {
                     prevSlide.style.height = window.getComputedStyle(swiper.$spacer).height;
                 }
 
-                if(!activeSlide.dataset.height){
+                if (!activeSlide.dataset.height) {
                     const bubbles = activeSlide.querySelector('.talk-bubbles');
 
                     bubbles.TalkBubbles.on('talkBubblesDone', () => {
@@ -1256,8 +1262,8 @@ const SiteJS = {
                 }
             }
 
-            function initTalkBubbles(wrapper){
-                if(!wrapper.querySelector('.talk-bubbles') || wrapper.querySelector('.talk-bubbles').TalkBubbles){
+            function initTalkBubbles(wrapper) {
+                if (!wrapper.querySelector('.talk-bubbles') || wrapper.querySelector('.talk-bubbles').TalkBubbles) {
                     return;
                 }
                 const bubbles = wrapper.querySelector('.talk-bubbles');
@@ -1267,7 +1273,7 @@ const SiteJS = {
                 bubblesInstance.on('talkBubblesDone', (e) => {
                     const activeSlide = onboardSlider.slides[onboardSlider.activeIndex];
                     activeSlide.querySelectorAll('.onboarding-slider__btn').forEach(btn => {
-                        if(!btn.classList.contains('onboarding-slider__btn--after-record')){
+                        if (!btn.classList.contains('onboarding-slider__btn--after-record')) {
                             btn.disabled = false;
                         }
                     })
@@ -1276,7 +1282,24 @@ const SiteJS = {
 
             nextBtn.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    onboardSlider.slideNext();
+
+                    const activeIndex = onboardSlider.activeIndex;
+                    const currentSlide = onboardSlider.slides[activeIndex];
+
+                    const formFields = currentSlide.querySelectorAll('.input-text:not(.link-panel__input)');
+                    if (formFields.length) {
+                        formFields.forEach(el => {
+                            if (!el.value) {
+                                el.classList.add('invalid')
+                            } else {
+                                el.classList.remove('invalid')
+                            }
+                        });
+                        const isFormFieldsFilled = Array.from(formFields).every(el => el.value);
+                        isFormFieldsFilled ? onboardSlider.slideNext() : this.alert('Заповніть всі обов\'язкові поля', 'danger').start;
+                    } else {
+                        onboardSlider.slideNext();
+                    }
                 })
             })
 
@@ -1285,72 +1308,100 @@ const SiteJS = {
                     onboardSlider.slidePrev();
                 })
             })
+
+            const nameField = document.querySelector('.onboarding-name-field');
+            const namePlaceholder = document.querySelector('.onboarding-name-placeholder');
+
+            nameField.addEventListener('change', (e) => {
+                namePlaceholder.textContent = e.currentTarget.value;
+            });
+
+            const positionField = document.querySelector('.onboarding-position-field');
+            const positionPlaceholder = document.querySelectorAll('.onboarding-position-placeholder');
+            const positionFieldPlaceholder = document.querySelectorAll('.onboarding-position-field-placeholder');
+            const positionBalloons = document.querySelectorAll('.onboarding-position-balloon');
+
+            positionField.addEventListener('change', (e) => {
+                positionPlaceholder.forEach(p => {
+                    p.textContent = e.currentTarget.value.toLowerCase()
+                })
+
+                positionFieldPlaceholder.forEach(p => {
+                    p.value += ` «${e.currentTarget.value.toLowerCase()}»`
+                })
+            });
+
+            positionFieldPlaceholder.forEach(p => {
+                p.addEventListener('input', (e) => {
+                    positionBalloons.forEach(i => i.innerHTML = e.target.value)
+                })
+            })
         }
 
         // form validations
 
         this.startValidation({
             formSelector: '#name-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
 
         this.startValidation({
             formSelector: '#age-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
 
         this.startValidation({
             formSelector: '#location-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
 
         this.startValidation({
             formSelector: '#cvv-portfolio-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
 
         this.startValidation({
             formSelector: '#position-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
 
         this.startValidation({
             formSelector: '#about-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
 
         this.startValidation({
             formSelector: '#experience-edit-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
 
         this.startValidation({
             formSelector: '#experience-add-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
 
         this.startValidation({
             formSelector: '#phone-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
 
         this.startValidation({
             formSelector: '#email-form',
-            cb: () => {alert('valid')}
+            cb: () => { alert('valid') }
         });
     },
-    fadeOut: function (element, options){
+    fadeOut: function (element, options) {
         let callbacks = {
-            onStart: () => {},
-            onComplete: () => {},
+            onStart: () => { },
+            onComplete: () => { },
         }
 
-        callbacks = {...callbacks, ...options}
+        callbacks = { ...callbacks, ...options }
 
         let alpha = 1;
         callbacks.onStart();
         const timer = setInterval(() => {
-            if (alpha <= 0){
+            if (alpha <= 0) {
                 element.style.opacity = '';
                 element.style.display = 'none'
                 clearInterval(timer);
@@ -1360,20 +1411,20 @@ const SiteJS = {
             }
         }, 20);
     },
-    fadeIn: function (element, options){
+    fadeIn: function (element, options) {
         let callbacks = {
-            onStart: () => {},
-            onComplete: () => {},
+            onStart: () => { },
+            onComplete: () => { },
         }
 
-        callbacks = {...callbacks, ...options}
+        callbacks = { ...callbacks, ...options }
 
         let alpha = .0;
         element.style.opacity = '0';
         element.style.display = 'block';
         callbacks.onStart();
         const timer = setInterval(() => {
-            if (alpha >= 1){
+            if (alpha >= 1) {
                 clearInterval(timer);
                 element.style.opacity = '1';
                 callbacks.onComplete();
@@ -1382,11 +1433,11 @@ const SiteJS = {
             }
         }, 20);
     },
-    videoExamples: function (){
+    videoExamples: function () {
         const modalButtons = document.querySelectorAll('.video-examples__item');
         const modals = document.querySelectorAll('.onboarding-modal');
 
-        if(!modalButtons.length || !modals.length) return;
+        if (!modalButtons.length || !modals.length) return;
 
         modalButtons.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -1402,10 +1453,9 @@ const SiteJS = {
 
         modals.forEach(modal => {
             modal.addEventListener('click', (e) => {
-                if(e.target === e.currentTarget
+                if (e.target === e.currentTarget
                     || e.target.classList.contains('onboarding-modal__close')
-                    || e.target.closest('.onboarding-modal__close'))
-                {
+                    || e.target.closest('.onboarding-modal__close')) {
                     SiteJS.fadeOut(modal, {
                         onComplete: () => modal.classList.remove('onboarding-modal--active')
                     })
@@ -1414,11 +1464,11 @@ const SiteJS = {
             })
         })
     }, //---------------------------------------------------------------------------------
-    vacancyDetails: function (){
+    vacancyDetails: function () {
         const detailsEl = document.querySelector('#vacancy-details');
         const btn = document.querySelector('#show-vacancy-details');
 
-        if(!btn || !detailsEl) {
+        if (!btn || !detailsEl) {
             return
         }
 
@@ -1429,13 +1479,13 @@ const SiteJS = {
             item.addEventListener('click', toggleDetailsVisibility)
         });
         detailsEl.addEventListener('click', (e) => {
-            if(e.target === e.currentTarget){
+            if (e.target === e.currentTarget) {
                 toggleDetailsVisibility();
             }
         })
 
-        function toggleDetailsVisibility(){
-            if(detailsEl.classList.contains('vacancy-details--active')){
+        function toggleDetailsVisibility() {
+            if (detailsEl.classList.contains('vacancy-details--active')) {
                 detailsEl.classList.remove('vacancy-details--active');
                 document.body.classList.remove('no-overflow');
             } else {
@@ -1444,19 +1494,19 @@ const SiteJS = {
             }
         }
     },
-    formReset: function(formElement){
+    formReset: function (formElement) {
         formElement.reset();
 
-        for ( const element of formElement){
-            if(element.InputFocusUpdate) element.InputFocusUpdate();
-            if(element.customValidation) element.customValidation.clearInvalidities(element);
+        for (const element of formElement) {
+            if (element.InputFocusUpdate) element.InputFocusUpdate();
+            if (element.customValidation) element.customValidation.clearInvalidities(element);
         }
     },
-    startValidation: function({formSelector, cb = () => {}}){
+    startValidation: function ({ formSelector, cb = () => { } }) {
 
         const formCollection = document.querySelectorAll(formSelector);
 
-        if(!formCollection.length) return;
+        if (!formCollection.length) return;
 
         formCollection.forEach(formEl => {
             const submitBtnCollection = formEl.querySelectorAll('[data-validation-btn]');
@@ -1557,7 +1607,7 @@ const SiteJS = {
 
         // applying Validation class and binding checks for inputs by data attribute
         formControls.forEach(element => {
-            if(!element.customValidation){
+            if (!element.customValidation) {
                 element.customValidation = new Validation(element);
                 element.customValidation.init()
 
@@ -1613,9 +1663,9 @@ const SiteJS = {
             if (!invalidElements) {
                 cb();
             }
-        }, {once: true})
+        }, { once: true })
     },
-    fileAddImage: function(){
+    fileAddImage: function () {
         const wrapper = document.querySelectorAll('.add-file');
 
         wrapper.forEach(item => {
@@ -1630,13 +1680,13 @@ const SiteJS = {
                 fileListOutput.classList.remove('error');
                 fileListOutput.innerHTML = '';
 
-                for(let i = 0; i < inputFile.files.length; i++){
+                for (let i = 0; i < inputFile.files.length; i++) {
 
                     const elem = document.createElement('div');
                     elem.innerHTML = `<img src="" class="add-file__img" alt="image">`;
 
                     const reader = new FileReader();
-                    reader.onload = function(){
+                    reader.onload = function () {
                         const dataURL = reader.result;
                         const output = elem.querySelector('.add-file__img');
                         output.src = dataURL;
@@ -1655,7 +1705,7 @@ const SiteJS = {
                 }
             })
 
-            if(clearFile) {
+            if (clearFile) {
                 clearFile.addEventListener('click', (e) => {
                     e.preventDefault();
                     fileListOutput.classList.remove('error');
@@ -1667,10 +1717,10 @@ const SiteJS = {
 
         })
     },
-    onScrollToElement({selector, onReaching = () => undefined, onLeaving = () => undefined}){
+    onScrollToElement({ selector, onReaching = () => undefined, onLeaving = () => undefined }) {
         const elementCollection = document.querySelectorAll(selector);
 
-        if(!elementCollection.length){
+        if (!elementCollection.length) {
             return
         }
 
@@ -1678,12 +1728,12 @@ const SiteJS = {
             let isElementReached = false;
 
             window.addEventListener('scroll', () => {
-                if(window.scrollY - element.offsetTop - element.offsetHeight > 150 && !isElementReached){
+                if (window.scrollY - element.offsetTop - element.offsetHeight > 150 && !isElementReached) {
                     isElementReached = true;
                     onReaching(element);
                 }
 
-                if(window.scrollY - element.offsetTop - element.offsetHeight < 150 && isElementReached){
+                if (window.scrollY - element.offsetTop - element.offsetHeight < 150 && isElementReached) {
                     isElementReached = false;
                     onLeaving(element)
                 }
@@ -1697,17 +1747,17 @@ const SiteJS = {
             document.body.classList.add('hover-device');
         }
     },
-    videoPlayer(){
+    videoPlayer() {
         const players = document.querySelectorAll('.video-player');
 
-        if(!players.length) return;
+        if (!players.length) return;
 
-        players.forEach(player => new Video({element: player}).init())
+        players.forEach(player => new Video({ element: player }).init())
     },
-    replaceElements(){
+    replaceElements() {
         const wrapperEl = document.querySelectorAll('.replace-elements');
 
-        if(!wrapperEl.length) return;
+        if (!wrapperEl.length) return;
 
         wrapperEl.forEach(wrapper => {
 
@@ -1715,10 +1765,10 @@ const SiteJS = {
             elements.forEach(elem => {
 
                 elem.addEventListener('click', (e) => {
-                    if(e.target.classList.contains('replace-elements__arr-left')
+                    if (e.target.classList.contains('replace-elements__arr-left')
                         || e.target.classList.contains('replace-elements__arr-right')
                         || e.target.closest('.replace-elements__arr-left')
-                        || e.target.closest('.replace-elements__arr-right')){
+                        || e.target.closest('.replace-elements__arr-right')) {
                         e.preventDefault();
                     }
                 })
@@ -1731,10 +1781,10 @@ const SiteJS = {
                     e.stopPropagation();
                     const prevElement = elem.previousElementSibling;
 
-                    if(prevElement){
+                    if (prevElement) {
                         prevElement.replaceWith(elem);
                         elem.after(prevElement);
-                        this.alert('Порядок видео изменен','success').start
+                        this.alert('Порядок видео изменен', 'success').start
                     }
                 })
 
@@ -1743,18 +1793,18 @@ const SiteJS = {
                     e.stopPropagation();
                     const nextElement = elem.nextElementSibling;
 
-                    if(nextElement){
+                    if (nextElement) {
                         nextElement.replaceWith(elem);
                         elem.before(nextElement);
-                        this.alert('Порядок видео изменен','success').start
+                        this.alert('Порядок видео изменен', 'success').start
                     }
                 })
             })
         })
     },
-    tabs(){
+    tabs() {
         const elements = document.querySelectorAll('[data-tab-group]');
-        if(!elements.length) return;
+        if (!elements.length) return;
 
         const groups = [];
 
@@ -1762,7 +1812,7 @@ const SiteJS = {
             const groupName = element.getAttribute('data-tab-group');
             let targetGroup = groups.find(group => groupName === group.name);
 
-            if(!targetGroup){
+            if (!targetGroup) {
                 groups.push({
                     name: groupName,
                     anchors: [],
@@ -1772,21 +1822,21 @@ const SiteJS = {
             }
 
             const isAnchor = element.hasAttribute('data-tab-anchor');
-            if(isAnchor){
+            if (isAnchor) {
                 targetGroup.anchors.push(element);
             } else {
                 targetGroup.contentElements.push(element);
             }
         });
 
-        function showContent(activeAnchor, group){
+        function showContent(activeAnchor, group) {
             const anchorTarget = activeAnchor.getAttribute('data-tab-anchor');
 
             group.contentElements.forEach(element => {
                 const elementID = element.getAttribute('data-tab-content-id');
                 const formFields = element.querySelectorAll('.input-text, .input-text--textarea, .input-row__input-file');
 
-                if(anchorTarget === elementID){
+                if (anchorTarget === elementID) {
                     element.style = '';
                     formFields.forEach(field => field.disabled = false);
                 } else {
@@ -1796,17 +1846,17 @@ const SiteJS = {
             })
 
             group.anchors.forEach(anchor => {
-                anchor.removeAttribute('data-tab-active','');
+                anchor.removeAttribute('data-tab-active', '');
 
-                if(anchor === activeAnchor){
-                    anchor.setAttribute('data-tab-active','');
+                if (anchor === activeAnchor) {
+                    anchor.setAttribute('data-tab-active', '');
                 }
             })
         }
 
-        groups.forEach( group => {
+        groups.forEach(group => {
             group.anchors.forEach(anchor => {
-                if(anchor.hasAttribute('data-tab-active')){
+                if (anchor.hasAttribute('data-tab-active')) {
                     showContent(anchor, group);
                 }
                 anchor.addEventListener('click', () => {
@@ -1815,16 +1865,16 @@ const SiteJS = {
             })
         })
     },
-    inputFile(wrapperSelector, inputFileSelector, inputTextSelector){
+    inputFile(wrapperSelector, inputFileSelector, inputTextSelector) {
         const wrappers = document.querySelectorAll(wrapperSelector);
 
-        if(!wrappers.length) return
+        if (!wrappers.length) return
 
         wrappers.forEach(item => {
             const inputFile = item.querySelector(inputFileSelector);
             const inputText = item.querySelector(inputTextSelector);
 
-            if(!inputFile || !inputText) return
+            if (!inputFile || !inputText) return
 
             inputText.addEventListener('click', () => {
                 inputFile.click();
@@ -1832,33 +1882,45 @@ const SiteJS = {
 
             inputFile.addEventListener("change", () => {
                 let value = '';
-                if(inputFile.files.length) {
-                    for(let key of inputFile.files){
+                if (inputFile.files.length) {
+                    for (let key of inputFile.files) {
                         value += key.name + " ";
                     }
                 }
                 inputText.value = value
-                if(inputText.InputFocusUpdate) inputText.InputFocusUpdate();
-                if(inputText.customValidation) inputText.customValidation.checkValidity(inputText);
+                if (inputText.InputFocusUpdate) inputText.InputFocusUpdate();
+                if (inputText.customValidation) inputText.customValidation.checkValidity(inputText);
             })
         });
     },
-    copyToClipboard(triggerSelector, sourceInputID){
+    copyToClipboard(triggerSelector) {
         const triggers = document.querySelectorAll(triggerSelector);
-        const sourceInput = document.querySelector(sourceInputID);
 
-        if(!sourceInput) return;
+        if (!triggers.length) return;
 
         triggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                sourceInput.select();
-                document.execCommand('copy');
-                this.alert('Ссылка скопирована', 'success').start
-            })
+            const sourceInputId = trigger.dataset.sourceInputId;
+            const sourceInput = document.getElementById(sourceInputId);
+
+            if (sourceInputId) {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(sourceInput.innerText).then(() => {
+                            this.alert('Ссылка скопирована', 'success').start
+                        }, () => {
+                            this.alert('Не удалось скопировать', 'success').start
+                        });
+                    } else {
+                        sourceInput.select();
+                        document.execCommand('copy');
+                        this.alert('Ссылка скопирована', 'success').start
+                    }
+                })
+            }
         })
     },
-    alert(text, style = 'info', timeout = 3000){
+    alert(text, style = 'info', timeout = 3000) {
 
         const events = {
             beforeShow: [],
@@ -1882,11 +1944,11 @@ const SiteJS = {
             },
             danger: {
                 className: 'alert--danger',
-                icon: 'icon--check-24'
+                icon: 'icon--close-24'
             },
         }
 
-        function start(){
+        function start() {
             const element = document.createElement('div');
             element.classList.add('alert', styles[style]['className']);
             element.innerHTML = `
@@ -1907,7 +1969,7 @@ const SiteJS = {
 
         return {
             beforeShow(cb) {
-                if(typeof cb !== 'function'){
+                if (typeof cb !== 'function') {
                     console.error('Callback should be a function')
                 } else {
                     events.beforeShow.push(cb);
@@ -1916,7 +1978,7 @@ const SiteJS = {
                 return this
             },
             afterShow(cb) {
-                if(typeof cb !== 'function'){
+                if (typeof cb !== 'function') {
                     console.error('Callback should be a function')
                 } else {
                     events.afterShow.push(cb);
@@ -1925,7 +1987,7 @@ const SiteJS = {
                 return this
             },
             beforeHide(cb) {
-                if(typeof cb !== 'function'){
+                if (typeof cb !== 'function') {
                     console.error('Callback should be a function')
                 } else {
                     events.beforeHide.push(cb);
@@ -1934,7 +1996,7 @@ const SiteJS = {
                 return this
             },
             afterHide(cb) {
-                if(typeof cb !== 'function'){
+                if (typeof cb !== 'function') {
                     console.error('Callback should be a function')
                 } else {
                     events.afterHide.push(cb);
@@ -1942,30 +2004,30 @@ const SiteJS = {
 
                 return this
             },
-            get start(){
+            get start() {
                 return start()
             }
         }
     },
-    smoothScroll: function(btnSelector){
+    smoothScroll: function (btnSelector) {
         const buttons = document.querySelectorAll(btnSelector);
         let timerId = null;
 
         const resetTargetClass = () => {
             const smoothScrollTargets = document.querySelectorAll('.smooth-scroll-target');
 
-            if(timerId) {
+            if (timerId) {
                 clearInterval(timerId);
             }
 
-            if(smoothScrollTargets.length){
+            if (smoothScrollTargets.length) {
                 smoothScrollTargets.forEach(item => {
                     item.classList.remove('smooth-scroll-target');
                 })
             }
         }
 
-        buttons.forEach( btn => {
+        buttons.forEach(btn => {
             const targetId = btn.getAttribute('data-scroll-to');
             const targetElement = document.querySelector(`[data-scroll-id="${targetId}"]`);
 
@@ -1987,11 +2049,11 @@ const SiteJS = {
 
         document.addEventListener('click', resetTargetClass);
     },
-    expandTextarea: function(selector){
+    expandTextarea: function (selector) {
         const elements = document.querySelectorAll(selector);
 
         elements.forEach(el => {
-            if(el.tagName.toLowerCase() !== 'textarea') return;
+            if (el.tagName.toLowerCase() !== 'textarea') return;
 
             calcHeight(el);
             el.addEventListener('input', (e) => calcHeight(e.currentTarget));
@@ -2002,17 +2064,17 @@ const SiteJS = {
             element.style.height = element.scrollHeight + (element.offsetHeight - element.clientHeight) + 'px';
         }
     },
-    createElement: function({tag, classes, html}) {
+    createElement: function ({ tag, classes, html }) {
         const btn = document.createElement(tag);
         btn.classList.add(...classes);
         btn.innerHTML = html;
         return btn;
     },
-    resizeThrottler: function(cb){
+    resizeThrottler: function (cb) {
         let throttle = false;
 
         window.addEventListener('resize', () => {
-            if(!throttle) {
+            if (!throttle) {
                 throttle = true;
                 setTimeout(() => {
                     cb();
@@ -2021,48 +2083,48 @@ const SiteJS = {
             }
         })
     },
-    moveElement: function ({elementId, targetId, mediaQuery, insertionMethod}) {
+    moveElement: function ({ elementId, targetId, mediaQuery, insertionMethod }) {
         const element = document.getElementById(elementId);
         const target = document.getElementById(targetId);
 
-        if(!element || !target) return;
+        if (!element || !target) return;
 
         const elementMockup = document.createElement('div');
         elementMockup.cssText = "display: none";
-        elementMockup.setAttribute('data-element-dom-anchor',`${elementId}`);
+        elementMockup.setAttribute('data-element-dom-anchor', `${elementId}`);
         element.after(elementMockup);
 
         move();
         this.resizeThrottler(move);
 
         function move() {
-            if(window.matchMedia(`(${mediaQuery})`).matches){
+            if (window.matchMedia(`(${mediaQuery})`).matches) {
                 insertionMethod(element, target);
             } else {
                 elementMockup.before(element);
             }
         }
     },
-    completeInput: function(inputSelector, groupSelector){
+    completeInput: function (inputSelector, groupSelector) {
 
         const inputs = document.querySelectorAll(inputSelector);
         const groups = document.querySelectorAll(groupSelector);
 
-        if(!inputs.length || !groups.length) return;
+        if (!inputs.length || !groups.length) return;
 
         groups.forEach(group => {
             group.addEventListener('click', (e) => {
 
-                if(e.target.hasAttribute('data-complete-btn') || e.target.closest('[data-complete-btn]')) {
+                if (e.target.hasAttribute('data-complete-btn') || e.target.closest('[data-complete-btn]')) {
 
-                    if(e.target.hasAttribute('data-complete-text')){
+                    if (e.target.hasAttribute('data-complete-text')) {
                         updateInputs(e.target.textContent);
                         return;
                     }
 
                     const textContainer = e.target.querySelector('[data-complete-text]');
 
-                    if(!textContainer){
+                    if (!textContainer) {
                         console.error('CompleteInput requests an element width "data-complete-text"-attribute');
                     } else {
                         updateInputs(textContainer.textContent);
@@ -2071,24 +2133,24 @@ const SiteJS = {
             })
         })
 
-        function updateInputs(value){
+        function updateInputs(value) {
             inputs.forEach(input => {
                 input.value = value.trim();
-                if(input.InputFocusUpdate) input.InputFocusUpdate();
-                if(input.customValidation) input.customValidation.checkValidity(input);
+                if (input.InputFocusUpdate) input.InputFocusUpdate();
+                if (input.customValidation) input.customValidation.checkValidity(input);
             })
         }
     },
-    async recordReply(){
+    async recordReply() {
 
         const slides = document.querySelectorAll('.reply-slider__slide--video');
         const sliderNav = document.querySelector('.reply-slider__nav');
 
-        if(slides.length === 0) return;
+        if (slides.length === 0) return;
 
         slides.forEach(slide => {
             const recordBtn = slide.querySelector('.video-slide__btn--record');
-            if(!recordBtn) return;
+            if (!recordBtn) return;
 
             recordBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2096,14 +2158,19 @@ const SiteJS = {
             })
         })
 
-        async function createRecorder(wrapper, sliderNav){
+        async function createRecorder(wrapper, sliderNav) {
             const videoWrapper = wrapper.querySelector('.reply-video');
             const videoElement = wrapper.querySelector('.reply-video-record');
             const videoDuration = videoWrapper.getAttribute('data-video-duration');
             const slideNextBtn = sliderNav.querySelector('.reply-slider__slide-next');
             const slidePrevBtn = sliderNav.querySelector('.reply-slider__slide-prev');
 
-            if(!videoElement) return;
+            //----
+            const recordBtn = wrapper.querySelector('.video-slide__btn--record');
+            const countdownInstance = new Counter(wrapper.querySelector('.reply-slider__countdown'));
+            const videoCounter = wrapper.querySelector('.video-slide__slide-counter');
+
+            if (!videoElement) return;
 
             const controlBar = wrapper.querySelector('.reply-video-control-bar');
 
@@ -2128,8 +2195,8 @@ const SiteJS = {
                 counterInstance.stop();
             });
 
-            doneBtn.style = `animation-duration: ${videoDuration}s`;
             controlBar.append(doneBtn);
+            doneBtn.style.display = 'none';
 
             const counterInstance = new Counter(wrapper.querySelector('.btn__text--counter-value'));
 
@@ -2146,15 +2213,13 @@ const SiteJS = {
                 slidePrevBtn.disabled = true;
                 slideNextBtn.disabled = true;
                 controlBar.innerHTML = "";
-                const nestedLoader = wrapper.appendChild(loader);
                 await VideoRecorder.reset(recorderInstance);
-                controlBar.append(doneBtn);
 
-                setTimeout(() => {
-                    nestedLoader.remove();
-                    VideoRecorder.startRecording(recorderInstance);
-                    counterInstance.start();
-                }, 500);
+                controlBar.append(doneBtn);
+                doneBtn.style.display = 'none';
+
+                //
+                countdownInstance.start();
             });
 
             videoWrapper.style = 'display: block';
@@ -2162,14 +2227,25 @@ const SiteJS = {
             let recorderInstance = null;
             let initialSrc = null;
 
-            const loader = SiteJS.createElement({
-                tag: 'div',
-                classes: ['loader', 'reply-slider__loader'],
-                html: `<div class="loader__spinner"></div>`
-            });
+            countdownInstance.onStart = () => {
+                videoCounter.style.display = 'none';
+                recordBtn.style.display = 'none';
+                countdownInstance.element.style.display = 'block';
+            };
 
-            if(!videoElement.hasAttribute('src')){
-                const nestedLoader = wrapper.appendChild(loader);
+            countdownInstance.beforeChange = () => {
+                if (countdownInstance.timeLeft <= 1) {
+                    countdownInstance.element.style.display = 'none';
+                    counterInstance.start();
+
+                    doneBtn.style.display = 'flex';
+                    doneBtn.style.animationDuration = `${videoDuration}s`;
+                    VideoRecorder.startRecording(recorderInstance);
+                    countdownInstance.reset();
+                }
+            };
+
+            if (!videoElement.hasAttribute('src')) {
                 slidePrevBtn.disabled = true;
                 recorderInstance = new VideoRecorder({
                     element: videoElement,
@@ -2189,23 +2265,21 @@ const SiteJS = {
                     }
                 });
                 await recorderInstance.init();
-                setTimeout(() => {
-                    nestedLoader.remove();
-                    counterInstance.start();
-                    VideoRecorder.startRecording(recorderInstance);
-                }, 500);
+
+                //
+                countdownInstance.start();
             }
         }
     },
-    async recordVideo(selector){
+    async recordVideo(selector) {
 
         const videoElement = document.querySelector(selector);
-        if(!videoElement) return;
+        if (!videoElement) return;
 
         let recorderInstance = null;
         let initialSrc = null;
 
-        if(!videoElement.hasAttribute('src')){
+        if (!videoElement.hasAttribute('src')) {
             recorderInstance = new VideoRecorder({
                 element: videoElement,
                 constraints: {
@@ -2231,15 +2305,15 @@ const SiteJS = {
         const counterInstance = new Counter(document.querySelector('#video-counter'));
         const countdownInstance = new Counter(document.querySelector('#video-countdown'));
 
-        function rollbackVideoElem(){
+        function rollbackVideoElem() {
             VideoRecorder.destroy(recorderInstance);
             recorderInstance = null;
             videoElement.src = initialSrc;
             initialSrc = null;
 
-            videoElement.addEventListener('loadeddata', function() {
-                new Video({element: videoElement}).init();
-            }, {once: true});
+            videoElement.addEventListener('loadeddata', function () {
+                new Video({ element: videoElement }).init();
+            }, { once: true });
 
             videoElement.load();
         }
@@ -2266,14 +2340,14 @@ const SiteJS = {
             countdownInstance.reset();
             counterInstance.element.style.display = '';
 
-            if(initialSrc) rollbackVideoElem();
+            if (initialSrc) rollbackVideoElem();
         });
 
-        recordBtn.addEventListener('click',  async(e) => {
-            if(!recorderInstance){
+        recordBtn.addEventListener('click', async (e) => {
+            if (!recorderInstance) {
                 initialSrc = videoElement.getAttribute('src') || null;
 
-                if(videoElement.Video) Video.destroy(videoElement.Video);
+                if (videoElement.Video) Video.destroy(videoElement.Video);
 
                 recorderInstance = new VideoRecorder({
                     element: videoElement,
@@ -2309,7 +2383,7 @@ const SiteJS = {
         /* Countdown callbacks ----------------------------- */
 
         countdownInstance.onStart = () => {
-            countdownInstance.element.setAttribute('style','');
+            countdownInstance.element.setAttribute('style', '');
             recordBtn.remove();
             controlBar.prepend(cancelBtn);
             countdownInstance.element.style.display = 'block';
@@ -2317,7 +2391,7 @@ const SiteJS = {
         };
 
         countdownInstance.beforeChange = () => {
-            if(countdownInstance.timeLeft <= 1){
+            if (countdownInstance.timeLeft <= 1) {
                 countdownInstance.element.style.display = 'none';
                 cancelBtn.remove();
                 counterInstance.start();
@@ -2325,13 +2399,13 @@ const SiteJS = {
         };
 
         countdownInstance.onReset = () => {
-            countdownInstance.element.setAttribute('style','');
+            countdownInstance.element.setAttribute('style', '');
         };
 
         /* Control bar ----------------------------- */
 
         const controlBarMarkup = document.createElement('div');
-        controlBarMarkup.classList.add('grid','grid--on-xs');
+        controlBarMarkup.classList.add('grid', 'grid--on-xs');
 
         const controlBarSaveMarkup = `
             <div class="grid__col--12">
@@ -2386,7 +2460,7 @@ const SiteJS = {
             controlBar.prepend(recordBtn);
             await VideoRecorder.reset(recorderInstance);
 
-            if(initialSrc) rollbackVideoElem();
+            if (initialSrc) rollbackVideoElem();
         })
 
         saveRecord.addEventListener('click', async () => {
@@ -2419,7 +2493,7 @@ const SiteJS = {
             })
         }
     },
-    async onboardingRecord(videoWrapper){
+    async onboardingRecord(videoWrapper) {
         const videoElement = videoWrapper.querySelector('.onboarding-video__item');
         const videoDuration = videoWrapper.getAttribute('data-video-duration');
         const controlBar = videoWrapper.querySelector('.onboarding-video__controls');
@@ -2445,7 +2519,7 @@ const SiteJS = {
 
         let recorderInstance = null;
 
-        if(!videoElement.hasAttribute('src') || !videoElement.VideoRecorder){
+        if (!videoElement.hasAttribute('src') || !videoElement.VideoRecorder) {
             recorderInstance = new VideoRecorder({
                 element: videoElement,
                 constraints: {

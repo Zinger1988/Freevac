@@ -71,7 +71,8 @@
             
                                 <div class="swiper-slide reply-slider-nested__slide reply-slider-nested__slide--candidate-card">
             
-                                    <article class="content-tile content-tile--style--primary content-tile--alt2 reply-slider-nested__content-tile">
+                                    <article
+                                        class="content-tile content-tile--style--primary content-tile--alt2 reply-slider-nested__content-tile">
             
                                         <div class="reply-slider-nested__candidate-card candidate-card">
             
@@ -79,7 +80,8 @@
             
                                                 <div class="candidate-card__company name-balloon name-balloon--primary-lighter">
                                                     <div class="name-balloon__img name-balloon__img--briefcase">
-                                                        <img class="name-balloon__img-item" src="assets/img/temp/company-logo.jpg" alt="Teradek">
+                                                        <img class="name-balloon__img-item" src="assets/img/temp/company-logo.jpg"
+                                                            alt="Teradek">
                                                     </div>
                                                     <div class="name-balloon__title">Teradek</div>
                                                 </div>
@@ -90,19 +92,23 @@
                                                 </div>
             
                                                 <div class="candidate-card__desk">
-                                                    Мы ищем Product Designer, который готов(а) сделать свой вклад в разработку приложений № 1 в
+                                                    Мы ищем Product Designer, который готов(а) сделать свой вклад в разработку
+                                                    приложений № 1 в
                                                     мире в Health&Fitness направлении.
                                                 </div>
             
                                             </div><!-- candidate card body -->
             
-                                            <div class="controls-bar controls-bar--ver candidate-card__controls candidate-card__controls--reply">
-                                                <button class="btn btn--size--lg btn--style--primary-lighter-alt" id="show-vacancy-details">
+                                            <div
+                                                class="controls-bar controls-bar--ver candidate-card__controls candidate-card__controls--reply">
+                                                <button class="btn btn--size--lg btn--style--primary-lighter-alt"
+                                                    id="show-vacancy-details">
                                                     <i class="icon icon--size--lg icon--expand-48 btn__icon"></i>
                                                     <span class="btn__text">Подробнее</span>
                                                 </button>
             
-                                                <button class="btn btn--size--lg btn--style--accent reply-slider-nested__slide-next">
+                                                <button
+                                                    class="btn btn--size--lg btn--style--accent reply-slider-nested__slide-next">
                                                     <i class="icon icon--size--lg icon--send-48 btn__icon"></i>
                                                     <span class="btn__text">Ответить</span>
                                                 </button>
@@ -116,10 +122,12 @@
             
                                 <div class="swiper-slide reply-slider-nested__slide reply-slider-nested__slide--form">
             
-                                    <article class="content-tile reply-slider-nested__content-tile reply-slider-nested__content-tile--form content-tile--alt2">
+                                    <article
+                                        class="content-tile reply-slider-nested__content-tile reply-slider-nested__content-tile--form content-tile--alt2">
             
                                         <div class="reply-slider-nested__slide-header slide-header">
-                                            <div class="balloon balloon--style--accent slide-header__balloon">Давай знакомиться</div>
+                                            <div class="balloon balloon--style--accent slide-header__balloon">Давай знакомиться
+                                            </div>
                                             <div class="slide-header__order-count">1/6</div>
                                         </div><!--slide header-->
             
@@ -132,9 +140,17 @@
                                                     <input class="input-text input-row__input-text" type="text">
                                                 </div><!-- input row -->
             
-                                                <div class="input-row input-row--disabled form__input-row">
+                                                <!-- <div class="input-row input-row--disabled form__input-row">
                                                     <div class="input-row__title">ссылка на резюме/ портфолио</div>
                                                     <input class="input-text input-row__input-text" type="text">
+                                                </div> -->
+            
+                                                <div class="input-row input-row--pointer form__input-row"
+                                                    data-modal-id="user-cvv-portfolio">
+                                                    <div class="input-row__title">резюме / портфолио</div>
+                                                    <input
+                                                        class="input-text input-text--iconic input-text--iconic--angle-right input-row__input-text"
+                                                        readonly type="text">
                                                 </div><!-- input row -->
             
                                                 <div class="input-row input-row--disabled form__input-row">
@@ -150,11 +166,13 @@
                                             </div><!--form group-->
             
                                             <div class="form__pre-footer">
-                                                <a class="form__link" href="#" data-modal-id="login-alt">У меня есть аккаут Vividi</a>
+                                                <a class="form__link" href="#" data-modal-id="login-alt">У меня есть аккаут
+                                                    Vividi</a>
                                             </div>
             
                                             <div class="form__footer">
-                                                <button class="btn btn--fluid btn--style--accent btn--size--lg reply-slider-nested__slide-next-parent">
+                                                <button
+                                                    class="btn btn--fluid btn--style--accent btn--size--lg reply-slider-nested__slide-next-parent">
                                                     <i class="btn__icon icon icon--size--lg icon--send-48"></i>
                                                     <span class="btn__text">Ответить</span>
                                                 </button>
@@ -175,6 +193,14 @@
                     <div class="swiper-slide reply-slider__slide reply-slider__slide--video">
             
                         <div class="reply-slider__video-slide video-slide">
+                            <div class="video-slide__reply-video reply-video" data-video-duration="60">
+                                <video class="reply-video__item-video reply-video-record" playsinline>
+                                    You need an HTML 5-capable browser.
+                                </video>
+                                <div class="reply-video__control-bar reply-video-control-bar"></div>
+                            </div>
+            
+                            <div class="video-counter--countdown reply-slider__countdown" data-counter="3">3</div>
             
                             <div class="video-slide__slide-header slide-header">
                                 <div class="balloon balloon--style--accent slide-header__balloon">Расскажи немного о себе</div>
@@ -183,25 +209,20 @@
             
                             <div class="video-slide__slide-counter">02:00</div>
             
-                            <button class="btn btn--fluid btn--size--lg btn--style--primary-lighter video-slide__btn video-slide__btn--record">
+                            <button
+                                class="btn btn--fluid btn--size--lg btn--style--primary-lighter video-slide__btn video-slide__btn--record">
                                 <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
                                 <span class="btn__text">Снять</span>
                             </button>
-            
                         </div><!--video slide-->
-            
-                        <div class="video-slide__reply-video reply-video" data-video-duration="60">
-                            <video class="reply-video__item-video reply-video-record" playsinline>
-                                You need an HTML 5-capable browser.
-                            </video>
-                            <div class="reply-video__control-bar reply-video-control-bar"></div>
-                        </div>
             
                     </div><!--swiper slide-->
             
                     <div class="swiper-slide reply-slider__slide reply-slider__slide--video">
             
                         <div class="reply-slider__video-slide video-slide">
+            
+                            <div class="video-counter--countdown reply-slider__countdown" data-counter="3">3</div>
             
                             <div class="video-slide__slide-header slide-header">
                                 <div class="balloon balloon--style--accent slide-header__balloon">Опыт работы в Fintech</div>
@@ -210,7 +231,8 @@
             
                             <div class="video-slide__slide-counter">02:00</div>
             
-                            <button class="btn btn--fluid btn--size--lg btn--style--primary-lighter video-slide__btn video-slide__btn--record">
+                            <button
+                                class="btn btn--fluid btn--size--lg btn--style--primary-lighter video-slide__btn video-slide__btn--record">
                                 <i class="icon icon--size--lg icon--camera-48 btn__icon"></i>
                                 <span class="btn__text">Снять</span>
                             </button>
