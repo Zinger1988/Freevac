@@ -1121,7 +1121,6 @@ const SiteJS = {
 
         if (document.querySelector('.video-slider')) {
             const videoSlider = new Swiper('.video-slider', {
-                effect: 'flip',
                 pagination: {
                     el: '.video-slider__pagination',
                     type: 'bullets',
