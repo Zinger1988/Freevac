@@ -1,6 +1,6 @@
 "use strict";
 
-const {src, dest} = require("gulp");
+const { src, dest } = require("gulp");
 const gulp = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
@@ -27,28 +27,28 @@ const srcPath = "src/";
 
 const path = {
     build: {
-        html:   distPath,
-        css:    distPath + 'assets/css/',
-        js:     distPath + 'assets/js',
-        img:    distPath + 'assets/img/',
-        fonts:  distPath + 'assets/fonts/',
-        video:  distPath + 'assets/video/',
+        html: distPath,
+        css: distPath + 'assets/css/',
+        js: distPath + 'assets/js',
+        img: distPath + 'assets/img/',
+        fonts: distPath + 'assets/fonts/',
+        video: distPath + 'assets/video/',
     },
     src: {
-        html:   srcPath + '*.html',
-        css:    srcPath + 'assets/scss/style.scss',
-        js:     srcPath + 'assets/js/*.js',
-        img:    srcPath + 'assets/img/**/*.{jpg,png,svg,gif,ico,webp}',
-        fonts:  srcPath + 'assets/fonts/**/*.{eot,woff,woff2,ttf,svg}',
-        video:  srcPath + 'assets/video/**/*.{mp4,ogv}'
+        html: srcPath + '*.html',
+        css: srcPath + 'assets/scss/style.scss',
+        js: srcPath + 'assets/js/*.js',
+        img: srcPath + 'assets/img/**/*.{jpg,png,svg,gif,ico,webp}',
+        fonts: srcPath + 'assets/fonts/**/*.{eot,woff,woff2,ttf,svg}',
+        video: srcPath + 'assets/video/**/*.{mp4,ogv}'
     },
     watch: {
-        html:   srcPath + '**/*.html',
-        css:    srcPath + 'assets/scss/**/*.scss',
-        js:     srcPath + 'assets/js/**/*.js',
-        img:    srcPath + 'assets/img/**/*.{jpg,png,svg,gif,ico,webp}',
-        fonts:  srcPath + 'assets/fonts/**/*.{eot,woff,woff2,ttf,svg}',
-        video:  srcPath + 'assets/video/**/*.{mp4,ogv}'
+        html: srcPath + '**/*.html',
+        css: srcPath + 'assets/scss/**/*.scss',
+        js: srcPath + 'assets/js/**/*.js',
+        img: srcPath + 'assets/img/**/*.{jpg,png,svg,gif,ico,webp}',
+        fonts: srcPath + 'assets/fonts/**/*.{eot,woff,woff2,ttf,svg}',
+        video: srcPath + 'assets/video/**/*.{mp4,ogv}'
     },
     clean: './' + distPath
 };
@@ -65,29 +65,29 @@ const serve = () => {
     })
 };
 
-const html = () =>{
+const html = () => {
     panini.refresh();
-    return gulp.src(path.src.html, {base: srcPath})
+    return gulp.src(path.src.html, { base: srcPath })
         .pipe(plumber())
         .pipe(panini({
-            root:       srcPath,
-            layouts:    srcPath + 'layouts/',
-            partials:   srcPath + 'partials/',
-            helpers:    srcPath + 'helpers/',
-            data:       srcPath + 'data/'
+            root: srcPath,
+            layouts: srcPath + 'layouts/',
+            partials: srcPath + 'partials/',
+            helpers: srcPath + 'helpers/',
+            data: srcPath + 'data/'
         }))
         // .pipe(webPHtml())
         .pipe(gulp.dest(path.build.html))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 };
 
 const css = () =>
-    gulp.src(path.src.css, {base: srcPath + "assets/scss/"})
+    gulp.src(path.src.css, { base: srcPath + "assets/scss/" })
         .pipe(plumber({
-            errorHandler : function(err) {
+            errorHandler: function (err) {
                 notify.onError({
-                    title:    "SCSS Error",
-                    message:  "Error: <%= error.message %>"
+                    title: "SCSS Error",
+                    message: "Error: <%= error.message %>"
                 })(err);
                 this.emit('end');
             }
@@ -113,15 +113,15 @@ const css = () =>
             })
         )
         .pipe(gulp.dest(path.build.css))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 
 const cssWatch = () =>
-    src(path.src.css, {base: srcPath + "assets/scss/"})
+    src(path.src.css, { base: srcPath + "assets/scss/" })
         .pipe(plumber({
-            errorHandler : function(err) {
+            errorHandler: function (err) {
                 notify.onError({
-                    title:    "SCSS Error",
-                    message:  "Error: <%= error.message %>"
+                    title: "SCSS Error",
+                    message: "Error: <%= error.message %>"
                 })(err);
                 this.emit('end');
             }
@@ -138,15 +138,15 @@ const cssWatch = () =>
         }))
         .pipe(sourcemaps.write('./'))
         .pipe(dest(path.build.css))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 
 const js = () =>
-    gulp.src(path.src.js, {base: srcPath + "assets/js/"})
+    gulp.src(path.src.js, { base: srcPath + "assets/js/" })
         .pipe(plumber({
-            errorHandler : function(err) {
+            errorHandler: function (err) {
                 notify.onError({
-                    title:    "JS Error",
-                    message:  "Error: <%= error.message %>"
+                    title: "JS Error",
+                    message: "Error: <%= error.message %>"
                 })(err);
                 this.emit('end');
             }
@@ -171,15 +171,15 @@ const js = () =>
         //     }
         // }))
         .pipe(gulp.dest(path.build.js))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 
 const jsWatch = () =>
-    src(path.src.js, {base: srcPath + 'assets/js/'})
+    src(path.src.js, { base: srcPath + 'assets/js/' })
         .pipe(plumber({
-            errorHandler : function(err) {
+            errorHandler: function (err) {
                 notify.onError({
-                    title:    "JS Error",
-                    message:  "Error: <%= error.message %>"
+                    title: "JS Error",
+                    message: "Error: <%= error.message %>"
                 })(err);
                 this.emit('end');
             }
@@ -191,7 +191,7 @@ const jsWatch = () =>
         //     }
         // }))
         .pipe(dest(path.build.js))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 
 const images = () =>
     gulp.src(path.src.img)
@@ -205,8 +205,8 @@ const images = () =>
         .pipe(
             imagemin([
                 // imagemin.gifsicle({interlaced: true}),
-                imagemin.mozjpeg({quality: 95, progressive: true}),
-                imagemin.optipng({optimizationLevel: 5}),
+                imagemin.mozjpeg({ quality: 95, progressive: true }),
+                imagemin.optipng({ optimizationLevel: 5 }),
                 imagemin.svgo({
                     plugins: [
                         { removeViewBox: true },
@@ -216,17 +216,17 @@ const images = () =>
             ])
         )
         .pipe(gulp.dest(path.build.img))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 
 const fonts = () =>
     gulp.src(path.src.fonts)
         .pipe(dest(path.build.fonts))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 
 const video = () =>
     gulp.src(path.src.video)
         .pipe(dest(path.build.video))
-        .pipe(browserSync.reload({stream: true}));
+        .pipe(browserSync.reload({ stream: true }));
 
 const clean = () => del(path.clean);
 

@@ -1,6 +1,6 @@
-.video-slider{
+.video-slider {
 
-  &__pagination{
+  &__pagination {
     position: absolute;
     top: 1.2rem;
     left: 1.5rem !important;
@@ -9,7 +9,7 @@
     width: calc(100% - 3rem) !important;
     height: .4rem;
 
-    .swiper-pagination-bullet{
+    .swiper-pagination-bullet {
       position: relative;
       flex: 1 0 auto;
       border-radius: .2rem;
@@ -18,7 +18,11 @@
       background-color: $white;
       opacity: 1;
 
-      .bullet-progress{
+      &:only-child {
+        display: block !important;
+      }
+
+      .bullet-progress {
         position: absolute;
         left: 0;
         top: 0;
@@ -27,22 +31,22 @@
         background-color: $white;
         border-radius: .2rem;
 
-        &--active{
+        &--active {
           animation: progress linear;
         }
       }
     }
 
-    .swiper-pagination-bullet-active{
-      background-color: rgba($white,.24);
+    .swiper-pagination-bullet-active {
+      background-color: rgba($white, .24);
 
-      ~ .swiper-pagination-bullet{
+      ~.swiper-pagination-bullet {
         opacity: .24;
       }
     }
   }
 
-  .swiper-label{
+  .swiper-label {
     position: absolute;
     left: 1.2rem;
     top: 2.8rem;
@@ -54,6 +58,11 @@
 }
 
 @keyframes progress {
-  0% {width: 0}
-  100% {width: 100%}
+  0% {
+    width: 0
+  }
+
+  100% {
+    width: 100%
+  }
 }

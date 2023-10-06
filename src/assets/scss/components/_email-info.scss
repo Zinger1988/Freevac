@@ -1,36 +1,41 @@
-.email-info{
-  @include media(">=md"){
+.email-info {
+  @include media(">=md") {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem;
   }
 
-  &__content{
+  &__content {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     margin: 0 0 2rem;
+    gap: .8rem .4rem;
 
-    @include media(">=md"){
+    @include media(">=md") {
       margin: 0;
     }
   }
 
-  &__name{
+  &__name {
     font-size: $fontSize18;
     @include calcLineHeight($fontSize18);
-    margin: 0 0 .8rem;
     flex: 1 0 100%;
     font-weight: 500;
   }
 
-  &__date{
+  &__date {
     font-size: $fontSize12;
     @include calcLineHeight($fontSize12);
     padding: .4rem .5rem;
     background-color: $secondary;
     border-radius: .4rem;
-    margin: 0 .4rem 0 0;
     font-weight: 500;
+  }
+
+  &__controls {
+    display: flex;
+    gap: .4rem 0;
   }
 }

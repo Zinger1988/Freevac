@@ -412,7 +412,7 @@ class VideoRecorder {
         const { stream, element, controls: { marker } } = instance;
         let chunks = [];
         let options = {};
-        let types = ["video/mpeg"];
+        let types = ["video/webm"];
 
         types.find(type => {
             if (MediaRecorder.isTypeSupported(type)) {
@@ -942,9 +942,10 @@ const SiteJS = {
                 stepsFixed.classList.remove('active');
             }
         });
-        this.recordReply();
         this.vacancyDetails();
         this.videoExamples();
+        this.recordReply();
+        this.predicate('.predicate');
 
         if (document.querySelector('.main-section__img-item')) {
             document.querySelector('.main-section__img-item')?.play();
@@ -973,13 +974,53 @@ const SiteJS = {
                         const videoEl = swiper.slides[swiper.activeIndex].querySelector('.reply-video-record');
                         nextBtn.disabled = swiper.activeIndex !== 0 && !(videoEl && videoEl.src);
                     },
-                    slideChange: function (swiper) {
+                    slideChange: async function (swiper) {
                         swiper.$el[0].setAttribute('data-active-index', swiper.activeIndex);
 
                         const nextBtn = swiper.$el[0].querySelector('.reply-slider__slide-next');
-                        const videoEl = swiper.slides[swiper.activeIndex].querySelector('.reply-video-record');
+                        const activeSlive = swiper.slides[swiper.activeIndex];
+                        const prevSlide = swiper.slides[swiper.previousIndex];
+                        const videoWrapper = activeSlive.querySelector('.reply-video');
 
-                        nextBtn.disabled = swiper.activeIndex !== 0 && !(videoEl && videoEl.src);
+                        if (videoWrapper) {
+                            const videoElement = videoWrapper.querySelector('.reply-video-record');
+                            nextBtn.disabled = swiper.activeIndex !== 0 && !(videoElement && videoElement.src);
+
+                            videoWrapper.style = 'display: block';
+
+                            if (!videoElement.hasAttribute('src')) {
+                                let recorderInstance = new VideoRecorder({
+                                    element: videoElement,
+                                    constraints: {
+                                        video: {
+                                            width: {
+                                                min: 480,
+                                                max: 1280
+                                            },
+                                            height: {
+                                                min: 480,
+                                                max: 1280
+                                            },
+                                            facingMode: 'user',
+                                        },
+                                        audio: true
+                                    }
+                                });
+                                await recorderInstance.init();
+                            }
+                        }
+
+                        if (prevSlide) {
+                            const videoWrapper = prevSlide.querySelector('.reply-video');
+                            if (videoWrapper) {
+                                const videoElement = videoWrapper.querySelector('.reply-video-record');
+
+                                if (!videoElement.hasAttribute('src') && videoElement.VideoRecorder) {
+                                    videoWrapper.style = '';
+                                    VideoRecorder.destroy(videoElement.VideoRecorder);
+                                }
+                            }
+                        }
                     }
                 }
             })
@@ -1080,7 +1121,6 @@ const SiteJS = {
 
         if (document.querySelector('.video-slider')) {
             const videoSlider = new Swiper('.video-slider', {
-                effect: 'flip',
                 pagination: {
                     el: '.video-slider__pagination',
                     type: 'bullets',
@@ -2142,7 +2182,6 @@ const SiteJS = {
         }
     },
     async recordReply() {
-
         const slides = document.querySelectorAll('.reply-slider__slide--video');
         const sliderNav = document.querySelector('.reply-slider__nav');
 
@@ -2161,6 +2200,8 @@ const SiteJS = {
         async function createRecorder(wrapper, sliderNav) {
             const videoWrapper = wrapper.querySelector('.reply-video');
             const videoElement = wrapper.querySelector('.reply-video-record');
+            const recorderInstance = videoElement.VideoRecorder;
+
             const videoDuration = videoWrapper.getAttribute('data-video-duration');
             const slideNextBtn = sliderNav.querySelector('.reply-slider__slide-next');
             const slidePrevBtn = sliderNav.querySelector('.reply-slider__slide-prev');
@@ -2222,9 +2263,6 @@ const SiteJS = {
                 countdownInstance.start();
             });
 
-            videoWrapper.style = 'display: block';
-
-            let recorderInstance = null;
             let initialSrc = null;
 
             countdownInstance.onStart = () => {
@@ -2245,30 +2283,8 @@ const SiteJS = {
                 }
             };
 
-            if (!videoElement.hasAttribute('src')) {
-                slidePrevBtn.disabled = true;
-                recorderInstance = new VideoRecorder({
-                    element: videoElement,
-                    constraints: {
-                        video: {
-                            width: {
-                                min: 480,
-                                max: 1280
-                            },
-                            height: {
-                                min: 480,
-                                max: 1280
-                            },
-                            facingMode: 'user',
-                        },
-                        audio: true
-                    }
-                });
-                await recorderInstance.init();
-
-                //
-                countdownInstance.start();
-            }
+            slidePrevBtn.disabled = true;
+            countdownInstance.start();
         }
     },
     async recordVideo(selector) {
@@ -2466,7 +2482,7 @@ const SiteJS = {
         saveRecord.addEventListener('click', async () => {
             const file = await fetch(videoElement.src)
                 .then(res => res.blob())
-                .then(blobFile => new File([blobFile], "video.mp4", { type: "video/mpeg" }));
+                .then(blobFile => new File([blobFile], "video.webm", { type: "video/webm" }));
 
             const loader = document.createElement('div');
             loader.classList.add('video-holder__loader');
@@ -2602,5 +2618,71 @@ const SiteJS = {
         });
 
         videoWrapper.classList.add('onboarding-video__item--handled');
+    },
+    predicate(selector) {
+        const wrappers = document.querySelectorAll(selector);
+
+        if (!wrappers.length) return;
+
+        wrappers.forEach(wrapper => {
+            const input = wrapper.querySelector('.predicate-input');
+            const container = wrapper.querySelector('.predicate-container');
+            const items = wrapper.querySelectorAll('.predicate-item');
+
+            compareValue(input.value, items, container);
+
+            input.addEventListener('input', (e) => {
+                compareValue(e.target.value, items, container);
+            })
+
+            input.addEventListener('change', (e) => {
+                compareValue(e.target.value, items, container);
+            })
+
+            items.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const holder = item.querySelector('.predicate-holder');
+                    input.focus();
+                    input.value = holder.innerText;
+                    input.blur();
+                    resetItems(items);
+                })
+            })
+        })
+
+        function resetItems(items) {
+            items.forEach(item => item.style = '');
+        }
+
+        function compareValue(value, items, container) {
+            if (value.length < 2) {
+                items.forEach(item => {
+                    item.style = '';
+                });
+                return
+            }
+
+            if (value.length >= 2) {
+                items.forEach(item => {
+                    const holder = item.querySelector('.predicate-holder');
+
+                    holder.textContent.toLowerCase().includes(value.toLowerCase())
+                        ? item.style = ''
+                        : item.style.display = 'none'
+                })
+            }
+
+            const emptyBlock = document.createElement('p');
+            emptyBlock.classList.add('predicate-empty')
+            emptyBlock.innerText = 'Not found';
+
+            if (Array.from(items).filter(item => item.style.display !== 'none').length === 0) {
+                const emptyBlockEl = container.querySelector('.predicate-empty');
+                if (!emptyBlockEl) container.append(emptyBlock);
+            } else {
+                const emptyBlockEl = container.querySelector('.predicate-empty');
+                if (emptyBlockEl) emptyBlockEl.remove();
+            }
+        }
     }
 };
