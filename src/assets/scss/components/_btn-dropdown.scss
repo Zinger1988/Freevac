@@ -1,16 +1,20 @@
-.btn-dropdown{
+.btn-dropdown {
   position: relative;
 
   $this: &;
 
-  &:hover{
-    #{$this}__list{
+  &:hover {
+    #{$this}__list {
       opacity: 1;
       visibility: visible;
     }
+
+    #{$this}__btn {
+      background-color: $white;
+    }
   }
 
-  &__list{
+  &__list {
     opacity: 0;
     visibility: hidden;
     position: absolute;
@@ -21,29 +25,29 @@
     background-color: $white;
     border-radius: 1.6rem;
     padding: 1rem 0;
-    box-shadow: 0 .4rem 1.6rem rgba($black,.1);
+    box-shadow: 0 .4rem 1.6rem rgba($black, .1);
     z-index: 10;
     @extend %listreset;
     @include animate(opacity visibility);
   }
 
-  &__link{
+  &__link {
     @extend %linkreset;
     display: flex;
     align-items: center;
     padding: 1.2rem 1.6rem;
     @include animate(background-color);
 
-    &:hover{
+    &:hover {
       background-color: $secondary;
     }
   }
 
-  &__icon{
+  &__icon {
     margin: 0 1.6rem 0 0;
   }
 
-  &__text{
+  &__text {
     font-size: 1.6rem;
   }
 }

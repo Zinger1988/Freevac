@@ -1,72 +1,72 @@
-.page-header{
+.page-header {
   margin: 2.4rem 0;
 
   $this: &;
 
-  &__inner{
+  &__inner {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  &__logo{
+  &__logo {
     width: 16.2rem;
     flex-shrink: 0;
     margin: 0 1rem 0 0;
 
-    @include media(">=md"){
+    @include media(">=md") {
       width: 18.2rem;
       margin: 0 2rem 0 0;
     }
 
-    @include media(">=lg"){
+    @include media(">=lg") {
       margin: 0 4.8rem 0 0;
     }
 
-    &--fixed{
+    &--fixed {
 
-      @include media(">=lg"){
+      @include media(">=lg") {
         position: fixed;
         left: 3rem;
         top: 2.4rem;
         z-index: $logo-z-index;
       }
 
-      @include media(">=xl"){
+      @include media(">=xl") {
         // calculating fixed logo LEFT coordinate: (100% - (containerMaxWidth - containerPaddingX * 2)) / 2
         left: calc((100% - (119.4rem - 3rem * 2))/ 2);
       }
     }
   }
 
-  &__controls{
+  &__controls {
     margin: 0 0 0 auto;
     flex: 0 1 auto;
     min-width: 0;
   }
 
-  &__controls-btn{
+  &__controls-btn {
 
-    &:last-child{
+    &:last-child {
       margin-right: 0;
     }
 
-    &--logout-desk{
+    &--logout-desk {
       display: none;
     }
 
-    @include media(">=lg"){
-      &--logout-mob{
+    @include media(">=lg") {
+      &--logout-mob {
         display: none;
       }
 
-      &--logout-desk{
+      &--logout-desk {
         display: inline-flex;
       }
     }
   }
 
-  &--landing{
+  &--landing {
     position: absolute;
     left: 0;
     top: 0;
@@ -74,34 +74,111 @@
     margin: 1.7rem 0;
     z-index: 50;
 
-    #{$this}__controls-btn{
-      @include media(">=lg"){
+    #{$this}__controls-btn {
+      font-size: 1.4rem;
+      min-height: 3.5rem;
+      padding: 0.5em .75em;
+      margin: 0;
+
+      @include media(">=sm") {
+        font-size: 1.6rem;
+        padding: 0.5em 1em;
+        min-height: 4.8rem;
+      }
+
+      @include media(">=lg") {
         font-size: 1.8rem;
       }
     }
 
-    #{$this}__logo{
-      width: 12rem;
+    #{$this}__lang-selector {
+      margin-left: .4rem;
 
-      @include media(">=md"){
+      &:hover {
+        .lang-selector__current {
+          background-color: rgba($white, .2);
+        }
+      }
+
+      .lang-selector__current {
+        height: 3.5rem;
+        padding: .5rem 1rem;
+        border-radius: 1.8rem;
+        background-color: transparent;
+        box-shadow: inset 0 0 0 .1rem $white;
+        color: $white;
+        font-size: 1.2rem;
+        font-weight: normal;
+
+        @include media(">=sm") {
+          font-weight: 700;
+          font-size: 1.4rem;
+          padding: 0.5em 1em;
+          min-height: 4.8rem;
+          border-radius: 2.4rem;
+        }
+      }
+    }
+
+    #{$this}__logo {
+      width: 10rem;
+
+      @include media(">=sm") {
+        width: 12rem;
+      }
+
+      @include media(">=md") {
         width: 16.8rem;
       }
     }
   }
 
-  &__btn-dropdown .btn-dropdown__btn{
+  &__btn-dropdown .btn-dropdown__btn {
     max-width: 100%;
+    padding: 0;
+
+    @include media(">=md") {
+      padding: 0.5em .75em;
+    }
+
+    .name-balloon__img {
+      margin: 0;
+      width: 4.8rem;
+      height: 4.8rem;
+
+      @include media(">=md") {
+        margin: 0 1.2rem 0 0;
+        width: 3.2rem;
+        height: 3.2rem;
+      }
+
+      &::before {
+        font-size: 1.8rem;
+
+        @include media(">=md") {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    .name-balloon__title {
+      display: none;
+
+      @include media(">=md") {
+        display: block;
+      }
+    }
   }
 
-  &__tabs{
+  &__tabs {
     display: none;
 
-    @include media(">=lg"){
+    @include media(">=lg") {
       display: flex;
     }
   }
 
-  &__tabs-item{
+  &__tabs-item {
     margin: 0 1.6rem 0 0;
     color: $primaryLighter;
     text-decoration: none;
@@ -109,9 +186,13 @@
     line-height: 2.25;
     border-bottom: .2rem solid $primaryLighter;
 
-    &--active{
+    &--active {
       color: $white;
       border-bottom: .2rem solid $white;
     }
+  }
+
+  &__lang-selector {
+    margin-left: .4rem;
   }
 }

@@ -15,7 +15,7 @@
     margin: 0 1.2rem 0 0;
     flex: 0 0 auto;
 
-    &::before {;
+    &::before {
       font: 1.6rem 'Fontello';
       position: absolute;
       left: 50%;
@@ -24,13 +24,13 @@
       z-index: 1;
     }
 
-    &--briefcase{
+    &--briefcase {
       &::before {
         content: "\e855";
       }
     }
 
-    &--user{
+    &--user {
       &::before {
         content: "\e846";
       }
@@ -54,13 +54,13 @@
     @extend %nowrap;
   }
 
-  &--primary-lighter{
+  &--primary-lighter {
     padding: .8rem;
     border-radius: .8rem;
     background-color: rgba($primaryLighter, .32);
   }
 
-  &--company{
+  &--company {
     #{$this}__title {
       font-size: $fontSize18;
       font-weight: 500;

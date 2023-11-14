@@ -1,0 +1,74 @@
+.lang-selector {
+	position: relative;
+
+	$this: &;
+
+	&__current {
+		@extend %buttonreset;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 4.8rem;
+		padding: 1.2rem;
+		background-color: $primaryLighter2;
+		border-radius: .8rem;
+		color: $primary;
+		font-weight: 700;
+		font-size: 1.3rem;
+		line-height: 1;
+		text-transform: uppercase;
+		gap: .4rem;
+		@include animate(background-color color);
+	}
+
+	&__arrow-icon {
+		font-size: .9rem;
+		bottom: .5rem;
+	}
+
+	&__list {
+		@extend %listreset;
+		position: absolute;
+		top: calc(100% + .8rem);
+		left: 0;
+		width: 100%;
+		background-color: $white;
+		z-index: 100;
+		border-radius: 1.6rem;
+		padding: 1rem 0;
+		box-shadow: 0 .4rem 1.6rem rgba($black, .1);
+		z-index: 10;
+		opacity: 0;
+		visibility: hidden;
+		overflow: hidden;
+		@include animate(opacity visibility);
+	}
+
+	&:hover {
+		#{$this}__list {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		#{$this}__current {
+			background-color: $primaryLighter;
+			color: $white;
+		}
+	}
+
+	&__link {
+		@extend %linkreset;
+		display: block;
+		padding: .75rem .5rem;
+		text-align: center;
+		transition: background-color 0.2s ease-in-out;
+		text-transform: uppercase;
+		font-weight: 700;
+		font-size: 1.3rem;
+		color: $secondaryDarker4;
+
+		&:hover {
+			background-color: $secondary;
+		}
+	}
+}
