@@ -1,32 +1,27 @@
 <!DOCTYPE html>
 <html lang="ru">
-
-<head>
+  <head>
     {{> head }}
     <title>Vividi</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    {{> header-employee }}
 
-{{> header-onboarding }}
-
-<main class="page-content">
-    <div class="container container--fluid">
-
-        <div class="onboarding">
-            {{> body }}
-        </div>
+    <main class="page-content">
+      <div class="container container--fluid">
+        <div class="onboarding">{{> body }}</div>
 
         <div id="onboarding-controls" class="onboarding-controls"></div>
+      </div>
+      <!--container-->
+    </main>
+    <!--page content-->
 
-    </div><!--container-->
-</main><!--page content-->
+    {{> modal-activity-field }} {{> modal-activity-field-sub }} {{>
+    modal-logo-loading }}
 
-{{> modal-activity-field }}
-{{> modal-activity-field-sub }}
-{{> modal-logo-loading }}
-
-<script src="assets/js/swiper.js"></script>
-<script src="assets/js/app.js"></script>
-</body>
+    <script src="assets/js/swiper.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
 </html>
